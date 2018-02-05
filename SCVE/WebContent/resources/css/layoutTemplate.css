@@ -33,3 +33,7 @@ img {
    background: #c5d5da!important;
     color:#404040!important;
 }
+/*mudar fonte do pimefaces*/
+.ui-widget {
+	font-size: 13.5px !important;
+}
