@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<body>
+	<ui:composition template="/templatePrincipal.xhtml">
+		<ui:define name="conteudo">
+			<h:form id="form">
+				<p:dataTable id="tabela" value="#{beanListCidade.lista}" var="cidade">
+					<f:facet name="header">Lista de Cidades</f:facet>
+					<p:column headerText="Id" style="text-align:right" width="3%">
+				#{cidade.idcidade}
+			</p:column>
+					<p:column headerText="Nome" style="text-align:left">
+				#{cidade.nome}
+			</p:column>
+					<p:column headerText="Uf" style="text-align:left" width="10%">
+				#{cidade.estado.sigla}
+			</p:column>
+				<p:column width="15%"  headerText="Operações" style="text-align:center">
+						<p:commandButton action="#{beanListCidade.excluir()}"
+							oncomplete="#{beanListCidade.lista}" icon="ui-icon-trash">
+							<f:setPropertyActionListener value="#{cidade}"
+								target="#{beanListCidade.cidade}" />
+						</p:commandButton>
+						<p:commandButton oncomplete="PF('dialog').show();"
+							update=":form:painelDados" icon="ui-icon-pencil">
+							<f:setPropertyActionListener value="#{cidade}"
+								target="#{beanListCidade.cidade}" />
+						</p:commandButton>
+
+					</p:column>
+				</p:dataTable>
+				
+				<p:dialog id="dlg" header="Editar Cidade" widgetVar="dialog"
+					appendToBody="true" resizable="false" modal="true">
+					<p:panelGrid id="painelDados" columns="2">
+						<p:outputLabel value="Nome:" for="nome" />
+						<p:inputText id="nome" value="#{beanListCidade.cidade.nome}" />
+						<p:outputLabel value="Sigla:" for="estado" />
+						<p:selectOneMenu  id="estado" value="#{beanListCidade.cidade.estado}" converter="conversorUf"  >
+							<f:selectItems  value="#{beanListCidade.estados2}" var="estado" itemLabel="#{estado.sigla}" itemValue="#{estado}" />
+						</p:selectOneMenu>
+					</p:panelGrid>
+					<p:commandButton icon="ui-icon-pencil"
+						action="#{beanListCidade.salvar()}" ajax="false" />
+				</p:dialog>
+				
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>
