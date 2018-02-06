@@ -5,9 +5,11 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
 
-<h:head></h:head>
+<h:head>
+	<h:outputStylesheet library="css" name="layoutTemplate.css" />
+</h:head>
 <h:body style="background-position: 50% 0%;" >
-	<p:dialog header="Login" visible="true" closable="false" resizable="false" widht="450">
+	<p:dialog header="Login" visible="true" closable="false" resizable="false" widht="450" >
 		<form action="j_spring_security_check" method="post">
 			<p:panelGrid columns="2">
 				<p:outputLabel value="Usuário: " />
