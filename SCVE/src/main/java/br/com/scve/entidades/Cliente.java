@@ -9,11 +9,12 @@ import javax.persistence.*;
 public class Cliente extends Pessoa implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	@Column(name="idpessoa", insertable=false,updatable=false)
-	private Integer idpessoa;
+	//@Column(name="idpessoa", insertable=false,updatable=false)
+	//private Integer idpessoa;
 	
 	public Cliente() {
 		super();
 	}
+
    
 }

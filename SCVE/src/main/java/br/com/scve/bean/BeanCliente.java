@@ -4,45 +4,47 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-
 import br.com.scve.entidades.Pfisica;
 import br.com.scve.entidades.Pjuridica;
-import br.com.scve.entidades.Usuario;
-import br.com.scve.modelo.servico.ServicoUsuario;
+import br.com.scve.entidades.Cliente;
+import br.com.scve.entidades.Endereco;
+import br.com.scve.modelo.servico.ServicoCliente;
 
 @Named
 @ViewScoped
-public class BeanUsuario implements Serializable{
+public class BeanCliente implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
-	private Usuario usuario = new Usuario();
+	private Cliente cliente = new Cliente();
 	private Pfisica pfisica = new Pfisica();
 	private Pjuridica pjuridica = new Pjuridica();
+	
 	@Inject
-	private ServicoUsuario servico;
-	private List<Usuario> lista;
+	private ServicoCliente servico;
+	private List<Cliente> lista;
 	//usado para definir fisica ou juridica
 	private String opcao ;
 	private Date data;
 	private Boolean isRederiza = false;
 	private Boolean isRederiza2 = false;
 	
-	public BeanUsuario() {
+	public BeanCliente() {
 		data = new Date();
 	}
 	
 	public String salvar(){
-		servico.salvar(usuario,pfisica,pjuridica ,getOpcao());
+		servico.salvar(cliente,pfisica,pjuridica ,getOpcao());
 		lista = servico.consultar();
 		
-		return "listaUsuario";
+		return "listaCliente";
 	}
 	public void excluir(){
-		servico.excluir(usuario.getIdpessoa());
+		servico.excluir(cliente.getIdpessoa());
 		lista = servico.consultar();
 	}
 	
@@ -69,23 +71,24 @@ public class BeanUsuario implements Serializable{
 	public void setIsRederiza2(Boolean isRederiza2) {
 		this.isRederiza2 = isRederiza2;
 	}
+	
+	
 
-	public Usuario getUsuario() {
-		return usuario;
+	public Cliente getCliente() {
+		return cliente;
 	}
 
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
 
-	public List<Usuario> getLista() {
+	public List<Cliente> getLista() {
 		return lista;
 	}
 
-	public void setLista(List<Usuario> lista) {
+	public void setLista(List<Cliente> lista) {
 		this.lista = lista;
 	}
-	
 
 	public Pfisica getPfisica() {
 		return pfisica;
@@ -125,12 +128,6 @@ public class BeanUsuario implements Serializable{
 
 	public void setData(Date data) {
 		this.data = data;
-	} 	
-	/*
-	public String logout(HttpSession session) {
-		session.invalidate();
-		return "login.xhtml";
 	}
-
-	*/
+	
 }
