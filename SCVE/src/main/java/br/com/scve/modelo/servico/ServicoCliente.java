@@ -9,9 +9,11 @@ import javax.inject.Inject;
 import br.com.scve.entidades.Pfisica;
 import br.com.scve.entidades.Pjuridica;
 import br.com.scve.entidades.Cliente;
+import br.com.scve.entidades.Endereco;
 import br.com.scve.modelo.dao.DAOPfisica;
 import br.com.scve.modelo.dao.DAOPjuridica;
 import br.com.scve.modelo.dao.DAOCliente;
+import br.com.scve.modelo.dao.DAOEndereco;
 import br.com.scve.modelo.dao.hibernate.Transacao;
 
 @Dependent
@@ -24,6 +26,9 @@ public class ServicoCliente implements Serializable {
 	private DAOPfisica daoF;
 	@Inject
 	private DAOPjuridica daoJ;
+	
+	@Inject
+	private DAOEndereco daoEnde;
 
 	@Transacao
 	public void salvar(Cliente cliente, Pfisica pfisica, Pjuridica pjuridica, String tipoP) {
@@ -98,5 +103,16 @@ public class ServicoCliente implements Serializable {
 
 		return daoF.excluir(id);
 	}
-
+/*endereco*/
+	@Transacao
+	public void salvarende(Cliente cliente, Endereco endereco) {
+		try {
+			
+			endereco.setPessoa(cliente);
+			daoEnde.salvar(endereco);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+	}
 }

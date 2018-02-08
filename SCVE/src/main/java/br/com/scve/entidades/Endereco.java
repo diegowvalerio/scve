@@ -20,7 +20,9 @@ public class Endereco implements Serializable {
 	private String numero;
 	@Column(nullable=false,columnDefinition="varchar(10)")
 	private String cep;
-	@Column(nullable=true,columnDefinition="varchar(50)")
+	@Column(nullable=false,columnDefinition="varchar(40)")
+	private String bairro;
+	@Column(nullable=true,columnDefinition="varchar(150)")
 	private String complemento;
 	@ManyToOne
 	private Cidade cidade;		
@@ -113,6 +115,12 @@ public class Endereco implements Serializable {
 
 	public void setComplemento(String complemento) {
 		this.complemento = complemento;
+	}
+	public String getBairro() {
+		return bairro;
+	}
+	public void setBairro(String bairro) {
+		this.bairro = bairro;
 	}
 
 	

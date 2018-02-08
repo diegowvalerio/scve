@@ -4,16 +4,20 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-
+import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import br.com.scve.entidades.Pfisica;
 import br.com.scve.entidades.Pjuridica;
+import br.com.scve.entidades.TipoEndereco;
+import br.com.scve.entidades.Cidade;
 import br.com.scve.entidades.Cliente;
 import br.com.scve.entidades.Endereco;
+import br.com.scve.modelo.servico.ServicoCidade;
 import br.com.scve.modelo.servico.ServicoCliente;
+import br.com.scve.modelo.servico.ServicoTipoEndereco;
 
 @Named
 @ViewScoped
@@ -23,10 +27,17 @@ public class BeanCliente implements Serializable{
 	private Cliente cliente = new Cliente();
 	private Pfisica pfisica = new Pfisica();
 	private Pjuridica pjuridica = new Pjuridica();
+	private Endereco endereco = new Endereco();
 	
 	@Inject
 	private ServicoCliente servico;
+	@Inject
+	private ServicoCidade servicoCidade;
+	@Inject
+	private ServicoTipoEndereco servicoTipoende;
 	private List<Cliente> lista;
+	private List<Endereco> enderecos ;
+	
 	//usado para definir fisica ou juridica
 	private String opcao ;
 	private Date data;
@@ -130,4 +141,45 @@ public class BeanCliente implements Serializable{
 		this.data = data;
 	}
 	
+	/*endereco*/
+	public List<Endereco> getEnderecos() {
+		return enderecos;
+	}
+
+	public void setEnderecos(List<Endereco> enderecos) {
+		this.enderecos = enderecos;
+	}
+	 @PostConstruct
+	 public void addNovoEndereco(){
+		 //enderecos.add(new Endereco());
+		 this.endereco = new Endereco();
+	}
+	 public void removerEndereco(Endereco endeco){
+	        //condição para garantir pelo menos 2 enderecos
+	        if(getEnderecos().size()>1){
+	            getEnderecos().remove(endeco);
+	        }
+	 }
+
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
+	
+	public List<Cidade> getCidades(){
+		return servicoCidade.consultar();
+	}
+	public List<TipoEndereco> getTipos(){
+		return servicoTipoende.consultar();
+	}
+	
+	public String salvarende(){
+		servico.salvarende(cliente,endereco);
+		//enderecos = servico.consultar();
+		
+		return null;
+	}
 }

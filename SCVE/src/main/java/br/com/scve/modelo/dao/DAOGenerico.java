@@ -8,4 +8,5 @@ public interface DAOGenerico<E> {
 	public boolean excluir(Integer id);
 	public E consultar(Integer id);
 	public List<E> consultar();
+
 }

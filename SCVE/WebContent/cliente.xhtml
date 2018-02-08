@@ -1,68 +1,153 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
-	  xmlns:p="http://primefaces.org/ui"
-      xmlns:h="http://java.sun.com/jsf/html"> 
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html">
 
-<h:head></h:head> 
-<body> 
+<h:head></h:head>
+<body>
 	<ui:composition template="/templatePrincipal.xhtml">
 
 		<ui:define name="conteudo">
 			<p:panel header="Cadastro de Cliente">
-			<h:form id="form" >
-			<p:tabView dynamic="true" cache="false" > 
-			<p:tab title="Dados"> 
-				
-				<p:growl id="erros" showDetail="true" sticky="true" />
-					<p:panelGrid columns="2">
-						<p:outputLabel value="Tipo Pessoa:" for="tipojf" />
-						<p:selectOneMenu id="tipojf" value="#{beanCliente.opcao}" lazy="true" style="width:125px" required="true" >
-            				<f:selectItem itemLabel="" itemValue=" " />
-            				<f:selectItem itemLabel="Física" itemValue="F" />
-            				<f:selectItem itemLabel="Jurídica" itemValue="J" />
-            				<p:ajax listener="#{beanCliente.renderizar}" update=":form"/> 
-        				</p:selectOneMenu>
-        				
-						<p:outputLabel value="Nome:" for="nome" />
-						<p:inputText id="nome" value="#{beanCliente.cliente.nome}" required="true" >
-						</p:inputText>
-						  					
-						<p:outputLabel value="Cpf:" for="cpf" rendered="#{beanCliente.isRederiza2}" />
-						<p:inputMask  mask="999.999.999-99" id="cpf" value="#{beanCliente.pfisica.cpf}" required="true" rendered="#{beanCliente.isRederiza2}"/>
-						<p:outputLabel value="Rg:" for="rg" rendered="#{beanCliente.isRederiza2}" />
-						<p:inputMask mask="99.999.999-9" id="rg" value="#{beanCliente.pfisica.rg}" required="true" rendered="#{beanCliente.isRederiza2}"/>
-						<p:outputLabel value="Data Nascimento:" for="dtnasc" rendered="#{beanCliente.isRederiza2}" />
-						<p:calendar locale="pt_BR" id="dtnasc" value="#{beanCliente.pfisica.dtnasc}" pattern="dd/MM/yyyy" mask="true" required="true" effect="fold" rendered="#{beanCliente.isRederiza2}"/>
-						
-						<p:outputLabel value="Razão Social:" for="razao_social" rendered="#{beanCliente.isRederiza}" />
-						<p:inputText id="razao_social" value="#{beanCliente.pjuridica.razao_social}" required="true" rendered="#{beanCliente.isRederiza}"/>
-						<p:outputLabel value="Cnpj:" for="cnpj" rendered="#{beanCliente.isRederiza}" />
-						<p:inputMask  mask="99.999.999/9999-99" id="cnpj" value="#{beanCliente.pjuridica.cnpj}" required="true" rendered="#{beanCliente.isRederiza}"/>
-						<p:outputLabel value="Inscrição Estadual:" for="insc_estadual" rendered="#{beanCliente.isRederiza}" />
-						<p:inputText id="insc_estadual" value="#{beanCliente.pjuridica.insc_estadual}" required="true" rendered="#{beanCliente.isRederiza}"/>
-						<p:outputLabel value="Inscrição Suframa:" for="insc_suframa" rendered="#{beanCliente.isRederiza}" />
-						<p:inputText id="insc_suframa" value="#{beanCliente.pjuridica.insc_suframa}" required="false" rendered="#{beanCliente.isRederiza}"/>
-						
-						<p:outputLabel value="Data Cadastro:" for="dtcadastro" />
-						<p:calendar  autocomplete="#{beanCliente.data}" locale="pt_BR" id="dtcadastro" value="#{beanCliente.cliente.dtcadastro}"  pattern="dd/MM/yyyy" mask="true" required="true" effect="fold"/>
-												
-						<p:outputLabel value="Ativo : " for="situacao" />
-						<p:selectBooleanCheckbox id="situacao" value="#{beanCliente.cliente.situacao}" required="true"/>
-					</p:panelGrid>	
-				
-				</p:tab>
-				<!-- dados de contato -->
-					<p:tab title="Endereços"> 
-					
-					</p:tab>
-				</p:tabView>
-				<p:commandButton  action="#{beanCliente.salvar()}" value="Salvar" icon="ui-icon-check" />
+				<h:form id="form">
+					<p:tabView dynamic="true" cache="false" id="tabview">
+						<p:tab title="Dados" id="dados">
+
+							<p:growl id="erros" showDetail="true" sticky="true" />
+							<p:panelGrid columns="2" id="paineld">
+								<p:outputLabel value="Tipo Pessoa:" for="tipojf" />
+								<p:selectOneMenu id="tipojf" value="#{beanCliente.opcao}"
+									lazy="true" style="width:125px" required="true">
+									<f:selectItem itemLabel="" itemValue=" " />
+									<f:selectItem itemLabel="Física" itemValue="F" />
+									<f:selectItem itemLabel="Jurídica" itemValue="J" />
+									<p:ajax listener="#{beanCliente.renderizar}" update=":form:tabview:paineld" />
+								</p:selectOneMenu>
+
+								<p:outputLabel value="Nome:" for="nome" />
+								<p:inputText id="nome" value="#{beanCliente.cliente.nome}"
+									required="true">
+								</p:inputText>
+
+								<p:outputLabel value="Cpf:" for="cpf"
+									rendered="#{beanCliente.isRederiza2}" />
+								<p:inputMask mask="999.999.999-99" id="cpf"
+									value="#{beanCliente.pfisica.cpf}" required="true"
+									rendered="#{beanCliente.isRederiza2}" />
+								<p:outputLabel value="Rg:" for="rg"
+									rendered="#{beanCliente.isRederiza2}" />
+								<p:inputMask mask="99.999.999-9" id="rg"
+									value="#{beanCliente.pfisica.rg}" required="true"
+									rendered="#{beanCliente.isRederiza2}" />
+								<p:outputLabel value="Data Nascimento:" for="dtnasc"
+									rendered="#{beanCliente.isRederiza2}" />
+								<p:calendar locale="pt_BR" id="dtnasc"
+									value="#{beanCliente.pfisica.dtnasc}" pattern="dd/MM/yyyy"
+									mask="true" required="true" effect="fold"
+									rendered="#{beanCliente.isRederiza2}" />
+
+								<p:outputLabel value="Razão Social:" for="razao_social"
+									rendered="#{beanCliente.isRederiza}" />
+								<p:inputText id="razao_social"
+									value="#{beanCliente.pjuridica.razao_social}" required="true"
+									rendered="#{beanCliente.isRederiza}" />
+								<p:outputLabel value="Cnpj:" for="cnpj"
+									rendered="#{beanCliente.isRederiza}" />
+								<p:inputMask mask="99.999.999/9999-99" id="cnpj"
+									value="#{beanCliente.pjuridica.cnpj}" required="true"
+									rendered="#{beanCliente.isRederiza}" />
+								<p:outputLabel value="Inscrição Estadual:" for="insc_estadual"
+									rendered="#{beanCliente.isRederiza}" />
+								<p:inputText id="insc_estadual"
+									value="#{beanCliente.pjuridica.insc_estadual}" required="true"
+									rendered="#{beanCliente.isRederiza}" />
+								<p:outputLabel value="Inscrição Suframa:" for="insc_suframa"
+									rendered="#{beanCliente.isRederiza}" />
+								<p:inputText id="insc_suframa"
+									value="#{beanCliente.pjuridica.insc_suframa}" required="false"
+									rendered="#{beanCliente.isRederiza}" />
+
+								<p:outputLabel value="Data Cadastro:" for="dtcadastro" />
+								<p:calendar autocomplete="#{beanCliente.data}" locale="pt_BR"
+									id="dtcadastro" value="#{beanCliente.cliente.dtcadastro}"
+									pattern="dd/MM/yyyy" mask="true" required="true" effect="fold" />
+
+								<p:outputLabel value="Ativo : " for="situacao" />
+								<p:selectBooleanCheckbox id="situacao"
+									value="#{beanCliente.cliente.situacao}" required="true" />
+							</p:panelGrid>
+
+						</p:tab>
+						<!-- dados de endereco -->
+						<p:tab title="Endereços" id="endereco">
+							<p:commandButton action="#{beanCliente.addNovoEndereco()}" value="Novo"
+								icon="ui-icon-plusthick" style="margin-top: 10px"
+								update=":form:tabview:painelDados" oncomplete="PF('dialog').show()" >
+							</p:commandButton>
+							<p:dataTable id="tabela" value="#{beanCliente.enderecos}" var="enderecos">
+							<f:facet name="header">Lista de Endereços</f:facet>
+								<p:column headerText="Cep" style="text-align:left">
+								#{enderecos.cep}
+								</p:column>
+								<p:column headerText="Uf" style="text-align:left">
+								#{enderecos.cidade.estado.sigla}
+								</p:column>
+								<p:column headerText="Cidade" style="text-align:left">
+								#{enderecos.cidade.nome}
+								</p:column>
+								<p:column headerText="Logadouro" style="text-align:left">
+								#{enderecos.logadouro}
+								</p:column>
+								<p:column headerText="Numero" style="text-align:left">
+								#{enderecos.numero}
+								</p:column>
+							</p:dataTable>
+							
+							<p:dialog id="dlg" header="Novo Endereço" widgetVar="dialog"
+								appendToBody="true" resizable="false" modal="true">
+								<p:panelGrid id="painelDados" columns="2">
+									<p:outputLabel value="Cep:" for="cep" />
+									<p:inputMask mask="99.999-999" id="cep" value="#{beanCliente.endereco.cep}" />
+									
+									<p:outputLabel value="Tipo Endereço" for="tipo" />
+									<p:selectOneMenu id="tipo"
+										value="#{beanCliente.endereco.tipoendereco}"
+										converter="conversorTipoEnde">
+										<f:selectItems value="#{beanCliente.tipos}" var="tipo"
+											itemLabel="#{tipo.nome}" itemValue="#{tipo}" />
+									</p:selectOneMenu>
+									
+									
+									<p:outputLabel value="Cidade:" for="cidade" />
+									<p:selectOneMenu id="cidade"
+										value="#{beanCliente.endereco.cidade}"
+										converter="conversorCidade">
+										<f:selectItems value="#{beanCliente.cidades}" var="cidade"
+											itemLabel="#{cidade.nome}" itemValue="#{cidade}" />
+									</p:selectOneMenu>
+									<p:outputLabel value="Logradouro:" for="logradouro" />
+									<p:inputText id="logradouro" value="#{beanCliente.endereco.logadouro}" />
+									<p:outputLabel value="Bairro:" for="bairro" />
+									<p:inputText id="bairro" value="#{beanCliente.endereco.bairro}" />
+									<p:outputLabel value="Numero:" for="numero" />
+									<p:inputText id="numero" value="#{beanCliente.endereco.numero}" />
+									<p:outputLabel value="Complemento:" for="complemento" />
+									<p:inputText id="complemento" value="#{beanCliente.endereco.complemento}" />
+								</p:panelGrid>
+								<p:commandButton icon="ui-icon-pencil"
+									action="#{beanCliente.salvarende()}"  />
+							</p:dialog>
+							
+						</p:tab>
+					</p:tabView>
+					<p:commandButton action="#{beanCliente.salvar()}" value="Salvar"
+						icon="ui-icon-check" />
 				</h:form>
 			</p:panel>
 		</ui:define>
 
 	</ui:composition>
-</body> 
+</body>
 </html>

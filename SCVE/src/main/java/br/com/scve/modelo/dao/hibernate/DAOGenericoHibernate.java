@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 import br.com.scve.modelo.dao.DAOGenerico;
 
@@ -44,5 +45,7 @@ public class DAOGenericoHibernate<E> implements DAOGenerico<E>, Serializable{
 	public List<E> consultar() {
 		return manager.createQuery("from "+classeEntidade.getSimpleName()).getResultList();
 	}
+	
+
 
 }
