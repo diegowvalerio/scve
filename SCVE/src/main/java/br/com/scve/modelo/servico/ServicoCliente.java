@@ -103,16 +103,54 @@ public class ServicoCliente implements Serializable {
 
 		return daoF.excluir(id);
 	}
-/*endereco*/
+
 	@Transacao
-	public void salvarende(Cliente cliente, Endereco endereco) {
-		try {
-			
-			endereco.setPessoa(cliente);
-			daoEnde.salvar(endereco);
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
+	public void salvarende(Cliente cliente, Pfisica pfisica, Pjuridica pjuridica, String tipoP,Endereco endereco) {
+			try {
+				if (cliente.getIdpessoa() == null) {
+					cliente.setTipojf(tipoP);
+					dao.salvar(cliente);
+					if (cliente.getTipojf().equals("F")) {
+						pfisica.setPessoa(cliente);
+						daoF.salvar(pfisica);
+					} else {
+						pjuridica.setPessoa(cliente);
+						daoJ.salvar(pjuridica);
+					}
+					/*endereco */
+					endereco.setPessoa(cliente);
+					daoEnde.salvar(endereco);
+					
+				} else {
+					cliente.setTipojf(tipoP);
+					dao.alterar(cliente);
+					if (cliente.getTipojf().equals("F")) {
+						if (pfisica.getPessoa() == null){
+							daoJ.excluir(cliente.getIdpessoa());
+							pfisica.setPessoa(cliente);
+							daoF.salvar(pfisica);						
+						}else{
+						daoF.alterar(pfisica);
+						}
+						
+					} else {
+						if (pjuridica.getPessoa() == null){
+							daoF.excluir(cliente.getIdpessoa());
+							pjuridica.setPessoa(cliente);
+							daoJ.salvar(pjuridica);						
+						}else{
+							daoJ.alterar(pjuridica);
+						}
+						
+					}
+					/*endereco */
+					endereco.setPessoa(cliente);
+					daoEnde.salvar(endereco);
+				}
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
-	}
+
 }

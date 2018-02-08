@@ -15,7 +15,6 @@ public class scvePkEnde implements Serializable{
 	private Integer idtipoend;	
 	private Integer idpessoa;
 	
-		
 	public scvePkEnde(){
 		
 	}

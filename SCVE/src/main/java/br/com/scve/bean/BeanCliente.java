@@ -24,7 +24,7 @@ import br.com.scve.modelo.servico.ServicoTipoEndereco;
 public class BeanCliente implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
-	private Cliente cliente = new Cliente();
+	private Cliente cliente =new Cliente(); 
 	private Pfisica pfisica = new Pfisica();
 	private Pjuridica pjuridica = new Pjuridica();
 	private Endereco endereco = new Endereco();
@@ -44,15 +44,20 @@ public class BeanCliente implements Serializable{
 	private Boolean isRederiza = false;
 	private Boolean isRederiza2 = false;
 	
-	public BeanCliente() {
+	/*@PostConstruct
+	public void inicia() {
 		data = new Date();
+		cliente =new Cliente();
+		pfisica = new Pfisica();
+		pjuridica = new Pjuridica();
+		endereco = new Endereco();
 	}
-	
+	*/
 	public String salvar(){
 		servico.salvar(cliente,pfisica,pjuridica ,getOpcao());
 		lista = servico.consultar();
 		
-		return "listaCliente";
+		return "index";
 	}
 	public void excluir(){
 		servico.excluir(cliente.getIdpessoa());
@@ -149,10 +154,17 @@ public class BeanCliente implements Serializable{
 	public void setEnderecos(List<Endereco> enderecos) {
 		this.enderecos = enderecos;
 	}
-	 @PostConstruct
+	 /*@PostConstruct*/
 	 public void addNovoEndereco(){
+		 if (this.cliente == null){
+	          throw new RuntimeException("O cliente não pode ser nulo");
+	        }else{
 		 //enderecos.add(new Endereco());
+	     servico.salvar(cliente,pfisica,pjuridica ,getOpcao());   	
 		 this.endereco = new Endereco();
+		 this.endereco.setPessoa(cliente);
+		 
+	        }
 	}
 	 public void removerEndereco(Endereco endeco){
 	        //condição para garantir pelo menos 2 enderecos
@@ -177,9 +189,8 @@ public class BeanCliente implements Serializable{
 	}
 	
 	public String salvarende(){
-		servico.salvarende(cliente,endereco);
-		//enderecos = servico.consultar();
-		
+		servico.salvarende(cliente,pfisica,pjuridica ,getOpcao(),endereco);	
+						
 		return null;
 	}
 }

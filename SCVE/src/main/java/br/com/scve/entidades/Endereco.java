@@ -13,7 +13,12 @@ public class Endereco implements Serializable {
 	private static final long serialVersionUID = 1L;	
 	
 	@EmbeddedId
-	private scvePkEnde id;
+	private scvePkEnder id;
+	
+	@AttributeOverrides( {
+		@AttributeOverride(name = "idpessoa", column = @Column(name = "IDPESSOA", nullable = false)),
+		@AttributeOverride(name = "idtipoend", column = @Column(name = "IDTIPOEND", nullable = false)) })
+	
 	@Column(nullable=false,columnDefinition="varchar(100)")
 	private String logadouro;
 	@Column(nullable=false,columnDefinition="varchar(10)")
@@ -35,6 +40,83 @@ public class Endereco implements Serializable {
 	@JoinColumn(name = "idpessoa", referencedColumnName="idpessoa",insertable =false,updatable=false)
 	private Pessoa pessoa;
 	
+	//Solução do problema
+	@PrePersist
+	  private void prePersiste() {
+			this.id = new scvePkEnder();
+			this.id.setIdpessoa(pessoa.getIdpessoa());
+			this.id.setIdtipoend(tipoendereco.getIdtipoend());		
+			this.pessoa = pessoa;
+			this.tipoendereco = tipoendereco;
+		}
+		
+		@Embeddable
+		public static class scvePkEnder implements Serializable{
+
+			private static final long serialVersionUID = 1L;
+			
+			
+			
+			private Integer idtipoend;	
+			private Integer idpessoa;
+			
+			public scvePkEnder(){
+				
+			}
+
+
+			public Integer getIdtipoend() {
+				return idtipoend;
+			}
+
+
+			public void setIdtipoend(Integer idtipoend) {
+				this.idtipoend = idtipoend;
+			}
+
+
+			public Integer getIdpessoa() {
+				return idpessoa;
+			}
+
+
+			public void setIdpessoa(Integer idpessoa) {
+				this.idpessoa = idpessoa;
+			}
+			
+			@Override
+			public int hashCode() {
+				final int prime = 31;
+				int result = 1;
+				result = prime * result + ((idpessoa == null) ? 0 : idpessoa.hashCode());
+				result = prime * result + ((idtipoend == null) ? 0 : idtipoend.hashCode());
+				return result;
+			}
+
+
+			@Override
+			public boolean equals(Object obj) {
+				if (this == obj)
+					return true;
+				if (obj == null)
+					return false;
+				if (getClass() != obj.getClass())
+					return false;
+				scvePkEnder other = (scvePkEnder) obj;
+				if (idpessoa == null) {
+					if (other.idpessoa != null)
+						return false;
+				} else if (!idpessoa.equals(other.idpessoa))
+					return false;
+				if (idtipoend == null) {
+					if (other.idtipoend != null)
+						return false;
+				} else if (!idtipoend.equals(other.idtipoend))
+					return false;
+				return true;
+			}
+			
+		}
 
 	public TipoEndereco getTipoendereco() {
 		return tipoendereco;
@@ -72,10 +154,10 @@ public class Endereco implements Serializable {
 		return true;
 	}
 	
-	public scvePkEnde getId() {
+	public scvePkEnder getId() {
 		return id;
 	}
-	public void setId(scvePkEnde id) {
+	public void setId(scvePkEnder id) {
 		this.id = id;
 	}
 	public Cidade getCidade() {

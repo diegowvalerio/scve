@@ -78,13 +78,14 @@
 								<p:selectBooleanCheckbox id="situacao"
 									value="#{beanCliente.cliente.situacao}" required="true" />
 							</p:panelGrid>
-
+<!--
 						</p:tab>
-						<!-- dados de endereco -->
-						<p:tab title="Endereços" id="endereco">
-							<p:commandButton action="#{beanCliente.addNovoEndereco()}" value="Novo"
+						 dados de endereco 
+						<p:tab title="Endereços" id="endereco" > -->
+							<p:commandButton  id="nve"  value="Novo"
 								icon="ui-icon-plusthick" style="margin-top: 10px"
-								update=":form:tabview:painelDados" oncomplete="PF('dialog').show()" >
+								action="#{beanCliente.addNovoEndereco()}" onclick="PF('dialog').show()" >
+								<f:setPropertyActionListener target="#{beanCliente.endereco.pessoa}" value="#{beanCliente.cliente}" />
 							</p:commandButton>
 							<p:dataTable id="tabela" value="#{beanCliente.enderecos}" var="enderecos">
 							<f:facet name="header">Lista de Endereços</f:facet>
@@ -119,13 +120,13 @@
 											itemLabel="#{tipo.nome}" itemValue="#{tipo}" />
 									</p:selectOneMenu>
 									
-									
+																		
 									<p:outputLabel value="Cidade:" for="cidade" />
 									<p:selectOneMenu id="cidade"
 										value="#{beanCliente.endereco.cidade}"
 										converter="conversorCidade">
 										<f:selectItems value="#{beanCliente.cidades}" var="cidade"
-											itemLabel="#{cidade.nome}" itemValue="#{cidade}" />
+											itemLabel="#{cidade.nome}" itemValue="#{cidade.idcidade}" />
 									</p:selectOneMenu>
 									<p:outputLabel value="Logradouro:" for="logradouro" />
 									<p:inputText id="logradouro" value="#{beanCliente.endereco.logadouro}" />
@@ -136,14 +137,16 @@
 									<p:outputLabel value="Complemento:" for="complemento" />
 									<p:inputText id="complemento" value="#{beanCliente.endereco.complemento}" />
 								</p:panelGrid>
-								<p:commandButton icon="ui-icon-pencil"
-									action="#{beanCliente.salvarende()}"  />
+								<h:commandButton id="sle" icon="ui-icon-pencil" action="#{beanCliente.salvarende()}" value="Salvar">
+								</h:commandButton>
 							</p:dialog>
 							
-						</p:tab>
+						<!-- dados de endereco -->
+						</p:tab> 
+						
 					</p:tabView>
-					<p:commandButton action="#{beanCliente.salvar()}" value="Salvar"
-						icon="ui-icon-check" />
+					<p:commandButton action="#{beanCliente.salvar()}" value="Salvar" icon="ui-icon-check" ajax="false">
+					</p:commandButton>
 				</h:form>
 			</p:panel>
 		</ui:define>
