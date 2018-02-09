@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
+import br.com.scve.entidades.Endereco;
 import br.com.scve.modelo.dao.DAOGenerico;
 
 public class DAOGenericoHibernate<E> implements DAOGenerico<E>, Serializable{
@@ -46,6 +47,18 @@ public class DAOGenericoHibernate<E> implements DAOGenerico<E>, Serializable{
 		return manager.createQuery("from "+classeEntidade.getSimpleName()).getResultList();
 	}
 	
-
-
+	@Override
+	public List<E> consultarEnderecosId(Integer id) {
+	      return this.manager.createQuery("select e from Endereco e where "
+	      		+ "e.pessoa.idpessoa = :id").setParameter("id", id).getResultList();
+	}
+	
+	@Override
+	public boolean excluirEnderecos(List<E> ids, Integer id) {
+		for (int i = 0; i < ids.size(); i++) {
+			manager.createQuery("delete e from Endereco e where "
+		      		+ "e.pessoa.idpessoa = :id").setParameter("id", id);
+        }
+		return true;
+	}
 }

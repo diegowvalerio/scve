@@ -46,11 +46,7 @@ public class BeanCliente implements Serializable{
 	
 	/*@PostConstruct
 	public void inicia() {
-		data = new Date();
-		cliente =new Cliente();
-		pfisica = new Pfisica();
-		pjuridica = new Pjuridica();
-		endereco = new Endereco();
+		
 	}
 	*/
 	public String salvar(){
@@ -60,7 +56,9 @@ public class BeanCliente implements Serializable{
 		return "index";
 	}
 	public void excluir(){
+		servico.excluirEnde(cliente.getIdpessoa());
 		servico.excluir(cliente.getIdpessoa());
+		
 		lista = servico.consultar();
 	}
 	
@@ -159,10 +157,10 @@ public class BeanCliente implements Serializable{
 		 if (this.cliente == null){
 	          throw new RuntimeException("O cliente não pode ser nulo");
 	        }else{
-		 //enderecos.add(new Endereco());
-	     servico.salvar(cliente,pfisica,pjuridica ,getOpcao());   	
+		 
+	     servico.salvar(cliente,pfisica,pjuridica ,getOpcao());   
 		 this.endereco = new Endereco();
-		 this.endereco.setPessoa(cliente);
+		 //this.endereco.setPessoa(cliente);
 		 
 	        }
 	}
@@ -190,7 +188,8 @@ public class BeanCliente implements Serializable{
 	
 	public String salvarende(){
 		servico.salvarende(cliente,pfisica,pjuridica ,getOpcao(),endereco);	
-						
+		enderecos = servico.consultarEnde(cliente.getIdpessoa());
+		endereco = new Endereco();
 		return null;
 	}
 }

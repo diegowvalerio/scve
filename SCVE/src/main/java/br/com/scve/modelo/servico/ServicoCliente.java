@@ -107,50 +107,20 @@ public class ServicoCliente implements Serializable {
 	@Transacao
 	public void salvarende(Cliente cliente, Pfisica pfisica, Pjuridica pjuridica, String tipoP,Endereco endereco) {
 			try {
-				if (cliente.getIdpessoa() == null) {
-					cliente.setTipojf(tipoP);
-					dao.salvar(cliente);
-					if (cliente.getTipojf().equals("F")) {
-						pfisica.setPessoa(cliente);
-						daoF.salvar(pfisica);
-					} else {
-						pjuridica.setPessoa(cliente);
-						daoJ.salvar(pjuridica);
-					}
-					/*endereco */
 					endereco.setPessoa(cliente);
 					daoEnde.salvar(endereco);
-					
-				} else {
-					cliente.setTipojf(tipoP);
-					dao.alterar(cliente);
-					if (cliente.getTipojf().equals("F")) {
-						if (pfisica.getPessoa() == null){
-							daoJ.excluir(cliente.getIdpessoa());
-							pfisica.setPessoa(cliente);
-							daoF.salvar(pfisica);						
-						}else{
-						daoF.alterar(pfisica);
-						}
-						
-					} else {
-						if (pjuridica.getPessoa() == null){
-							daoF.excluir(cliente.getIdpessoa());
-							pjuridica.setPessoa(cliente);
-							daoJ.salvar(pjuridica);						
-						}else{
-							daoJ.alterar(pjuridica);
-						}
-						
-					}
-					/*endereco */
-					endereco.setPessoa(cliente);
-					daoEnde.salvar(endereco);
-				}
-
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
-
+	
+	public List<Endereco> consultarEnde(Integer id) {
+		return daoEnde.consultarEnderecosId(id);
+	}
+	
+	@Transacao
+	public boolean excluirEnde(Integer id) {
+		List<Endereco> e = daoEnde.consultarEnderecosId(id);
+		return daoEnde.excluirEnderecos(e,id);
+	}
 }
