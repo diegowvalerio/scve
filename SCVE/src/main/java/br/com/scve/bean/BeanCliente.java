@@ -57,6 +57,7 @@ public class BeanCliente implements Serializable{
 	}
 	public void excluir(){
 		servico.excluirEnde(cliente.getIdpessoa());
+		
 		servico.excluir(cliente.getIdpessoa());
 		
 		lista = servico.consultar();

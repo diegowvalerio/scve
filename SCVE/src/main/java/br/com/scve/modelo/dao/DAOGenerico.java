@@ -1,5 +1,6 @@
 package br.com.scve.modelo.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public interface DAOGenerico<E> {
@@ -10,6 +11,6 @@ public interface DAOGenerico<E> {
 	public List<E> consultar();
 	
 	public List<E> consultarEnderecosId(Integer id);
-	public boolean excluirEnderecos(List<E> ids,Integer id);
+	public boolean excluirEnderecos(List<E> ids);
 
 }

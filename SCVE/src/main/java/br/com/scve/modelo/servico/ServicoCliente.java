@@ -1,6 +1,7 @@
 package br.com.scve.modelo.servico;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.enterprise.context.Dependent;
@@ -75,7 +76,8 @@ public class ServicoCliente implements Serializable {
 
 	@Transacao
 	public boolean excluir(Integer id) {
-		
+		       daoF.excluir(id);
+		       daoJ.excluir(id);
 		return dao.excluir(id);
 	}
 
@@ -120,7 +122,7 @@ public class ServicoCliente implements Serializable {
 	
 	@Transacao
 	public boolean excluirEnde(Integer id) {
-		List<Endereco> e = daoEnde.consultarEnderecosId(id);
-		return daoEnde.excluirEnderecos(e,id);
+		List<Endereco> enderecos = daoEnde.consultarEnderecosId(id);
+		return daoEnde.excluirEnderecos(enderecos);
 	}
 }

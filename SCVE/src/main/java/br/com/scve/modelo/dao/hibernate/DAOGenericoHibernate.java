@@ -1,6 +1,7 @@
 package br.com.scve.modelo.dao.hibernate;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -54,11 +55,14 @@ public class DAOGenericoHibernate<E> implements DAOGenerico<E>, Serializable{
 	}
 	
 	@Override
-	public boolean excluirEnderecos(List<E> ids, Integer id) {
+	public boolean excluirEnderecos(List<E> ids) {
 		for (int i = 0; i < ids.size(); i++) {
-			manager.createQuery("delete e from Endereco e where "
-		      		+ "e.pessoa.idpessoa = :id").setParameter("id", id);
+			//System.out.println("Id Endereco: "+id);
+			/*manager.createQuery("delete from Endereco  where "
+		      		+ "Endereco.pessoa.idpessoa = :id").setParameter("id", id);*/
+			manager.remove(ids.get(i));
         }
+		
 		return true;
 	}
 }
