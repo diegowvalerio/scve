@@ -57,7 +57,7 @@ public class DAOGenericoHibernate<E> implements DAOGenerico<E>, Serializable{
 	@Override
 	public boolean excluirEnderecos(List<E> ids) {
 		for (int i = 0; i < ids.size(); i++) {
-			//System.out.println("Id Endereco: "+id);
+			System.out.println("Id Endereco: "+ids.get(i));
 			/*manager.createQuery("delete from Endereco  where "
 		      		+ "Endereco.pessoa.idpessoa = :id").setParameter("id", id);*/
 			manager.remove(ids.get(i));

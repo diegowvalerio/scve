@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
+
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -55,12 +55,19 @@ public class BeanCliente implements Serializable{
 		
 		return "index";
 	}
-	public void excluir(){
-		servico.excluirEnde(cliente.getIdpessoa());
+	public String excluir(){
 		
+		servico.excluirEnde(cliente.getIdpessoa());
+		if (cliente.getTipojf().equals("F")) {
+			servico.excluirF(cliente.getIdpessoa());
+		}else{
+			servico.excluirJ(cliente.getIdpessoa());
+		}
 		servico.excluir(cliente.getIdpessoa());
 		
 		lista = servico.consultar();
+		
+		return "index";
 	}
 	
 	public String getOpcao() {
