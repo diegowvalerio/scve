@@ -23,7 +23,8 @@
 									<f:selectItem itemLabel="" itemValue=" " />
 									<f:selectItem itemLabel="Física" itemValue="F" />
 									<f:selectItem itemLabel="Jurídica" itemValue="J" />
-									<p:ajax listener="#{beanCliente.renderizar}" update=":form:tabview:paineld" />
+									<p:ajax listener="#{beanCliente.renderizar}"
+										update=":form:tabview:paineld" />
 								</p:selectOneMenu>
 
 								<p:outputLabel value="Nome:" for="nome" />
@@ -78,17 +79,21 @@
 								<p:selectBooleanCheckbox id="situacao"
 									value="#{beanCliente.cliente.situacao}" required="true" />
 							</p:panelGrid>
-						
+
 						</p:tab>
 						<!-- dados de endereco  -->
-						<p:tab title="Endereços" id="endereco" >
-							<p:commandButton  id="nve"  value="Novo" 
-								icon="ui-icon-plusthick" style="margin-top: 10px; horizontal-align:left;" 
-								action="#{beanCliente.addNovoEndereco()}" oncomplete="PF('dialog').show()" >
-								<f:setPropertyActionListener target="#{beanCliente.endereco.pessoa}" value="#{beanCliente.cliente}" />
+						<p:tab title="Endereços" id="endereco">
+							<p:commandButton id="nve" value="Novo" icon="ui-icon-plusthick"
+								style="margin-top: 10px; horizontal-align:left;"
+								action="#{beanCliente.addNovoEndereco()}"
+								oncomplete="PF('dialog').show()">
+								<f:setPropertyActionListener
+									target="#{beanCliente.endereco.pessoa}"
+									value="#{beanCliente.cliente}" />
 							</p:commandButton>
-							<p:dataTable id="tabela" value="#{beanCliente.enderecos}" var="enderecos">
-							<f:facet name="header">Lista de Endereços</f:facet>
+							<p:dataTable id="tabela" value="#{beanCliente.enderecos}"
+								var="enderecos">
+								<f:facet name="header">Lista de Endereços</f:facet>
 								<p:column headerText="Tipo" style="text-align:left" width="10%">
 								#{enderecos.tipoendereco.nome}
 								</p:column>
@@ -98,7 +103,8 @@
 								<p:column headerText="Uf" style="text-align:left" width="3%">
 								#{enderecos.cidade.estado.sigla}
 								</p:column>
-								<p:column headerText="Cidade" style="text-align:left" width="15%">
+								<p:column headerText="Cidade" style="text-align:left"
+									width="15%">
 								#{enderecos.cidade.nome}
 								</p:column>
 								<p:column headerText="Logadouro" style="text-align:left">
@@ -107,21 +113,38 @@
 								<p:column headerText="Numero" style="text-align:left" width="6%">
 								#{enderecos.numero}
 								</p:column>
+								
+								<p:column width="15%" headerText="Operações"
+									style="text-align:center">
+									<p:commandButton action="#{beanCliente.removerEndereco()}"
+										oncomplete="#{beanCliente.enderecos}" icon="ui-icon-trash">
+										<f:setPropertyActionListener value="#{enderecos}"
+											target="#{beanCliente.endereco}" />
+									</p:commandButton>
+									<p:commandButton oncomplete="PF('dialog').show();"
+										icon="ui-icon-pencil">
+										<f:setPropertyActionListener 
+											value="#{enderecos}"
+											target="#{beanCliente.endereco}" />
+									</p:commandButton>
+
+								</p:column>
 							</p:dataTable>
-							
+
 							<p:dialog id="dlg" header="Novo Endereço" widgetVar="dialog"
 								appendToBody="true" resizable="false" modal="true">
 								<p:panelGrid id="painelDados" columns="2">
 									<p:outputLabel value="Cep:" for="cep" />
-									<p:inputMask mask="99.999-999" id="cep" value="#{beanCliente.endereco.cep}" />
-									
+									<p:inputMask mask="99.999-999" id="cep"
+										value="#{beanCliente.endereco.cep}" />
+
 									<p:outputLabel value="Tipo Endereço" for="tipo" />
 									<p:selectOneMenu id="tipo"
 										value="#{beanCliente.endereco.tipoendereco}"
 										converter="conversorTipoEnde">
 										<f:selectItems value="#{beanCliente.tipos}" var="tipo"
 											itemLabel="#{tipo.nome}" itemValue="#{tipo}" />
-									</p:selectOneMenu>									
+									</p:selectOneMenu>
 									<p:outputLabel value="Cidade:" for="cidade" />
 									<p:selectOneMenu id="cidade"
 										value="#{beanCliente.endereco.cidade}"
@@ -130,25 +153,30 @@
 											itemLabel="#{cidade.nome}" itemValue="#{cidade}" />
 									</p:selectOneMenu>
 									<p:outputLabel value="Logradouro:" for="logradouro" />
-									<p:inputText id="logradouro" value="#{beanCliente.endereco.logadouro}" />
+									<p:inputText id="logradouro"
+										value="#{beanCliente.endereco.logadouro}" />
 									<p:outputLabel value="Bairro:" for="bairro" />
 									<p:inputText id="bairro" value="#{beanCliente.endereco.bairro}" />
 									<p:outputLabel value="Numero:" for="numero" />
 									<p:inputText id="numero" value="#{beanCliente.endereco.numero}" />
 									<p:outputLabel value="Complemento:" for="complemento" />
-									<p:inputText id="complemento" value="#{beanCliente.endereco.complemento}" />
+									<p:inputText id="complemento"
+										value="#{beanCliente.endereco.complemento}" />
 								</p:panelGrid>
-								<h:commandButton id="sle" icon="ui-icon-pencil" action="#{beanCliente.salvarende()}" value="Salvar">
+								<h:commandButton id="sle" icon="ui-icon-pencil"
+									action="#{beanCliente.salvarende()}" value="Salvar">
 								</h:commandButton>
 							</p:dialog>
-							
-						<!-- dados de endereco -->
-						</p:tab> 
-						
+
+							<!-- dados de endereco -->
+						</p:tab>
+
 					</p:tabView>
-					<p:commandButton action="#{beanCliente.salvar()}" value="Salvar" icon="ui-icon-check" ajax="false">
+					<p:commandButton action="#{beanCliente.salvar()}" value="Salvar"
+						icon="ui-icon-check" ajax="false">
 					</p:commandButton>
-					<p:commandButton  action="#{beanCliente.excluir()}" value="Cancelar" icon="	ui-icon-trash" ajax="false">
+					<p:commandButton action="#{beanCliente.excluir()}" value="Cancelar"
+						icon="	ui-icon-trash" ajax="false">
 					</p:commandButton>
 				</h:form>
 			</p:panel>

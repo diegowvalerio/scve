@@ -172,11 +172,11 @@ public class BeanCliente implements Serializable{
 		 
 	        }
 	}
-	 public void removerEndereco(Endereco endeco){
-	        //condição para garantir pelo menos 2 enderecos
-	        if(getEnderecos().size()>1){
-	            getEnderecos().remove(endeco);
-	        }
+	 public String removerEndereco(){
+	    //  servico.excluirEnd(cliente.getIdpessoa(), endereco.getTipoendereco().getIdtipoend());
+	      servico.ex(endereco); 
+	      
+	      return "";
 	 }
 
 	public Endereco getEndereco() {
@@ -195,7 +195,7 @@ public class BeanCliente implements Serializable{
 	}
 	
 	public String salvarende(){
-		servico.salvarende(cliente,pfisica,pjuridica ,getOpcao(),endereco);	
+		servico.salvarende(cliente,endereco);	
 		enderecos = servico.consultarEnde(cliente.getIdpessoa());
 		endereco = new Endereco();
 		return null;

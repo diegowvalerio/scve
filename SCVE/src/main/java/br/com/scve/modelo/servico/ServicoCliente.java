@@ -13,6 +13,7 @@ import br.com.scve.entidades.Endereco;
 import br.com.scve.modelo.dao.DAOPfisica;
 import br.com.scve.modelo.dao.DAOPjuridica;
 import br.com.scve.modelo.dao.DAOCliente;
+import br.com.scve.modelo.dao.DAOContato;
 import br.com.scve.modelo.dao.DAOEndereco;
 import br.com.scve.modelo.dao.hibernate.Transacao;
 
@@ -29,6 +30,9 @@ public class ServicoCliente implements Serializable {
 	
 	@Inject
 	private DAOEndereco daoEnde;
+	
+	@Inject 
+	private DAOContato daoC;
 
 	@Transacao
 	public void salvar(Cliente cliente, Pfisica pfisica, Pjuridica pjuridica, String tipoP) {
@@ -104,7 +108,7 @@ public class ServicoCliente implements Serializable {
 	}
 
 	@Transacao
-	public void salvarende(Cliente cliente, Pfisica pfisica, Pjuridica pjuridica, String tipoP,Endereco endereco) {
+	public void salvarende(Cliente cliente,Endereco endereco) {
 			try {
 					endereco.setPessoa(cliente);
 					daoEnde.salvar(endereco);
@@ -121,5 +125,16 @@ public class ServicoCliente implements Serializable {
 	public boolean excluirEnde(Integer id) {
 		List<Endereco> enderecos = daoEnde.consultarEnderecosId(id);
 		return daoEnde.excluirEnderecos(enderecos);
+	}
+	
+	@Transacao
+	public boolean excluirEnd(Integer id,Integer tipo) {
+		List<Endereco> end = daoEnde.consultarEnderecoId(id, tipo);
+		return daoEnde.excluirEnderecos(end);
+	}
+	
+	@Transacao
+	public boolean ex(Endereco ed){
+		return daoEnde.excluirObj(ed);
 	}
 }

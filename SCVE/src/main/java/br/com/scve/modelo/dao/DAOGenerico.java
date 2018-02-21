@@ -11,6 +11,9 @@ public interface DAOGenerico<E> {
 	public List<E> consultar();
 	
 	public List<E> consultarEnderecosId(Integer id);
+	public List<E> consultarEnderecoId(Integer id,Integer tipo);
 	public boolean excluirEnderecos(List<E> ids);
+	
+	public boolean excluirObj(Object e);
 
 }
