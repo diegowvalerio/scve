@@ -9,6 +9,7 @@ import javax.inject.Inject;
 import br.com.scve.entidades.Pfisica;
 import br.com.scve.entidades.Pjuridica;
 import br.com.scve.entidades.Cliente;
+import br.com.scve.entidades.Contato;
 import br.com.scve.entidades.Endereco;
 import br.com.scve.modelo.dao.DAOPfisica;
 import br.com.scve.modelo.dao.DAOPjuridica;
@@ -136,5 +137,16 @@ public class ServicoCliente implements Serializable {
 	@Transacao
 	public boolean ex(Endereco ed){
 		return daoEnde.excluirObj(ed);
+	}
+	/*contato*/
+	public List<Contato> consultarContato(Integer id) {
+
+		return daoC.consultarContatosporPessoa(id);
+	}
+	
+	@Transacao
+	public void Addcontato(Contato contato){
+		daoC.salvar(contato);
+		
 	}
 }

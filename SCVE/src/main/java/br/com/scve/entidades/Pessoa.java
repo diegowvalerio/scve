@@ -1,9 +1,11 @@
 package br.com.scve.entidades;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
-
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,9 +14,11 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
 
 @Entity
 @Table(name="tbpessoa")
@@ -37,12 +41,21 @@ public class Pessoa implements Serializable {
 	@ManyToOne
 	private Pessoa vendresp;
 	
+	@OneToMany(mappedBy="pessoa", cascade=CascadeType.ALL)
+    private List<Contato> contatos = new ArrayList<Contato>();
 	
 	
 	public Pessoa() {
 		super();
 	}   
 	
+	public Pessoa(String nome,Date dtcadastro, Boolean situacao, String tipojf,Pessoa vendresp){
+		this.nome = nome;
+		this.dtcadastro = dtcadastro;
+		this.situacao = situacao;
+		this.tipojf = tipojf;
+		this.vendresp = vendresp;
+	}
 	
 	public Integer getIdpessoa() {
 		return idpessoa;
@@ -100,6 +113,16 @@ public class Pessoa implements Serializable {
 
 	public void setVendresp(Pessoa vendresp) {
 		this.vendresp = vendresp;
+	}
+
+
+	public List<Contato> getContatos() {
+		return contatos;
+	}
+
+
+	public void setContatos(List<Contato> contatos) {
+		this.contatos = contatos;
 	}
 
 

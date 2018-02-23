@@ -170,6 +170,60 @@
 
 							<!-- dados de endereco -->
 						</p:tab>
+						
+						<!-- dados de contatos  -->
+						<p:tab title="Contatos" id="contato">
+							<p:commandButton id="nvc" value="Novo" icon="ui-icon-plusthick"
+								style="margin-top: 10px; horizontal-align:left;"
+								action="#{beanCliente.novocontato()}"
+								oncomplete="PF('dialogC').show()">
+								<f:setPropertyActionListener
+									target="#{beanCliente.contato.pessoa}"
+									value="#{beanCliente.cliente}" />
+							</p:commandButton>
+							<p:dataTable id="tabelac" value="#{beanCliente.contatos}"
+								var="contatos">
+								<f:facet name="header">Lista de Contatos</f:facet>
+								<p:column headerText="Nome" style="text-align:left" >
+								#{contatos.nome}
+								</p:column>
+								<p:column headerText="Email" style="text-align:left" >
+								#{contatos.email}
+								</p:column>
+								<p:column headerText="Ddd" style="text-align:left" width="3%">
+								#{contatos.ddd}
+								</p:column>
+								<p:column headerText="Telefone" style="text-align:left"
+									width="15%">
+								#{contatos.numero}
+								</p:column>
+																
+								
+							</p:dataTable>
+
+							<p:dialog id="dlgc" header="Novo Contato" widgetVar="dialogC"
+								appendToBody="true" resizable="false" modal="true">
+								<p:panelGrid id="painelDados3" columns="2">
+									<p:outputLabel value="Nome:" for="nomec" />
+									<p:inputText id="nomec"
+										value="#{beanCliente.contato.nome}" />
+
+									<p:outputLabel value="Email" for="email" />
+									<p:inputText id="email"
+										value="#{beanCliente.contato.email}" />
+									<p:outputLabel value="Ddd" for="ddd" />
+									<p:inputText id="ddd" value="#{beanCliente.contato.ddd}" />
+									<p:outputLabel value="Numero:" for="numeroc" />
+									<p:inputText id="numeroc" value="#{beanCliente.contato.numero}" />
+									
+								</p:panelGrid>
+								<h:commandButton id="slec" icon="ui-icon-pencil"
+									action="#{beanCliente.addcontato()}" value="Salvar">
+								</h:commandButton>
+							</p:dialog>
+
+							<!-- dados de contatos -->
+						</p:tab>
 
 					</p:tabView>
 					<p:commandButton action="#{beanCliente.salvar()}" value="Salvar"

@@ -14,6 +14,7 @@ import br.com.scve.entidades.Pjuridica;
 import br.com.scve.entidades.TipoEndereco;
 import br.com.scve.entidades.Cidade;
 import br.com.scve.entidades.Cliente;
+import br.com.scve.entidades.Contato;
 import br.com.scve.entidades.Endereco;
 import br.com.scve.modelo.servico.ServicoCidade;
 import br.com.scve.modelo.servico.ServicoCliente;
@@ -28,6 +29,7 @@ public class BeanCliente implements Serializable{
 	private Pfisica pfisica = new Pfisica();
 	private Pjuridica pjuridica = new Pjuridica();
 	private Endereco endereco = new Endereco();
+	private Contato contato = new Contato();
 	
 	@Inject
 	private ServicoCliente servico;
@@ -37,6 +39,7 @@ public class BeanCliente implements Serializable{
 	private ServicoTipoEndereco servicoTipoende;
 	private List<Cliente> lista;
 	private List<Endereco> enderecos ;
+	private List<Contato> contatos;
 	
 	//usado para definir fisica ou juridica
 	private String opcao ;
@@ -172,11 +175,8 @@ public class BeanCliente implements Serializable{
 		 
 	        }
 	}
-	 public String removerEndereco(){
-	    //  servico.excluirEnd(cliente.getIdpessoa(), endereco.getTipoendereco().getIdtipoend());
-	      servico.ex(endereco); 
-	      
-	      return "";
+	 public void removerEndereco(){
+	      servico.ex(this.endereco); 
 	 }
 
 	public Endereco getEndereco() {
@@ -199,5 +199,32 @@ public class BeanCliente implements Serializable{
 		enderecos = servico.consultarEnde(cliente.getIdpessoa());
 		endereco = new Endereco();
 		return null;
+	}
+	
+	/*contato*/
+	
+	public void novocontato(){
+		 this.contato = new Contato();
+		
+	}
+	public Contato getContato() {
+		return contato;
+	}
+	public void setContato(Contato contato) {
+		this.contato = contato;
+	}
+	public List<Contato> getContatos() {
+		return contatos;
+	}
+	public void setContatos(List<Contato> contatos) {
+		this.contatos = contatos;
+	}
+	public void addcontato(){
+		//cliente.getContatos().add(contato);
+		this.contato.setPessoa(cliente);
+		servico.salvar(cliente,pfisica,pjuridica ,getOpcao()); 
+		servico.Addcontato(contato);
+		contatos = servico.consultarContato(cliente.getIdpessoa());
+				
 	}
 }
