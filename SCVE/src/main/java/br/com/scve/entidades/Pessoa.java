@@ -41,9 +41,11 @@ public class Pessoa implements Serializable {
 	@ManyToOne
 	private Pessoa vendresp;
 	
-	@OneToMany(mappedBy="pessoa", cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="pessoa", cascade=CascadeType.PERSIST)
     private List<Contato> contatos = new ArrayList<Contato>();
 	
+	@OneToMany(mappedBy="pessoa", cascade=CascadeType.PERSIST)
+    private List<Endereco> enderecos = new ArrayList<Endereco>();
 	
 	public Pessoa() {
 		super();
@@ -125,6 +127,14 @@ public class Pessoa implements Serializable {
 		this.contatos = contatos;
 	}
 
+
+	public List<Endereco> getEnderecos() {
+		return enderecos;
+	}
+
+	public void setEnderecos(List<Endereco> enderecos) {
+		this.enderecos = enderecos;
+	}
 
 	public int hashCode(){
 		return this.nome.charAt(0);

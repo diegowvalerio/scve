@@ -1,6 +1,7 @@
 package br.com.scve.bean;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -38,8 +39,8 @@ public class BeanCliente implements Serializable{
 	@Inject
 	private ServicoTipoEndereco servicoTipoende;
 	private List<Cliente> lista;
-	private List<Endereco> enderecos ;
-	private List<Contato> contatos;
+	private List<Endereco> enderecos = new ArrayList<Endereco>();
+	private List<Contato> contatos = new ArrayList<Contato>();
 	
 	//usado para definir fisica ou juridica
 	private String opcao ;
@@ -47,20 +48,16 @@ public class BeanCliente implements Serializable{
 	private Boolean isRederiza = false;
 	private Boolean isRederiza2 = false;
 	
-	/*@PostConstruct
-	public void inicia() {
-		
-	}
-	*/
+
 	public String salvar(){
-		servico.salvar(cliente,pfisica,pjuridica ,getOpcao());
+		servico.salvar(cliente,pfisica,pjuridica ,getOpcao(),contatos,enderecos);
 		lista = servico.consultar();
 		
 		return "index";
 	}
 	public String excluir(){
 		
-		servico.excluirEnde(cliente.getIdpessoa());
+		//servico.excluirEnde(cliente.getIdpessoa());
 		if (cliente.getTipojf().equals("F")) {
 			servico.excluirF(cliente.getIdpessoa());
 		}else{
@@ -163,22 +160,19 @@ public class BeanCliente implements Serializable{
 	public void setEnderecos(List<Endereco> enderecos) {
 		this.enderecos = enderecos;
 	}
-	 /*@PostConstruct*/
-	 public void addNovoEndereco(){
+	
+	public void addNovoEndereco(){
 		 if (this.cliente == null){
 	          throw new RuntimeException("O cliente não pode ser nulo");
-	        }else{
-		 
-	     servico.salvar(cliente,pfisica,pjuridica ,getOpcao());   
-		 this.endereco = new Endereco();
-		 //this.endereco.setPessoa(cliente);
-		 
-	        }
+	        }else{   
+		         this.endereco = new Endereco(); 
+	       }
 	}
+	
 	 public void removerEndereco(){
-	      servico.ex(this.endereco); 
+		 this.enderecos.remove(endereco);
 	 }
-
+	
 	public Endereco getEndereco() {
 		return endereco;
 	}
@@ -194,11 +188,10 @@ public class BeanCliente implements Serializable{
 		return servicoTipoende.consultar();
 	}
 	
-	public String salvarende(){
-		servico.salvarende(cliente,endereco);	
-		enderecos = servico.consultarEnde(cliente.getIdpessoa());
+	public void salvarende(){				
+		this.endereco.setPessoa(cliente);
+		this.enderecos.add(endereco);
 		endereco = new Endereco();
-		return null;
 	}
 	
 	/*contato*/
@@ -220,11 +213,14 @@ public class BeanCliente implements Serializable{
 		this.contatos = contatos;
 	}
 	public void addcontato(){
-		//cliente.getContatos().add(contato);
 		this.contato.setPessoa(cliente);
-		servico.salvar(cliente,pfisica,pjuridica ,getOpcao()); 
-		servico.Addcontato(contato);
-		contatos = servico.consultarContato(cliente.getIdpessoa());
+		this.contatos.add(contato);
+		contato = new Contato();
 				
+	}
+	
+	public void excluirContato(){
+		//servico.excluir(this.contato.getIdcontato());
+		this.contatos.remove(contato);
 	}
 }

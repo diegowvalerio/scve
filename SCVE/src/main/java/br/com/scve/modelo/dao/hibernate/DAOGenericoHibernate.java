@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
+import br.com.scve.entidades.Contato;
 import br.com.scve.entidades.Endereco;
 import br.com.scve.modelo.dao.DAOGenerico;
 
@@ -25,7 +26,22 @@ public class DAOGenericoHibernate<E> implements DAOGenerico<E>, Serializable{
 		manager.persist(e);
 		return e;
 	}
-
+	
+	@Override
+	public boolean salvarList(List<E> lista) {
+		for (int i = 0; i < lista.size(); i++) {
+			manager.persist(lista.get(i));
+        }
+		return true;
+	}
+	
+	@Override
+	public boolean alterarList(List<E> lista) {
+		for (int i = 0; i < lista.size(); i++) {
+			manager.merge(lista.get(i));
+        }
+		return true;
+	}	
 	@Override
 	public E alterar(E e) {
 		return manager.merge(e);
@@ -47,7 +63,7 @@ public class DAOGenericoHibernate<E> implements DAOGenerico<E>, Serializable{
 	public List<E> consultar() {
 		return manager.createQuery("from "+classeEntidade.getSimpleName()).getResultList();
 	}
-	
+	/*endereco*/
 	@Override
 	public List<E> consultarEnderecosId(Integer id) {
 	      return this.manager.createQuery("select e from Endereco e where "
@@ -79,6 +95,7 @@ public class DAOGenericoHibernate<E> implements DAOGenerico<E>, Serializable{
 		manager.remove(c);
 		return true;
 	}
+	
 	
 	/*contato*/
 	@Override

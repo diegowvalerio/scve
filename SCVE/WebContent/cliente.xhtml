@@ -197,7 +197,22 @@
 									width="15%">
 								#{contatos.numero}
 								</p:column>
-																
+								
+								<p:column width="15%" headerText="Operações"
+									style="text-align:center">
+									<p:commandButton action="#{beanCliente.excluirContato()}"
+										oncomplete="#{beanCliente.contatos}" icon="ui-icon-trash">
+										<f:setPropertyActionListener value="#{contatos}"
+											target="#{beanCliente.contato}" />
+									</p:commandButton>
+									<p:commandButton oncomplete="PF('dialogC').show();"
+										icon="ui-icon-pencil">
+										<f:setPropertyActionListener 
+											value="#{contatos}"
+											target="#{beanCliente.contato}" />
+									</p:commandButton>
+
+								</p:column>								
 								
 							</p:dataTable>
 
