@@ -63,7 +63,7 @@ public class DAOGenericoHibernate<E> implements DAOGenerico<E>, Serializable{
 	public List<E> consultar() {
 		return manager.createQuery("from "+classeEntidade.getSimpleName()).getResultList();
 	}
-	/*endereco
+	/*endereco*/
 	@Override
 	public List<E> consultarEnderecosId(Integer id) {
 	      return this.manager.createQuery("select e from Endereco e where "
@@ -94,13 +94,13 @@ public class DAOGenericoHibernate<E> implements DAOGenerico<E>, Serializable{
 		manager.remove(c);
 		return true;
 	}
-	*/
 	
-	/*contato
+	
+	/*contato*/
 	@Override
 	public List<E> consultarContatosporPessoa(Integer id) {
 	      return this.manager.createQuery("select e from Contato e where "
 	      		+ "e.pessoa.idpessoa = :id").setParameter("id", id).getResultList();
 	}
-*/
+
 }

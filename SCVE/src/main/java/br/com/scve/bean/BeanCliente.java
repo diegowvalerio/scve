@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -23,15 +22,15 @@ import br.com.scve.modelo.servico.ServicoTipoEndereco;
 
 @Named
 @ViewScoped
-public class BeanCliente implements Serializable{
+public class BeanCliente implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
-	private Cliente cliente =new Cliente(); 
+
+	private Cliente cliente = new Cliente();
 	private Pfisica pfisica = new Pfisica();
 	private Pjuridica pjuridica = new Pjuridica();
 	private Endereco endereco = new Endereco();
 	private Contato contato = new Contato();
-	
+
 	@Inject
 	private ServicoCliente servico;
 	@Inject
@@ -39,37 +38,37 @@ public class BeanCliente implements Serializable{
 	@Inject
 	private ServicoTipoEndereco servicoTipoende;
 	private List<Cliente> lista;
-	private List<Endereco> enderecos = new ArrayList<Endereco>();
-	private List<Contato> contatos = new ArrayList<Contato>();
-	
-	//usado para definir fisica ou juridica
-	private String opcao ;
+	private List<Endereco> enderecos = new ArrayList<>();
+	private List<Contato> contatos = new ArrayList<>();
+
+	// usado para definir fisica ou juridica
+	private String opcao;
 	private Date data;
 	private Boolean isRederiza = false;
 	private Boolean isRederiza2 = false;
-	
 
-	public String salvar(){
-		servico.salvar(cliente,pfisica,pjuridica ,getOpcao(),contatos,enderecos);
+	public String salvar() {
+		servico.salvar(cliente, pfisica, pjuridica, getOpcao(), contatos, enderecos);
 		lista = servico.consultar();
-		
+
 		return "index";
 	}
-	public String excluir(){
-		
-		//servico.excluirEnde(cliente.getIdpessoa());
+
+	public String excluir() {
+
+		// servico.excluirEnde(cliente.getIdpessoa());
 		if (cliente.getTipojf().equals("F")) {
 			servico.excluirF(cliente.getIdpessoa());
-		}else{
+		} else {
 			servico.excluirJ(cliente.getIdpessoa());
 		}
 		servico.excluir(cliente.getIdpessoa());
-		
+
 		lista = servico.consultar();
-		
+
 		return "index";
 	}
-	
+
 	public String getOpcao() {
 		return opcao;
 	}
@@ -93,8 +92,6 @@ public class BeanCliente implements Serializable{
 	public void setIsRederiza2(Boolean isRederiza2) {
 		this.isRederiza2 = isRederiza2;
 	}
-	
-	
 
 	public Cliente getCliente() {
 		return cliente;
@@ -127,22 +124,20 @@ public class BeanCliente implements Serializable{
 	public void setPjuridica(Pjuridica pjuridica) {
 		this.pjuridica = pjuridica;
 	}
-	
 
-	public void renderizar() {  
-        if(getOpcao().equals("J")){ 
-            isRederiza = true; 
-            isRederiza2= false;
-            
-        }
-        if(getOpcao().equals("F")){
-            isRederiza = false;  
-            isRederiza2= true;
-                        
-        } 
-        
-        
-    }
+	public void renderizar() {
+		if (getOpcao().equals("J")) {
+			isRederiza = true;
+			isRederiza2 = false;
+
+		}
+		if (getOpcao().equals("F")) {
+			isRederiza = false;
+			isRederiza2 = true;
+
+		}
+
+	}
 
 	public Date getData() {
 		return data;
@@ -151,8 +146,8 @@ public class BeanCliente implements Serializable{
 	public void setData(Date data) {
 		this.data = data;
 	}
-	
-	/*endereco*/
+
+	/* endereco */
 	public List<Endereco> getEnderecos() {
 		return enderecos;
 	}
@@ -160,19 +155,19 @@ public class BeanCliente implements Serializable{
 	public void setEnderecos(List<Endereco> enderecos) {
 		this.enderecos = enderecos;
 	}
-	
-	public void addNovoEndereco(){
-		 if (this.cliente == null){
-	          throw new RuntimeException("O cliente não pode ser nulo");
-	        }else{   
-		         this.endereco = new Endereco(); 
-	       }
+
+	public void addNovoEndereco() {
+		if (this.cliente == null) {
+			throw new RuntimeException("O cliente não pode ser nulo");
+		} else {
+			this.endereco = new Endereco();
+		}
 	}
-	
-	 public void removerEndereco(){
-		 this.enderecos.remove(endereco);
-	 }
-	
+
+	public void removerEndereco() {
+		this.enderecos.remove(endereco);
+	}
+
 	public Endereco getEndereco() {
 		return endereco;
 	}
@@ -180,47 +175,85 @@ public class BeanCliente implements Serializable{
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
 	}
-	
-	public List<Cidade> getCidades(){
+
+	public List<Cidade> getCidades() {
 		return servicoCidade.consultar();
 	}
-	public List<TipoEndereco> getTipos(){
+
+	public List<TipoEndereco> getTipos() {
 		return servicoTipoende.consultar();
 	}
+
 	
-	public void salvarende(){				
-		this.endereco.setPessoa(cliente);
-		this.enderecos.add(endereco);
-		endereco = new Endereco();
+
+	public void editarEnd(){
+		boolean encontrou = false;
+		for(Endereco p : enderecos){
+			   if(endereco.getTipoendereco() == p.getTipoendereco()){
+			      p.setBairro(endereco.getBairro());
+			      p.setCep(endereco.getCep());
+			      p.setCidade(endereco.getCidade());
+			      p.setComplemento(endereco.getComplemento());
+			      p.setLogadouro(endereco.getLogadouro());
+			      p.setNumero(endereco.getNumero());
+			      p.setTipoendereco(endereco.getTipoendereco());
+			      
+			      encontrou = true;
+			      break;
+			    }
+			}
+		if (!encontrou) {
+			 this.endereco.setPessoa(cliente);
+	         this.enderecos.add(endereco);
+	         endereco = new Endereco();
+	    }
 	}
-	
-	/*contato*/
-	
-	public void novocontato(){
-		 this.contato = new Contato();
-		
+
+	/* contato */
+
+	public void novocontato() {
+		this.contato = new Contato();
+
 	}
+
 	public Contato getContato() {
 		return contato;
 	}
+
 	public void setContato(Contato contato) {
 		this.contato = contato;
 	}
+
 	public List<Contato> getContatos() {
 		return contatos;
 	}
+
 	public void setContatos(List<Contato> contatos) {
 		this.contatos = contatos;
 	}
-	public void addcontato(){
-		this.contato.setPessoa(cliente);
-		this.contatos.add(contato);
-		contato = new Contato();
-				
+
+	public void addcontato() {
+			boolean encontrou = false;
+			for(Contato p : contatos){
+				   if(contato.getIdcontato() == p.getIdcontato()){
+				      p.setDdd(contato.getDdd());
+				      p.setEmail(contato.getEmail());
+				      p.setNome(contato.getNome());
+				      p.setNumero(contato.getNumero());
+				      
+				      encontrou = true;
+				      break;
+				    }
+				}
+			if (!encontrou) {
+				 this.contato.setPessoa(cliente);
+		         this.contatos.add(contato);
+		         contato = new Contato();
+		    }
 	}
-	
-	public void excluirContato(){
-		//servico.excluir(this.contato.getIdcontato());
+
+	public void excluirContato() {
+		// servico.excluir(this.contato.getIdcontato());
 		this.contatos.remove(contato);
 	}
 }

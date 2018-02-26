@@ -68,6 +68,36 @@ public class Contato implements Serializable {
 	public void setPessoa(Pessoa pessoa) {
 		this.pessoa = pessoa;
 	}
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((idcontato == null) ? 0 : idcontato.hashCode());
+		result = prime * result + ((pessoa == null) ? 0 : pessoa.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Contato other = (Contato) obj;
+		if (idcontato == null) {
+			if (other.idcontato != null)
+				return false;
+		} else if (!idcontato.equals(other.idcontato))
+			return false;
+		if (pessoa == null) {
+			if (other.pessoa != null)
+				return false;
+		} else if (!pessoa.equals(other.pessoa))
+			return false;
+		return true;
+	}
 
 	
 }
