@@ -112,10 +112,11 @@ public class ServicoCliente implements Serializable {
 		return daoF.excluir(id);
 	}
 	
+	/*
 	public List<Endereco> consultarEnde(Integer id) {
 		return daoEnde.consultarEnderecosId(id);
 	}
-/*
+
 	@Transacao
 	public void salvarende(Cliente cliente,Endereco endereco) {
 			try {
@@ -143,10 +144,11 @@ public class ServicoCliente implements Serializable {
 	public boolean ex(Endereco ed){
 		return daoEnde.excluirObj(ed);
 	}*/
-	/*contato*/
+	
+	/*contato
 	public List<Contato> consultarContato(Integer id) {
 
 		return daoC.consultarContatosporPessoa(id);
 	}
-	
+	*/
 }
