@@ -38,6 +38,7 @@ public class ServicoVendedor implements Serializable {
 	@Transacao
 	public void salvar(Vendedor vendedor, Pfisica pfisica, Pjuridica pjuridica, String tipoP, List<Contato> contatos, List<Endereco> enderecos) {
 		try {
+			
 			if (vendedor.getIdpessoa() == null) {
 				vendedor.setTipojf(tipoP);
 				dao.salvar(vendedor);

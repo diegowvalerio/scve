@@ -39,8 +39,8 @@ public class BeanVendedor implements Serializable{
 	@Inject
 	private ServicoTipoEndereco servicoTipoende;
 	private List<Vendedor> lista;
-	private List<Endereco> enderecos = new ArrayList<Endereco>();
-	private List<Contato> contatos = new ArrayList<Contato>();
+	private List<Endereco> enderecos = new ArrayList<>();
+	private List<Contato> contatos = new ArrayList<>();
 	
 	//usado para definir fisica ou juridica
 	private String opcao ;
@@ -49,7 +49,8 @@ public class BeanVendedor implements Serializable{
 	private Boolean isRederiza2 = false;
 	
 
-	public String salvar(){
+	public String salvar(){	
+		//System.out.println("Cpf: "+pfisica.getCpf().toString());
 		servico.salvar(vendedor,pfisica,pjuridica ,getOpcao(),contatos,enderecos);
 		lista = servico.consultar();
 		
@@ -158,7 +159,7 @@ public class BeanVendedor implements Serializable{
 	
 	public void addNovoEndereco(){
 		 if (this.vendedor == null){
-	          throw new RuntimeException("O cliente não pode ser nulo");
+	          throw new RuntimeException("O Vendedor não pode ser nulo");
 	        }else{   
 		         this.endereco = new Endereco(); 
 	       }
@@ -184,7 +185,7 @@ public class BeanVendedor implements Serializable{
 	}
 	
 	public void editarEnd() {
-		if(endereco.getPessoa() == null){
+		if(endereco == null){
 			throw new IllegalArgumentException("Vendedor nao pode ser nulo");
 	    }
 		int index = enderecos.indexOf(endereco);
@@ -218,7 +219,7 @@ public class BeanVendedor implements Serializable{
 		this.contatos = contatos;
 	}
 	public void addcontato(){
-		if(contato.getPessoa() == null){
+		if(contato == null){
 			throw new IllegalArgumentException("Vendedor nao pode ser nulo");
 	    }
 		int index = contatos.indexOf(contato);

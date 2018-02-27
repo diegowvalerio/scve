@@ -10,10 +10,7 @@ import javax.persistence.*;
 public class Vendedor extends Pessoa implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	@Column(name="idpessoa", insertable=false,updatable=false)
-	private Integer idpessoa;
-	
-	@Column(nullable=false, columnDefinition="numeric(3,2)")
+	@Column(nullable=false, columnDefinition="numeric(5,2)")
 	private double perc_comissao;
 	
 

@@ -74,7 +74,7 @@
 								<p:calendar autocomplete="#{beanVendedor.data}" locale="pt_BR"
 									id="dtcadastro" value="#{beanVendedor.vendedor.dtcadastro}"
 									pattern="dd/MM/yyyy" mask="true" required="true" effect="fold" />
-									
+								
 								<p:outputLabel value="% Comissão:" for="perc_comissao" />
 								<p:inputNumber id="perc_comissao"
 									value="#{beanVendedor.vendedor.perc_comissao}" required="false" />
@@ -90,7 +90,7 @@
 							<p:commandButton id="nve" value="Novo" icon="ui-icon-plusthick"
 								style="margin-top: 10px; horizontal-align:left;"
 								action="#{beanVendedor.addNovoEndereco()}"
-								oncomplete="PF('dialog').show()">
+								oncomplete="PF('dialogp').show()">
 								<f:setPropertyActionListener
 									target="#{beanVendedor.endereco.pessoa}"
 									value="#{beanVendedor.vendedor}" />
@@ -125,7 +125,7 @@
 										<f:setPropertyActionListener value="#{enderecos}"
 											target="#{beanVendedor.endereco}" />
 									</p:commandButton>
-									<p:commandButton oncomplete="PF('dialog').show();"
+									<p:commandButton oncomplete="PF('dialogp').show();"
 										icon="ui-icon-pencil" update=":form:tabview:dlg">
 										<f:setPropertyActionListener 
 											value="#{enderecos}"
@@ -135,7 +135,7 @@
 								</p:column>
 							</p:dataTable>
 
-							<p:dialog id="dlg" header="Novo Endereço" widgetVar="dialog"
+							<p:dialog id="dlg" header="Novo Endereço" widgetVar="dialogp"
 								appendToBody="true" resizable="false" modal="true">
 								<p:panelGrid id="painelDados" columns="2">
 									<p:outputLabel value="Cep:" for="cep" />
@@ -180,7 +180,7 @@
 							<p:commandButton id="nvc" value="Novo" icon="ui-icon-plusthick"
 								style="margin-top: 10px; horizontal-align:left;"
 								action="#{beanVendedor.novocontato()}"
-								oncomplete="PF('dialogC').show()">
+								oncomplete="PF('dialogCp').show()">
 								<f:setPropertyActionListener
 									target="#{beanVendedor.contato.pessoa}"
 									value="#{beanVendedor.vendedor}" />
@@ -209,7 +209,7 @@
 										<f:setPropertyActionListener value="#{contatos}"
 											target="#{beanVendedor.contato}" />
 									</p:commandButton>
-									<p:commandButton oncomplete="PF('dialogC').show();"
+									<p:commandButton oncomplete="PF('dialogCp').show();"
 										icon="ui-icon-pencil" update=":form:tabview:dlgc">
 										<f:setPropertyActionListener 
 											value="#{contatos}"
@@ -220,7 +220,7 @@
 								
 							</p:dataTable>
 
-							<p:dialog id="dlgc" header="Novo Contato" widgetVar="dialogC"
+							<p:dialog id="dlgc" header="Novo Contato" widgetVar="dialogCp"
 								appendToBody="true" resizable="false" modal="true">
 								<p:panelGrid id="painelDados3" columns="2">
 									<p:outputLabel value="Nome:" for="nomec" />
@@ -248,9 +248,7 @@
 					<p:commandButton action="#{beanVendedor.salvar()}" value="Salvar"
 						icon="ui-icon-check" ajax="false">
 					</p:commandButton>
-					<p:commandButton action="#{beanVendedor.excluir()}" value="Cancelar"
-						icon="	ui-icon-trash" ajax="false">
-					</p:commandButton>
+					
 				</h:form>
 			</p:panel>
 		</ui:define>
@@ -258,3 +256,6 @@
 	</ui:composition>
 </body>
 </html>
+
+
+
