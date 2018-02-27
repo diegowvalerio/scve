@@ -126,7 +126,7 @@
 											target="#{beanVendedor.endereco}" />
 									</p:commandButton>
 									<p:commandButton oncomplete="PF('dialog').show();"
-										icon="ui-icon-pencil">
+										icon="ui-icon-pencil" update=":form:tabview:dlg">
 										<f:setPropertyActionListener 
 											value="#{enderecos}"
 											target="#{beanVendedor.endereco}" />
@@ -168,7 +168,7 @@
 										value="#{beanVendedor.endereco.complemento}" />
 								</p:panelGrid>
 								<h:commandButton id="sle" icon="ui-icon-pencil"
-									action="#{beanVendedor.salvarende()}" value="Salvar">
+									action="#{beanVendedor.editarEnd()}" value="Salvar">
 								</h:commandButton>
 							</p:dialog>
 
@@ -210,7 +210,7 @@
 											target="#{beanVendedor.contato}" />
 									</p:commandButton>
 									<p:commandButton oncomplete="PF('dialogC').show();"
-										icon="ui-icon-pencil">
+										icon="ui-icon-pencil" update=":form:tabview:dlgc">
 										<f:setPropertyActionListener 
 											value="#{contatos}"
 											target="#{beanVendedor.contato}" />

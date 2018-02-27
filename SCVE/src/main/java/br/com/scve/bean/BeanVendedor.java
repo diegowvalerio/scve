@@ -183,9 +183,14 @@ public class BeanVendedor implements Serializable{
 		return servicoTipoende.consultar();
 	}
 	
-	public void salvarende(){				
-		this.endereco.setPessoa(vendedor);
-		this.enderecos.add(endereco);
+	public void editarEnd() {
+		int index = enderecos.indexOf(endereco);
+		if (index > -1) {
+			enderecos.remove(index);
+			enderecos.add(index, endereco);
+		}else{
+			enderecos.add(endereco);
+		}
 		endereco = new Endereco();
 	}
 	
@@ -208,8 +213,13 @@ public class BeanVendedor implements Serializable{
 		this.contatos = contatos;
 	}
 	public void addcontato(){
-		this.contato.setPessoa(vendedor);
-		this.contatos.add(contato);
+		int index = contatos.indexOf(contato);
+		if (index > -1) {
+			contatos.remove(index);
+			contatos.add(index, contato);
+		}else{
+			contatos.add(contato);
+		}
 		contato = new Contato();
 				
 	}
