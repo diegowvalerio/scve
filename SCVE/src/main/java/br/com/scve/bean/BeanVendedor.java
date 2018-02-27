@@ -184,11 +184,16 @@ public class BeanVendedor implements Serializable{
 	}
 	
 	public void editarEnd() {
+		if(endereco.getPessoa() == null){
+			throw new IllegalArgumentException("Vendedor nao pode ser nulo");
+	    }
 		int index = enderecos.indexOf(endereco);
 		if (index > -1) {
 			enderecos.remove(index);
+			endereco.setPessoa(vendedor);
 			enderecos.add(index, endereco);
 		}else{
+			endereco.setPessoa(vendedor);
 			enderecos.add(endereco);
 		}
 		endereco = new Endereco();
@@ -213,11 +218,16 @@ public class BeanVendedor implements Serializable{
 		this.contatos = contatos;
 	}
 	public void addcontato(){
+		if(contato.getPessoa() == null){
+			throw new IllegalArgumentException("Vendedor nao pode ser nulo");
+	    }
 		int index = contatos.indexOf(contato);
 		if (index > -1) {
 			contatos.remove(index);
+			contato.setPessoa(vendedor);
 			contatos.add(index, contato);
 		}else{
+			contato.setPessoa(vendedor);
 			contatos.add(contato);
 		}
 		contato = new Contato();

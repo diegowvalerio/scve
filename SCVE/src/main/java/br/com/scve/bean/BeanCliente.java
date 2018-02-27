@@ -185,11 +185,16 @@ public class BeanCliente implements Serializable {
 	}
 
 	public void editarEnd() {
+		if(endereco.getPessoa() == null){
+			throw new IllegalArgumentException("Cliente nao pode ser nulo");
+	    }
 		int index = enderecos.indexOf(endereco);
 		if (index > -1) {
 			enderecos.remove(index);
+			endereco.setPessoa(cliente);
 			enderecos.add(index, endereco);
 		}else{
+			endereco.setPessoa(cliente);
 			enderecos.add(endereco);
 		}
 		endereco = new Endereco();
@@ -219,11 +224,16 @@ public class BeanCliente implements Serializable {
 	}
 
 	public void addcontato() {
+		if(contato.getPessoa() == null){
+			throw new IllegalArgumentException("Cliente nao pode ser nulo");
+	    }
 		int index = contatos.indexOf(contato);
 		if (index > -1) {
 			contatos.remove(index);
+			contato.setPessoa(cliente);
 			contatos.add(index, contato);
 		}else{
+			contato.setPessoa(cliente);
 			contatos.add(contato);
 		}
 		contato = new Contato();
