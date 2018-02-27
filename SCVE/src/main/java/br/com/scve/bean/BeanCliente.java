@@ -12,6 +12,7 @@ import javax.inject.Named;
 import br.com.scve.entidades.Pfisica;
 import br.com.scve.entidades.Pjuridica;
 import br.com.scve.entidades.TipoEndereco;
+import br.com.scve.entidades.Vendedor;
 import br.com.scve.entidades.Cidade;
 import br.com.scve.entidades.Cliente;
 import br.com.scve.entidades.Contato;
@@ -19,6 +20,7 @@ import br.com.scve.entidades.Endereco;
 import br.com.scve.modelo.servico.ServicoCidade;
 import br.com.scve.modelo.servico.ServicoCliente;
 import br.com.scve.modelo.servico.ServicoTipoEndereco;
+import br.com.scve.modelo.servico.ServicoVendedor;
 
 @Named
 @ViewScoped
@@ -35,6 +37,8 @@ public class BeanCliente implements Serializable {
 	private ServicoCliente servico;
 	@Inject
 	private ServicoCidade servicoCidade;
+	@Inject
+	private ServicoVendedor servicoVendedor;
 	@Inject
 	private ServicoTipoEndereco servicoTipoende;
 	private List<Cliente> lista;
@@ -178,6 +182,10 @@ public class BeanCliente implements Serializable {
 
 	public List<Cidade> getCidades() {
 		return servicoCidade.consultar();
+	}
+	
+	public List<Vendedor> getVendedores() {
+		return servicoVendedor.consultar();
 	}
 
 	public List<TipoEndereco> getTipos() {

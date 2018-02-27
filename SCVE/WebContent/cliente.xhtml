@@ -74,7 +74,16 @@
 								<p:calendar autocomplete="#{beanCliente.data}" locale="pt_BR"
 									id="dtcadastro" value="#{beanCliente.cliente.dtcadastro}"
 									pattern="dd/MM/yyyy" mask="true" required="true" effect="fold" />
-
+								
+								<p:outputLabel value="Vendedor:" for="vendedor" />
+									<p:selectOneMenu id="vendedor"
+										value="#{beanCliente.cliente.vendresp}"
+										converter="conversorVendedor">
+										<f:selectItem itemLabel="" itemValue=" " />
+										<f:selectItems value="#{beanCliente.vendedores}" var="vendedor"
+											itemLabel="#{vendedor.idpessoa} - #{vendedor.nome}" itemValue="#{vendedor}" />
+									</p:selectOneMenu>
+									
 								<p:outputLabel value="Ativo : " for="situacao" />
 								<p:selectBooleanCheckbox id="situacao"
 									value="#{beanCliente.cliente.situacao}" required="true" />
