@@ -206,7 +206,7 @@
 											target="#{beanCliente.contato}" />
 									</p:commandButton>
 									<p:commandButton oncomplete="PF('dialogCp').show();"
-										icon="ui-icon-pencil">
+										icon="ui-icon-pencil" update=":form:tabview:dlgc">
 										<f:setPropertyActionListener 
 											value="#{contatos}"
 											target="#{beanCliente.contato}" />

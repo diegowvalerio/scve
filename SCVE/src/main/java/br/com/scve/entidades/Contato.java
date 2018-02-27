@@ -68,12 +68,14 @@ public class Contato implements Serializable {
 	public void setPessoa(Pessoa pessoa) {
 		this.pessoa = pessoa;
 	}
-	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((ddd == null) ? 0 : ddd.hashCode());
+		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((idcontato == null) ? 0 : idcontato.hashCode());
+		result = prime * result + ((numero == null) ? 0 : numero.hashCode());
 		result = prime * result + ((pessoa == null) ? 0 : pessoa.hashCode());
 		return result;
 	}
@@ -86,10 +88,25 @@ public class Contato implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Contato other = (Contato) obj;
+		if (ddd == null) {
+			if (other.ddd != null)
+				return false;
+		} else if (!ddd.equals(other.ddd))
+			return false;
+		if (email == null) {
+			if (other.email != null)
+				return false;
+		} else if (!email.equals(other.email))
+			return false;
 		if (idcontato == null) {
 			if (other.idcontato != null)
 				return false;
 		} else if (!idcontato.equals(other.idcontato))
+			return false;
+		if (numero == null) {
+			if (other.numero != null)
+				return false;
+		} else if (!numero.equals(other.numero))
 			return false;
 		if (pessoa == null) {
 			if (other.pessoa != null)
@@ -98,6 +115,8 @@ public class Contato implements Serializable {
 			return false;
 		return true;
 	}
+	
+	
 
 	
 }

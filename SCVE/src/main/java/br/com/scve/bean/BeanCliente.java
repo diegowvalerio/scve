@@ -184,29 +184,15 @@ public class BeanCliente implements Serializable {
 		return servicoTipoende.consultar();
 	}
 
-	
-
-	public void editarEnd(){
-		boolean encontrou = false;
-		for(Endereco p : enderecos){
-			   if(endereco.getTipoendereco() == p.getTipoendereco()){
-			      p.setBairro(endereco.getBairro());
-			      p.setCep(endereco.getCep());
-			      p.setCidade(endereco.getCidade());
-			      p.setComplemento(endereco.getComplemento());
-			      p.setLogadouro(endereco.getLogadouro());
-			      p.setNumero(endereco.getNumero());
-			      p.setTipoendereco(endereco.getTipoendereco());
-			      
-			      encontrou = true;
-			      break;
-			    }
-			}
-		if (!encontrou) {
-			 this.endereco.setPessoa(cliente);
-	         this.enderecos.add(endereco);
-	         endereco = new Endereco();
-	    }
+	public void editarEnd() {
+		int index = enderecos.indexOf(endereco);
+		if (index > -1) {
+			enderecos.remove(index);
+			enderecos.add(index, endereco);
+		}else{
+			enderecos.add(endereco);
+		}
+		endereco = new Endereco();
 	}
 
 	/* contato */
@@ -233,24 +219,16 @@ public class BeanCliente implements Serializable {
 	}
 
 	public void addcontato() {
-			boolean encontrou = false;
-			for(Contato p : contatos){
-				   if(contato.getIdcontato() == p.getIdcontato()){
-				      p.setDdd(contato.getDdd());
-				      p.setEmail(contato.getEmail());
-				      p.setNome(contato.getNome());
-				      p.setNumero(contato.getNumero());
-				      
-				      encontrou = true;
-				      break;
-				    }
-				}
-			if (!encontrou) {
-				 this.contato.setPessoa(cliente);
-		         this.contatos.add(contato);
-		         contato = new Contato();
-		    }
+		int index = contatos.indexOf(contato);
+		if (index > -1) {
+			contatos.remove(index);
+			contatos.add(index, contato);
+		}else{
+			contatos.add(contato);
+		}
+		contato = new Contato();
 	}
+	
 
 	public void excluirContato() {
 		// servico.excluir(this.contato.getIdcontato());
