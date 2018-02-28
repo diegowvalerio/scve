@@ -8,6 +8,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,6 +19,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 
 @Entity
@@ -41,10 +45,12 @@ public class Pessoa implements Serializable {
 	@ManyToOne
 	private Pessoa vendresp;
 	
-	@OneToMany(mappedBy="pessoa", cascade=CascadeType.PERSIST)
+	@OneToMany(mappedBy="pessoa", cascade=CascadeType.PERSIST,fetch = FetchType.EAGER)
+	@Fetch(FetchMode.SUBSELECT)
     private List<Contato> contatos = new ArrayList<Contato>();
 	
-	@OneToMany(mappedBy="pessoa", cascade=CascadeType.PERSIST)
+	@OneToMany(mappedBy="pessoa", cascade=CascadeType.PERSIST,fetch = FetchType.EAGER)
+	@Fetch(FetchMode.SUBSELECT)
     private List<Endereco> enderecos = new ArrayList<Endereco>();
 	
 	public Pessoa() {

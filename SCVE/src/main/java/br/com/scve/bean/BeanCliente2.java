@@ -28,7 +28,7 @@ import br.com.scve.modelo.servico.ServicoVendedor;
 
 @Named
 @ViewScoped
-public class BeanCliente implements Serializable {
+public class BeanCliente2 implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Cliente cliente = new Cliente();
@@ -56,13 +56,31 @@ public class BeanCliente implements Serializable {
 	private Boolean isRederiza2 = false;
 
 	@PostConstruct
-	public void carregar(){
-		lista = servico.consultar();
+	public void ini(){
+		//lista = servico.consultar();
 		
-		/*HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+		HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
 		HttpSession session = (HttpSession) request.getSession();
 		this.cliente = (Cliente) session.getAttribute("clienteAux");
-				*/
+		session.removeAttribute("clienteAux");
+		this.opcao = this.cliente.getTipojf();
+		//this.pfisica = (Pfisica) session.getAttribute("pfisica");
+		this.enderecos = this.cliente.getEnderecos();
+		this.contatos = this.cliente.getContatos();
+		//this.enderecos = (List<Endereco>) session.getAttribute("enderecos");	
+		//this.contatos = (List<Contato>) session.getAttribute("contatos");
+		
+		if (this.cliente.getTipojf().equals("J")) {
+			isRederiza = true;
+			isRederiza2 = false;
+			this.pjuridica = servico.consultarPjuridica(this.cliente.getIdpessoa());
+		}
+		if (this.cliente.getTipojf().equals("F")) {
+			isRederiza = false;
+			isRederiza2 = true;
+			this.pfisica = servico.consultarPfisica(this.cliente.getIdpessoa());
+		}
+				
 	}
 	
 	public String salvar() {
@@ -266,15 +284,6 @@ public class BeanCliente implements Serializable {
 		// servico.excluir(this.contato.getIdcontato());
 		this.contatos.remove(contato);
 	}
-	/*editar cliente*/
-	 public String encaminha() {
-		 FacesContext fc = FacesContext.getCurrentInstance();
-		 HttpSession session = (HttpSession) fc.getExternalContext().getSession(true);
-		 session.setAttribute("clienteAux", this.cliente );
-		 //session.setAttribute("pfisica", this.pfisica );
-		 //session.setAttribute("enderecos", this.cliente.getEnderecos() );
-		 //session.setAttribute("contatos", this.cliente.getContatos() );
-		 
-		 return "editacliente";
-	 }
+	
+	
 }
