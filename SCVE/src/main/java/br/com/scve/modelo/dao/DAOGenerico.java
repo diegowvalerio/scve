@@ -9,7 +9,7 @@ public interface DAOGenerico<E> {
 	public boolean excluir(Integer id);
 	public E consultar(Integer id);
 	public List<E> consultar();
-	
+	/*
 	public boolean salvarList(List<E> e);
 	public boolean alterarList(List<E> e);
 	public boolean excluirLista(List<E> e);
@@ -20,6 +20,6 @@ public interface DAOGenerico<E> {
 	
 	public boolean excluirObj(E e);
 	
-	public List<E> consultarContatosporPessoa(Integer id);
+	public List<E> consultarContatosporPessoa(Integer id);*/
 
 }

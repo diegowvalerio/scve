@@ -28,7 +28,7 @@ import br.com.scve.modelo.servico.ServicoVendedor;
 
 @Named
 @ViewScoped
-public class BeanCliente2 implements Serializable {
+public class BeanEditaCliente implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Cliente cliente = new Cliente();

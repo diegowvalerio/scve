@@ -42,8 +42,8 @@ public class ServicoVendedor implements Serializable {
 			if (vendedor.getIdpessoa() == null) {
 				vendedor.setTipojf(tipoP);
 				dao.salvar(vendedor);
-				daoC.salvarList(contatos);
-				daoEnde.salvarList(enderecos);
+				//daoC.salvarList(contatos);
+				//daoEnde.salvarList(enderecos);
 				if (vendedor.getTipojf().equals("F")) {
 					pfisica.setPessoa(vendedor);
 					daoF.salvar(pfisica);
@@ -55,8 +55,8 @@ public class ServicoVendedor implements Serializable {
 			} else {
 				vendedor.setTipojf(tipoP);
 				dao.alterar(vendedor);
-				daoC.alterarList(contatos);
-				daoEnde.alterarList(enderecos);
+				//daoC.alterarList(contatos);
+				//daoEnde.alterarList(enderecos);
 				if (vendedor.getTipojf().equals("F")) {
 					if (pfisica.getPessoa() == null){
 						daoJ.excluir(vendedor.getIdpessoa());

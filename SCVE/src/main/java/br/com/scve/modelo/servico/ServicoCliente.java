@@ -41,8 +41,8 @@ public class ServicoCliente implements Serializable {
 			if (cliente.getIdpessoa() == null) {
 				cliente.setTipojf(tipoP);
 				dao.salvar(cliente);
-				daoC.salvarList(contatos);
-				daoEnde.salvarList(enderecos);
+				//daoC.salvarList(contatos);
+				//daoEnde.salvarList(enderecos);
 				if (cliente.getTipojf().equals("F")) {
 					pfisica.setPessoa(cliente);
 					daoF.salvar(pfisica);
@@ -113,43 +113,4 @@ public class ServicoCliente implements Serializable {
 		return daoF.excluir(id);
 	}
 	
-	/*
-	public List<Endereco> consultarEnde(Integer id) {
-		return daoEnde.consultarEnderecosId(id);
-	}
-
-	@Transacao
-	public void salvarende(Cliente cliente,Endereco endereco) {
-			try {
-					endereco.setPessoa(cliente);
-					daoEnde.salvar(endereco);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-	
-	
-	@Transacao
-	public boolean excluirEnde(Integer id) {
-		List<Endereco> enderecos = daoEnde.consultarEnderecosId(id);
-		return daoEnde.excluirEnderecos(enderecos);
-	}
-	
-	@Transacao
-	public boolean excluirEnd(Integer id,Integer tipo) {
-		List<Endereco> end = daoEnde.consultarEnderecoId(id, tipo);
-		return daoEnde.excluirLista(end);
-	}
-	
-	@Transacao
-	public boolean ex(Endereco ed){
-		return daoEnde.excluirObj(ed);
-	}*/
-	/*
-	contato
-	public List<Contato> consultarContato(Integer id) {
-
-		return daoC.consultarContatosporPessoa(id);
-	}
-	*/
 }

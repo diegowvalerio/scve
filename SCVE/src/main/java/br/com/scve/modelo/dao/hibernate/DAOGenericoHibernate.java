@@ -27,31 +27,6 @@ public class DAOGenericoHibernate<E> implements DAOGenerico<E>, Serializable{
 		return e;
 	}
 	
-	@Override
-	public boolean salvarList(List<E> lista) {
-		for (int i = 0; i < lista.size(); i++) {
-			manager.persist(lista.get(i));
-        }
-		return true;
-	}
-	
-	@Override
-	public boolean alterarList(List<E> lista) {
-		for (int i = 0; i < lista.size(); i++) {
-			manager.merge(lista.get(i));
-        }
-		return true;
-	}	
-	
-	@Override
-	public boolean excluirLista(List<E> ids) {
-		for (int i = 0; i < ids.size(); i++) {
-			E e = manager.merge(ids.get(i));
-			manager.remove(e);
-        }
-		
-		return true;
-	}
 	
 	@Override
 	public E alterar(E e) {
@@ -75,6 +50,7 @@ public class DAOGenericoHibernate<E> implements DAOGenerico<E>, Serializable{
 		return manager.createQuery("from "+classeEntidade.getSimpleName()).getResultList();
 	}
 	/*endereco*/
+	/*
 	@Override
 	public List<E> consultarEnderecosId(Integer id) {
 	      return this.manager.createQuery("select e from Endereco e where "
@@ -107,11 +83,37 @@ public class DAOGenericoHibernate<E> implements DAOGenerico<E>, Serializable{
 	}
 	
 	
-	/*contato*/
+	contato
 	@Override
 	public List<E> consultarContatosporPessoa(Integer id) {
 	      return this.manager.createQuery("select e from Contato e where "
 	      		+ "e.pessoa.idpessoa = :id").setParameter("id", id).getResultList();
 	}
-
+		@Override
+	public boolean salvarList(List<E> lista) {
+		for (int i = 0; i < lista.size(); i++) {
+			manager.persist(lista.get(i));
+        }
+		return true;
+	}
+	
+	@Override
+	public boolean alterarList(List<E> lista) {
+		for (int i = 0; i < lista.size(); i++) {
+			manager.merge(lista.get(i));
+        }
+		return true;
+	}	
+	
+	@Override
+	public boolean excluirLista(List<E> ids) {
+		for (int i = 0; i < ids.size(); i++) {
+			E e = manager.merge(ids.get(i));
+			manager.remove(e);
+        }
+		
+		return true;
+	}
+	
+*/
 }

@@ -18,75 +18,75 @@
 							<p:growl id="erros" showDetail="true" sticky="true" />
 							<p:panelGrid columns="2" id="paineld">
 								<p:outputLabel value="Tipo Pessoa:" for="tipojf" />
-								<p:selectOneMenu id="tipojf" value="#{beanCliente2.opcao}"
+								<p:selectOneMenu id="tipojf" value="#{beanEditaCliente.opcao}"
 									lazy="true" style="width:125px" required="true">
 									<f:selectItem itemLabel="" itemValue=" " />
 									<f:selectItem itemLabel="Física" itemValue="F" />
 									<f:selectItem itemLabel="Jurídica" itemValue="J" />
-									<p:ajax listener="#{beanCliente2.renderizar}"
+									<p:ajax listener="#{beanEditaCliente.renderizar}"
 										update=":form:tabview:paineld" />
 								</p:selectOneMenu>
 
 								<p:outputLabel value="Nome:" for="nome" />
-								<p:inputText id="nome" value="#{beanCliente2.cliente.nome}"
+								<p:inputText id="nome" value="#{beanEditaCliente.cliente.nome}"
 									required="true">
 								</p:inputText>
 
 								<p:outputLabel value="Cpf:" for="cpf"
-									rendered="#{beanCliente2.isRederiza2}" />
+									rendered="#{beanEditaCliente.isRederiza2}" />
 								<p:inputMask mask="999.999.999-99" id="cpf"
-									value="#{beanCliente2.pfisica.cpf}" required="true"
-									rendered="#{beanCliente2.isRederiza2}" />
+									value="#{beanEditaCliente.pfisica.cpf}" required="true"
+									rendered="#{beanEditaCliente.isRederiza2}" />
 								<p:outputLabel value="Rg:" for="rg"
-									rendered="#{beanCliente2.isRederiza2}" />
+									rendered="#{beanEditaCliente.isRederiza2}" />
 								<p:inputMask mask="99.999.999-9" id="rg"
-									value="#{beanCliente2.pfisica.rg}" required="true"
-									rendered="#{beanCliente2.isRederiza2}" />
+									value="#{beanEditaCliente.pfisica.rg}" required="true"
+									rendered="#{beanEditaCliente.isRederiza2}" />
 								<p:outputLabel value="Data Nascimento:" for="dtnasc"
-									rendered="#{beanCliente2.isRederiza2}" />
+									rendered="#{beanEditaCliente.isRederiza2}" />
 								<p:calendar locale="pt_BR" id="dtnasc"
-									value="#{beanCliente2.pfisica.dtnasc}" pattern="dd/MM/yyyy"
+									value="#{beanEditaCliente.pfisica.dtnasc}" pattern="dd/MM/yyyy"
 									mask="true" required="true" effect="fold"
-									rendered="#{beanCliente2.isRederiza2}" />
+									rendered="#{beanEditaCliente.isRederiza2}" />
 
 								<p:outputLabel value="Razão Social:" for="razao_social"
-									rendered="#{beanCliente2.isRederiza}" />
+									rendered="#{beanEditaCliente.isRederiza}" />
 								<p:inputText id="razao_social"
-									value="#{beanCliente2.pjuridica.razao_social}" required="true"
-									rendered="#{beanCliente2.isRederiza}" />
+									value="#{beanEditaCliente.pjuridica.razao_social}" required="true"
+									rendered="#{beanEditaCliente.isRederiza}" />
 								<p:outputLabel value="Cnpj:" for="cnpj"
-									rendered="#{beanCliente2.isRederiza}" />
+									rendered="#{beanEditaCliente.isRederiza}" />
 								<p:inputMask mask="99.999.999/9999-99" id="cnpj"
-									value="#{beanCliente2.pjuridica.cnpj}" required="true"
-									rendered="#{beanCliente2.isRederiza}" />
+									value="#{beanEditaCliente.pjuridica.cnpj}" required="true"
+									rendered="#{beanEditaCliente.isRederiza}" />
 								<p:outputLabel value="Inscrição Estadual:" for="insc_estadual"
-									rendered="#{beanCliente2.isRederiza}" />
+									rendered="#{beanEditaCliente.isRederiza}" />
 								<p:inputText id="insc_estadual"
-									value="#{beanCliente2.pjuridica.insc_estadual}" required="true"
-									rendered="#{beanCliente2.isRederiza}" />
+									value="#{beanEditaCliente.pjuridica.insc_estadual}" required="true"
+									rendered="#{beanEditaCliente.isRederiza}" />
 								<p:outputLabel value="Inscrição Suframa:" for="insc_suframa"
-									rendered="#{beanCliente2.isRederiza}" />
+									rendered="#{beanEditaCliente.isRederiza}" />
 								<p:inputText id="insc_suframa"
-									value="#{beanCliente2.pjuridica.insc_suframa}" required="false"
-									rendered="#{beanCliente2.isRederiza}" />
+									value="#{beanEditaCliente.pjuridica.insc_suframa}" required="false"
+									rendered="#{beanEditaCliente.isRederiza}" />
 
 								<p:outputLabel value="Data Cadastro:" for="dtcadastro" />
-								<p:calendar autocomplete="#{beanCliente2.data}" locale="pt_BR"
-									id="dtcadastro" value="#{beanCliente2.cliente.dtcadastro}"
+								<p:calendar autocomplete="#{beanEditaCliente.data}" locale="pt_BR"
+									id="dtcadastro" value="#{beanEditaCliente.cliente.dtcadastro}"
 									pattern="dd/MM/yyyy" mask="true" required="true" effect="fold" />
 								
 								<p:outputLabel value="Vendedor:" for="vendedor" />
 									<p:selectOneMenu id="vendedor"
-										value="#{beanCliente2.cliente.vendresp}"
+										value="#{beanEditaCliente.cliente.vendresp}"
 										converter="conversorVendedor">
 										<f:selectItem itemLabel="" itemValue=" " />
-										<f:selectItems value="#{beanCliente2.vendedores}" var="vendedor"
+										<f:selectItems value="#{beanEditaCliente.vendedores}" var="vendedor"
 											itemLabel="#{vendedor.idpessoa} - #{vendedor.nome}" itemValue="#{vendedor}" />
 									</p:selectOneMenu>
 									
 								<p:outputLabel value="Ativo : " for="situacao" />
 								<p:selectBooleanCheckbox id="situacao"
-									value="#{beanCliente2.cliente.situacao}" required="true" />
+									value="#{beanEditaCliente.cliente.situacao}" required="true" />
 							</p:panelGrid>
 
 						</p:tab>
@@ -94,13 +94,13 @@
 						<p:tab title="Endereços" id="endereco">
 							<p:commandButton id="nve" value="Novo" icon="ui-icon-plusthick"
 								style="margin-top: 10px; horizontal-align:left;"
-								action="#{beanCliente2.addNovoEndereco()}"
+								action="#{beanEditaCliente.addNovoEndereco()}"
 								oncomplete="PF('dialogp').show()">
 								<f:setPropertyActionListener
-									target="#{beanCliente2.endereco.pessoa}"
-									value="#{beanCliente2.cliente}" />
+									target="#{beanEditaCliente.endereco.pessoa}"
+									value="#{beanEditaCliente.cliente}" />
 							</p:commandButton>
-							<p:dataTable id="tabela" value="#{beanCliente2.enderecos}"
+							<p:dataTable id="tabela" value="#{beanEditaCliente.enderecos}"
 								var="enderecos">
 								<f:facet name="header">Lista de Endereços</f:facet>
 								<p:column headerText="Tipo" style="text-align:left" width="10%">
@@ -125,16 +125,16 @@
 								
 								<p:column width="15%" headerText="Operações"
 									style="text-align:center">
-									<p:commandButton action="#{beanCliente2.removerEndereco()}"
-										oncomplete="#{beanCliente2.enderecos}" icon="ui-icon-trash">
+									<p:commandButton action="#{beanEditaCliente.removerEndereco()}"
+										oncomplete="#{beanEditaCliente.enderecos}" icon="ui-icon-trash">
 										<f:setPropertyActionListener value="#{enderecos}"
-											target="#{beanCliente2.endereco}" />
+											target="#{beanEditaCliente.endereco}" />
 									</p:commandButton>
 									<p:commandButton oncomplete="PF('dialogp').show();"
 										icon="ui-icon-pencil" update=":form:tabview:dlg">
 										<f:setPropertyActionListener 
 											value="#{enderecos}"
-											target="#{beanCliente2.endereco}" />
+											target="#{beanEditaCliente.endereco}" />
 									</p:commandButton>
 
 								</p:column>
@@ -145,35 +145,35 @@
 								<p:panelGrid id="painelDados" columns="2">
 									<p:outputLabel value="Cep:" for="cep" />
 									<p:inputMask mask="99.999-999" id="cep"
-										value="#{beanCliente2.endereco.cep}" />
+										value="#{beanEditaCliente.endereco.cep}" />
 
 									<p:outputLabel value="Tipo Endereço" for="tipo" />
 									<p:selectOneMenu id="tipo"
-										value="#{beanCliente2.endereco.tipoendereco}"
+										value="#{beanEditaCliente.endereco.tipoendereco}"
 										converter="conversorTipoEnde">
-										<f:selectItems value="#{beanCliente2.tipos}" var="tipo"
+										<f:selectItems value="#{beanEditaCliente.tipos}" var="tipo"
 											itemLabel="#{tipo.nome}" itemValue="#{tipo}" />
 									</p:selectOneMenu>
 									<p:outputLabel value="Cidade:" for="cidade" />
 									<p:selectOneMenu id="cidade"
-										value="#{beanCliente2.endereco.cidade}"
+										value="#{beanEditaCliente.endereco.cidade}"
 										converter="conversorCidade">
-										<f:selectItems value="#{beanCliente2.cidades}" var="cidade"
+										<f:selectItems value="#{beanEditaCliente.cidades}" var="cidade"
 											itemLabel="#{cidade.nome}" itemValue="#{cidade}" />
 									</p:selectOneMenu>
 									<p:outputLabel value="Logradouro:" for="logradouro" />
 									<p:inputText id="logradouro"
-										value="#{beanCliente2.endereco.logadouro}" />
+										value="#{beanEditaCliente.endereco.logadouro}" />
 									<p:outputLabel value="Bairro:" for="bairro" />
-									<p:inputText id="bairro" value="#{beanCliente2.endereco.bairro}" />
+									<p:inputText id="bairro" value="#{beanEditaCliente.endereco.bairro}" />
 									<p:outputLabel value="Numero:" for="numero" />
-									<p:inputText id="numero" value="#{beanCliente2.endereco.numero}" />
+									<p:inputText id="numero" value="#{beanEditaCliente.endereco.numero}" />
 									<p:outputLabel value="Complemento:" for="complemento" />
 									<p:inputText id="complemento"
-										value="#{beanCliente2.endereco.complemento}" />
+										value="#{beanEditaCliente.endereco.complemento}" />
 								</p:panelGrid>
 								<h:commandButton id="sle" icon="ui-icon-pencil"
-									action="#{beanCliente2.editarEnd()}" value="Salvar">
+									action="#{beanEditaCliente.editarEnd()}" value="Salvar">
 								</h:commandButton>
 							</p:dialog>
 
@@ -184,13 +184,13 @@
 						<p:tab title="Contatos" id="contato">
 							<p:commandButton id="nvc" value="Novo" icon="ui-icon-plusthick"
 								style="margin-top: 10px; horizontal-align:left;"
-								action="#{beanCliente2.novocontato()}"
+								action="#{beanEditaCliente.novocontato()}"
 								oncomplete="PF('dialogCp').show()">
 								<f:setPropertyActionListener
-									target="#{beanCliente2.contato.pessoa}"
-									value="#{beanCliente2.cliente}" />
+									target="#{beanEditaCliente.contato.pessoa}"
+									value="#{beanEditaCliente.cliente}" />
 							</p:commandButton>
-							<p:dataTable id="tabelac" value="#{beanCliente2.contatos}"
+							<p:dataTable id="tabelac" value="#{beanEditaCliente.contatos}"
 								var="contatos">
 								<f:facet name="header">Lista de Contatos</f:facet>
 								<p:column headerText="Nome" style="text-align:left" >
@@ -209,16 +209,16 @@
 								
 								<p:column width="15%" headerText="Operações"
 									style="text-align:center">
-									<p:commandButton action="#{beanCliente2.excluirContato()}"
-										oncomplete="#{beanCliente2.contatos}" icon="ui-icon-trash">
+									<p:commandButton action="#{beanEditaCliente.excluirContato()}"
+										oncomplete="#{beanEditaCliente.contatos}" icon="ui-icon-trash">
 										<f:setPropertyActionListener value="#{contatos}"
-											target="#{beanCliente2.contato}" />
+											target="#{beanEditaCliente.contato}" />
 									</p:commandButton>
 									<p:commandButton oncomplete="PF('dialogCp').show();"
 										icon="ui-icon-pencil" update=":form:tabview:dlgc">
 										<f:setPropertyActionListener 
 											value="#{contatos}"
-											target="#{beanCliente2.contato}" />
+											target="#{beanEditaCliente.contato}" />
 									</p:commandButton>
 
 								</p:column>								
@@ -230,19 +230,19 @@
 								<p:panelGrid id="painelDados3" columns="2">
 									<p:outputLabel value="Nome:" for="nomec" />
 									<p:inputText id="nomec"
-										value="#{beanCliente2.contato.nome}" />
+										value="#{beanEditaCliente.contato.nome}" />
 
 									<p:outputLabel value="Email" for="email" />
 									<p:inputText id="email"
-										value="#{beanCliente2.contato.email}" />
+										value="#{beanEditaCliente.contato.email}" />
 									<p:outputLabel value="Ddd" for="ddd" />
-									<p:inputText id="ddd" value="#{beanCliente2.contato.ddd}" />
+									<p:inputText id="ddd" value="#{beanEditaCliente.contato.ddd}" />
 									<p:outputLabel value="Numero:" for="numeroc" />
-									<p:inputText id="numeroc" value="#{beanCliente2.contato.numero}" />
+									<p:inputText id="numeroc" value="#{beanEditaCliente.contato.numero}" />
 									
 								</p:panelGrid>
 								<h:commandButton id="slec" icon="ui-icon-pencil"
-									action="#{beanCliente2.addcontato()}" value="Salvar">
+									action="#{beanEditaCliente.addcontato()}" value="Salvar">
 								</h:commandButton>
 							</p:dialog>
 
@@ -250,7 +250,7 @@
 						</p:tab>
 
 					</p:tabView>
-					<p:commandButton action="#{beanCliente2.salvar()}" value="Salvar"
+					<p:commandButton action="#{beanEditaCliente.salvar()}" value="Salvar"
 						icon="ui-icon-check" ajax="false">
 					</p:commandButton>
 					
