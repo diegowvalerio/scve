@@ -54,8 +54,9 @@ public class ServicoCliente implements Serializable {
 			} else {
 				cliente.setTipojf(tipoP);
 				dao.alterar(cliente);
-				daoC.alterarList(contatos);
-				daoEnde.alterarList(enderecos);
+				//daoC.alterarList(contatos);
+				//daoEnde.alterarList(enderecos);
+				
 				if (cliente.getTipojf().equals("F")) {
 					if (pfisica.getPessoa() == null){
 						daoJ.excluir(cliente.getIdpessoa());
@@ -137,15 +138,15 @@ public class ServicoCliente implements Serializable {
 	@Transacao
 	public boolean excluirEnd(Integer id,Integer tipo) {
 		List<Endereco> end = daoEnde.consultarEnderecoId(id, tipo);
-		return daoEnde.excluirEnderecos(end);
+		return daoEnde.excluirLista(end);
 	}
 	
 	@Transacao
 	public boolean ex(Endereco ed){
 		return daoEnde.excluirObj(ed);
 	}*/
-	
-	/*contato
+	/*
+	contato
 	public List<Contato> consultarContato(Integer id) {
 
 		return daoC.consultarContatosporPessoa(id);

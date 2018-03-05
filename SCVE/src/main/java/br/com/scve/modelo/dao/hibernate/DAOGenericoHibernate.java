@@ -42,6 +42,17 @@ public class DAOGenericoHibernate<E> implements DAOGenerico<E>, Serializable{
         }
 		return true;
 	}	
+	
+	@Override
+	public boolean excluirLista(List<E> ids) {
+		for (int i = 0; i < ids.size(); i++) {
+			E e = manager.merge(ids.get(i));
+			manager.remove(e);
+        }
+		
+		return true;
+	}
+	
 	@Override
 	public E alterar(E e) {
 		return manager.merge(e);
@@ -72,7 +83,7 @@ public class DAOGenericoHibernate<E> implements DAOGenerico<E>, Serializable{
 	
 	@Override
 	public List<E> consultarEnderecoId(Integer id,Integer tipo) {
-		Query query =manager.createQuery("select e from Endereco e where e.pessoa.idpessoa = :id and e.idtipoend = :idtipo");
+		Query query =manager.createQuery("select e from Endereco e where e.pessoa.idpessoa = :id and e.tipoendereco.idtipoend = :idtipo");
 		query.setParameter("id", id);
 		query.setParameter("idtipo", tipo);
 		return query.getResultList();

@@ -45,11 +45,11 @@ public class Pessoa implements Serializable {
 	@ManyToOne
 	private Pessoa vendresp;
 	
-	@OneToMany(mappedBy="pessoa", cascade=CascadeType.PERSIST,fetch = FetchType.EAGER)
+	@OneToMany(mappedBy="pessoa", cascade ={CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE },fetch = FetchType.EAGER)
 	@Fetch(FetchMode.SUBSELECT)
     private List<Contato> contatos = new ArrayList<Contato>();
 	
-	@OneToMany(mappedBy="pessoa", cascade=CascadeType.PERSIST,fetch = FetchType.EAGER)
+	@OneToMany(mappedBy="pessoa", cascade ={CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE },fetch = FetchType.EAGER)
 	@Fetch(FetchMode.SUBSELECT)
     private List<Endereco> enderecos = new ArrayList<Endereco>();
 	

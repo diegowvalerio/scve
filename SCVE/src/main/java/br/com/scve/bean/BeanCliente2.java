@@ -201,7 +201,10 @@ public class BeanCliente2 implements Serializable {
 	}
 
 	public void removerEndereco() {
-		this.enderecos.remove(endereco);
+			int index = enderecos.indexOf(endereco);
+			if (index > -1) {
+			this.enderecos.remove(index);
+			}
 	}
 
 	public Endereco getEndereco() {

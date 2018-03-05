@@ -12,6 +12,7 @@ public interface DAOGenerico<E> {
 	
 	public boolean salvarList(List<E> e);
 	public boolean alterarList(List<E> e);
+	public boolean excluirLista(List<E> e);
 	
 	public List<E> consultarEnderecosId(Integer id);
 	public List<E> consultarEnderecoId(Integer id,Integer tipo);
