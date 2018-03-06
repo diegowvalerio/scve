@@ -10,12 +10,14 @@ import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import br.com.scve.entidades.Pfisica;
 import br.com.scve.entidades.Pjuridica;
 import br.com.scve.entidades.TipoEndereco;
 import br.com.scve.entidades.Cidade;
+import br.com.scve.entidades.Cliente;
 import br.com.scve.entidades.Vendedor;
 import br.com.scve.entidades.Contato;
 import br.com.scve.entidades.Endereco;
@@ -25,7 +27,7 @@ import br.com.scve.modelo.servico.ServicoTipoEndereco;
 
 @Named
 @ViewScoped
-public class BeanVendedor implements Serializable{
+public class BeanEditaVendedor implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private Vendedor vendedor =new Vendedor(); 
@@ -52,12 +54,27 @@ public class BeanVendedor implements Serializable{
 	
 	@PostConstruct
 	public void carregar(){
-		lista = servico.consultar();
 		
-		this.vendedor = this.getVendedor();
+		HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+		HttpSession session = (HttpSession) request.getSession();
+		this.vendedor = (Vendedor) session.getAttribute("vendedorAux");
+		session.removeAttribute("vendedorAux");
+		
 		this.opcao = this.vendedor.getTipojf();
 		this.enderecos = this.vendedor.getEnderecos();
 		this.contatos = this.vendedor.getContatos();
+
+		
+		if (this.vendedor.getTipojf().equals("J")) {
+			isRederiza = true;
+			isRederiza2 = false;
+			this.pjuridica = servico.consultarPjuridica(this.vendedor.getIdpessoa());
+		}
+		if (this.vendedor.getTipojf().equals("F")) {
+			isRederiza = false;
+			isRederiza2 = true;
+			this.pfisica = servico.consultarPfisica(this.vendedor.getIdpessoa());
+		}
 	}
 	
 	public String salvar(){	
@@ -251,12 +268,4 @@ public class BeanVendedor implements Serializable{
 		this.contatos.remove(contato);
 	}
 	
-	/*editar vendedor*/
-	 public String encaminha() {
-		 FacesContext fc = FacesContext.getCurrentInstance();
-		 HttpSession session = (HttpSession) fc.getExternalContext().getSession(true);
-		 session.setAttribute("vendedorAux", this.vendedor );
-		 
-		 return "editavendedor";
-	 }
 }

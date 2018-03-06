@@ -276,9 +276,6 @@ public class BeanCliente implements Serializable {
 		 FacesContext fc = FacesContext.getCurrentInstance();
 		 HttpSession session = (HttpSession) fc.getExternalContext().getSession(true);
 		 session.setAttribute("clienteAux", this.cliente );
-		 //session.setAttribute("pfisica", this.pfisica );
-		 //session.setAttribute("enderecos", this.cliente.getEnderecos() );
-		 //session.setAttribute("contatos", this.cliente.getContatos() );
 		 
 		 return "editacliente";
 	 }
