@@ -14,8 +14,8 @@ import br.com.scve.entidades.Endereco;
 import br.com.scve.modelo.dao.DAOPfisica;
 import br.com.scve.modelo.dao.DAOPjuridica;
 import br.com.scve.modelo.dao.DAOCliente;
-import br.com.scve.modelo.dao.DAOContato;
-import br.com.scve.modelo.dao.DAOEndereco;
+//import br.com.scve.modelo.dao.DAOContato;
+//import br.com.scve.modelo.dao.DAOEndereco;
 import br.com.scve.modelo.dao.hibernate.Transacao;
 
 @Dependent
@@ -29,11 +29,11 @@ public class ServicoCliente implements Serializable {
 	@Inject
 	private DAOPjuridica daoJ;
 	
-	@Inject
-	private DAOEndereco daoEnde;
+	//@Inject
+	//private DAOEndereco daoEnde;
 	
-	@Inject 
-	private DAOContato daoC;
+	//@Inject 
+	//private DAOContato daoC;
 
 	@Transacao
 	public void salvar(Cliente cliente, Pfisica pfisica, Pjuridica pjuridica, String tipoP, List<Contato> contatos, List<Endereco> enderecos) {

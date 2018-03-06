@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.lang.String;
 import javax.persistence.*;
 
-import br.com.scve.entidades.pfk.scvePkEnde;
+
 
 @Entity
 @Table(name="tbendereco")
@@ -52,7 +52,7 @@ public class Endereco implements Serializable {
 		
 		@Embeddable
 		public static class scvePkEnder implements Serializable{
-
+			
 			private static final long serialVersionUID = 1L;
 			
 			

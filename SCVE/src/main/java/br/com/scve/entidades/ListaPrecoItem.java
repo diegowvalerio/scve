@@ -6,7 +6,8 @@ import java.util.Date;
 
 import javax.persistence.*;
 
-import br.com.scve.entidades.pfk.scvePkListaPrecoItem;
+import br.com.scve.entidades.Endereco.scvePkEnder;
+
 
 
 @Entity
@@ -14,7 +15,11 @@ import br.com.scve.entidades.pfk.scvePkListaPrecoItem;
 public class ListaPrecoItem implements Serializable {
 
 	@EmbeddedId
-	private scvePkListaPrecoItem scvePkListaPrecoItem;
+	private scvePkListaPrecoItem id;
+	
+	@AttributeOverrides( {
+		@AttributeOverride(name = "idlista", column = @Column(name = "IDLISTA", nullable = false)),
+		@AttributeOverride(name = "idproduto", column = @Column(name = "IDPRODUTO", nullable = false)) })
 	
 	@Column(nullable=false, columnDefinition="numeric(6,2)")
 	private Double valor;
@@ -35,17 +40,84 @@ public class ListaPrecoItem implements Serializable {
 		super();
 	}
 	
+	//Solução do problema
+	@PrePersist
+		  private void prePersiste() {
+				this.id = new scvePkListaPrecoItem();
+				this.id.setIdlista(listapreco.getIdlista());
+				this.id.setIdproduto(produto.getIdproduto());		
+				this.produto = produto;
+				this.listapreco = listapreco;
+			}
 	
+	@Embeddable
+	public static class scvePkListaPrecoItem implements Serializable{
+
+		private static final long serialVersionUID = 1L;		
+		
+		private Integer idlista;	
+		private Integer idproduto;		
+			
+		public scvePkListaPrecoItem(){
+			
+		}
+
+		public Integer getIdlista() {
+			return idlista;
+		}
+
+		public void setIdlista(Integer idlista) {
+			this.idlista = idlista;
+		}
+
+		public Integer getIdproduto() {
+			return idproduto;
+		}
+
+		public void setIdproduto(Integer idproduto) {
+			this.idproduto = idproduto;
+		}
+
+		@Override
+		public int hashCode() {
+			final int prime = 31;
+			int result = 1;
+			result = prime * result + ((idlista == null) ? 0 : idlista.hashCode());
+			result = prime * result + ((idproduto == null) ? 0 : idproduto.hashCode());
+			return result;
+		}
+
+		@Override
+		public boolean equals(Object obj) {
+			if (this == obj)
+				return true;
+			if (obj == null)
+				return false;
+			if (getClass() != obj.getClass())
+				return false;
+			scvePkListaPrecoItem other = (scvePkListaPrecoItem) obj;
+			if (idlista == null) {
+				if (other.idlista != null)
+					return false;
+			} else if (!idlista.equals(other.idlista))
+				return false;
+			if (idproduto == null) {
+				if (other.idproduto != null)
+					return false;
+			} else if (!idproduto.equals(other.idproduto))
+				return false;
+			return true;
+		}
+		
+	}
 	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((scvePkListaPrecoItem == null) ? 0 : scvePkListaPrecoItem.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
-
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -56,51 +128,37 @@ public class ListaPrecoItem implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		ListaPrecoItem other = (ListaPrecoItem) obj;
-		if (scvePkListaPrecoItem == null) {
-			if (other.scvePkListaPrecoItem != null)
+		if (id == null) {
+			if (other.id != null)
 				return false;
-		} else if (!scvePkListaPrecoItem.equals(other.scvePkListaPrecoItem))
+		} else if (!id.equals(other.id))
 			return false;
 		return true;
 	}
-
-
 
 	public ListaPreco getListapreco() {
 		return listapreco;
 	}
 
-
-
 	public void setListapreco(ListaPreco listapreco) {
 		this.listapreco = listapreco;
 	}
-
-
 
 	public Produto getProduto() {
 		return produto;
 	}
 
-
-
 	public void setProduto(Produto produto) {
 		this.produto = produto;
 	}
-
-
-
-	public scvePkListaPrecoItem getScvePkListaPrecoItem() {
-		return scvePkListaPrecoItem;
+	
+	public scvePkListaPrecoItem getId() {
+		return id;
 	}
 
-
-
-	public void setScvePkListaPrecoItem(scvePkListaPrecoItem scvePkListaPrecoItem) {
-		this.scvePkListaPrecoItem = scvePkListaPrecoItem;
+	public void setId(scvePkListaPrecoItem id) {
+		this.id = id;
 	}
-
-
 
 	public Double getValor() {
 		return this.valor;

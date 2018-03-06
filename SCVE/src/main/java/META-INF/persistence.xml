@@ -14,7 +14,6 @@
 		<class>br.com.scve.entidades.Estado</class>
 		<class>br.com.scve.entidades.Cidade</class>
 		<class>br.com.scve.entidades.Endereco</class>
-		<class>br.com.scve.entidades.pfk.scvePkEnde</class>
 		<class>br.com.scve.entidades.ListaPreco</class>
 		<class>br.com.scve.entidades.TipoMv</class>
 		<class>br.com.scve.entidades.VendLista</class>
@@ -23,10 +22,10 @@
 		<class>br.com.scve.entidades.FormaPag</class>
 		<class>br.com.scve.entidades.Produto</class>
 		<class>br.com.scve.entidades.ListaPrecoItem</class>
-		<class>br.com.scve.entidades.pfk.scvePkListaPrecoItem</class>
 		<class>br.com.scve.entidades.Movimento</class>
 		<class>br.com.scve.entidades.ItemMov</class>
 		<class>br.com.scve.entidades.Endereco$scvePkEnder</class>
+		<class>br.com.scve.entidades.ListaPrecoItem$scvePkListaPrecoItem</class>
 		
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/bancoAula" />

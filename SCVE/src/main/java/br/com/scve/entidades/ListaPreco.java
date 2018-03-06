@@ -3,9 +3,14 @@ package br.com.scve.entidades;
 import java.io.Serializable;
 import java.lang.Integer;
 import java.lang.String;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.*;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 @Entity
 @Table(name="tblistapreco")
@@ -22,6 +27,9 @@ public class ListaPreco implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date dtcadastro;
 	
+	@OneToMany(mappedBy="listapreco", cascade ={CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE },orphanRemoval = true,fetch = FetchType.EAGER)
+	@Fetch(FetchMode.SUBSELECT)
+    private List<ListaPrecoItem> listaprecoitens = new ArrayList<>();
 
 	public ListaPreco() {
 		super();
@@ -47,5 +55,35 @@ public class ListaPreco implements Serializable {
 	public void setDtcadastro(Date dtcadastro) {
 		this.dtcadastro = dtcadastro;
 	}
+	public List<ListaPrecoItem> getListaprecoitens() {
+		return listaprecoitens;
+	}
+	public void setListaprecoitens(List<ListaPrecoItem> listaprecoitens) {
+		this.listaprecoitens = listaprecoitens;
+	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((idlista == null) ? 0 : idlista.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ListaPreco other = (ListaPreco) obj;
+		if (idlista == null) {
+			if (other.idlista != null)
+				return false;
+		} else if (!idlista.equals(other.idlista))
+			return false;
+		return true;
+	}
    
+	
 }
