@@ -79,7 +79,6 @@
 									<p:selectOneMenu id="vendedor"
 										value="#{beanCliente.cliente.vendresp}"
 										converter="conversorVendedor">
-										<f:selectItem itemLabel="" itemValue=" " />
 										<f:selectItems value="#{beanCliente.vendedores}" var="vendedor"
 											itemLabel="#{vendedor.idpessoa} - #{vendedor.nome}" itemValue="#{vendedor}" />
 									</p:selectOneMenu>

@@ -42,29 +42,29 @@ public class Pessoa implements Serializable {
 	private Boolean situacao;
 	@Column(nullable=false)
 	private String tipojf;
+	
 	@ManyToOne
-	private Pessoa vendresp;
+	private Vendedor vendresp;
 	
 	@OneToMany(mappedBy="pessoa", cascade ={CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE },orphanRemoval = true,fetch = FetchType.EAGER)
 	@Fetch(FetchMode.SUBSELECT)
-    private List<Contato> contatos = new ArrayList<Contato>();
+    private List<Contato> contatos = new ArrayList<>();
 	
 	@OneToMany(mappedBy="pessoa", cascade ={CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE },orphanRemoval = true,fetch = FetchType.EAGER)
 	@Fetch(FetchMode.SUBSELECT)
-    private List<Endereco> enderecos = new ArrayList<Endereco>();
+    private List<Endereco> enderecos = new ArrayList<>();
 	
 	public Pessoa() {
 		super();
 	}   
 	
-	public Pessoa(String nome,Date dtcadastro, Boolean situacao, String tipojf,Pessoa vendresp){
+	/*public Pessoa(String nome,Date dtcadastro, Boolean situacao, String tipojf){
 		this.nome = nome;
 		this.dtcadastro = dtcadastro;
 		this.situacao = situacao;
 		this.tipojf = tipojf;
-		this.vendresp = vendresp;
 	}
-	
+	*/
 	public Integer getIdpessoa() {
 		return idpessoa;
 	}
@@ -119,7 +119,7 @@ public class Pessoa implements Serializable {
 	}
 
 
-	public void setVendresp(Pessoa vendresp) {
+	public void setVendresp(Vendedor vendresp) {
 		this.vendresp = vendresp;
 	}
 

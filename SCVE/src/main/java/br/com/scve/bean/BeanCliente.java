@@ -63,6 +63,10 @@ public class BeanCliente implements Serializable {
 		HttpSession session = (HttpSession) request.getSession();
 		this.cliente = (Cliente) session.getAttribute("clienteAux");
 				*/
+		this.cliente = this.getCliente();
+		this.opcao = this.cliente.getTipojf();
+		this.enderecos = this.cliente.getEnderecos();
+		this.contatos = this.cliente.getContatos();
 	}
 	
 	public String salvar() {
@@ -179,6 +183,7 @@ public class BeanCliente implements Serializable {
 			throw new RuntimeException("O cliente não pode ser nulo");
 		} else {
 			this.endereco = new Endereco();
+			//this.endereco.setPessoa(cliente);
 		}
 	}
 
