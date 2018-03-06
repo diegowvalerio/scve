@@ -17,7 +17,6 @@ import br.com.scve.entidades.Pfisica;
 import br.com.scve.entidades.Pjuridica;
 import br.com.scve.entidades.TipoEndereco;
 import br.com.scve.entidades.Cidade;
-import br.com.scve.entidades.Cliente;
 import br.com.scve.entidades.Vendedor;
 import br.com.scve.entidades.Contato;
 import br.com.scve.entidades.Endereco;
