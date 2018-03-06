@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<body>
+	<ui:composition template="/templatePrincipal.xhtml">
+
+		<ui:define name="conteudo">
+			<h:form id="form">
+				<p:dataTable id="tabela" value="#{beanListTipoMv.lista}" var="tipoe">
+					<f:facet name="header">Lista Tipo de Endereço</f:facet>
+
+					<p:column headerText="Id" style="text-align:right" width="3%">
+				#{tipoe.idmv}
+			</p:column>
+					<p:column headerText="Descrição" style="text-align:left">
+				#{tipoe.nome}
+			</p:column>
+					<p:column width="15%"  headerText="Operações" style="text-align:center">
+						<p:commandButton action="#{beanListTipoMv.excluir()}"
+							oncomplete="#{beanListTipoMv.lista}" icon="ui-icon-trash">
+							<f:setPropertyActionListener value="#{tipoe}"
+								target="#{beanListTipoMv.tipomv}" />
+						</p:commandButton>
+						<p:commandButton oncomplete="PF('dialog').show();"
+							update=":form:painelDados" icon="ui-icon-pencil">
+							<f:setPropertyActionListener value="#{tipoe}"
+								target="#{beanListTipoMv.tipomv}" />
+						</p:commandButton>
+
+					</p:column>
+				</p:dataTable>
+
+				<p:dialog id="dlg" header="Editar Tipo de Movimento" widgetVar="dialog"
+					appendToBody="true" resizable="false" modal="true">
+					<p:panelGrid id="painelDados" columns="2">
+						<p:outputLabel value="Descrição:" for="nome" />
+						<p:inputText id="nome" value="#{beanListTipoMv.tipomv.nome}" />
+						
+						<p:outputLabel value="Ativo : " for="situacao" />
+						<p:selectBooleanCheckbox id="situacao" value="#{beanTipoMv.tipomv.situacao}" />
+						
+					</p:panelGrid>
+					<p:commandButton icon="ui-icon-pencil"
+						action="#{beanListTipoMv.salvar()}" ajax="false" />
+				</p:dialog>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>
