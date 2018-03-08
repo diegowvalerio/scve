@@ -6,9 +6,6 @@ import java.util.Date;
 
 import javax.persistence.*;
 
-import br.com.scve.entidades.Endereco.scvePkEnder;
-
-
 
 @Entity
 @Table(name="tblistaprecoitem")
