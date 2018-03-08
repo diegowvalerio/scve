@@ -29,8 +29,6 @@ public class BeanListaPreco implements Serializable{
 	private List<ListaPreco> lista;
 	private List<ListaPrecoItem> listaprecoitems = new ArrayList<>();
 
-	
-	
 	public String salvar(){
 		servico.salvar(listapreco);
 		lista = servico.consultar();
