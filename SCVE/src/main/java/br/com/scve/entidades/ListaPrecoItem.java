@@ -10,7 +10,8 @@ import javax.persistence.*;
 @Entity
 @Table(name="tblistaprecoitem")
 public class ListaPrecoItem implements Serializable {
-
+	private static final long serialVersionUID = 1L;
+	
 	@EmbeddedId
 	private scvePkListaPrecoItem id;
 	
@@ -19,11 +20,11 @@ public class ListaPrecoItem implements Serializable {
 		@AttributeOverride(name = "idproduto", column = @Column(name = "IDPRODUTO", nullable = false)) })
 	
 	@Column(nullable=false, columnDefinition="numeric(6,2)")
-	private Double valor;
+	private double valor;
 	@Column(nullable=false) 
 	@Temporal(TemporalType.DATE)
 	private Date dtultimaalt;
-	private static final long serialVersionUID = 1L;
+	
 	
 	@ManyToOne
 	@JoinColumn(name = "idlista", referencedColumnName="idlista",insertable =false,updatable=false)
@@ -43,8 +44,8 @@ public class ListaPrecoItem implements Serializable {
 				this.id = new scvePkListaPrecoItem();
 				this.id.setIdlista(listapreco.getIdlista());
 				this.id.setIdproduto(produto.getIdproduto());		
-				this.produto = produto;
-				this.listapreco = listapreco;
+				//this.produto = produto;
+				//this.listapreco = listapreco;
 			}
 	
 	@Embeddable

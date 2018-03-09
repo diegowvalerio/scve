@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -29,10 +30,26 @@ public class BeanListaPreco implements Serializable{
 	private List<ListaPreco> lista;
 	private List<ListaPrecoItem> listaprecoitems = new ArrayList<>();
 
+	@PostConstruct
+	public void carregar(){
+		this.listapreco = this.getListapreco();
+		this.listaprecoitems = this.getListaprecoitems();
+		
+	}
+	
 	public String salvar(){
 		servico.salvar(listapreco);
 		lista = servico.consultar();
+		
 		return "listaCidade";
+	}
+	
+	public String excluir() {
+		servico.excluir(listapreco.getIdlista());
+
+		lista = servico.consultar();
+
+		return "index";
 	}
 	
 	public List<Produto> getProdutos(){
