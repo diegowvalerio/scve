@@ -2,6 +2,7 @@ package br.com.scve.bean;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -30,14 +31,19 @@ public class BeanListaPreco implements Serializable{
 	private List<ListaPreco> lista;
 	private List<ListaPrecoItem> listaprecoitems = new ArrayList<>();
 
+	private Date dt = new Date();
+	
 	@PostConstruct
 	public void carregar(){
 		this.listapreco = this.getListapreco();
-		this.listaprecoitems = this.getListaprecoitems();
+		this.listapreco.setDtcadastro(dt);
+		this.listaprecoitems = this.listapreco.getListaprecoitens();
+		
 		
 	}
 	
 	public String salvar(){
+			
 		servico.salvar(listapreco);
 		lista = servico.consultar();
 		
@@ -91,6 +97,14 @@ public class BeanListaPreco implements Serializable{
 	/*listaprecoitem*/
 
 	
+	public Date getDt() {
+		return dt;
+	}
+
+	public void setDt(Date dt) {
+		this.dt = dt;
+	}
+
 	public void novoitem(){
 		 this.listaprecoitem = new ListaPrecoItem();
 		
@@ -104,9 +118,11 @@ public class BeanListaPreco implements Serializable{
 		if (index > -1) {
 			listaprecoitems.remove(index);
 			listaprecoitem.setListapreco(listapreco);
+			listaprecoitem.setDtultimaalt(dt);
 			listaprecoitems.add(index, listaprecoitem);
 		}else{
 			listaprecoitem.setListapreco(listapreco);
+			listaprecoitem.setDtultimaalt(dt);
 			listaprecoitems.add(listaprecoitem);
 		}
 		listaprecoitem = new ListaPrecoItem();
