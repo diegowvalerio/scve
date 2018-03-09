@@ -41,7 +41,7 @@ public class BeanListaPreco implements Serializable{
 		servico.salvar(listapreco);
 		lista = servico.consultar();
 		
-		return "listaCidade";
+		return "listaPrecos";
 	}
 	
 	public String excluir() {
