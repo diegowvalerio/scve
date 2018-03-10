@@ -3,7 +3,8 @@ package br.com.scve.bean;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.enterprise.context.RequestScoped;
+import javax.annotation.PostConstruct;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -11,7 +12,7 @@ import br.com.scve.entidades.Produto;
 import br.com.scve.modelo.servico.ServicoProduto;
 
 @Named
-@RequestScoped
+@ViewScoped
 public class BeanProduto implements Serializable{
 	private static final long serialVersionUID = 1L;
 
@@ -21,12 +22,18 @@ public class BeanProduto implements Serializable{
 	
 	private List<Produto> lista;
 
-	
+	@PostConstruct
+	public void carregar(){
+		lista = servico.consultar();
+		
+		this.produto = this.getProduto();
+	}
 	
 	public String salvar(){
 		servico.salvar(produto);
 		lista = servico.consultar();
-		return "index";
+		
+		return "listaProduto";
 	}
 	
 	public Produto getProduto() {
@@ -42,6 +49,13 @@ public class BeanProduto implements Serializable{
 	public void setLista(List<Produto> lista) {
 		this.lista = lista;
 	}
-			
+	
+	public String excluir() {
+		servico.excluir(produto.getIdproduto());
+
+		lista = servico.consultar();
+
+		return "listaProduto";
+	}
 
 }
