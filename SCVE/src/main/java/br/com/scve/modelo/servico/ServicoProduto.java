@@ -41,5 +41,11 @@ public class ServicoProduto implements Serializable{
 		return dao.consultar();
 	}
 	
-
+	public List<Produto> consultaprodutopelonome(String nome){
+		List<Produto> pro = null;
+		if(!nome.equals("")){
+			pro = dao.buscaprodutonome(nome);
+		}
+		return pro;
+	}
 }

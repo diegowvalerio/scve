@@ -44,8 +44,8 @@ public class ListaPrecoItem implements Serializable {
 				this.id = new scvePkListaPrecoItem();
 				this.id.setIdlista(listapreco.getIdlista());
 				this.id.setIdproduto(produto.getIdproduto());		
-				//this.produto = produto;
-				//this.listapreco = listapreco;
+				this.produto = produto;
+				this.listapreco = listapreco;
 			}
 	
 	@Embeddable
@@ -108,12 +108,14 @@ public class ListaPrecoItem implements Serializable {
 		}
 		
 	}
-	
+
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((produto == null) ? 0 : produto.hashCode());
 		return result;
 	}
 
@@ -130,6 +132,11 @@ public class ListaPrecoItem implements Serializable {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
+			return false;
+		if (produto == null) {
+			if (other.produto != null)
+				return false;
+		} else if (!produto.equals(other.produto))
 			return false;
 		return true;
 	}

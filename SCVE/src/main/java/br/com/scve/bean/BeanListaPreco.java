@@ -47,7 +47,7 @@ public class BeanListaPreco implements Serializable{
 		servico.salvar(listapreco);
 		lista = servico.consultar();
 		
-		return "listaPrecos";
+		return "index";
 	}
 	
 	public String excluir() {
@@ -131,6 +131,10 @@ public class BeanListaPreco implements Serializable{
 	
 	public void excluiritem(){
 		this.listaprecoitems.remove(listaprecoitem);
+	}
+	
+	public List<Produto> completaProduto(String descricao){
+		return servicoProd.consultaprodutopelonome(descricao);
 	}
 
 }

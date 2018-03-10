@@ -71,12 +71,12 @@
 							<p:panelGrid id="painelDados" columns="2">
 
 								<p:outputLabel value="Produto:" for="produto" />
-								<p:selectOneMenu id="produto"
-									value="#{beanListaPreco.listaprecoitem.produto}"
-									converter="conversorProduto">
-									<f:selectItems value="#{beanListaPreco.produtos}" var="produto"
-										itemLabel="#{produto.descricao}" itemValue="#{produto}" />
-								</p:selectOneMenu>
+								 <h:panelGroup>
+								 <p:autoComplete id="produto" value="#{beanListaPreco.listaprecoitem.produto}" size="30"
+								  	completeMethod="#{beanListaPreco.completaProduto}" var="c"
+								  	itemLabel="#{c.descricao}" itemValue="#{c}" forceSelection="true" converter="conversorProduto"/>
+								  	<p:watermark value="Pesquise pelo Descrição" for="produto"></p:watermark>
+								</h:panelGroup>
 
 								<p:outputLabel value="Valor :" for="valor" />
 								<p:inputNumber id="valor"

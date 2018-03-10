@@ -8,8 +8,14 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Restrictions;
+
 import br.com.scve.entidades.Contato;
 import br.com.scve.entidades.Endereco;
+import br.com.scve.entidades.Produto;
 import br.com.scve.modelo.dao.DAOGenerico;
 
 public class DAOGenericoHibernate<E> implements DAOGenerico<E>, Serializable{
@@ -116,4 +122,17 @@ public class DAOGenericoHibernate<E> implements DAOGenerico<E>, Serializable{
 	}
 	
 */
+
+	@SuppressWarnings({ "unchecked" })
+	@Override
+	public List<E> buscaprodutonome(String e){
+		/*return this.manager.createQuery("select e from Produto e where "
+	      		+ "e.descricao like '%':desc'%' and e.situacao = 'true' ").setParameter("desc", e).getResultList();		*/
+		Session session = manager.unwrap(Session.class);
+		Criteria criteria = session.createCriteria(Produto.class);
+		
+		criteria.add(Restrictions.ilike("descricao", e.toUpperCase(),MatchMode.START));
+		
+		return criteria.list();
+	}
 }
