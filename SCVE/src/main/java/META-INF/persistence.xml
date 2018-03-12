@@ -16,7 +16,7 @@
 		<class>br.com.scve.entidades.Endereco</class>
 		<class>br.com.scve.entidades.ListaPreco</class>
 		<class>br.com.scve.entidades.TipoMv</class>
-		<class>br.com.scve.entidades.VendLista</class>
+		<class>br.com.scve.entidades.TipoMvVend</class>
 		<class>br.com.scve.entidades.pfk.scvePkVendLista</class>
 		<class>br.com.scve.entidades.CondPgto</class>
 		<class>br.com.scve.entidades.FormaPag</class>
@@ -28,7 +28,7 @@
 		<class>br.com.scve.entidades.ListaPrecoItem$scvePkListaPrecoItem</class>
 		
 		<properties>
-			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/bancoAula" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/scve" />
 			<property name="javax.persistence.jdbc.user" value="postgres" />
 			<property name="javax.persistence.jdbc.password" value="postgres" />
 			<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />

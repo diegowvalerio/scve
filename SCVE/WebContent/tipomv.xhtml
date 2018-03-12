@@ -21,6 +21,16 @@
 							<f:validateLength minimum="3" maximum="150" />
 						</p:inputText>
 						
+						<p:outputLabel value="Lista de Preço: " for="listapreco" />
+						<p:selectOneMenu  id="listapreco" value="#{beanTipoMv.tipomv.listapreco}" converter="conversorLista"  >
+							<f:selectItems  value="#{beanTipoMv.listaPrecos}" var="li" itemLabel="#{li.nome}" itemValue="#{li}" />
+						</p:selectOneMenu>
+						
+						<p:outputLabel value="Lista de Promoção: " for="listaprecopromocao" />
+						<p:selectOneMenu  id="listaprecopromocao" value="#{beanTipoMv.tipomv.listaprecopromocao}" converter="conversorLista"  >
+							<f:selectItems  value="#{beanTipoMv.listaPrecosPromocao}" var="lip" itemLabel="#{lip.nome}" itemValue="#{lip}" />
+						</p:selectOneMenu>
+						
 						<p:outputLabel value="Ativo : " for="situacao" />
 						<p:selectBooleanCheckbox id="situacao" value="#{beanTipoMv.tipomv.situacao}" required="true"/>
 				

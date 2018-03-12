@@ -8,7 +8,6 @@ import javax.persistence.Embeddable;
 public class scvePkVendLista implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	private Integer idlista;
 	private Integer idmv;	
 	private Integer idpessoa;
 	
@@ -16,17 +15,6 @@ public class scvePkVendLista implements Serializable {
 	public scvePkVendLista() {
 		super();
 	}
-
-
-	public Integer getIdlista() {
-		return idlista;
-	}
-
-
-	public void setIdlista(Integer idlista) {
-		this.idlista = idlista;
-	}
-
 
 	public Integer getIdmv() {
 		return idmv;
@@ -52,7 +40,6 @@ public class scvePkVendLista implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((idlista == null) ? 0 : idlista.hashCode());
 		result = prime * result + ((idmv == null) ? 0 : idmv.hashCode());
 		result = prime * result + ((idpessoa == null) ? 0 : idpessoa.hashCode());
 		return result;
@@ -68,11 +55,6 @@ public class scvePkVendLista implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		scvePkVendLista other = (scvePkVendLista) obj;
-		if (idlista == null) {
-			if (other.idlista != null)
-				return false;
-		} else if (!idlista.equals(other.idlista))
-			return false;
 		if (idmv == null) {
 			if (other.idmv != null)
 				return false;

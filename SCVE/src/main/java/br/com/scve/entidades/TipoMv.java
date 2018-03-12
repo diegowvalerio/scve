@@ -19,6 +19,11 @@ public class TipoMv implements Serializable {
 	@Column(nullable=false, columnDefinition= "BOOLEAN DEFAULT TRUE")
 	private Boolean situacao;
 	
+	@ManyToOne
+	private ListaPreco listapreco;
+	
+	@ManyToOne
+	private ListaPreco listaprecopromocao;
 
 	public TipoMv() {
 		super();
@@ -43,6 +48,18 @@ public class TipoMv implements Serializable {
 
 	public void setSituacao(Boolean situacao) {
 		this.situacao = situacao;
+	}
+	public ListaPreco getListapreco() {
+		return listapreco;
+	}
+	public void setListapreco(ListaPreco listapreco) {
+		this.listapreco = listapreco;
+	}
+	public ListaPreco getListaprecopromocao() {
+		return listaprecopromocao;
+	}
+	public void setListaprecopromocao(ListaPreco listaprecopromocao) {
+		this.listaprecopromocao = listaprecopromocao;
 	}
    
 }

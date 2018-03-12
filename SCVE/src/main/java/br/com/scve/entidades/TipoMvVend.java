@@ -7,8 +7,8 @@ import br.com.scve.entidades.pfk.scvePkVendLista;
 
 
 @Entity
-@Table(name="tbvendlista")
-public class VendLista implements Serializable {
+@Table(name="tbtipomv_vend")
+public class TipoMvVend implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@EmbeddedId
@@ -18,15 +18,12 @@ public class VendLista implements Serializable {
 	@JoinColumn(name = "idpessoa", referencedColumnName="idpessoa",insertable =false,updatable=false)
 	private Vendedor vendedor;
 	
-	@ManyToOne
-	@JoinColumn(name = "idlista", referencedColumnName="idlista",insertable =false,updatable=false)
-	private ListaPreco listapreco;
-	
+		
 	@ManyToOne
 	@JoinColumn(name = "idmv", referencedColumnName="idmv",insertable =false,updatable=false)
 	private TipoMv tipomv;
 	
-	public VendLista() {
+	public TipoMvVend() {
 		super();
 	}
 
@@ -38,14 +35,7 @@ public class VendLista implements Serializable {
 		this.vendedor = vendedor;
 	}
 
-	public ListaPreco getListapreco() {
-		return listapreco;
-	}
-
-	public void setListapreco(ListaPreco listapreco) {
-		this.listapreco = listapreco;
-	}
-
+	
 	public TipoMv getTipomv() {
 		return tipomv;
 	}
@@ -78,7 +68,7 @@ public class VendLista implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		VendLista other = (VendLista) obj;
+		TipoMvVend other = (TipoMvVend) obj;
 		if (scvePkVendLista == null) {
 			if (other.scvePkVendLista != null)
 				return false;
