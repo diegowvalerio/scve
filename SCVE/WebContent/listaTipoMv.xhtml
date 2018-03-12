@@ -41,8 +41,18 @@
 						<p:outputLabel value="Descrição:" for="nome" />
 						<p:inputText id="nome" value="#{beanListTipoMv.tipomv.nome}" />
 						
+						<p:outputLabel value="Lista de Preço: " for="listapreco" />
+						<p:selectOneMenu  id="listapreco" value="#{beanListTipoMv.tipomv.listapreco}" converter="conversorLista"  >
+							<f:selectItems  value="#{beanListTipoMv.listaPrecos}" var="li" itemLabel="#{li.nome}" itemValue="#{li}" />
+						</p:selectOneMenu>
+						
+						<p:outputLabel value="Lista de Promoção: " for="listaprecopromocao" />
+						<p:selectOneMenu  id="listaprecopromocao" value="#{beanListTipoMv.tipomv.listaprecopromocao}" converter="conversorLista"  >
+							<f:selectItems  value="#{beanListTipoMv.listaPrecosPromocao}" var="lip" itemLabel="#{lip.nome}" itemValue="#{lip}" />
+						</p:selectOneMenu>
+						
 						<p:outputLabel value="Ativo : " for="situacao" />
-						<p:selectBooleanCheckbox id="situacao" value="#{beanTipoMv.tipomv.situacao}" />
+						<p:selectBooleanCheckbox id="situacao" value="#{beanListTipoMv.tipomv.situacao}" />
 						
 					</p:panelGrid>
 					<p:commandButton icon="ui-icon-pencil"

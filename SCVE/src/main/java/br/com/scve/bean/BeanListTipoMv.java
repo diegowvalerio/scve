@@ -8,7 +8,9 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import br.com.scve.entidades.ListaPreco;
 import br.com.scve.entidades.TipoMv;
+import br.com.scve.modelo.servico.ServicoListaPreco;
 import br.com.scve.modelo.servico.ServicoTipoMv;
 
 @Named
@@ -19,11 +21,22 @@ public class BeanListTipoMv implements Serializable{
 	private TipoMv tipomv = new TipoMv();
 	@Inject
 	private ServicoTipoMv servico;
+	@Inject
+	private ServicoListaPreco servicolista;
 	private List<TipoMv> lista;
 	
 	@PostConstruct
 	public void carregar(){
 		lista = servico.consultar();
+	}
+	public List<ListaPreco> getListaPrecos(){
+		
+		return servicolista.consultar();
+	}
+	
+	public List<ListaPreco> getListaPrecosPromocao(){
+		
+		return servicolista.consultar();
 	}
 	
 	public String salvar(){

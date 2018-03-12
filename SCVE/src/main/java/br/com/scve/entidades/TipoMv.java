@@ -4,7 +4,13 @@ import java.io.Serializable;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.*;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 @Entity
 @Table(name="tbtipomv")
@@ -24,6 +30,10 @@ public class TipoMv implements Serializable {
 	
 	@ManyToOne
 	private ListaPreco listaprecopromocao;
+	
+	@OneToMany(mappedBy="tipomv", cascade ={CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE },orphanRemoval = true,fetch = FetchType.EAGER)
+	@Fetch(FetchMode.SUBSELECT)
+    private List<TipoMvVend> tipomvvend = new ArrayList<>();
 
 	public TipoMv() {
 		super();
@@ -60,6 +70,12 @@ public class TipoMv implements Serializable {
 	}
 	public void setListaprecopromocao(ListaPreco listaprecopromocao) {
 		this.listaprecopromocao = listaprecopromocao;
+	}
+	public List<TipoMvVend> getTipomvvend() {
+		return tipomvvend;
+	}
+	public void setTipomvvend(List<TipoMvVend> tipomvvend) {
+		this.tipomvvend = tipomvvend;
 	}
    
 }
