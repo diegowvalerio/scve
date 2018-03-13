@@ -24,5 +24,6 @@ public class Vendedor extends Pessoa implements Serializable {
 	public void setPerc_comissao(double perc_comissao) {
 		this.perc_comissao = perc_comissao;
 	}
+	
    
 }

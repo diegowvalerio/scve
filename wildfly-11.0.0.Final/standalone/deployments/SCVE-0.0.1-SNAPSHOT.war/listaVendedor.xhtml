@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<body>
+	<ui:composition template="/templatePrincipal.xhtml">
+
+		<ui:define name="conteudo">
+			<h:form id="form">
+				<p:dataTable id="tabela" value="#{beanVendedor.lista}" var="vendedor">
+					<f:facet name="header">Lista de Vendedor</f:facet>
+
+					<p:column headerText="Id" style="text-align:right" width="3%">
+				#{vendedor.idpessoa}
+			</p:column>
+					<p:column headerText="Nome" style="text-align:left">
+				#{vendedor.nome}
+			</p:column>
+
+					<p:column width="15%" headerText="Operações"
+						style="text-align:center">
+						<p:commandButton action="#{beanVendedor.excluir()}"
+							oncomplete="#{beanVendedor.lista}" icon="ui-icon-trash">
+							<f:setPropertyActionListener value="#{vendedor}"
+								target="#{beanVendedor.vendedor}" />
+						</p:commandButton>
+
+						<p:commandButton icon="ui-icon-pencil" action="#{beanVendedor.encaminha()}" >
+							<f:setPropertyActionListener value="#{vendedor}"
+								target="#{beanVendedor.vendedor}" />					
+						</p:commandButton>
+
+					</p:column>
+				</p:dataTable>
+
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

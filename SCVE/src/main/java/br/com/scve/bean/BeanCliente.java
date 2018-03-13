@@ -211,7 +211,7 @@ public class BeanCliente implements Serializable {
 	}
 
 	public void editarEnd() {
-		if(endereco == null){
+		if(endereco == null){ 
 			throw new IllegalArgumentException("Cliente nao pode ser nulo");
 	    }
 		int index = enderecos.indexOf(endereco);

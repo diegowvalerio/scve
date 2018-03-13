@@ -46,8 +46,8 @@ public class Endereco implements Serializable {
 			this.id = new scvePkEnder();
 			this.id.setIdpessoa(pessoa.getIdpessoa());
 			this.id.setIdtipoend(tipoendereco.getIdtipoend());		
-			this.pessoa = pessoa;
-			this.tipoendereco = tipoendereco;
+			//this.pessoa = pessoa;
+			//this.tipoendereco = tipoendereco;
 		}
 		
 		@Embeddable

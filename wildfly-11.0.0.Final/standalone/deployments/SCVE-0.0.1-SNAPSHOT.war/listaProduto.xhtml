@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<body>
+	<ui:composition template="/templatePrincipal.xhtml">
+
+		<ui:define name="conteudo">
+			<h:form id="form">
+				<p:dataTable id="tabela" value="#{beanProduto.lista}" var="pro">
+					<f:facet name="header">Lista Produto</f:facet>
+
+					<p:column headerText="Id" style="text-align:right" width="3%">
+				#{pro.idproduto}
+			</p:column>
+					<p:column headerText="Descrição" style="text-align:left">
+				#{pro.descricao}
+			</p:column>
+					<p:column headerText="Descrição Abreviada" style="text-align:left">
+				#{pro.descabreviada}
+			</p:column>
+					<p:column headerText="Ativo" style="text-align:left" width="3%">
+						<p:selectBooleanCheckbox value="#{pro.situacao}" />		
+					</p:column>
+
+					<p:column width="15%" headerText="Operações"
+						style="text-align:center">
+						<p:commandButton action="#{beanProduto.excluir}"
+							oncomplete="#{beanProduto.lista}" icon="ui-icon-trash">
+							<f:setPropertyActionListener value="#{pro}"
+								target="#{beanProduto.produto}" />
+						</p:commandButton>
+						<p:commandButton oncomplete="PF('dialog').show();"
+							update=":form:painelDados" icon="ui-icon-pencil">
+							<f:setPropertyActionListener value="#{pro}"
+								target="#{beanProduto.produto}" />
+						</p:commandButton>
+
+					</p:column>
+				</p:dataTable>
+
+				<p:dialog id="dlg" header="Editar Produto" widgetVar="dialog"
+					appendToBody="true" resizable="false" modal="true">
+					<p:panelGrid id="painelDados" columns="2">
+						<p:outputLabel value="Descrição:" for="descricao" />
+						<p:inputText id="descricao"
+							value="#{beanProduto.produto.descricao}" size="50" />
+
+						<p:outputLabel value="Descrição Abreviada:" for="descabreviada" />
+						<p:inputText id="descabreviada"
+							value="#{beanProduto.produto.descabreviada}" size="30" />
+
+						<p:outputLabel value="Ean:" for="ean" />
+						<p:inputText id="ean" value="#{beanProduto.produto.ean}" />
+
+						<p:outputLabel value="Ativo : " for="situacao" />
+						<p:selectBooleanCheckbox id="situacao"
+							value="#{beanProduto.produto.situacao}" />
+
+					</p:panelGrid>
+					<p:commandButton icon="ui-icon-pencil"
+						action="#{beanProduto.salvar}" ajax="false" />
+				</p:dialog>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

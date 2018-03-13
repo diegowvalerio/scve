@@ -3,7 +3,6 @@ package br.com.scve.entidades;
 import java.io.Serializable;
 import javax.persistence.*;
 
-import br.com.scve.entidades.ListaPrecoItem.scvePkListaPrecoItem;
 
 
 @Entity
@@ -15,8 +14,8 @@ public class TipoMvVend implements Serializable {
 	private scvePkVendLista id;
 	
 	@AttributeOverrides( {
-		@AttributeOverride(name = "idpessoa", column = @Column(name = "idpessoa", nullable = false)),
-		@AttributeOverride(name = "idmv", column = @Column(name = "idmv", nullable = false)) })
+		@AttributeOverride(name = "idpessoa", column = @Column(name = "IDPESSOA", nullable = false)),
+		@AttributeOverride(name = "idmv", column = @Column(name = "IDMV", nullable = false)) })
 	
 	@ManyToOne
 	@JoinColumn(name = "idpessoa", referencedColumnName="idpessoa",insertable =false,updatable=false)
@@ -37,8 +36,8 @@ public class TipoMvVend implements Serializable {
 					this.id = new scvePkVendLista();
 					this.id.setIdmv(tipomv.getIdmv());
 					this.id.setIdpessoa(vendedor.getIdpessoa());	
-					this.vendedor = vendedor;
-					this.tipomv = tipomv;
+					//this.vendedor = vendedor;
+					//this.tipomv = tipomv;
 				}
 		
 	@Embeddable
@@ -140,6 +139,7 @@ public class TipoMvVend implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((tipomv == null) ? 0 : tipomv.hashCode());
 		result = prime * result + ((vendedor == null) ? 0 : vendedor.hashCode());
 		return result;
@@ -154,6 +154,11 @@ public class TipoMvVend implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		TipoMvVend other = (TipoMvVend) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
 		if (tipomv == null) {
 			if (other.tipomv != null)
 				return false;
@@ -166,6 +171,8 @@ public class TipoMvVend implements Serializable {
 			return false;
 		return true;
 	}
+
+	
 
 	
    

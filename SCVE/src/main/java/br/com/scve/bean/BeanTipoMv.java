@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.faces.bean.ViewScoped;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -35,8 +35,11 @@ public class BeanTipoMv implements Serializable{
 	
 	@PostConstruct
 	public void carregar(){
-		this.tipomv = getTipomv();
-		this.tipomvvends = this.tipomv.getTipomvvend();
+		
+		lista = servico.consultar();
+		
+		this.tipomv = this.getTipomv();
+		this.tipomvvends = this.tipomv.getTipomvvends();
 		
 	}
 	
@@ -97,7 +100,7 @@ public class BeanTipoMv implements Serializable{
 	}
 
 	public void additem(){
-		if(tipomvvend == null){
+		if(tipomvvend.getVendedor() == null){
 			throw new IllegalArgumentException("Vendedor nao pode ser nulo");
 	    }
 		int index = tipomvvends.indexOf(tipomvvend);

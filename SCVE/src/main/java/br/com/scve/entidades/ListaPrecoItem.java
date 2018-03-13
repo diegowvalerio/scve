@@ -44,8 +44,8 @@ public class ListaPrecoItem implements Serializable {
 				this.id = new scvePkListaPrecoItem();
 				this.id.setIdlista(listapreco.getIdlista());
 				this.id.setIdproduto(produto.getIdproduto());		
-				this.produto = produto;
-				this.listapreco = listapreco;
+				//this.produto = produto;
+				//this.listapreco = listapreco;
 			}
 	
 	@Embeddable

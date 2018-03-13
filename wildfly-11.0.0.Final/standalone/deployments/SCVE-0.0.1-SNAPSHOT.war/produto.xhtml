@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head></h:head>
+<body>
+	<ui:composition template="/templatePrincipal.xhtml">
+		<ui:define name="conteudo">
+			<p:panel header="Cadastro de Produto" >
+				<h:form id="form">
+				<p:growl id="erros" showDetail="true" sticky="true" />
+					<p:panelGrid columns="2">
+						<p:outputLabel value="Descrição" for="descricao" />
+						<p:inputText id="descricao" value="#{beanProduto.produto.descricao}" required="true" />
+						
+						<p:outputLabel value="Descrição Abreviada" for="descricao_ab" />
+						<p:inputText id="descricao_ab" value="#{beanProduto.produto.descabreviada}" required="true" />
+						
+						<p:outputLabel value="Ean:" for="ean" />
+						<p:inputText id="ean" value="#{beanProduto.produto.ean}" required="true" />
+						
+						<p:outputLabel value="Ativo : " for="situacao" />
+								<p:selectBooleanCheckbox id="situacao"
+									value="#{beanProduto.produto.situacao}" required="true" />
+									
+					</p:panelGrid>
+					<p:commandButton action="#{beanProduto.salvar()}" value="Salvar"
+						icon="ui-icon-plus" />
+				</h:form>
+			</p:panel>
+
+		</ui:define>
+	</ui:composition>
+</body>
+</html>
