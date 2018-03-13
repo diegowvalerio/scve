@@ -1,24 +1,22 @@
 package br.com.scve.modelo.dao.hibernate;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 
-import br.com.scve.entidades.Contato;
-import br.com.scve.entidades.Endereco;
 import br.com.scve.entidades.Produto;
 import br.com.scve.modelo.dao.DAOGenerico;
 
 public class DAOGenericoHibernate<E> implements DAOGenerico<E>, Serializable{
+	private static final long serialVersionUID = 1L;
+	
 	@Inject
 	protected EntityManager manager;
 	private Class classeEntidade;
@@ -46,11 +44,13 @@ public class DAOGenericoHibernate<E> implements DAOGenerico<E>, Serializable{
 		return true;
 	}
 
+	
 	@Override
 	public E consultar(Integer id) {
 		return (E) manager.find(classeEntidade, id);
 	}
 
+	
 	@Override
 	public List<E> consultar() {
 		return manager.createQuery("from "+classeEntidade.getSimpleName()).getResultList();

@@ -93,11 +93,13 @@
 										<f:selectItems value="#{beanTipoMv.vendedores}" var="vende"
 											itemLabel="#{vende.idpessoa} - #{vende.nome}" itemValue="#{vende}" />
 									</p:selectOneMenu>	
-									
+		
+								</p:panelGrid>
+								
 								<h:commandButton id="sle" icon="ui-icon-pencil"
 									action="#{beanTipoMv.additem()}" value="Salvar">
-								</h:commandButton>		
-								</p:panelGrid>								
+								</h:commandButton>
+																
 							</p:dialog>
 
 							<!-- dados de vendedor -->
