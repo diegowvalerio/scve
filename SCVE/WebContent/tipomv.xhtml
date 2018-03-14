@@ -26,6 +26,7 @@
 									<p:selectOneMenu id="listapreco"
 										value="#{beanTipoMv.tipomv.listapreco}"
 										converter="conversorLista" required="true">
+										<f:selectItem itemLabel="Selecionar"  noSelectionOption="true"/>
 										<f:selectItems value="#{beanTipoMv.listaPrecos}" var="li"
 											itemLabel="#{li.nome}" itemValue="#{li}" />
 									</p:selectOneMenu>
@@ -34,6 +35,7 @@
 									<p:selectOneMenu id="listaprecopromocao"
 										value="#{beanTipoMv.tipomv.listaprecopromocao}"
 										converter="conversorLista" >
+										<f:selectItem itemLabel="Selecionar"  noSelectionOption="true"/>
 										<f:selectItems value="#{beanTipoMv.listaPrecosPromocao}" var="lir"
 											itemLabel="#{lir.nome}" itemValue="#{lir}" />
 									</p:selectOneMenu>
