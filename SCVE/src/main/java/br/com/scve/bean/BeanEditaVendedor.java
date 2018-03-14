@@ -41,6 +41,7 @@ public class BeanEditaVendedor implements Serializable{
 	private ServicoCidade servicoCidade;
 	@Inject
 	private ServicoTipoEndereco servicoTipoende;
+	
 	private List<Vendedor> lista;
 	private List<Endereco> enderecos = new ArrayList<>();
 	private List<Contato> contatos = new ArrayList<>();

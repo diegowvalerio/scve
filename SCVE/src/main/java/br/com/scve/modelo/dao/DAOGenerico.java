@@ -23,4 +23,5 @@ public interface DAOGenerico<E> {
 	public List<E> consultarContatosporPessoa(Integer id);*/
 
 	public List<E> buscaprodutonome(String e);
+	public List<E> buscavendedornome(String e);
 }

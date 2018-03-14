@@ -4,9 +4,11 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.http.HttpSession;
 
 import br.com.scve.entidades.ListaPreco;
 import br.com.scve.entidades.TipoMv;
@@ -68,7 +70,14 @@ public class BeanListTipoMv implements Serializable{
 		this.lista = lista;
 	}
 		
-	
+	/*editar cliente*/
+	 public String encaminha() {
+		 FacesContext fc = FacesContext.getCurrentInstance();
+		 HttpSession session = (HttpSession) fc.getExternalContext().getSession(true);
+		 session.setAttribute("tipomvAux", this.tipomv );
+		 
+		 return "editatipomv";
+	 }
 	
 
 }

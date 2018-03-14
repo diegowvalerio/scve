@@ -5,11 +5,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
-
+import br.com.scve.entidades.Cliente;
 import br.com.scve.entidades.ListaPreco;
 import br.com.scve.entidades.TipoMv;
 import br.com.scve.entidades.TipoMvVend;
@@ -20,7 +23,7 @@ import br.com.scve.modelo.servico.ServicoVendedor;
 
 @Named
 @ViewScoped
-public class BeanTipoMv implements Serializable{
+public class BeanEditaTipoMv implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private TipoMv tipomv = new TipoMv();
@@ -39,7 +42,12 @@ public class BeanTipoMv implements Serializable{
 		
 		lista = servico.consultar();
 		
-		this.tipomv = this.getTipomv();
+		HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+		HttpSession session = (HttpSession) request.getSession();
+		this.tipomv = (TipoMv) session.getAttribute("tipomvAux");
+		session.removeAttribute("tipomvAux");
+		
+		//this.tipomv = this.getTipomv();
 		this.tipomvvends = this.tipomv.getTipomvvends();
 		
 	}
@@ -98,6 +106,7 @@ public class BeanTipoMv implements Serializable{
 	
 	public void novoitem(){
 		this.tipomvvend = new TipoMvVend();
+		//this.tipomvvend.setVendedor(null);
 	}
 
 	public void additem(){

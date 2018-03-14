@@ -1,4 +1,4 @@
-﻿INSERT INTO tbpessoa(dtcadastro, nome, situacao, tipojf)
+INSERT INTO tbpessoa(dtcadastro, nome, situacao, tipojf)
 VALUES ('2018-01-29', 'Admin', true, 'F');
 
 INSERT INTO tbfisica(cpf, dtnasc, rg, idpessoa)

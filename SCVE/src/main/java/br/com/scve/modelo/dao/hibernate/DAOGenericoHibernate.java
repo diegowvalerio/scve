@@ -12,6 +12,7 @@ import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 
 import br.com.scve.entidades.Produto;
+import br.com.scve.entidades.Vendedor;
 import br.com.scve.modelo.dao.DAOGenerico;
 
 public class DAOGenericoHibernate<E> implements DAOGenerico<E>, Serializable{
@@ -132,6 +133,19 @@ public class DAOGenericoHibernate<E> implements DAOGenerico<E>, Serializable{
 		Criteria criteria = session.createCriteria(Produto.class);
 		
 		criteria.add(Restrictions.ilike("descricao", e.toUpperCase(),MatchMode.START));
+		
+		return criteria.list();
+	}
+	
+	@SuppressWarnings({ "unchecked" })
+	@Override
+	public List<E> buscavendedornome(String e){
+		/*return this.manager.createQuery("select e from Produto e where "
+	      		+ "e.descricao like '%':desc'%' and e.situacao = 'true' ").setParameter("desc", e).getResultList();		*/
+		Session session = manager.unwrap(Session.class);
+		Criteria criteria = session.createCriteria(Vendedor.class);
+		
+		criteria.add(Restrictions.ilike("nome", e.toUpperCase(),MatchMode.START));
 		
 		return criteria.list();
 	}

@@ -29,6 +29,7 @@ public class TipoMv implements Serializable {
 	private ListaPreco listapreco;
 	
 	@ManyToOne
+	@JoinColumn(nullable = true)
 	private ListaPreco listaprecopromocao;
 	
 	@OneToMany(mappedBy="tipomv", cascade ={CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE },orphanRemoval = true,fetch = FetchType.EAGER)

@@ -18,29 +18,29 @@
 							<p:growl id="erros" showDetail="true" sticky="true" />
 							<p:panelGrid columns="2" id="paineld">
 								<p:outputLabel value="Descrição:" for="nome" />
-								<p:inputText id="nome" value="#{beanTipoMv.tipomv.nome}"
+								<p:inputText id="nome" value="#{beanEditaTipoMv.tipomv.nome}"
 									required="true">
 								</p:inputText>
 								
 								<p:outputLabel value="Lista Preço:" for="listapreco" />
 									<p:selectOneMenu id="listapreco"
-										value="#{beanTipoMv.tipomv.listapreco}"
+										value="#{beanEditaTipoMv.tipomv.listapreco}"
 										converter="conversorLista" required="true">
-										<f:selectItems value="#{beanTipoMv.listaPrecos}" var="li"
+										<f:selectItems value="#{beanEditaTipoMv.listaPrecos}" var="li"
 											itemLabel="#{li.nome}" itemValue="#{li}" />
 									</p:selectOneMenu>
 									
 								<p:outputLabel value="Lista Preço Promoção:" for="listaprecopromocao" />
 									<p:selectOneMenu id="listaprecopromocao"
-										value="#{beanTipoMv.tipomv.listaprecopromocao}"
+										value="#{beanEditaTipoMv.tipomv.listaprecopromocao}"
 										converter="conversorLista" >
-										<f:selectItems value="#{beanTipoMv.listaPrecosPromocao}" var="lir"
+										<f:selectItems value="#{beanEditaTipoMv.listaPrecosPromocao}" var="lir"
 											itemLabel="#{lir.nome}" itemValue="#{lir}" />
 									</p:selectOneMenu>
 									
 								<p:outputLabel value="Ativo : " for="situacao" />
 								<p:selectBooleanCheckbox id="situacao"
-									value="#{beanTipoMv.tipomv.situacao}" required="true" />
+									value="#{beanEditaTipoMv.tipomv.situacao}" required="true" />
 							</p:panelGrid>
 
 						</p:tab>
@@ -49,13 +49,13 @@
 						<p:tab title="Vendedores" id="vendedores">
 							<p:commandButton id="nve" value="Novo" icon="ui-icon-plusthick"
 								style="margin-top: 10px; horizontal-align:left;"
-								action="#{beanTipoMv.novoitem()}"
+								action="#{beanEditaTipoMv.novoitem()}"
 								oncomplete="PF('dialogp').show()">
 								<f:setPropertyActionListener
-									target="#{beanTipoMv.tipomvvend.tipomv}"
-									value="#{beanTipoMv.tipomv}" />
+									target="#{beanEditaTipoMv.tipomvvend.tipomv}"
+									value="#{beanEditaTipoMv.tipomv}" />
 							</p:commandButton>
-							<p:dataTable id="tabela" value="#{beanTipoMv.tipomvvends}"
+							<p:dataTable id="tabela" value="#{beanEditaTipoMv.tipomvvends}"
 								var="vends">
 								<f:facet name="header">Lista de Vendedores</f:facet>
 								<p:column headerText="Id" style="text-align:left" width="10%">
@@ -67,16 +67,16 @@
 																
 								<p:column width="15%" headerText="Operações"
 									style="text-align:center">
-									<p:commandButton action="#{beanTipoMv.excluiritem()}"
-										oncomplete="#{beanTipoMv.tipomvvends}" icon="ui-icon-trash">
+									<p:commandButton action="#{beanEditaTipoMv.excluiritem()}"
+										oncomplete="#{beanEditaTipoMv.tipomvvends}" icon="ui-icon-trash">
 										<f:setPropertyActionListener value="#{vends}"
-											target="#{beanTipoMv.tipomvvend}" />
+											target="#{beanEditaTipoMv.tipomvvend}" />
 									</p:commandButton>
 									<p:commandButton oncomplete="PF('dialogp').show();"
 										icon="ui-icon-pencil" update=":form:tabview:dlg">
 										<f:setPropertyActionListener 
 											value="#{vends}"
-											target="#{beanTipoMv.tipomvvend}" />
+											target="#{beanEditaTipoMv.tipomvvend}" />
 									</p:commandButton>
 
 								</p:column>
@@ -86,18 +86,18 @@
 								appendToBody="true" resizable="false" modal="true">
 								<p:panelGrid id="painelDados" columns="2">
 								
-								<p:outputLabel value="Vendedor:" for="vendedor" />									
+								<p:outputLabel value="Vendedor:" for="vendedor" />
 									<h:panelGroup>
-									<p:autoComplete id="vendedor" value="#{beanTipoMv.tipomvvend.vendedor}" size="30"
-								  	completeMethod="#{beanTipoMv.completaVendedor}" var="c"
+									<p:autoComplete id="vendedor" value="#{beanEditaTipoMv.tipomvvend.vendedor}" size="30"
+								  	completeMethod="#{beanEditaTipoMv.completaVendedor}" var="c"
 								  	itemLabel="#{c.nome}" itemValue="#{c}" forceSelection="true" converter="conversorVendedor"/>
 								  	<p:watermark value="Pesquise pelo Nome" for="vendedor"></p:watermark>
-									</h:panelGroup>
+									</h:panelGroup>	
 		
 								</p:panelGrid>
 								
 								<h:commandButton id="sle" icon="ui-icon-pencil"
-									action="#{beanTipoMv.additem()}" value="Salvar">
+									action="#{beanEditaTipoMv.additem()}" value="Salvar">
 								</h:commandButton>
 																
 							</p:dialog>
@@ -106,7 +106,7 @@
 						</p:tab>
 
 					</p:tabView>
-					<p:commandButton action="#{beanTipoMv.salvar}" value="Salvar"
+					<p:commandButton action="#{beanEditaTipoMv.salvar}" value="Salvar"
 						icon="ui-icon-check" ajax="false">
 					</p:commandButton>
 					

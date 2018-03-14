@@ -26,38 +26,15 @@
 							<f:setPropertyActionListener value="#{tipoe}"
 								target="#{beanListTipoMv.tipomv}" />
 						</p:commandButton>
-						<p:commandButton oncomplete="PF('dialog').show();"
-							update=":form:painelDados" icon="ui-icon-pencil">
+						
+						<p:commandButton icon="ui-icon-pencil" action="#{beanListTipoMv.encaminha()}" >
 							<f:setPropertyActionListener value="#{tipoe}"
-								target="#{beanListTipoMv.tipomv}" />
+								target="#{beanListTipoMv.tipomv}" />					
 						</p:commandButton>
 
 					</p:column>
 				</p:dataTable>
 
-				<p:dialog id="dlg" header="Editar Tipo de Movimento" widgetVar="dialog"
-					appendToBody="true" resizable="false" modal="true">
-					<p:panelGrid id="painelDados" columns="2">
-						<p:outputLabel value="Descrição:" for="nome" />
-						<p:inputText id="nome" value="#{beanListTipoMv.tipomv.nome}" />
-						
-						<p:outputLabel value="Lista de Preço: " for="listapreco" />
-						<p:selectOneMenu  id="listapreco" value="#{beanListTipoMv.tipomv.listapreco}" converter="conversorLista"  >
-							<f:selectItems  value="#{beanListTipoMv.listaPrecos}" var="li" itemLabel="#{li.nome}" itemValue="#{li}" />
-						</p:selectOneMenu>
-						
-						<p:outputLabel value="Lista de Promoção: " for="listaprecopromocao" />
-						<p:selectOneMenu  id="listaprecopromocao" value="#{beanListTipoMv.tipomv.listaprecopromocao}" converter="conversorLista"  >
-							<f:selectItems  value="#{beanListTipoMv.listaPrecosPromocao}" var="lip" itemLabel="#{lip.nome}" itemValue="#{lip}" />
-						</p:selectOneMenu>
-						
-						<p:outputLabel value="Ativo : " for="situacao" />
-						<p:selectBooleanCheckbox id="situacao" value="#{beanListTipoMv.tipomv.situacao}" />
-						
-					</p:panelGrid>
-					<p:commandButton icon="ui-icon-pencil"
-						action="#{beanListTipoMv.salvar()}" ajax="false" />
-				</p:dialog>
 			</h:form>
 		</ui:define>
 	</ui:composition>
