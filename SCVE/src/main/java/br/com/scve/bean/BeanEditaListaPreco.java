@@ -10,8 +10,10 @@ import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import br.com.scve.entidades.Cliente;
 import br.com.scve.entidades.ListaPreco;
 import br.com.scve.entidades.ListaPrecoItem;
 import br.com.scve.entidades.Produto;
@@ -20,7 +22,7 @@ import br.com.scve.modelo.servico.ServicoProduto;
 
 @Named
 @ViewScoped
-public class BeanListaPreco implements Serializable{
+public class BeanEditaListaPreco implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	private ListaPreco listapreco = new ListaPreco();
@@ -37,9 +39,14 @@ public class BeanListaPreco implements Serializable{
 	
 	@PostConstruct
 	public void carregar(){
-		lista = servico.consultar();
+		
+		HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+		HttpSession session = (HttpSession) request.getSession();
+		this.listapreco = (ListaPreco) session.getAttribute("listaprecoAux");
+		session.removeAttribute("listaprecoAux");
 		
 		this.listapreco = this.getListapreco();
+		this.dt = this.listapreco.getDtcadastro();
 		this.listapreco.setDtcadastro(dt);
 		this.listaprecoitems = this.listapreco.getListaprecoitens();
 		
@@ -51,7 +58,7 @@ public class BeanListaPreco implements Serializable{
 		servico.salvar(listapreco);
 		lista = servico.consultar();
 		
-		return "index";
+		return "listaListaPreco";
 	}
 	
 	public String excluir() {
@@ -141,13 +148,6 @@ public class BeanListaPreco implements Serializable{
 		return servicoProd.consultaprodutopelonome(descricao);
 	}
 	
-	/*editar */
-	 public String encaminha() {
-		 FacesContext fc = FacesContext.getCurrentInstance();
-		 HttpSession session = (HttpSession) fc.getExternalContext().getSession(true);
-		 session.setAttribute("listaprecoAux", this.listapreco );
-		 
-		 return "editalistapreco";
-	 }
+
 
 }

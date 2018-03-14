@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head></h:head>
+<body>
+
+	<ui:composition template="/templatePrincipal.xhtml">
+
+		<ui:define name="conteudo">
+			<p:panel header="Cadastro de Lista de Preços">
+				<h:form id="form">
+					<p:growl id="erros" showDetail="true" sticky="true" />
+					<p:panelGrid columns="4">
+						<p:outputLabel value="Nome:" for="nome" />
+						<p:inputText id="nome" value="#{beanEditaListaPreco.listapreco.nome}"
+							required="true">
+							<f:validateLength maximum="150" />
+						</p:inputText>
+
+						<p:outputLabel value="Data Cadastro:" for="dtcadastro" />
+						<p:calendar  locale="pt_BR"	id="dtcadastro" value="#{beanEditaListaPreco.listapreco.dtcadastro}"
+							pattern="dd/MM/yyyy" mask="true" required="true" readonlyInput="true"/>
+							
+
+					</p:panelGrid>
+					<p:panel header="Produtos">
+
+						<p:commandButton id="nve" value="Novo" icon="ui-icon-plusthick"
+							style="margin-top: 10px; horizontal-align:left;"
+							action="#{beanEditaListaPreco.novoitem()}"
+							oncomplete="PF('dialogp').show()">
+							<f:setPropertyActionListener
+								target="#{beanEditaListaPreco.listaprecoitem.listapreco}"
+								value="#{beanEditaListaPreco.listapreco}" />
+						</p:commandButton>
+						<p:dataTable id="tabela" value="#{beanEditaListaPreco.listaprecoitems}"
+							var="items">
+							<f:facet name="header">Lista de Produtos</f:facet>
+							<p:column headerText="Cod." style="text-align:left" width="8%">
+								#{items.produto.idproduto}
+								</p:column>
+							<p:column headerText="Produto" style="text-align:left">
+								#{items.produto.descricao}
+								</p:column>
+							<p:column headerText="Valor" style="text-align:left" width="20%">
+								#{items.valor}
+								</p:column>
+
+							<p:column width="15%" headerText="Operações"
+								style="text-align:center">
+								<p:commandButton action="#{beanEditaListaPreco.excluiritem()}"
+									oncomplete="#{beanEditaListaPreco.listaprecoitems}"
+									icon="ui-icon-trash">
+									<f:setPropertyActionListener value="#{items}"
+										target="#{beanEditaListaPreco.listaprecoitem}" />
+								</p:commandButton>
+								<p:commandButton oncomplete="PF('dialogp').show();"
+									icon="ui-icon-pencil" update=":form:dlg">
+									<f:setPropertyActionListener value="#{items}"
+										target="#{beanEditaListaPreco.listaprecoitem}" />
+								</p:commandButton>
+
+							</p:column>
+						</p:dataTable>
+						<p:dialog id="dlg" header="Novo Item" widgetVar="dialogp"
+							appendToBody="true" resizable="false" modal="true">
+							<p:panelGrid id="painelDados" columns="2">
+
+								<p:outputLabel value="Produto:" for="produto" />
+								 <h:panelGroup>
+								 <p:autoComplete id="produto" value="#{beanEditaListaPreco.listaprecoitem.produto}" size="30"
+								  	completeMethod="#{beanEditaListaPreco.completaProduto}" var="c"
+								  	itemLabel="#{c.descricao}" itemValue="#{c}" forceSelection="true" converter="conversorProduto"/>
+								  	<p:watermark value="Pesquise pela Descrição" for="produto"></p:watermark>
+								</h:panelGroup>
+
+								<p:outputLabel value="Valor :" for="valor" />
+								<p:inputNumber id="valor"
+									value="#{beanEditaListaPreco.listaprecoitem.valor}" />
+								 
+								  <p:outputLabel value="Ultima Alteração: " for="dtultimaalt" rendered="false"/> 
+								<p:calendar  locale="pt_BR"	id="dtultimaalt" value="#{beanEditaListaPreco.listaprecoitem.dtultimaalt}"
+									pattern="dd/MM/yyyy" mask="true" rendered="false"/> 
+
+							</p:panelGrid>
+							<h:commandButton id="sle" icon="ui-icon-pencil"
+								action="#{beanEditaListaPreco.additem()}" value="Salvar">
+							</h:commandButton>
+						</p:dialog>
+
+					</p:panel>
+
+					<p:commandButton action="#{beanEditaListaPreco.salvar()}" value="Salvar"
+						icon="ui-icon-check" update="erros" />
+				</h:form>
+			</p:panel>
+
+		</ui:define>
+
+	</ui:composition>
+</body>
+</html>

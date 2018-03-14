@@ -82,7 +82,7 @@ public class BeanEditaVendedor implements Serializable{
 		servico.salvar(vendedor,pfisica,pjuridica ,getOpcao(),contatos,enderecos);
 		lista = servico.consultar();
 		
-		return "index";
+		return "listaVendedor";
 	}
 	public String excluir(){
 		
