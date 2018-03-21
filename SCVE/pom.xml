@@ -99,10 +99,6 @@
 			<version>${versao.spring}</version>
 		</dependency>
 
-<<<<<<< HEAD
-		
-=======
->>>>>>> ccae558060fabfad094a09824b7628fe5b2625f5
 	</dependencies>
 
 
