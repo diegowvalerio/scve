@@ -12,7 +12,6 @@ import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import br.com.scve.entidades.Cliente;
 import br.com.scve.entidades.ListaPreco;
 import br.com.scve.entidades.TipoMv;
 import br.com.scve.entidades.TipoMvVend;
@@ -56,7 +55,7 @@ public class BeanEditaTipoMv implements Serializable{
 		servico.salvar(tipomv);
 		lista = servico.consultar();
 		
-		return "listaTipoMv";
+		return "lista-tipomv";
 		
 	}
 

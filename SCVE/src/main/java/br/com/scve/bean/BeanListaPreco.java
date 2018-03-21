@@ -51,7 +51,7 @@ public class BeanListaPreco implements Serializable{
 		servico.salvar(listapreco);
 		lista = servico.consultar();
 		
-		return "index";
+		return "lista-listapreco";
 	}
 	
 	public String excluir() {
@@ -59,7 +59,7 @@ public class BeanListaPreco implements Serializable{
 
 		lista = servico.consultar();
 
-		return "index";
+		return "lista-listapreco";
 	}
 	
 	public List<Produto> getProdutos(){
@@ -147,7 +147,7 @@ public class BeanListaPreco implements Serializable{
 		 HttpSession session = (HttpSession) fc.getExternalContext().getSession(true);
 		 session.setAttribute("listaprecoAux", this.listapreco );
 		 
-		 return "editalistapreco";
+		 return "edita-listapreco";
 	 }
 
 }

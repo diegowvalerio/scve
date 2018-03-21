@@ -32,7 +32,7 @@ public class BeanEstado implements Serializable{
 	public String salvar(){
 		servico.salvar(estado);
 		lista = servico.consultar();
-		return "listaEstado";
+		return "lista-estado";
 	}
 
 	public void excluir(){

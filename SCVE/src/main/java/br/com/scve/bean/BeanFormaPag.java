@@ -33,7 +33,7 @@ public class BeanFormaPag implements Serializable{
 		servico.salvar(formapag);
 		lista = servico.consultar();
 		
-		return "listaFormaPag";
+		return "lista-formapag";
 	}
 	
 	
@@ -59,7 +59,7 @@ public class BeanFormaPag implements Serializable{
 
 		lista = servico.consultar();
 
-		return "listaFormaPag";
+		return "lista-formapag";
 	}
 
 }

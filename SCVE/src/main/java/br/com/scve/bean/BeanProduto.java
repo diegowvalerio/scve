@@ -33,7 +33,7 @@ public class BeanProduto implements Serializable{
 		servico.salvar(produto);
 		lista = servico.consultar();
 		
-		return "listaProduto";
+		return "lista-produto";
 	}
 	
 	public Produto getProduto() {
@@ -55,7 +55,7 @@ public class BeanProduto implements Serializable{
 
 		lista = servico.consultar();
 
-		return "listaProduto";
+		return "lista-produto";
 	}
 
 }

@@ -1,3 +1,3 @@
-default.configuration=aulaMaven
+default.configuration=template-admin-faces
 eclipse.preferences.version=1
 hibernate3.enabled=true

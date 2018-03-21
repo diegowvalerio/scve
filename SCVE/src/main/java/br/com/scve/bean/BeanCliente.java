@@ -72,7 +72,7 @@ public class BeanCliente implements Serializable {
 		servico.salvar(cliente, pfisica, pjuridica, getOpcao(), contatos, enderecos);
 		lista = servico.consultar();
 
-		return "index";
+		return "lista-cliente";
 	}
 
 	public String excluir() {
@@ -87,7 +87,7 @@ public class BeanCliente implements Serializable {
 
 		lista = servico.consultar();
 
-		return "index";
+		return "lista-cliente";
 	}
 
 	public String getOpcao() {
@@ -276,6 +276,6 @@ public class BeanCliente implements Serializable {
 		 HttpSession session = (HttpSession) fc.getExternalContext().getSession(true);
 		 session.setAttribute("clienteAux", this.cliente );
 		 
-		 return "editacliente";
+		 return "edita-cliente";
 	 }
 }

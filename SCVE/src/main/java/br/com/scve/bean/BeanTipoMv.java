@@ -48,7 +48,7 @@ public class BeanTipoMv implements Serializable{
 		servico.salvar(tipomv);
 		lista = servico.consultar();
 		
-		return "listaTipoMv";
+		return "lista-tipomv";
 		
 	}
 

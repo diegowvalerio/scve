@@ -39,7 +39,7 @@ public class BeanUsuario implements Serializable{
 		servico.salvar(usuario,pfisica,pjuridica ,getOpcao());
 		lista = servico.consultar();
 		
-		return "listaUsuario";
+		return "lista-usuario";
 	}
 	public void excluir(){
 		servico.excluir(usuario.getIdpessoa());
