@@ -13,7 +13,6 @@ import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import br.com.scve.entidades.Cliente;
 import br.com.scve.entidades.ListaPreco;
 import br.com.scve.entidades.ListaPrecoItem;
 import br.com.scve.entidades.Produto;
@@ -58,7 +57,7 @@ public class BeanEditaListaPreco implements Serializable{
 		servico.salvar(listapreco);
 		lista = servico.consultar();
 		
-		return "listaListaPreco";
+		return "lista-listapreco";
 	}
 	
 	public String excluir() {
@@ -66,7 +65,7 @@ public class BeanEditaListaPreco implements Serializable{
 
 		lista = servico.consultar();
 
-		return "index";
+		return "lista-listapreco";
 	}
 	
 	public List<Produto> getProdutos(){

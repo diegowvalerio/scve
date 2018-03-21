@@ -87,7 +87,7 @@ public class BeanEditaCliente implements Serializable {
 		servico.salvar(cliente, pfisica, pjuridica, getOpcao(), contatos, enderecos);
 		lista = servico.consultar();
 
-		return "index";
+		return "lista-cliente";
 	}
 
 	public String excluir() {
@@ -102,7 +102,7 @@ public class BeanEditaCliente implements Serializable {
 
 		lista = servico.consultar();
 
-		return "index";
+		return "lista-cliente";
 	}
 
 	public String getOpcao() {

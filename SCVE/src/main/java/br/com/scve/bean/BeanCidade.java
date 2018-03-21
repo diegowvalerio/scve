@@ -29,7 +29,7 @@ public class BeanCidade implements Serializable{
 	public String salvar(){
 		servico.salvar(cidade);
 		lista = servico.consultar();
-		return "listaCidade";
+		return "lista-cidade";
 	}
 	
 	public List<Estado> getEstados2(){

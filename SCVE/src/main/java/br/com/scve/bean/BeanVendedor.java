@@ -65,7 +65,7 @@ public class BeanVendedor implements Serializable{
 		servico.salvar(vendedor,pfisica,pjuridica ,getOpcao(),contatos,enderecos);
 		lista = servico.consultar();
 		
-		return "index";
+		return "lista-vendedor";
 	}
 	public String excluir(){
 		
@@ -79,7 +79,7 @@ public class BeanVendedor implements Serializable{
 		
 		lista = servico.consultar();
 		
-		return "index";
+		return "lista-vendedor";
 	}
 	
 	public String getOpcao() {
@@ -257,6 +257,6 @@ public class BeanVendedor implements Serializable{
 		 HttpSession session = (HttpSession) fc.getExternalContext().getSession(true);
 		 session.setAttribute("vendedorAux", this.vendedor );
 		 
-		 return "editavendedor";
+		 return "edita-vendedor";
 	 }
 }

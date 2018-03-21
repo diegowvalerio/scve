@@ -45,7 +45,7 @@ public class BeanListTipoMv implements Serializable{
 		servico.salvar(tipomv);
 		lista = servico.consultar();
 		
-		return "listaTipoMv";
+		return "lista-tipomv";
 		
 	}
 	
@@ -76,7 +76,7 @@ public class BeanListTipoMv implements Serializable{
 		 HttpSession session = (HttpSession) fc.getExternalContext().getSession(true);
 		 session.setAttribute("tipomvAux", this.tipomv );
 		 
-		 return "editatipomv";
+		 return "edita-tipomv";
 	 }
 	
 
