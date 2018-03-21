@@ -104,7 +104,7 @@
 
 
 	<build>
-		<finalName>TCC-SCVE</finalName>
+		<finalName>SCVE</finalName>
 		<plugins>
 			<!-- CONFIGURAR VERSÃO DO JAVA PARA 1.8 -->
 			<plugin>
