@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
@@ -19,6 +20,7 @@ import br.com.scve.entidades.Vendedor;
 import br.com.scve.modelo.servico.ServicoListaPreco;
 import br.com.scve.modelo.servico.ServicoTipoMv;
 import br.com.scve.modelo.servico.ServicoVendedor;
+import br.com.scve.msn.FacesMessageUtil;
 
 @Named
 @ViewScoped
@@ -152,9 +154,19 @@ public class BeanEditaTipoMv implements Serializable {
 	}
 
 	public void additem() {
-		if (tipomvvend.getListapreco().toString() == tipomvvend.getListaprecopromocao().toString()) {
+		ListaPreco p1 = tipomvvend.getListapreco();
+		ListaPreco p2 = tipomvvend.getListaprecopromocao();
+		if (p1.equals(p2)){// si for listas iguais exibe msg
+			//System.out.println("igual");
+			//FacesMessageUtil.addMensagemInfo("Nâo é permitido utilizar a mesma Lista de Preço como Principal e Promoção !");
+			
+			//FacesMessage faces = new FacesMessage("Nâo é permitido utilizar a mesma Lista de Preço como Principal e Promoção !"); 
+			//FacesContext contexto = FacesContext.getCurrentInstance();
+			//contexto.addMessage("erros", faces);
+			FacesMessageUtil.addMensagemInfo("Nâo é permitido utilizar a mesma Lista de Preço como Principal e Promoção !");
+		}else{ //inicio listas diferentes entao salva ou edita
+			//System.out.println("difere"+p1.getNome()+" de " +p2.getNome());
 		
-	}else{
 		if (tipomvvend.getVendedor() == null) {
 			throw new IllegalArgumentException("Vendedor nao pode ser nulo");
 		}
@@ -168,9 +180,9 @@ public class BeanEditaTipoMv implements Serializable {
 			tipomvvends.add(tipomvvend);
 		}
 		tipomvvend = new TipoMvVend();
-
+		}//fim se for listas diferentes
 	}
-	}
+	
 	public void excluiritem() {
 		this.tipomvvends.remove(tipomvvend);
 	}
