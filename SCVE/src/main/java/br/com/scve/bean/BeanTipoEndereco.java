@@ -23,7 +23,7 @@ public class BeanTipoEndereco implements Serializable{
 	public String salvar(){
 		servico.salvar(tipoendereco);
 		lista = servico.consultar();
-		return "lista-tipoEndereco";
+		return "lista-tipoendereco";
 		
 	}
 		

@@ -26,6 +26,13 @@ public class TipoMvVend implements Serializable {
 	@JoinColumn(name = "idmv", referencedColumnName="idmv",insertable =false,updatable=false)
 	private TipoMv tipomv;
 	
+	@ManyToOne
+	private ListaPreco listapreco;
+	
+	@ManyToOne
+	@JoinColumn(nullable = true)
+	private ListaPreco listaprecopromocao;
+	
 	public TipoMvVend() {
 		super();
 	}
@@ -133,6 +140,23 @@ public class TipoMvVend implements Serializable {
 
 	public void setId(scvePkVendLista id) {
 		this.id = id;
+	}
+
+	
+	public ListaPreco getListapreco() {
+		return listapreco;
+	}
+
+	public void setListapreco(ListaPreco listapreco) {
+		this.listapreco = listapreco;
+	}
+
+	public ListaPreco getListaprecopromocao() {
+		return listaprecopromocao;
+	}
+
+	public void setListaprecopromocao(ListaPreco listaprecopromocao) {
+		this.listaprecopromocao = listaprecopromocao;
 	}
 
 	@Override
