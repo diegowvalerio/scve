@@ -25,12 +25,7 @@ public class TipoMv implements Serializable {
 	@Column(nullable=false, columnDefinition= "BOOLEAN DEFAULT TRUE")
 	private Boolean situacao;
 	
-	@ManyToOne
-	private ListaPreco listapreco;
-	
-	@ManyToOne
-	@JoinColumn(nullable = true)
-	private ListaPreco listaprecopromocao;
+
 	
 	@OneToMany(mappedBy="tipomv", cascade ={CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE },orphanRemoval = true,fetch = FetchType.EAGER)
 	@Fetch(FetchMode.SUBSELECT)
@@ -60,18 +55,7 @@ public class TipoMv implements Serializable {
 	public void setSituacao(Boolean situacao) {
 		this.situacao = situacao;
 	}
-	public ListaPreco getListapreco() {
-		return listapreco;
-	}
-	public void setListapreco(ListaPreco listapreco) {
-		this.listapreco = listapreco;
-	}
-	public ListaPreco getListaprecopromocao() {
-		return listaprecopromocao;
-	}
-	public void setListaprecopromocao(ListaPreco listaprecopromocao) {
-		this.listaprecopromocao = listaprecopromocao;
-	}
+
 	public List<TipoMvVend> getTipomvvends() {
 		return tipomvvends;
 	}

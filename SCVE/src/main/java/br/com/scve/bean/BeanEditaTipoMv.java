@@ -22,9 +22,9 @@ import br.com.scve.modelo.servico.ServicoVendedor;
 
 @Named
 @ViewScoped
-public class BeanEditaTipoMv implements Serializable{
+public class BeanEditaTipoMv implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	private TipoMv tipomv = new TipoMv();
 	private TipoMvVend tipomvvend = new TipoMvVend();
 	@Inject
@@ -33,42 +33,85 @@ public class BeanEditaTipoMv implements Serializable{
 	private ServicoListaPreco servicolista;
 	@Inject
 	private ServicoVendedor servicoVendedor;
-	private List<TipoMvVend> tipomvvends  = new ArrayList<>();
+	private List<TipoMvVend> tipomvvends = new ArrayList<>();
 	private List<TipoMv> lista;
-	
+	private List<ListaPreco> listaprecopromocao ;
+
 	@PostConstruct
-	public void carregar(){
-		
+	public void carregar() {
+
 		lista = servico.consultar();
-		
-		HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+
+		HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext()
+				.getRequest();
 		HttpSession session = (HttpSession) request.getSession();
 		this.tipomv = (TipoMv) session.getAttribute("tipomvAux");
 		session.removeAttribute("tipomvAux");
-		
-		//this.tipomv = this.getTipomv();
+
+		// this.tipomv = this.getTipomv();
 		this.tipomvvends = this.tipomv.getTipomvvends();
 		
+		List<ListaPreco> listap2 = new ArrayList<ListaPreco>();
+		try {
+			listap2 = servicolista.consultar();
+			int index = listap2.indexOf(tipomvvend.getListapreco());
+			if (index > -1) {
+				listap2.remove(index);
+				this.listaprecopromocao = listap2;
+				//System.out.println("ok");
+			}else{
+				this.listaprecopromocao = servicolista.consultar();
+			}
+			//System.out.println("ok2");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 	}
-	
-	public String salvar(){
+
+	public String salvar() {
 		servico.salvar(tipomv);
 		lista = servico.consultar();
-		
+
 		return "lista-tipomv";
+
+	}
+
+	public List<ListaPreco> getListaPrecos() {
+
+		return servicolista.consultar();
+	}
+
+	// nao repete lista de preço para promocao
+	public List<ListaPreco> getListaprecopromocao() {
+		return listaprecopromocao;
+	}
+
+	public void setListaprecopromocao(List<ListaPreco> listaprecopromocao) {
+		this.listaprecopromocao = listaprecopromocao;
+	}
+
+	public void retiralistaPreco() {
+		List<ListaPreco> listap2 = new ArrayList<ListaPreco>();
+		try {
+			listap2 = servicolista.consultar();
+			int index = listap2.indexOf(tipomvvend.getListapreco());
+			if (index > -1) {
+				listap2.remove(index);
+				this.listaprecopromocao = listap2;
+				//System.out.println("ok");
+			}else{
+				this.listaprecopromocao = servicolista.consultar();
+			}
+			//System.out.println("ok2");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 	}
 
-	public List<ListaPreco> getListaPrecos(){
-		
-		return servicolista.consultar();
-	}
-	
-	public List<ListaPreco> getListaPrecosPromocao(){
-		
-		return servicolista.consultar();
-	}
-	
+	// fim filtro de lista
+
 	public TipoMv getTipomv() {
 		return tipomv;
 	}
@@ -84,7 +127,7 @@ public class BeanEditaTipoMv implements Serializable{
 	public void setLista(List<TipoMv> lista) {
 		this.lista = lista;
 	}
-		
+
 	public TipoMvVend getTipomvvend() {
 		return tipomvvend;
 	}
@@ -101,38 +144,42 @@ public class BeanEditaTipoMv implements Serializable{
 		this.tipomvvends = tipomvvends;
 	}
 
-	/*tipomvvend*/
-	
-	public void novoitem(){
+	/* tipomvvend */
+
+	public void novoitem() {
 		this.tipomvvend = new TipoMvVend();
-		//this.tipomvvend.setVendedor(null);
+		// this.tipomvvend.setVendedor(null);
 	}
 
-	public void additem(){
-		if(tipomvvend.getVendedor() == null){
+	public void additem() {
+		if (tipomvvend.getListapreco() == tipomvvend.getListaprecopromocao()) {
+		
+	}else{
+		if (tipomvvend.getVendedor() == null) {
 			throw new IllegalArgumentException("Vendedor nao pode ser nulo");
-	    }
+		}
 		int index = tipomvvends.indexOf(tipomvvend);
 		if (index > -1) {
 			tipomvvends.remove(index);
 			tipomvvend.setTipomv(tipomv);
 			tipomvvends.add(index, tipomvvend);
-		}else{
+		} else {
 			tipomvvend.setTipomv(tipomv);
 			tipomvvends.add(tipomvvend);
 		}
 		tipomvvend = new TipoMvVend();
-				
+
 	}
-	public void excluiritem(){
+	}
+	public void excluiritem() {
 		this.tipomvvends.remove(tipomvvend);
 	}
-	
+
 	public List<Vendedor> getVendedores() {
 		return servicoVendedor.consultar();
 	}
-	
-	public List<Vendedor> completaVendedor(String nome){
+
+	public List<Vendedor> completaVendedor(String nome) {
 		return servicoVendedor.buscavendedornome(nome);
 	}
 }
