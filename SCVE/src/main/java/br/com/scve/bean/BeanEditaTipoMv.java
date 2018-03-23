@@ -152,7 +152,7 @@ public class BeanEditaTipoMv implements Serializable {
 	}
 
 	public void additem() {
-		if (tipomvvend.getListapreco() == tipomvvend.getListaprecopromocao()) {
+		if (tipomvvend.getListapreco().toString() == tipomvvend.getListaprecopromocao().toString()) {
 		
 	}else{
 		if (tipomvvend.getVendedor() == null) {
