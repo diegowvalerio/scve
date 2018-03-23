@@ -4,9 +4,14 @@ import java.io.Serializable;
 import java.lang.Double;
 import java.lang.Integer;
 import java.lang.String;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.*;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 @Entity
 @Table(name="tbmovimento")
@@ -33,6 +38,10 @@ public class Movimento implements Serializable {
 	private FormaPag formapag;
 	@ManyToOne
 	private Cliente cliente;
+	
+	@OneToMany(mappedBy="movimento", cascade ={CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE },orphanRemoval = true,fetch = FetchType.EAGER)
+	@Fetch(FetchMode.SUBSELECT)
+    private List<ItemMov> items = new ArrayList<>();
 
 	public Movimento() {
 		super();
@@ -96,5 +105,12 @@ public class Movimento implements Serializable {
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
+	public List<ItemMov> getItems() {
+		return items;
+	}
+	public void setItems(List<ItemMov> items) {
+		this.items = items;
+	}
    
+	
 }

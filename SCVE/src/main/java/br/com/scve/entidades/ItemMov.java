@@ -17,6 +17,9 @@ public class ItemMov implements Serializable {
 	@JoinColumn(name = "idmov" , referencedColumnName="idmov" )
 	private Movimento movimento;
 	
+	@ManyToOne
+	private Produto produto;
+	
 	@Column(nullable=false, columnDefinition="numeric(6,2)")
 	private Double valor;
 	@Column(nullable=false)
@@ -27,8 +30,7 @@ public class ItemMov implements Serializable {
 	private String itemobservacao;
 	@Column(nullable=false, columnDefinition="numeric(6,2)")
 	private Double subtotal;
-	@ManyToOne
-	private Produto produto;
+	
 
 	public ItemMov() {
 		super();
