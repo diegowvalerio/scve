@@ -62,6 +62,29 @@ public class TipoMv implements Serializable {
 	public void setTipomvvends(List<TipoMvVend> tipomvvends) {
 		this.tipomvvends = tipomvvends;
 	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((idmv == null) ? 0 : idmv.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		TipoMv other = (TipoMv) obj;
+		if (idmv == null) {
+			if (other.idmv != null)
+				return false;
+		} else if (!idmv.equals(other.idmv))
+			return false;
+		return true;
+	}
 	
    
 }

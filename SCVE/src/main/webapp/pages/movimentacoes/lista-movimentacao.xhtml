@@ -48,39 +48,53 @@
 
 
 					<p:dataTable id="MovTable" widgetVar="MovTable" rows="10"
-						value="#{beanCliente.lista}" var="cliente"
-						rowKey="#{cliente.idpessoa}" paginator="true"
+						value="#{beanMovimento.lista}" var="mov"
+						rowKey="#{mov.idmov}" paginator="true"
 						paginatorPosition="bottom"
 						paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} "
 						currentPageReportTemplate="" rowsPerPageTemplate="5,10,15,20,30">
 
 
-						<p:column headerText="Id" style="text-align:right" width="3%">
-						<h:outputLabel value="#{cliente.idpessoa}" />
+						<p:column headerText="Id"  
+						filterBy="#{mov.idmov}"
+						sortBy="#{mov.idmov}" filterMatchMode="contains">
+						<h:outputLabel value="#{mov.idmov}" />
 						</p:column>
-						<p:column headerText="Nome"
-						filterBy="#{cliente.nome}"
-						sortBy="#{cliente.nome}" filterMatchMode="contains">
-						<h:outputLabel value="#{cliente.nome}" />
+						<p:column headerText="Tipo"
+						filterBy="#{mov.tipomv.nome}"
+						sortBy="#{mov.tipomv.nome}" filterMatchMode="contains">
+						<h:outputLabel value="#{mov.tipomv.nome}" />
 						</p:column>
-						<p:column headerText="Vendedor"
-						filterBy="#{cliente.vendresp.nome}"
-						sortBy="#{cliente.vendresp.nome}" filterMatchMode="contains">
-						<h:outputLabel value="#{cliente.vendresp.nome}" />
+						<p:column headerText="Cod. Cliente"
+						filterBy="#{mov.cliente.idpessoa}"
+						sortBy="#{mov.cliente.idpessoa}" filterMatchMode="contains">
+						<h:outputLabel value="#{mov.cliente.idpessoa}" />
+						</p:column>
+						
+						<p:column headerText="Nome Cliente"
+						filterBy="#{mov.cliente.nome}"
+						sortBy="#{mov.cliente.nome}" filterMatchMode="contains">
+						<h:outputLabel value="#{mov.cliente.nome}" />
+						</p:column>
+						
+						<p:column headerText="Data Venda"
+						filterBy="#{mov.dtvenda}"
+						sortBy="#{mov.dtvenda}" filterMatchMode="contains">
+						<h:outputLabel value="#{mov.dtvenda}" />
 						</p:column>
 
 						<p:column width="15%" headerText="Operações"
 							style="text-align:center">
-							<p:commandButton action="#{beanCliente.excluir()}"
-								oncomplete="#{beanCliente.lista}"  icon="fa fa-trash" >
-								<f:setPropertyActionListener value="#{cliente}"
-									target="#{beanCliente.cliente}" />
+							<p:commandButton action="#{beanMovimento.excluir()}"
+								oncomplete="#{beanMovimento.lista}"  icon="fa fa-trash" >
+								<f:setPropertyActionListener value="#{mov}"
+									target="#{beanMovimento.movimento}" />
 							</p:commandButton>
 
 							<p:commandButton  icon="fa fa-edit"
-								action="#{beanCliente.encaminha()}">
-								<f:setPropertyActionListener value="#{cliente}"
-									target="#{beanCliente.cliente}" />
+								action="#{beanMovimento.encaminha()}">
+								<f:setPropertyActionListener value="#{mov}"
+									target="#{beanMovimento.movimento}" />
 							</p:commandButton>
 
 						</p:column>

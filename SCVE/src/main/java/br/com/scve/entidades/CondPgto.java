@@ -62,5 +62,28 @@ public class CondPgto implements Serializable {
 	public void setDiasentreparc(Integer diasentreparc) {
 		this.diasentreparc = diasentreparc;
 	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((idcondpgto == null) ? 0 : idcondpgto.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		CondPgto other = (CondPgto) obj;
+		if (idcondpgto == null) {
+			if (other.idcondpgto != null)
+				return false;
+		} else if (!idcondpgto.equals(other.idcondpgto))
+			return false;
+		return true;
+	}
    
 }

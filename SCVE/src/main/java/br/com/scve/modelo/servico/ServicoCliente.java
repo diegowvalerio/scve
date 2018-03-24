@@ -113,4 +113,11 @@ public class ServicoCliente implements Serializable {
 		return daoF.excluir(id);
 	}
 	
+	public List<Cliente> buscaclientenome(String nome){
+		List<Cliente> pro = null;
+		if(!nome.equals("")){
+			pro = dao.buscaclientenome(nome);
+		}
+		return pro;
+	}
 }

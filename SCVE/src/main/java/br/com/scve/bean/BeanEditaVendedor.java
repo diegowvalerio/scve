@@ -269,4 +269,7 @@ public class BeanEditaVendedor implements Serializable{
 		this.contatos.remove(contato);
 	}
 	
+	public List<Cidade> completaCidade(String nome) {
+		return servicoCidade.buscacidadenome(nome);
+	}	
 }

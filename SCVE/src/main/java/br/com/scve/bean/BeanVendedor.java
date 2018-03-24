@@ -260,4 +260,7 @@ public class BeanVendedor implements Serializable{
 		 
 		 return "edita-vendedor";
 	 }
+	 public List<Cidade> completaCidade(String nome) {
+			return servicoCidade.buscacidadenome(nome);
+		}
 }

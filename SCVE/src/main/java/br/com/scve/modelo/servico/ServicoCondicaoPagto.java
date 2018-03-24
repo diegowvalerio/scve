@@ -40,6 +40,8 @@ public class ServicoCondicaoPagto implements Serializable{
 	public List<CondPgto> consultar(){
 		return dao.consultar();
 	}
-	
+	public List<CondPgto> consultarAtivos(){
+		return dao.consultarAtivos();
+	}	
 
 }

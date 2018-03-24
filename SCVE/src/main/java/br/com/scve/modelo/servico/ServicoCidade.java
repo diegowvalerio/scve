@@ -7,7 +7,6 @@ import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 
 import br.com.scve.entidades.Cidade;
-import br.com.scve.entidades.Vendedor;
 import br.com.scve.modelo.dao.DAOCidade;
 import br.com.scve.modelo.dao.hibernate.Transacao;
 

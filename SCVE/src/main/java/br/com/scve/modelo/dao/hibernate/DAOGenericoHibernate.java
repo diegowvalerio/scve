@@ -12,6 +12,7 @@ import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 
 import br.com.scve.entidades.Cidade;
+import br.com.scve.entidades.Cliente;
 import br.com.scve.entidades.Produto;
 import br.com.scve.entidades.Vendedor;
 import br.com.scve.modelo.dao.DAOGenerico;
@@ -171,10 +172,37 @@ public class DAOGenericoHibernate<E> implements DAOGenerico<E>, Serializable{
 	public List<E> consultarProdutosAtivos(){
 		/*return this.manager.createQuery("select e from Produto e where "
 	      		+ "e.descricao like '%':desc'%' and e.situacao = 'true' ").setParameter("desc", e).getResultList();		*/
+		boolean bo = true;
 		Session session = manager.unwrap(Session.class);
 		Criteria criteria = session.createCriteria(Produto.class);
 		
-		criteria.add(Restrictions.ilike("situacao","t",MatchMode.START));
+		criteria.add(Restrictions.eq("situacao", bo));
+		
+		return criteria.list();
+	}
+	
+	@SuppressWarnings({ "unchecked" })
+	@Override
+	public List<E> buscaclientenome(String e){
+		boolean bo = true;
+		Session session = manager.unwrap(Session.class);
+		Criteria criteria = session.createCriteria(Cliente.class);
+		
+		criteria.add(Restrictions.ilike("nome", e.toUpperCase(),MatchMode.START));
+		criteria.add(Restrictions.eq("situacao", bo));
+		return criteria.list();
+	}
+	
+	
+	//consultarTipode mv
+	@SuppressWarnings({ "unchecked" })
+	@Override
+	public List<E> consultarAtivos(){
+		boolean bo = true; 
+		Session session = manager.unwrap(Session.class);
+		Criteria criteria = session.createCriteria(classeEntidade);
+		
+		criteria.add(Restrictions.eq("situacao", bo));
 		
 		return criteria.list();
 	}
