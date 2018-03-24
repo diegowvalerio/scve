@@ -196,8 +196,9 @@ public class BeanVendedor implements Serializable{
 	}
 	
 	public void editarEnd() {
+		
 		if(endereco == null){
-			throw new IllegalArgumentException("Vendedor nao pode ser nulo");
+			throw new IllegalArgumentException("Cliente nao pode ser nulo");	
 	    }
 		int index = enderecos.indexOf(endereco);
 		if (index > -1) {

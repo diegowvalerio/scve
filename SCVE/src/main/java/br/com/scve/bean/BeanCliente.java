@@ -25,6 +25,7 @@ import br.com.scve.modelo.servico.ServicoCliente;
 import br.com.scve.modelo.servico.ServicoTipoEndereco;
 import br.com.scve.modelo.servico.ServicoVendedor;
 
+
 @Named
 @ViewScoped
 public class BeanCliente implements Serializable {
@@ -211,8 +212,9 @@ public class BeanCliente implements Serializable {
 	}
 
 	public void editarEnd() {
-		if(endereco == null){ 
-			throw new IllegalArgumentException("Cliente nao pode ser nulo");
+		
+		if(endereco == null){
+			throw new IllegalArgumentException("Cliente nao pode ser nulo");	
 	    }
 		int index = enderecos.indexOf(endereco);
 		if (index > -1) {
@@ -278,4 +280,8 @@ public class BeanCliente implements Serializable {
 		 
 		 return "edita-cliente";
 	 }
+	 
+		public List<Cidade> completaCidade(String nome) {
+			return servicoCidade.buscacidadenome(nome);
+		}
 }

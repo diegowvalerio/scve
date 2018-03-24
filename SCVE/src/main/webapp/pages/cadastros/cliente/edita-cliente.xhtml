@@ -17,11 +17,11 @@
 
 		<adm:breadcrumb title="Cadastro Cliente" link="cadastro-cliente.xhtml" />
 		<h:form id="form">
-			<p:growl id="erros" showDetail="true" sticky="true" />
+			
 			<p:tabView dynamic="false" cache="false" id="tabview">
 				<p:tab title="Dados" id="dados">
 
-					<p:growl id="erros" showDetail="true" sticky="true" />
+					
 					<p:panelGrid columns="2" id="paineld">
 						<p:outputLabel value="Tipo Pessoa:" for="tipojf" />
 						<p:selectOneMenu id="tipojf" value="#{beanEditaCliente.opcao}"
@@ -220,12 +220,14 @@
 					</p:selectOneMenu>
 
 					<p:outputLabel value="Cidade:" for="cidade" />
-					<p:selectOneMenu id="cidade"
-						value="#{beanEditaCliente.endereco.cidade}"
-						converter="conversorCidade">
-						<f:selectItems value="#{beanEditaCliente.cidades}" var="cidade"
-							itemLabel="#{cidade.nome}" itemValue="#{cidade}" />
-					</p:selectOneMenu>
+					<h:panelGroup>
+						<p:autoComplete id="cidade"
+							value="#{beanEditaCliente.endereco.cidade}" size="30"
+							completeMethod="#{beanEditaCliente.completaCidade}" var="c"
+							itemLabel="#{c.nome}/#{c.estado.sigla}" itemValue="#{c}" forceSelection="true"
+							converter="conversorCidade" />
+						<p:watermark value="Pesquise pelo Nome" for="cidade"></p:watermark>
+					</h:panelGroup>
 
 					<p:outputLabel value="Logradouro:" for="logradouro" />
 					<p:inputText id="logradouro"
@@ -273,7 +275,7 @@
 
 
 			<p:commandButton action="#{beanEditaCliente.salvar()}" value="Salvar"
-				icon="fa fa-check" styleClass="btn-primary" update="erros"/>
+				icon="fa fa-check" styleClass="btn-primary" />
 		</h:form>
 
 	</ui:define>

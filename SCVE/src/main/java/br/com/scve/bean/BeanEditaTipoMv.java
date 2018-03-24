@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
@@ -37,7 +36,7 @@ public class BeanEditaTipoMv implements Serializable {
 	private ServicoVendedor servicoVendedor;
 	private List<TipoMvVend> tipomvvends = new ArrayList<>();
 	private List<TipoMv> lista;
-	private List<ListaPreco> listaprecopromocao ;
+	//private List<ListaPreco> listaprecopromocao ;
 
 	@PostConstruct
 	public void carregar() {
@@ -53,22 +52,6 @@ public class BeanEditaTipoMv implements Serializable {
 		// this.tipomv = this.getTipomv();
 		this.tipomvvends = this.tipomv.getTipomvvends();
 		
-		List<ListaPreco> listap2 = new ArrayList<ListaPreco>();
-		try {
-			listap2 = servicolista.consultar();
-			int index = listap2.indexOf(tipomvvend.getListapreco());
-			if (index > -1) {
-				listap2.remove(index);
-				this.listaprecopromocao = listap2;
-				//System.out.println("ok");
-			}else{
-				this.listaprecopromocao = servicolista.consultar();
-			}
-			//System.out.println("ok2");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
 	}
 
 	public String salvar() {
@@ -85,7 +68,7 @@ public class BeanEditaTipoMv implements Serializable {
 	}
 
 	// nao repete lista de preço para promocao
-	public List<ListaPreco> getListaprecopromocao() {
+	/*public List<ListaPreco> getListaprecopromocao() {
 		return listaprecopromocao;
 	}
 
@@ -111,7 +94,7 @@ public class BeanEditaTipoMv implements Serializable {
 		}
 		
 	}
-
+*/
 	// fim filtro de lista
 
 	public TipoMv getTipomv() {
@@ -156,20 +139,26 @@ public class BeanEditaTipoMv implements Serializable {
 	public void additem() {
 		ListaPreco p1 = tipomvvend.getListapreco();
 		ListaPreco p2 = tipomvvend.getListaprecopromocao();
-		if (p1.equals(p2)){// si for listas iguais exibe msg
-			//System.out.println("igual");
-			//FacesMessageUtil.addMensagemInfo("Nâo é permitido utilizar a mesma Lista de Preço como Principal e Promoção !");
-			
-			//FacesMessage faces = new FacesMessage("Nâo é permitido utilizar a mesma Lista de Preço como Principal e Promoção !"); 
-			//FacesContext contexto = FacesContext.getCurrentInstance();
-			//contexto.addMessage("erros", faces);
-			FacesMessageUtil.addMensagemInfo("Nâo é permitido utilizar a mesma Lista de Preço como Principal e Promoção !");
+		if (p1.equals(p2)){// si for listas iguais exibe msg e nao salva o campo PROMOÇÃO
+			FacesMessageUtil.addMensagemWarn("Nâo é permitido utilizar a mesma Lista de Preço como Principal e Promoção !");
+			int index = tipomvvends.indexOf(tipomvvend);
+			if (index > -1) {
+				tipomvvends.remove(index);
+				tipomvvend.setTipomv(tipomv);
+				tipomvvend.setListaprecopromocao(null);
+				tipomvvends.add(index, tipomvvend);
+			}
 		}else{ //inicio listas diferentes entao salva ou edita
 			//System.out.println("difere"+p1.getNome()+" de " +p2.getNome());
 		
 		if (tipomvvend.getVendedor() == null) {
-			throw new IllegalArgumentException("Vendedor nao pode ser nulo");
-		}
+			//throw new IllegalArgumentException("Vendedor nao pode ser nulo");
+			FacesMessageUtil.addMensagemError("Vendedor nao pode ser nulo");
+			int index = tipomvvends.indexOf(tipomvvend);
+			if (index > -1) {
+				tipomvvends.remove(index);
+			}
+		}else{
 		int index = tipomvvends.indexOf(tipomvvend);
 		if (index > -1) {
 			tipomvvends.remove(index);
@@ -179,8 +168,9 @@ public class BeanEditaTipoMv implements Serializable {
 			tipomvvend.setTipomv(tipomv);
 			tipomvvends.add(tipomvvend);
 		}
-		tipomvvend = new TipoMvVend();
+		}
 		}//fim se for listas diferentes
+		tipomvvend = new TipoMvVend();
 	}
 	
 	public void excluiritem() {

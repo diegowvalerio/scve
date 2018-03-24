@@ -17,15 +17,16 @@ import br.com.scve.entidades.ListaPrecoItem;
 import br.com.scve.entidades.Produto;
 import br.com.scve.modelo.servico.ServicoListaPreco;
 import br.com.scve.modelo.servico.ServicoProduto;
+import br.com.scve.msn.FacesMessageUtil;
 
 @Named
 @ViewScoped
-public class BeanListaPreco implements Serializable{
+public class BeanListaPreco implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private ListaPreco listapreco = new ListaPreco();
 	private ListaPrecoItem listaprecoitem = new ListaPrecoItem();
-	
+
 	@Inject
 	private ServicoListaPreco servico;
 	@Inject
@@ -34,26 +35,25 @@ public class BeanListaPreco implements Serializable{
 	private List<ListaPrecoItem> listaprecoitems = new ArrayList<>();
 
 	private Date dt = new Date();
-	
+
 	@PostConstruct
-	public void carregar(){
+	public void carregar() {
 		lista = servico.consultar();
-		
+
 		this.listapreco = this.getListapreco();
 		this.listapreco.setDtcadastro(dt);
 		this.listaprecoitems = this.listapreco.getListaprecoitens();
-		
-		
+
 	}
-	
-	public String salvar(){
-			
+
+	public String salvar() {
+
 		servico.salvar(listapreco);
 		lista = servico.consultar();
-		
+
 		return "lista-listapreco";
 	}
-	
+
 	public String excluir() {
 		servico.excluir(listapreco.getIdlista());
 
@@ -61,8 +61,8 @@ public class BeanListaPreco implements Serializable{
 
 		return "lista-listapreco";
 	}
-	
-	public List<Produto> getProdutos(){
+
+	public List<Produto> getProdutos() {
 		return servicoProd.consultar();
 	}
 
@@ -97,10 +97,9 @@ public class BeanListaPreco implements Serializable{
 	public void setListaprecoitems(List<ListaPrecoItem> listaprecoitems) {
 		this.listaprecoitems = listaprecoitems;
 	}
-	
-	/*listaprecoitem*/
 
-	
+	/* listaprecoitem */
+
 	public Date getDt() {
 		return dt;
 	}
@@ -109,45 +108,56 @@ public class BeanListaPreco implements Serializable{
 		this.dt = dt;
 	}
 
-	public void novoitem(){
-		 this.listaprecoitem = new ListaPrecoItem();
-		
+	public void novoitem() {
+		this.listaprecoitem = new ListaPrecoItem();
+
 	}
-	
-	public void additem(){
-		if(listaprecoitem == null){
+
+	public void additem() {
+		int p = 0;
+		if (listaprecoitem == null) {
 			throw new IllegalArgumentException("Lista nao pode ser nulo");
-	    }
-		int index = listaprecoitems.indexOf(listaprecoitem);
-		if (index > -1) {
-			listaprecoitems.remove(index);
-			listaprecoitem.setListapreco(listapreco);
-			listaprecoitem.setDtultimaalt(dt);
-			listaprecoitems.add(index, listaprecoitem);
-		}else{
-			listaprecoitem.setListapreco(listapreco);
-			listaprecoitem.setDtultimaalt(dt);
-			listaprecoitems.add(listaprecoitem);
+		}
+		for (int i = 0; i < listaprecoitems.size(); i++) {
+			if (listaprecoitems.get(i).getProduto().getIdproduto().equals(listaprecoitem.getProduto().getIdproduto())) {
+				p = p + 1;
+			}
+		}
+		if (p == 0) {
+			int index = listaprecoitems.indexOf(listaprecoitem);
+			if (index > -1) {
+				listaprecoitems.remove(index);
+				listaprecoitem.setListapreco(listapreco);
+				listaprecoitem.setDtultimaalt(dt);
+				listaprecoitems.add(index, listaprecoitem);
+			} else {
+				listaprecoitem.setListapreco(listapreco);
+				listaprecoitem.setDtultimaalt(dt);
+				listaprecoitems.add(listaprecoitem);
+			}
+
+		} else {
+			FacesMessageUtil.addMensagemWarn("Produto já consta na Lista de Preço");
 		}
 		listaprecoitem = new ListaPrecoItem();
-				
+
 	}
-	
-	public void excluiritem(){
+
+	public void excluiritem() {
 		this.listaprecoitems.remove(listaprecoitem);
 	}
-	
-	public List<Produto> completaProduto(String descricao){
+
+	public List<Produto> completaProduto(String descricao) {
 		return servicoProd.consultaprodutopelonome(descricao);
 	}
-	
-	/*editar */
-	 public String encaminha() {
-		 FacesContext fc = FacesContext.getCurrentInstance();
-		 HttpSession session = (HttpSession) fc.getExternalContext().getSession(true);
-		 session.setAttribute("listaprecoAux", this.listapreco );
-		 
-		 return "edita-listapreco";
-	 }
+
+	/* editar */
+	public String encaminha() {
+		FacesContext fc = FacesContext.getCurrentInstance();
+		HttpSession session = (HttpSession) fc.getExternalContext().getSession(true);
+		session.setAttribute("listaprecoAux", this.listapreco);
+
+		return "edita-listapreco";
+	}
 
 }

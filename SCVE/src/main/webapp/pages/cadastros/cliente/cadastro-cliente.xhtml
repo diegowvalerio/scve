@@ -218,12 +218,15 @@
 							itemLabel="#{tipo.nome}" itemValue="#{tipo}" />
 					</p:selectOneMenu>
 					<p:outputLabel value="Cidade:" for="cidade" />
-					<p:selectOneMenu id="cidade"
-						value="#{beanCliente.endereco.cidade}"
-						converter="conversorCidade">
-						<f:selectItems value="#{beanCliente.cidades}" var="cidade"
-							itemLabel="#{cidade.nome}" itemValue="#{cidade}" />
-					</p:selectOneMenu>
+					<h:panelGroup>
+						<p:autoComplete id="cidade"
+							value="#{beanCliente.endereco.cidade}" size="30"
+							completeMethod="#{beanCliente.completaCidade}" var="c"
+							itemLabel="#{c.nome}/#{c.estado.sigla}" itemValue="#{c}" forceSelection="true"
+							converter="conversorCidade" />
+						<p:watermark value="Pesquise pelo Nome" for="cidade"></p:watermark>
+					</h:panelGroup>
+					
 					<p:outputLabel value="Logradouro:" for="logradouro" />
 					<p:inputText id="logradouro"
 						value="#{beanCliente.endereco.logadouro}" />

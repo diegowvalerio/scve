@@ -18,7 +18,7 @@
 		<adm:breadcrumb title="Cadastro Lista de Preço"
 			link="cadastro-listapreco.xhtml" />
 		<h:form id="form">
-			<p:growl id="erros" showDetail="true" sticky="true" />
+			
 			<p:panelGrid columns="4">
 				<p:outputLabel value="Nome:" for="nome" />
 				<p:inputText id="nome"
@@ -44,16 +44,27 @@
 						target="#{beanEditaListaPreco.listaprecoitem.listapreco}"
 						value="#{beanEditaListaPreco.listapreco}" />
 				</p:commandButton>
-				<p:dataTable id="tabela"
-					value="#{beanEditaListaPreco.listaprecoitems}" var="items">
+				<p:dataTable id="tabela" rows="10"
+					value="#{beanEditaListaPreco.listaprecoitems}" var="items"
+					rowKey="#{items.produto.idproduto}" paginator="true"
+						paginatorPosition="bottom"
+						paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} "
+						currentPageReportTemplate="" rowsPerPageTemplate="5,10,15,20,30">
+						
 					<f:facet name="header">Lista de Produtos</f:facet>
-					<p:column headerText="Cod." style="text-align:left" width="8%">
+					<p:column headerText="Cod." style="text-align:left" width="10%"
+					filterBy="#{items.produto.idproduto}"
+						sortBy="#{items.produto.idproduto}" filterMatchMode="contains" >
 								#{items.produto.idproduto}
 								</p:column>
-					<p:column headerText="Produto" style="text-align:left">
+					<p:column headerText="Produto" 
+					filterBy="#{items.produto.descricao}"
+						sortBy="#{items.produto.descricao}" filterMatchMode="contains">
 								#{items.produto.descricao}
 								</p:column>
-					<p:column headerText="Valor" style="text-align:left" width="20%">
+					<p:column headerText="Valor"  width="20%"
+					filterBy="#{items.valor}"
+						sortBy="#{items.valor}" filterMatchMode="contains">
 								#{items.valor}
 								</p:column>
 
@@ -107,7 +118,7 @@
 			</p:panel>
 
 			<p:commandButton action="#{beanEditaListaPreco.salvar()}"
-				value="Salvar" icon="fa fa-check" styleClass="btn-primary" update="erros" />
+				value="Salvar" icon="fa fa-check" styleClass="btn-primary"  />
 		</h:form>
 
 	</ui:define>

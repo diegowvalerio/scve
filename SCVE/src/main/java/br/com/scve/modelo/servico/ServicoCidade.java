@@ -7,6 +7,7 @@ import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 
 import br.com.scve.entidades.Cidade;
+import br.com.scve.entidades.Vendedor;
 import br.com.scve.modelo.dao.DAOCidade;
 import br.com.scve.modelo.dao.hibernate.Transacao;
 
@@ -41,5 +42,11 @@ public class ServicoCidade implements Serializable{
 		return dao.consultar();
 	}
 	
-
+	public List<Cidade> buscacidadenome(String nome){
+		List<Cidade> v = null;
+		if(!nome.equals("")){
+			v = dao.buscacidadenome(nome);
+		}
+		return v;
+	}
 }

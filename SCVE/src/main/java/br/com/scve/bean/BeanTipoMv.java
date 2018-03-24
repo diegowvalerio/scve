@@ -16,6 +16,7 @@ import br.com.scve.entidades.Vendedor;
 import br.com.scve.modelo.servico.ServicoListaPreco;
 import br.com.scve.modelo.servico.ServicoTipoMv;
 import br.com.scve.modelo.servico.ServicoVendedor;
+import br.com.scve.msn.FacesMessageUtil;
 
 @Named
 @ViewScoped
@@ -32,7 +33,7 @@ public class BeanTipoMv implements Serializable {
 	private ServicoVendedor servicoVendedor;
 	private List<TipoMvVend> tipomvvends = new ArrayList<>();
 	private List<TipoMv> lista;
-	private List<ListaPreco> listaprecopromocao;
+	//private List<ListaPreco> listaprecopromocao;
 
 	@PostConstruct
 	public void carregar() {
@@ -58,6 +59,7 @@ public class BeanTipoMv implements Serializable {
 	}
 
 	// nao repete lista de preço para promocao
+	/*
 	public List<ListaPreco> getListaprecopromocao() {
 		return listaprecopromocao;
 	}
@@ -84,7 +86,7 @@ public class BeanTipoMv implements Serializable {
 		}
 		
 	}
-
+*/
 	//fim filtro de lista
 
 	public TipoMv getTipomv() {
@@ -126,9 +128,28 @@ public class BeanTipoMv implements Serializable {
 	}
 
 	public void additem() {
+		ListaPreco p1 = tipomvvend.getListapreco();
+		ListaPreco p2 = tipomvvend.getListaprecopromocao();
+		if (p1.equals(p2)){// si for listas iguais exibe msg e nao salva o campo PROMOÇÃO
+			FacesMessageUtil.addMensagemWarn("Nâo é permitido utilizar a mesma Lista de Preço como Principal e Promoção !");
+			int index = tipomvvends.indexOf(tipomvvend);
+			if (index > -1) {
+				tipomvvends.remove(index);
+				tipomvvend.setTipomv(tipomv);
+				tipomvvend.setListaprecopromocao(null);
+				tipomvvends.add(index, tipomvvend);
+			}
+		}else{ //inicio listas diferentes entao salva ou edita
+			//System.out.println("difere"+p1.getNome()+" de " +p2.getNome());
+		
 		if (tipomvvend.getVendedor() == null) {
-			throw new IllegalArgumentException("Vendedor nao pode ser nulo");
-		}
+			//throw new IllegalArgumentException("Vendedor nao pode ser nulo");
+			FacesMessageUtil.addMensagemError("Vendedor nao pode ser nulo");
+			int index = tipomvvends.indexOf(tipomvvend);
+			if (index > -1) {
+				tipomvvends.remove(index);
+			}
+		}else{
 		int index = tipomvvends.indexOf(tipomvvend);
 		if (index > -1) {
 			tipomvvends.remove(index);
@@ -138,8 +159,9 @@ public class BeanTipoMv implements Serializable {
 			tipomvvend.setTipomv(tipomv);
 			tipomvvends.add(tipomvvend);
 		}
+		}
+		}//fim se for listas diferentes
 		tipomvvend = new TipoMvVend();
-
 	}
 
 	public void excluiritem() {

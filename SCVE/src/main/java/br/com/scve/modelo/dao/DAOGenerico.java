@@ -21,7 +21,9 @@ public interface DAOGenerico<E> {
 	public boolean excluirObj(E e);
 	
 	public List<E> consultarContatosporPessoa(Integer id);*/
-
-	public List<E> buscaprodutonome(String e);
+	public List<E> consultarProdutosAtivos();
+	
+	public List<E> buscaprodutonomeativos(String e);
 	public List<E> buscavendedornome(String e);
+	public List<E> buscacidadenome(String e);
 }

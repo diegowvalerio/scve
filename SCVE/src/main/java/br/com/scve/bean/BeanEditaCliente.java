@@ -26,6 +26,7 @@ import br.com.scve.modelo.servico.ServicoCliente;
 import br.com.scve.modelo.servico.ServicoTipoEndereco;
 import br.com.scve.modelo.servico.ServicoVendedor;
 
+
 @Named
 @ViewScoped
 public class BeanEditaCliente implements Serializable {
@@ -57,7 +58,7 @@ public class BeanEditaCliente implements Serializable {
 
 	@PostConstruct
 	public void ini(){
-		//lista = servico.consultar();
+		lista = servico.consultar();
 		
 		HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
 		HttpSession session = (HttpSession) request.getSession();
@@ -228,8 +229,9 @@ public class BeanEditaCliente implements Serializable {
 	}
 
 	public void editarEnd() {
+		
 		if(endereco == null){
-			throw new IllegalArgumentException("Cliente nao pode ser nulo");
+			throw new IllegalArgumentException("Cliente nao pode ser nulo");	
 	    }
 		int index = enderecos.indexOf(endereco);
 		if (index > -1) {
@@ -287,6 +289,8 @@ public class BeanEditaCliente implements Serializable {
 		// servico.excluir(this.contato.getIdcontato());
 		this.contatos.remove(contato);
 	}
-	
+	public List<Cidade> completaCidade(String nome) {
+		return servicoCidade.buscacidadenome(nome);
+	}
 	
 }

@@ -18,11 +18,9 @@
 		<adm:breadcrumb title="Cadastro Tipo de Movimento"
 			link="cadastro-cliente.xhtml" />
 		<h:form id="form">
-			<p:growl id="erros" showDetail="true" sticky="true" />
 			<p:tabView dynamic="false" cache="false" id="tabview">
 				<p:tab title="Dados" id="dados">
 
-					<p:growl id="erros" showDetail="true" sticky="true" />
 					<p:panelGrid columns="4" id="paineld">
 						<p:outputLabel value="Descrição:" for="nome" />
 						<p:inputText id="nome" value="#{beanTipoMv.tipomv.nome}"
@@ -38,6 +36,7 @@
 
 				 dados de vendedor  
 				<p:tab title="Vendedores" id="vendedores"> -->
+				<p:panel header="Vendedores">
 					<p:commandButton id="nve" value="Novo" icon="fa fa-plus"
 						styleClass="btn-primary"
 						style="margin-top: 10px; horizontal-align:left;"
@@ -48,21 +47,34 @@
 							value="#{beanTipoMv.tipomv}" />
 					</p:commandButton>
 					<p:dataTable id="tabela" value="#{beanTipoMv.tipomvvends}"
-						var="vends">
+						var="vends" rows="10"
+						rowKey="#{vends.vendedor.idpessoa}" paginator="true"
+						paginatorPosition="bottom"
+						paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} "
+						currentPageReportTemplate="" rowsPerPageTemplate="5,10,15,20,30">
+						
 						<f:facet name="header">Lista de Vendedores</f:facet>
-						<p:column headerText="Id" style="text-align:left" width="10%">
+						<p:column headerText="Id" style="text-align:left" width="10%"
+						filterBy="#{vends.vendedor.idpessoa}"
+						sortBy="#{vends.vendedor.idpessoa}" filterMatchMode="contains">
 								#{vends.vendedor.idpessoa}
 								</p:column>
-						<p:column headerText="Nome" style="text-align:left">
+						<p:column headerText="Nome" style="text-align:left"
+						filterBy="#{vends.vendedor.nome}"
+						sortBy="#{vends.vendedor.nome}" filterMatchMode="contains">
 								#{vends.vendedor.nome}
 								</p:column>
-						<p:column headerText="Lista Preço" style="text-align:left">
+						<p:column headerText="Lista Preço" style="text-align:left"
+						filterBy="#{vends.listapreco.nome}"
+						sortBy="#{vends.listapreco.nome}" filterMatchMode="contains">
 								#{vends.listapreco.nome}
 								</p:column>
-						<p:column headerText="Lista Promoção" style="text-align:left">
+						<p:column headerText="Lista Promoção" style="text-align:left"
+						filterBy="#{vends.listaprecopromocao.nome}"
+						sortBy="#{vends.listaprecopromocao.nome}" filterMatchMode="contains">
 								#{vends.listaprecopromocao.nome}
 								</p:column>
-
+								
 						<p:column width="15%" headerText="Operações"
 							style="text-align:center">
 							<p:commandButton action="#{beanTipoMv.excluiritem()}"
@@ -78,7 +90,7 @@
 
 						</p:column>
 					</p:dataTable>
-
+					</p:panel>
 				</p:tab>
 
 			</p:tabView>
@@ -102,14 +114,10 @@
 					<p:outputLabel value="Lista Preço:" for="listapreco" />
 					<p:selectOneMenu id="listapreco"
 						value="#{beanTipoMv.tipomvvend.listapreco}"
-						converter="conversorLista"
-						valueChangeListener="#{beanTipoMv.retiralistaPreco}">
+						converter="conversorLista">
 						<f:selectItem itemLabel="Selecionar" noSelectionOption="true" />
 						<f:selectItems value="#{beanTipoMv.listaPrecos}" var="li"
 							itemLabel="#{li.nome}" itemValue="#{li}" />
-							
-						<p:ajax update="listaprecopromocao" event="change"
-							listener="#{beanTipoMv.retiralistaPreco}"/>
 					
 					</p:selectOneMenu>
 
@@ -119,7 +127,7 @@
 						value="#{beanTipoMv.tipomvvend.listaprecopromocao}"
 						converter="conversorLista">
 						<f:selectItem itemLabel="Selecionar" noSelectionOption="true" />
-						<f:selectItems value="#{beanTipoMv.listaprecopromocao}" var="lir"
+						<f:selectItems value="#{beanTipoMv.listaPrecos}" var="lir"
 							itemLabel="#{lir.nome}" itemValue="#{lir}" />
 					</p:selectOneMenu>
 
@@ -131,7 +139,7 @@
 			</p:dialog>
 
 			<p:commandButton action="#{beanTipoMv.salvar}" value="Salvar"
-				icon="fa fa-check" styleClass="btn-primary" update="erros" />
+				icon="fa fa-check" styleClass="btn-primary" />
 		</h:form>
 
 	</ui:define>
