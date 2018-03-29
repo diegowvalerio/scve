@@ -4,10 +4,12 @@ import br.com.scve.entidades.Pessoa;
 import java.io.Serializable;
 import java.lang.String;
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @Table(name="tbusuario")
 @PrimaryKeyJoinColumn(name="idpessoa")
+@XmlRootElement
 public class Usuario extends Pessoa implements Serializable {
 	private static final long serialVersionUID = 1L;
 	

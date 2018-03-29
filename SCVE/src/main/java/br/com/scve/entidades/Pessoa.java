@@ -20,6 +20,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
@@ -28,6 +29,7 @@ import org.hibernate.annotations.FetchMode;
 @Entity
 @Table(name="tbpessoa")
 @Inheritance(strategy = InheritanceType.JOINED)
+@XmlRootElement
 public class Pessoa implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
