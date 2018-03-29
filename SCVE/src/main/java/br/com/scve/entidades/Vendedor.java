@@ -5,6 +5,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
+
 @Entity
 @Table(name="tbvendedor")
 @PrimaryKeyJoinColumn(name="idpessoa")
@@ -15,10 +16,12 @@ public class Vendedor extends Pessoa implements Serializable {
 	@Column(nullable=false, columnDefinition="numeric(5,2)")
 	private double perc_comissao;
 	
-
+		
 	public Vendedor() {
 		super();
 	}   
+
+
 	public double getPerc_comissao() {
 		return this.perc_comissao;
 	}

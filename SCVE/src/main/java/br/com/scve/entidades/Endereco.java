@@ -3,12 +3,13 @@ package br.com.scve.entidades;
 import java.io.Serializable;
 import java.lang.String;
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 
 
 
 @Entity
 @Table(name="tbendereco")
-
+@XmlRootElement
 public class Endereco implements Serializable {
 	private static final long serialVersionUID = 1L;	
 	

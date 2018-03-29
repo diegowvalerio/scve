@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+//import com.sun.xml.internal.bind.CycleRecoverable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -21,6 +22,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
@@ -50,18 +52,38 @@ public class Pessoa implements Serializable {
 	@JoinColumn(nullable = true)
 	private Vendedor vendresp;
 	
+	@XmlTransient
 	@OneToMany(mappedBy="pessoa", cascade ={CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE },orphanRemoval = true,fetch = FetchType.EAGER)
 	@Fetch(FetchMode.SUBSELECT)
     private List<Contato> contatos = new ArrayList<>();
 	
+	@XmlTransient
 	@OneToMany(mappedBy="pessoa", cascade ={CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE },orphanRemoval = true,fetch = FetchType.EAGER)
 	@Fetch(FetchMode.SUBSELECT)
     private List<Endereco> enderecos = new ArrayList<>();
 	
 	public Pessoa() {
 		super();
-	}   
-	
+	}  
+	/*
+	public Pessoa(Integer idpessoa, String nome, Date dtcadastro, Boolean situacao, String tipojf, Vendedor vendresp,
+			List<Contato> contatos, List<Endereco> enderecos) {
+		super();
+		this.idpessoa = idpessoa;
+		this.nome = nome;
+		this.dtcadastro = dtcadastro;
+		this.situacao = situacao;
+		this.tipojf = tipojf;
+		this.vendresp = vendresp;
+		this.contatos = contatos;
+		this.enderecos = enderecos;
+	}
+
+	public Object onCycleDetected(CycleRecoverable.Context context) {
+		Pessoa obj = new Pessoa(this.idpessoa, nome, dtcadastro, situacao, nome, vendresp, contatos, enderecos);
+		return obj;
+		}
+	*/
 	/*public Pessoa(String nome,Date dtcadastro, Boolean situacao, String tipojf){
 		this.nome = nome;
 		this.dtcadastro = dtcadastro;

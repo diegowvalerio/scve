@@ -1,5 +1,7 @@
 package br.com.scve.reset;
 
+import java.util.List;
+
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.GET;
@@ -8,6 +10,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import br.com.scve.entidades.Usuario;
 import br.com.scve.entidades.Vendedor;
 import br.com.scve.modelo.servico.ServicoVendedor;
 
@@ -18,7 +21,7 @@ public class VendedorReset {
 	
 	@Inject
 	private ServicoVendedor servico;
-	//private List<Vendedor> lista;
+	private List<Vendedor> lista;
 	
 	@GET
 	@Produces({MediaType.APPLICATION_XML})
@@ -26,6 +29,15 @@ public class VendedorReset {
 	public Vendedor loginVendedor(@PathParam("id") Integer id){
 		Vendedor vendedor = servico.loginVendedor(id);
 		return vendedor;
+	}
+	
+	@GET
+	@Produces({MediaType.APPLICATION_XML})
+	public List<Vendedor> buscaTodosVendedores(){
+		lista = servico.consultar();
+		//List<Usuario> users = new ArrayList<>();
+		//users.addAll(lista);
+		return lista;
 	}
 
 }
