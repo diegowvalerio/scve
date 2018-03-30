@@ -6,6 +6,8 @@ import java.lang.String;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
+
+
 @Entity
 @Table(name="tbcontato")
 @XmlRootElement
@@ -23,12 +25,15 @@ public class Contato implements Serializable {
 	private String ddd;
 	@Column(nullable=false,columnDefinition="varchar(9)")
 	private String numero;
+	
 	@ManyToOne
 	private Pessoa pessoa;
 
 	public Contato() {
 		super();
-	}   
+	} 
+	
+	
 	public Integer getIdcontato() {
 		return this.idcontato;
 	}

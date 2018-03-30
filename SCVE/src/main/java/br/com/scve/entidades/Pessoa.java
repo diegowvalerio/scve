@@ -21,8 +21,13 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.xml.bind.annotation.XmlID;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
@@ -32,32 +37,41 @@ import org.hibernate.annotations.FetchMode;
 @Table(name="tbpessoa")
 @Inheritance(strategy = InheritanceType.JOINED)
 @XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Pessoa implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue (strategy=GenerationType.IDENTITY)
+	@XmlElement
 	private Integer idpessoa;
+	@XmlElement
 	@Column(nullable=false,columnDefinition="varchar(250)")
 	private String nome;
 	@Column(nullable=false) 
+	@XmlElement
 	@Temporal(TemporalType.DATE)
 	private Date dtcadastro;
+	@XmlElement
 	@Column(nullable=false, columnDefinition= "BOOLEAN DEFAULT TRUE")
 	private Boolean situacao;
+	@XmlElement
 	@Column(nullable=false)
 	private String tipojf;
-	
+	@XmlElement
 	@ManyToOne
 	@JoinColumn(nullable = true)
 	private Vendedor vendresp;
 	
-	@XmlTransient
+	@XmlElementWrapper(name="contatos")
+	@XmlElement(name="contato")
+	
 	@OneToMany(mappedBy="pessoa", cascade ={CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE },orphanRemoval = true,fetch = FetchType.EAGER)
 	@Fetch(FetchMode.SUBSELECT)
     private List<Contato> contatos = new ArrayList<>();
 	
-	@XmlTransient
+	@XmlElementWrapper(name="enderecos")
+	@XmlElement(name="endereco")
 	@OneToMany(mappedBy="pessoa", cascade ={CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE },orphanRemoval = true,fetch = FetchType.EAGER)
 	@Fetch(FetchMode.SUBSELECT)
     private List<Endereco> enderecos = new ArrayList<>();
@@ -91,7 +105,9 @@ public class Pessoa implements Serializable {
 		this.tipojf = tipojf;
 	}
 	*/
-	public Integer getIdpessoa() {
+	 @XmlAttribute    
+	 @XmlID               // should be unique across all entities.<br>    private String uuid; 
+	 public Integer getIdpessoa() {
 		return idpessoa;
 	}
 

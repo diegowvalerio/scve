@@ -24,20 +24,22 @@ public class VendedorReset {
 	private List<Vendedor> lista;
 	
 	@GET
-	@Produces({MediaType.APPLICATION_XML})
-	@Path("/{id}")
-	public Vendedor loginVendedor(@PathParam("id") Integer id){
-		Vendedor vendedor = servico.loginVendedor(id);
-		return vendedor;
-	}
-	
-	@GET
-	@Produces({MediaType.APPLICATION_XML})
+	@Produces({MediaType.APPLICATION_JSON})
 	public List<Vendedor> buscaTodosVendedores(){
 		lista = servico.consultar();
 		//List<Usuario> users = new ArrayList<>();
 		//users.addAll(lista);
 		return lista;
 	}
+	
+	@GET
+	@Produces({MediaType.APPLICATION_JSON})
+	@Path("/{id}")
+	public Vendedor loginVendedor(@PathParam("id") Integer id){
+		Vendedor vendedor = servico.loginVendedor(id);
+		return vendedor;
+	}
+	
+
 
 }

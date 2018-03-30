@@ -22,7 +22,7 @@ public class UsuarioReset {
 	private List<Usuario> lista;
 	
 	@GET
-	@Produces({MediaType.APPLICATION_XML})
+	@Produces({MediaType.APPLICATION_JSON})
 	public List<Usuario> buscaTodosUsuarios(){
 		lista = servico.consultar();
 		//List<Usuario> users = new ArrayList<>();

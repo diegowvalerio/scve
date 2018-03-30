@@ -7,6 +7,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 
 
+
+
 @Entity
 @Table(name="tbendereco")
 @XmlRootElement
@@ -36,6 +38,7 @@ public class Endereco implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "idtipoend" , referencedColumnName="idtipoend" , insertable =false,updatable=false)
 	private TipoEndereco tipoendereco;
+	
 	
 	@ManyToOne
 	@JoinColumn(name = "idpessoa", referencedColumnName="idpessoa",insertable =false,updatable=false)
