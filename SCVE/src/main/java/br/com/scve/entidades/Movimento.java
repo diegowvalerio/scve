@@ -28,8 +28,8 @@ public class Movimento implements Serializable {
 	private String observacao;
 	@Column(nullable=false, columnDefinition="numeric(6,2)")
 	private Double totalvenda;
-	@Column(nullable=false)
-	private Integer vendresp;
+	@ManyToOne
+	private Vendedor vendresp;
 	@ManyToOne
 	private TipoMv tipomv;
 	@ManyToOne
@@ -74,11 +74,11 @@ public class Movimento implements Serializable {
 	public void setTotalvenda(Double totalvenda) {
 		this.totalvenda = totalvenda;
 	}   
-	public Integer getVendresp() {
-		return this.vendresp;
+	
+	public Vendedor getVendresp() {
+		return vendresp;
 	}
-
-	public void setVendresp(Integer vendresp) {
+	public void setVendresp(Vendedor vendresp) {
 		this.vendresp = vendresp;
 	}
 	public TipoMv getTipomv() {

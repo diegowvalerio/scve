@@ -44,5 +44,28 @@ public class FormaPag implements Serializable {
 	public void setSituacao(Boolean situacao) {
 		this.situacao = situacao;
 	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((idformapag == null) ? 0 : idformapag.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		FormaPag other = (FormaPag) obj;
+		if (idformapag == null) {
+			if (other.idformapag != null)
+				return false;
+		} else if (!idformapag.equals(other.idformapag))
+			return false;
+		return true;
+	}
    
 }

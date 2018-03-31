@@ -10,7 +10,6 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import br.com.scve.entidades.Usuario;
 import br.com.scve.entidades.Vendedor;
 import br.com.scve.modelo.servico.ServicoVendedor;
 

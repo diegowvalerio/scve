@@ -44,5 +44,7 @@ public class ServicoTipoMv implements Serializable{
 	public List<TipoMv> consultarAtivos(){
 		return dao.consultarAtivos();
 	}
+	
+	
 
 }

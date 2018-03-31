@@ -60,6 +60,7 @@
 								var="condpgto" itemLabel="#{condpgto.nome}"
 								itemValue="#{condpgto}" />
 						</p:selectOneMenu>
+						
 
 						<p:outputLabel value="Data Cadastro:" for="dtvenda" />
 						<p:calendar locale="pt_BR" id="dtvenda"
@@ -139,11 +140,17 @@
 
 					<p:outputLabel value="Qtde:" for="qtde" />
 					<p:inputNumber id="qtde"
-						value="#{beanMovimento.item.qtde}" />
+						value="#{beanMovimento.item.qtde}"  onselect="#{beanMovimento.listasprecos()}" />
 					
 					<p:outputLabel value="Valor:" for="valor" />
-					<p:inputNumber id="valor"
-						value="#{beanMovimento.item.valor}" />
+										
+					<p:selectOneMenu id="valor"
+							value="#{beanMovimento.item.valor}"
+							converter="conversorListaPrecoItem">
+							<f:selectItem itemLabel="Selecionar" noSelectionOption="true" />
+							<f:selectItems value="#{beanMovimento.listasprecos()}" var="tmv"
+								itemLabel="#{tmv.listapreco.nome}/#{tmv.valor}" itemValue="#{tmv.valor}" />
+					</p:selectOneMenu>							
 							
 					<p:outputLabel value="Desconto:" for="desconto" />
 					<p:inputNumber id="desconto"

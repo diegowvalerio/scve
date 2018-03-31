@@ -13,15 +13,16 @@ import javax.servlet.http.HttpSession;
 
 import br.com.scve.entidades.Cliente;
 import br.com.scve.entidades.CondPgto;
-import br.com.scve.entidades.Endereco;
 import br.com.scve.entidades.FormaPag;
 import br.com.scve.entidades.ItemMov;
+import br.com.scve.entidades.ListaPrecoItem;
 import br.com.scve.entidades.Movimento;
 import br.com.scve.entidades.Produto;
 import br.com.scve.entidades.TipoMv;
 import br.com.scve.modelo.servico.ServicoCliente;
 import br.com.scve.modelo.servico.ServicoCondicaoPagto;
 import br.com.scve.modelo.servico.ServicoFormaPag;
+import br.com.scve.modelo.servico.ServicoListaPreco;
 import br.com.scve.modelo.servico.ServicoMovimento;
 import br.com.scve.modelo.servico.ServicoProduto;
 import br.com.scve.modelo.servico.ServicoTipoMv;
@@ -46,6 +47,8 @@ public class BeanMovimento implements Serializable {
 	private ServicoCondicaoPagto servicoCondpagto;
 	@Inject
 	private ServicoProduto servicoProd;
+	@Inject
+	private ServicoListaPreco servicoListapreco;
 	
 	private List<Movimento> lista;
 	private List<ItemMov> items = new ArrayList<>();
@@ -58,6 +61,20 @@ public class BeanMovimento implements Serializable {
 		this.opcao = this.cliente.getTipojf();
 		this.enderecos = this.cliente.getEnderecos();
 		this.contatos = this.cliente.getContatos();*/
+	}
+	
+	public List<ListaPrecoItem> listasprecos(){
+		List<ListaPrecoItem> listaprecoi;
+		if (item.getProduto() != null){
+		Integer idtipo = Integer.parseInt(movimento.getTipomv().toString());
+		Integer idvend = Integer.parseInt(movimento.getVendresp().toString());
+		Integer idprod = Integer.parseInt(item.getProduto().toString());
+		
+		listaprecoi = servicoListapreco.buscapreco(idtipo, idvend, idprod);
+		}else{
+		listaprecoi =null;	
+		}
+		return listaprecoi;	
 	}
 	
 	public String salvar() {

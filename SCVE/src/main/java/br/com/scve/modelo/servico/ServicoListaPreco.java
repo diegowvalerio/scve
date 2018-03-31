@@ -7,7 +7,9 @@ import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 
 import br.com.scve.entidades.ListaPreco;
+import br.com.scve.entidades.ListaPrecoItem;
 import br.com.scve.modelo.dao.DAOListaPreco;
+import br.com.scve.modelo.dao.DAOListaPrecoItem;
 import br.com.scve.modelo.dao.hibernate.Transacao;
 
 @Dependent
@@ -16,6 +18,9 @@ public class ServicoListaPreco implements Serializable{
 	
 	@Inject
 	private DAOListaPreco dao;
+	
+	@Inject
+	private DAOListaPrecoItem daoI;
 	
 	@Transacao
 	public void salvar(ListaPreco listapreco){
@@ -41,5 +46,8 @@ public class ServicoListaPreco implements Serializable{
 		return dao.consultar();
 	}
 	
-
+public List<ListaPrecoItem> buscapreco(Integer idtipomv,Integer idvendedor,Integer idproduto){
+		
+		return daoI.buscapreco(idtipomv, idvendedor, idproduto);
+	}
 }
