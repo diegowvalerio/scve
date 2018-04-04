@@ -19,6 +19,7 @@ import br.com.scve.entidades.ListaPrecoItem;
 import br.com.scve.entidades.Movimento;
 import br.com.scve.entidades.Produto;
 import br.com.scve.entidades.TipoMv;
+import br.com.scve.entidades.Vendedor;
 import br.com.scve.modelo.servico.ServicoCliente;
 import br.com.scve.modelo.servico.ServicoCondicaoPagto;
 import br.com.scve.modelo.servico.ServicoFormaPag;
@@ -26,6 +27,7 @@ import br.com.scve.modelo.servico.ServicoListaPreco;
 import br.com.scve.modelo.servico.ServicoMovimento;
 import br.com.scve.modelo.servico.ServicoProduto;
 import br.com.scve.modelo.servico.ServicoTipoMv;
+import br.com.scve.modelo.servico.ServicoVendedor;
 
 
 @Named
@@ -49,6 +51,8 @@ public class BeanMovimento implements Serializable {
 	private ServicoProduto servicoProd;
 	@Inject
 	private ServicoListaPreco servicoListapreco;
+	@Inject
+	private ServicoVendedor servicoVendedor;
 	
 	private List<Movimento> lista;
 	private List<ItemMov> items = new ArrayList<>();
@@ -61,6 +65,9 @@ public class BeanMovimento implements Serializable {
 		this.opcao = this.cliente.getTipojf();
 		this.enderecos = this.cliente.getEnderecos();
 		this.contatos = this.cliente.getContatos();*/
+		
+		this.movimento = this.getMovimento();
+		this.items = this.movimento.getItems();
 	}
 	
 	public List<ListaPrecoItem> listasprecos(){
@@ -130,16 +137,36 @@ public class BeanMovimento implements Serializable {
 	}
 	
 	public List<Cliente> completaCliente(String nome) {
+		
+		//Integer v = 0;
+		//v = this.movimento.getVendresp().getIdpessoa();
+		
+		System.out.println("teste"+movimento.getVendresp());
 		return servicoCliente.buscaclientenome(nome);
+		//return servicoCliente.buscaclientenomeevendedor(nome,v);
+	}
+	
+	public List<Cliente> getClientesAtivos() {
+		return servicoCliente.consultarAtivos();
 	}
 	
 	public List<FormaPag> getFormaPags(){
 		return servicoFormapag.consultarAtivos();
 	}
 	
+	public List<Vendedor> getVendedores(){
+		return servicoVendedor.consultarAtivos();
+	}
+	
 	public List<CondPgto> getCondipagtos(){
 		return servicoCondpagto.consultarAtivos();
 	}
+	
+	public void filtracliente(){
+		//Vendedor vend = (Vendedor) movimento.getVendresp();	
+		  System.out.println("Formapag: "+this.movimento.getFormapag().getNome());
+	}
+	
 	
     /* fim cabecalho da movimentacao*/
 	
@@ -168,15 +195,20 @@ public class BeanMovimento implements Serializable {
 		if(item.getProduto() == null){
 			throw new IllegalArgumentException("Produto nao pode ser nulo");	
 	    }
-		int index = items.indexOf(item);
-		if (index > -1) {
-			items.remove(index);
-			item.setMovimento(movimento);
-			items.add(index, item);
-		}else{
-			item.setMovimento(movimento);
-			items.add(item);
+		try {
+			int index = items.indexOf(item);
+			if (index > -1) {
+				items.remove(index);
+				item.setMovimento(movimento);
+				items.add(index, item);
+			}else{
+				item.setMovimento(movimento);
+				items.add(item);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
+		
 		item = new ItemMov();
 	}
 	/*fim produtos*/

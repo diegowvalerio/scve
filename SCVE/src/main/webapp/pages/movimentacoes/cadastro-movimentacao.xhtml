@@ -18,18 +18,22 @@
 		<adm:breadcrumb title="Movimentação"
 			link="cadastro-movimentacao.xhtml" />
 		<h:form id="form">
+		<p:growl id="erros" showDetail="true" sticky="true" />
 			<p:tabView dynamic="false" cache="false" id="tabview">
 				<p:tab title="Dados" id="dados">
 
 					<p:panelGrid columns="2" id="paineld">
-						<p:outputLabel value="Tipo Movimentação" for="tipomv" />
-						<p:selectOneMenu id="tipomv"
-							value="#{beanMovimento.movimento.tipomv}"
-							converter="conversorTipomv">
-							<f:selectItem itemLabel="Selecionar" noSelectionOption="true" />
-							<f:selectItems value="#{beanMovimento.tipoMvs}" var="tmv"
-								itemLabel="#{tmv.nome}" itemValue="#{tmv}" />
-						</p:selectOneMenu>
+
+						<p:outputLabel value="Vendedor:" for="vendresp" />					
+						<p:selectOneMenu id="vendresp"
+								value="#{beanMovimento.movimento.vendresp}"
+								converter="conversorVendedor">
+								<f:selectItem itemLabel="Selecionar" noSelectionOption="true" />
+								<f:selectItems value="#{beanMovimento.vendedores}"
+									var="vendedor"
+									itemLabel="#{vendedor.idpessoa} - #{vendedor.nome}"
+									itemValue="#{vendedor}" />
+							</p:selectOneMenu>
 
 
 						<p:outputLabel value="Cliente" for="cliente" />
@@ -41,6 +45,15 @@
 								converter="conversorCliente" />
 							<p:watermark value="Pesquise pelo Nome" for="cliente"></p:watermark>
 						</h:panelGroup>
+
+						<p:outputLabel value="Tipo Movimentação" for="tipomv" />
+						<p:selectOneMenu id="tipomv"
+							value="#{beanMovimento.movimento.tipomv}"
+							converter="conversorTipomv">
+							<f:selectItem itemLabel="Selecionar" noSelectionOption="true" />
+							<f:selectItems value="#{beanMovimento.tipoMvs}" var="tmv"
+								itemLabel="#{tmv.nome}" itemValue="#{tmv}" />
+						</p:selectOneMenu>
 
 						<p:outputLabel value="Forma de Pagamento" for="formapag" />
 						<p:selectOneMenu id="formapag"
@@ -60,7 +73,7 @@
 								var="condpgto" itemLabel="#{condpgto.nome}"
 								itemValue="#{condpgto}" />
 						</p:selectOneMenu>
-						
+
 
 						<p:outputLabel value="Data Cadastro:" for="dtvenda" />
 						<p:calendar locale="pt_BR" id="dtvenda"
@@ -130,8 +143,7 @@
 
 					<p:outputLabel value="Produto:" for="produto" />
 					<h:panelGroup>
-						<p:autoComplete id="produto"
-							value="#{beanMovimento.item.produto}" 
+						<p:autoComplete id="produto" value="#{beanMovimento.item.produto}"
 							completeMethod="#{beanMovimento.completaProduto}" var="c"
 							itemLabel="#{c.descricao}" itemValue="#{c}" forceSelection="true"
 							converter="conversorProduto" />
@@ -139,42 +151,42 @@
 					</h:panelGroup>
 
 					<p:outputLabel value="Qtde:" for="qtde" />
-					<p:inputNumber id="qtde"
-						value="#{beanMovimento.item.qtde}"  onselect="#{beanMovimento.listasprecos()}" />
-					
+					<p:inputNumber id="qtde" value="#{beanMovimento.item.qtde}"
+						onchange="#{beanMovimento.listasprecos()}" />
+
 					<p:outputLabel value="Valor:" for="valor" />
-										
-					<p:selectOneMenu id="valor"
-							value="#{beanMovimento.item.valor}"
-							converter="conversorListaPrecoItem">
-							<f:selectItem itemLabel="Selecionar" noSelectionOption="true" />
-							<f:selectItems value="#{beanMovimento.listasprecos()}" var="tmv"
-								itemLabel="#{tmv.listapreco.nome}/#{tmv.valor}" itemValue="#{tmv.valor}" />
-					</p:selectOneMenu>							
-							
+					<p:inputNumber id="valor" value="#{beanMovimento.item.valor}" />
+<!--  
+					<p:selectOneMenu id="valor" value="#{beanMovimento.item.valor}"
+						converter="conversorListaPrecoItem">
+						<f:selectItem itemLabel="Selecionar" noSelectionOption="true" />
+						<f:selectItems value="#{beanMovimento.listasprecos()}" var="tmv"
+							itemLabel="#{tmv.listapreco.nome}/#{tmv.valor}"
+							itemValue="#{tmv.valor}" />
+					</p:selectOneMenu>
+-->
 					<p:outputLabel value="Desconto:" for="desconto" />
-					<p:inputNumber id="desconto"
-						value="#{beanMovimento.item.desconto}" />
-					
+					<p:inputNumber id="desconto" value="#{beanMovimento.item.desconto}" />
+
 					<p:outputLabel value="Total Item:" for="subtotal" />
-					<p:inputNumber id="subtotal"
-						value="#{beanMovimento.item.subtotal}" />
-							
+					<p:inputNumber id="subtotal" value="#{beanMovimento.item.subtotal}" />
+
 					<p:outputLabel value="Observação:" for="itemobservacao" />
 					<p:inputText id="itemobservacao"
 						value="#{beanMovimento.item.itemobservacao}" />
-					
+
 				</p:panelGrid>
-				
+
 				<p:commandButton id="sle" icon="fa fa-check"
-					styleClass="btn-primary" action="#{beanMovimento.editarsalvarProduto}"
-					value="Salvar" ajax="false">
+					styleClass="btn-primary"
+					action="#{beanMovimento.editarsalvarProduto}" value="Salvar"
+					ajax="false">
 				</p:commandButton>
 			</p:dialog>
 			<!-- fim dados de enderecos -->
 
 			<p:commandButton action="#{beanMovimento.salvar()}" value="Salvar"
-				icon="fa fa-check" styleClass="btn-primary"  />
+				icon="fa fa-check" styleClass="btn-primary" />
 		</h:form>
 
 	</ui:define>

@@ -26,7 +26,7 @@ public class ItemMov implements Serializable {
 	private Integer qtde;
 	@Column(nullable=false, columnDefinition="numeric(6,2)")
 	private Double desconto;
-	@Column(nullable=false,columnDefinition="varchar(250)")
+	@Column(nullable=true,columnDefinition="varchar(250)")
 	private String itemobservacao;
 	@Column(nullable=false, columnDefinition="numeric(6,2)")
 	private Double subtotal;

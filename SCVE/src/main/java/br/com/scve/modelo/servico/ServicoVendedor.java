@@ -152,6 +152,9 @@ public class ServicoVendedor implements Serializable {
 		return daoC.consultarContatosporPessoa(id);
 	}
 	*/
+	public List<Vendedor> consultarAtivos(){
+		return dao.consultarAtivos();
+	}
 	
 	public List<Vendedor> buscavendedornome(String nome){
 		List<Vendedor> v = null;

@@ -19,7 +19,7 @@ public class Vendedor extends Pessoa implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@XmlElement
-	@Column(nullable=false, columnDefinition="numeric(5,2)")
+	@Column(nullable=true, columnDefinition="numeric(5,2)")
 	private double perc_comissao;
 	
 		
@@ -35,6 +35,19 @@ public class Vendedor extends Pessoa implements Serializable {
 	public void setPerc_comissao(double perc_comissao) {
 		this.perc_comissao = perc_comissao;
 	}
-	
+
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		long temp;
+		temp = Double.doubleToLongBits(perc_comissao);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		return result;
+	}
+
+
+
    
 }

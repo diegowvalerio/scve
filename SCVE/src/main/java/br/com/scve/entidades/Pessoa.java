@@ -183,17 +183,29 @@ public class Pessoa implements Serializable {
 	public void setEnderecos(List<Endereco> enderecos) {
 		this.enderecos = enderecos;
 	}
-
-	public int hashCode(){
-		return this.nome.charAt(0);
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((idpessoa == null) ? 0 : idpessoa.hashCode());
+		return result;
 	}
-	
-	public boolean equals(Object obj){
-		Pessoa clienteAcomparar = (Pessoa) obj;
-		if(clienteAcomparar.getIdpessoa() != null && clienteAcomparar.getIdpessoa() != 0 && clienteAcomparar.getIdpessoa() == this.idpessoa)
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
 			return true;
-		else
+		if (obj == null)
 			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Pessoa other = (Pessoa) obj;
+		if (idpessoa == null) {
+			if (other.idpessoa != null)
+				return false;
+		} else if (!idpessoa.equals(other.idpessoa))
+			return false;
+		return true;
 	}
+
    
 }

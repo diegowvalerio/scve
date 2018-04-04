@@ -196,6 +196,19 @@ public class DAOGenericoHibernate<E> implements DAOGenerico<E>, Serializable{
 		return criteria.list();
 	}
 	
+	@SuppressWarnings({ "unchecked" })
+	@Override
+	public List<E> buscaclientenomeevendedor(String e,Integer v){
+		boolean bo = true;
+		Session session = manager.unwrap(Session.class);
+		Criteria criteria = session.createCriteria(Cliente.class);
+		
+		criteria.add(Restrictions.ilike("nome", e.toUpperCase(),MatchMode.START));
+		criteria.add(Restrictions.eq("situacao", bo));
+		criteria.add(Restrictions.eq("vendresp", v));
+		return criteria.list();
+	}
+	
 	
 	//consultarTipode mv
 	@SuppressWarnings({ "unchecked" })

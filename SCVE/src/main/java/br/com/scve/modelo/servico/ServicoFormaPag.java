@@ -45,4 +45,5 @@ public class ServicoFormaPag implements Serializable{
 		return dao.consultarAtivos();
 	}
 
+
 }

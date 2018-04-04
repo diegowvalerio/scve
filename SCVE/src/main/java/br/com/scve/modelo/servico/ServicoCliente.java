@@ -120,4 +120,17 @@ public class ServicoCliente implements Serializable {
 		}
 		return pro;
 	}
+	
+	public List<Cliente> buscaclientenomeevendedor(String nome,Integer v){
+		List<Cliente> pro = null;
+		if(!nome.equals("")){
+			pro = dao.buscaclientenomeevendedor(nome,v);
+		}
+		return pro;
+	}
+	
+	
+	public List<Cliente> consultarAtivos(){
+		return dao.consultarAtivos();
+	}
 }
