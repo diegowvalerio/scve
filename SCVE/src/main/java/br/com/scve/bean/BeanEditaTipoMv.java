@@ -137,21 +137,21 @@ public class BeanEditaTipoMv implements Serializable {
 	}
 
 	public void additem() {
-		ListaPreco p1 = tipomvvend.getListapreco();
-		ListaPreco p2 = tipomvvend.getListaprecopromocao();
+		ListaPreco p1 = this.tipomvvend.getListapreco();
+		ListaPreco p2 = this.tipomvvend.getListaprecopromocao();
 		if (p1.equals(p2)){// si for listas iguais exibe msg e nao salva o campo PROMOÇÃO
 			FacesMessageUtil.addMensagemWarn("Nâo é permitido utilizar a mesma Lista de Preço como Principal e Promoção !");
-			int index = tipomvvends.indexOf(tipomvvend);
+			int index = tipomvvends.indexOf(this.tipomvvend);
 			if (index > -1) {
 				tipomvvends.remove(index);
-				tipomvvend.setTipomv(tipomv);
-				tipomvvend.setListaprecopromocao(null);
-				tipomvvends.add(index, tipomvvend);
+				this.tipomvvend.setTipomv(tipomv);
+				this.tipomvvend.setListaprecopromocao(null);
+				tipomvvends.add(index, this.tipomvvend);
 			}
 		}else{ //inicio listas diferentes entao salva ou edita
 			//System.out.println("difere"+p1.getNome()+" de " +p2.getNome());
 		
-		if (tipomvvend.getVendedor() == null) {
+		if (this.tipomvvend.getVendedor() == null) {
 			//throw new IllegalArgumentException("Vendedor nao pode ser nulo");
 			FacesMessageUtil.addMensagemError("Vendedor nao pode ser nulo");
 			int index = tipomvvends.indexOf(tipomvvend);

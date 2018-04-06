@@ -27,7 +27,7 @@ public class TipoMv implements Serializable {
 	
 
 	
-	@OneToMany(mappedBy="tipomv", cascade ={CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE },orphanRemoval = true,fetch = FetchType.EAGER)
+	@OneToMany(mappedBy="tipomv", cascade ={CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE ,CascadeType.REFRESH},orphanRemoval = true,fetch = FetchType.EAGER)
 	@Fetch(FetchMode.SUBSELECT)
     private List<TipoMvVend> tipomvvends = new ArrayList<>();
 

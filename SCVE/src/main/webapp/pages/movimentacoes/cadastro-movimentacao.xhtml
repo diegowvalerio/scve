@@ -23,16 +23,28 @@
 				<p:tab title="Dados" id="dados">
 
 					<p:panelGrid columns="2" id="paineld">
-
+						<p:outputLabel value="Tipo Movimentação" for="tipomv" />
+						<p:selectOneMenu id="tipomv"
+							value="#{beanMovimento.movimento.tipomv}"
+							converter="conversorTipomv">
+							<f:selectItem itemLabel="Selecionar" noSelectionOption="true" />
+							<f:selectItems value="#{beanMovimento.tipoMvs}" var="tmv"
+								itemLabel="#{tmv.nome}" itemValue="#{tmv}" />
+								<p:ajax listener="#{beanMovimento.vendedores()}"
+									update=":form:tabview:vendresp" />
+						</p:selectOneMenu>
+						
 						<p:outputLabel value="Vendedor:" for="vendresp" />					
 						<p:selectOneMenu id="vendresp"
 								value="#{beanMovimento.movimento.vendresp}"
 								converter="conversorVendedor">
 								<f:selectItem itemLabel="Selecionar" noSelectionOption="true" />
-								<f:selectItems value="#{beanMovimento.vendedores}"
+								<f:selectItems value="#{beanMovimento.vendedores()}"
 									var="vendedor"
 									itemLabel="#{vendedor.idpessoa} - #{vendedor.nome}"
 									itemValue="#{vendedor}" />
+									<p:ajax listener="#{beanMovimento.completaCliente}"
+									update=":form:tabview:cliente" />
 							</p:selectOneMenu>
 
 
@@ -45,15 +57,6 @@
 								converter="conversorCliente" />
 							<p:watermark value="Pesquise pelo Nome" for="cliente"></p:watermark>
 						</h:panelGroup>
-
-						<p:outputLabel value="Tipo Movimentação" for="tipomv" />
-						<p:selectOneMenu id="tipomv"
-							value="#{beanMovimento.movimento.tipomv}"
-							converter="conversorTipomv">
-							<f:selectItem itemLabel="Selecionar" noSelectionOption="true" />
-							<f:selectItems value="#{beanMovimento.tipoMvs}" var="tmv"
-								itemLabel="#{tmv.nome}" itemValue="#{tmv}" />
-						</p:selectOneMenu>
 
 						<p:outputLabel value="Forma de Pagamento" for="formapag" />
 						<p:selectOneMenu id="formapag"
@@ -79,7 +82,11 @@
 						<p:calendar locale="pt_BR" id="dtvenda"
 							value="#{beanMovimento.movimento.dtvenda}" pattern="dd/MM/yyyy"
 							mask="true" required="true" effect="fold" />
-
+							
+						<p:outputLabel value="Observação:" for="observacao" />
+						<p:inputTextarea id="observacao" value="#{beanMovimento.movimento.observacao}" maxlength="250"
+						counterTemplate="{0} caracteres restantes." />
+						
 					</p:panelGrid>
 
 				</p:tab>

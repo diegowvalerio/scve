@@ -24,7 +24,7 @@ public class Movimento implements Serializable {
 	@Column(nullable=false)
 	@Temporal(TemporalType.DATE)
 	private Date dtvenda;
-	@Column(nullable=false,columnDefinition="varchar(250)")
+	@Column(nullable=true,columnDefinition="varchar(250)")
 	private String observacao;
 	@Column(nullable=false, columnDefinition="numeric(6,2)")
 	private Double totalvenda;

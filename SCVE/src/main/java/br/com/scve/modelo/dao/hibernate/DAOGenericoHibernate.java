@@ -205,7 +205,7 @@ public class DAOGenericoHibernate<E> implements DAOGenerico<E>, Serializable{
 		
 		criteria.add(Restrictions.ilike("nome", e.toUpperCase(),MatchMode.START));
 		criteria.add(Restrictions.eq("situacao", bo));
-		criteria.add(Restrictions.eq("vendresp", v));
+		criteria.add(Restrictions.eq("vendresp.idpessoa", v));
 		return criteria.list();
 	}
 	

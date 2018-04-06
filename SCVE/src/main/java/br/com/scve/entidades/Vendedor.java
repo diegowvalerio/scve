@@ -37,17 +37,5 @@ public class Vendedor extends Pessoa implements Serializable {
 	}
 
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = super.hashCode();
-		long temp;
-		temp = Double.doubleToLongBits(perc_comissao);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		return result;
-	}
-
-
-
    
 }

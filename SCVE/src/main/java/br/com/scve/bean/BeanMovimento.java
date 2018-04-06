@@ -19,6 +19,7 @@ import br.com.scve.entidades.ListaPrecoItem;
 import br.com.scve.entidades.Movimento;
 import br.com.scve.entidades.Produto;
 import br.com.scve.entidades.TipoMv;
+import br.com.scve.entidades.TipoMvVend;
 import br.com.scve.entidades.Vendedor;
 import br.com.scve.modelo.servico.ServicoCliente;
 import br.com.scve.modelo.servico.ServicoCondicaoPagto;
@@ -85,6 +86,7 @@ public class BeanMovimento implements Serializable {
 	}
 	
 	public String salvar() {
+		movimento.setTotalvenda(0.0);
 		servico.salvar(movimento);
 		lista = servico.consultar();
 
@@ -138,12 +140,12 @@ public class BeanMovimento implements Serializable {
 	
 	public List<Cliente> completaCliente(String nome) {
 		
-		//Integer v = 0;
-		//v = this.movimento.getVendresp().getIdpessoa();
+		Integer v = 0;
+		v = getMovimento().getVendresp().getIdpessoa();
 		
-		System.out.println("teste"+movimento.getVendresp());
-		return servicoCliente.buscaclientenome(nome);
-		//return servicoCliente.buscaclientenomeevendedor(nome,v);
+		//System.out.println(v);
+		//return servicoCliente.buscaclientenome(nome);
+		return servicoCliente.buscaclientenomeevendedor(nome,v);
 	}
 	
 	public List<Cliente> getClientesAtivos() {
@@ -154,18 +156,33 @@ public class BeanMovimento implements Serializable {
 		return servicoFormapag.consultarAtivos();
 	}
 	
-	public List<Vendedor> getVendedores(){
-		return servicoVendedor.consultarAtivos();
+	public List<Vendedor> vendedores(){
+		
+		//Integer idtipo =0;
+		List<Vendedor> vendedores =new ArrayList<>();
+		List<TipoMvVend> tipomvvends =new ArrayList<>();
+		if(getMovimento().getTipomv() != null){
+			tipomvvends.addAll( getMovimento().getTipomv().getTipomvvends());
+		
+		for (TipoMvVend tipomvvend : tipomvvends){
+			Vendedor ve = new Vendedor();
+			ve = tipomvvend.getVendedor();
+			 vendedores.add(ve);
+			}
+		}
+		//return servicoVendedor.consultarAtivos();
+		return vendedores;
 	}
 	
 	public List<CondPgto> getCondipagtos(){
 		return servicoCondpagto.consultarAtivos();
 	}
 	
-	public void filtracliente(){
+	//public void filtracliente(){
 		//Vendedor vend = (Vendedor) movimento.getVendresp();	
-		  System.out.println("Formapag: "+this.movimento.getFormapag().getNome());
-	}
+		 //System.out.println("Formapag: "+getMovimento().getVendresp());
+		
+	//}
 	
 	
     /* fim cabecalho da movimentacao*/
