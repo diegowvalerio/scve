@@ -15,6 +15,7 @@ import br.com.scve.entidades.Cliente;
 import br.com.scve.entidades.CondPgto;
 import br.com.scve.entidades.FormaPag;
 import br.com.scve.entidades.ItemMov;
+import br.com.scve.entidades.ListaPreco;
 import br.com.scve.entidades.ListaPrecoItem;
 import br.com.scve.entidades.Movimento;
 import br.com.scve.entidades.Produto;
@@ -72,7 +73,7 @@ public class BeanMovimento implements Serializable {
 	}
 	
 	public List<ListaPrecoItem> listasprecos(){
-		List<ListaPrecoItem> listaprecoi;
+		List<ListaPrecoItem> listaprecoi = new ArrayList<>();
 		if (item.getProduto() != null){
 		Integer idtipo = Integer.parseInt(movimento.getTipomv().toString());
 		Integer idvend = Integer.parseInt(movimento.getVendresp().toString());
@@ -204,7 +205,30 @@ public class BeanMovimento implements Serializable {
 }
 	
 	public List<Produto> completaProduto(String descricao) {
-		return servicoProd.consultaprodutopelonome(descricao);
+		
+		Integer v,t,l= 0;
+		 v = getMovimento().getVendresp().getIdpessoa();
+		 t = getMovimento().getTipomv().getIdmv();
+		 
+		ListaPreco li = new ListaPreco();
+		List<TipoMvVend>  tipomvvs = servicoTipomv.buscalistapreco(t,v);
+		for (TipoMvVend ti : tipomvvs){
+			li = ti.getListapreco();
+			}
+		l = li.getIdlista();
+		List<ListaPrecoItem> listaprecoitens = new ArrayList<>();
+		listaprecoitens = servicoListapreco.buscaitens( l, descricao);
+		
+		List<Produto> produtos = new ArrayList<>();
+		if (getMovimento().getTipomv() != null && getMovimento().getVendresp() != null){
+		for (ListaPrecoItem list : listaprecoitens){
+			Produto ve = new Produto();
+			ve = list.getProduto();
+			produtos.add(ve);
+			}
+		}
+		return produtos;
+		//return servicoProd.consultaprodutopelonome(descricao);
 	}
 	
 	public void editarsalvarProduto() {

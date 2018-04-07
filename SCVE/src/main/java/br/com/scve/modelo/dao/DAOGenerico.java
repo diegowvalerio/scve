@@ -31,6 +31,8 @@ public interface DAOGenerico<E> {
 	public List<E> buscacidadenome(String e);
 	
 	public List<E> buscapreco(Integer idtipomv,Integer idvendedor, Integer idproduto);
+	public List<E> buscaitens(Integer idlista,  String e);
+	public List<E> buscalistapreco(Integer idtipomv, Integer idvendedor);
 	
 	public List<E> consultarAtivos();
 	

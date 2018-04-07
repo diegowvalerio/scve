@@ -52,4 +52,6 @@ public class ServicoProduto implements Serializable{
 	public List<Produto> consultarProdutosAtivos(){
 		return dao.consultarProdutosAtivos();
 	}
+	
+
 }

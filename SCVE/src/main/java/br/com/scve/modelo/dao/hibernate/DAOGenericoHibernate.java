@@ -10,6 +10,7 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.sql.JoinType;
 
 import br.com.scve.entidades.Cidade;
 import br.com.scve.entidades.Cliente;
@@ -223,6 +224,37 @@ public class DAOGenericoHibernate<E> implements DAOGenerico<E>, Serializable{
 		return criteria.list();
 	}
 	
+	//busca lista de preco do vendedor
+	@SuppressWarnings({ "unchecked" })
+	@Override
+	public List<E> buscalistapreco(Integer idtipomv, Integer idvendedor){
+		
+		Session session = manager.unwrap(Session.class);		
+		Criteria criteria = session.createCriteria(TipoMvVend.class);		
+		criteria.add(Restrictions.eq("tipomv.idmv", idtipomv));
+		criteria.add(Restrictions.eq("vendedor.idpessoa", idvendedor));
+		return criteria.list();
+	}
+	
+	//busca itens da lista de preco do vendedor que foi definida no tipo de mv
+	@SuppressWarnings({ "unchecked" })
+	@Override
+	public List<E> buscaitens(Integer idlista, String e){
+		/*return this.manager.createQuery("select e from Produto e where "
+	      		+ "e.descricao like '%':desc'%' and e.situacao = 'true' ").setParameter("desc", e).getResultList();		*/
+		boolean bo = true;
+		Session session = manager.unwrap(Session.class);		
+		Criteria criteria = session.createCriteria(ListaPrecoItem.class,"li");
+		criteria.createAlias("produto", "p", JoinType.INNER_JOIN);
+		criteria.createAlias("listapreco", "l", JoinType.INNER_JOIN);
+		criteria.add(Restrictions.eq("li.produto.idproduto", "p.idproduto"));
+		criteria.add(Restrictions.eq("l.idlista", "li.listapreco.idlista"));
+		criteria.add(Restrictions.eq("p.situacao", bo));
+		criteria.add(Restrictions.eq("li.idlista", idlista));
+		criteria.add(Restrictions.ilike("p.descricao", e.toUpperCase(),MatchMode.START));
+
+		return criteria.list();
+	}
 	
 	//buscapreco
 	@SuppressWarnings({ "unchecked" })
@@ -243,4 +275,5 @@ public class DAOGenericoHibernate<E> implements DAOGenerico<E>, Serializable{
 		
 		return criteria.list();
 	}
+	
 }

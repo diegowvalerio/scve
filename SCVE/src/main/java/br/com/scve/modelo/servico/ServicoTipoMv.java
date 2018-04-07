@@ -7,7 +7,9 @@ import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 
 import br.com.scve.entidades.TipoMv;
+import br.com.scve.entidades.TipoMvVend;
 import br.com.scve.modelo.dao.DAOTipoMv;
+import br.com.scve.modelo.dao.DAOTipoMvVend;
 import br.com.scve.modelo.dao.hibernate.Transacao;
 
 @Dependent
@@ -16,6 +18,9 @@ public class ServicoTipoMv implements Serializable{
 	
 	@Inject
 	private DAOTipoMv dao;
+	@Inject
+	private DAOTipoMvVend daoV;
+	
 	
 	@Transacao
 	public void salvar(TipoMv tipoendereco){
@@ -45,6 +50,11 @@ public class ServicoTipoMv implements Serializable{
 		return dao.consultarAtivos();
 	}
 	
+	public List<TipoMvVend> buscalistapreco(Integer idtipomv, Integer idvendedor){
+		
+		return daoV.buscalistapreco(idtipomv, idvendedor);
+		
+	}
 	
 
 }
