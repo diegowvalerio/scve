@@ -215,7 +215,8 @@ public class BeanMovimento implements Serializable {
 		for (TipoMvVend ti : tipomvvs){
 			li = ti.getListapreco();
 			}
-		l = li.getIdlista();
+		l = Integer.parseInt(li.getIdlista().toString());
+		
 		List<ListaPrecoItem> listaprecoitens = new ArrayList<>();
 		listaprecoitens = servicoListapreco.buscaitens( l, descricao);
 		

@@ -8,7 +8,6 @@ import javax.inject.Inject;
 
 import br.com.scve.entidades.ListaPreco;
 import br.com.scve.entidades.ListaPrecoItem;
-import br.com.scve.entidades.Produto;
 import br.com.scve.modelo.dao.DAOListaPreco;
 import br.com.scve.modelo.dao.DAOListaPrecoItem;
 import br.com.scve.modelo.dao.hibernate.Transacao;
@@ -53,6 +52,10 @@ public List<ListaPrecoItem> buscapreco(Integer idtipomv,Integer idvendedor,Integ
 	}
 
 public List<ListaPrecoItem> buscaitens(Integer idlista,  String nome){
-	return daoI.buscaitens(idlista,nome);
+	List<ListaPrecoItem> lis = null;
+	if(!nome.equals("")){
+		lis = daoI.buscaitens(idlista,nome);
+	}
+	return lis;
 }
 }
