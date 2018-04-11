@@ -149,29 +149,27 @@
 				<p:panelGrid id="painelDados" columns="2">
 
 					<p:outputLabel value="Produto:" for="produto" />
-					<h:panelGroup>
 						<p:autoComplete id="produto" value="#{beanMovimento.item.produto}"
 							completeMethod="#{beanMovimento.completaProduto}" var="c"
 							itemLabel="#{c.descricao}" itemValue="#{c}" forceSelection="true"
-							converter="conversorProduto" />
-						<p:watermark value="Pesquise pela Descrição" for="produto"></p:watermark>
-					</h:panelGroup>
+							converter="conversorProduto" >
+							</p:autoComplete>						
+					
 
 					<p:outputLabel value="Qtde:" for="qtde" />
-					<p:inputNumber id="qtde" value="#{beanMovimento.item.qtde}"
-						onchange="#{beanMovimento.listasprecos()}" />
+					<p:inputNumber id="qtde" value="#{beanMovimento.item.qtde}">
+					</p:inputNumber>
 
-					<p:outputLabel value="Valor:" for="valor" />
-					<p:inputNumber id="valor" value="#{beanMovimento.item.valor}" />
-<!--  
+					<p:outputLabel value="Valor:" for="valor" /> 
 					<p:selectOneMenu id="valor" value="#{beanMovimento.item.valor}"
 						converter="conversorListaPrecoItem">
 						<f:selectItem itemLabel="Selecionar" noSelectionOption="true" />
 						<f:selectItems value="#{beanMovimento.listasprecos()}" var="tmv"
-							itemLabel="#{tmv.listapreco.nome}/#{tmv.valor}"
+							itemLabel="#{tmv.listapreco.nome}- R$ #{tmv.valor}"
 							itemValue="#{tmv.valor}" />
+							
 					</p:selectOneMenu>
--->
+
 					<p:outputLabel value="Desconto:" for="desconto" />
 					<p:inputNumber id="desconto" value="#{beanMovimento.item.desconto}" />
 

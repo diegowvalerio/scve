@@ -250,10 +250,11 @@ public class DAOGenericoHibernate<E> implements DAOGenerico<E>, Serializable{
 		criteria.createAlias("listapreco", "l", JoinType.INNER_JOIN);
 		//criteria.createCriteria("p","produto",Criteria.INNER_JOIN);
 		//criteria.createCriteria("l","listapreco",Criteria.INNER_JOIN);
-		criteria.add(Restrictions.eq("li.id.idproduto", "p.idproduto"));
-		criteria.add(Restrictions.eq("l.idlista", "li.id.idlista"));
-		criteria.add(Restrictions.eq("p.situacao", bo));
-		criteria.add(Restrictions.eq("l.idlista",idlista));
+		
+		//criteria.add(Restrictions.eq("li.id.idproduto", "p.idproduto"));
+		//criteria.add(Restrictions.eq("l.idlista", "li.id.idlista"));
+		//criteria.add(Restrictions.eq("p.situacao", bo));
+		criteria.add(Restrictions.eq("li.id.idlista",idlista));
 		criteria.add(Restrictions.ilike("p.descricao", e.toUpperCase(),MatchMode.START));
 		
 

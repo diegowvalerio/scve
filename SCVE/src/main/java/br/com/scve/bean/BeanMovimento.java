@@ -58,6 +58,9 @@ public class BeanMovimento implements Serializable {
 	
 	private List<Movimento> lista;
 	private List<ItemMov> items = new ArrayList<>();
+	
+	private List<ListaPrecoItem> listaprecoi = new ArrayList<>();
+	private List<ListaPrecoItem> listaprecoip = new ArrayList<>();
 
 	@PostConstruct
 	public void carregar(){
@@ -73,7 +76,7 @@ public class BeanMovimento implements Serializable {
 	}
 	
 	public List<ListaPrecoItem> listasprecos(){
-		List<ListaPrecoItem> listaprecoi = new ArrayList<>();
+		/*
 		if (item.getProduto() != null){
 		Integer idtipo = Integer.parseInt(movimento.getTipomv().toString());
 		Integer idvend = Integer.parseInt(movimento.getVendresp().toString());
@@ -82,8 +85,25 @@ public class BeanMovimento implements Serializable {
 		listaprecoi = servicoListapreco.buscapreco(idtipo, idvend, idprod);
 		}else{
 		listaprecoi =null;	
-		}
-		return listaprecoi;	
+		}*/
+		
+		List<ListaPrecoItem> precos = new ArrayList<>();
+		
+		
+		if (getMovimento().getTipomv() != null && getMovimento().getVendresp() != null && item.getProduto() != null){
+			for (ListaPrecoItem list : listaprecoi){
+				if(list.getProduto().equals(item.getProduto())){
+					precos.add(list);	
+				}
+				}
+			for (ListaPrecoItem listp : listaprecoip){
+				if(listp.getProduto().equals(item.getProduto())){
+					precos.add(listp);
+				}
+				}
+			}
+		
+		return precos;	
 	}
 	
 	public String salvar() {
@@ -193,7 +213,7 @@ public class BeanMovimento implements Serializable {
 		if (this.movimento.getTipomv() == null) {
 			throw new RuntimeException("O Tipo de Movimento não pode ser nulo");
 		} else {
-			this.item = new ItemMov();
+			item = new ItemMov();
 		}
 	}
 	
@@ -206,29 +226,48 @@ public class BeanMovimento implements Serializable {
 	
 	public List<Produto> completaProduto(String descricao) {
 		
-		Integer v,t,l= 0;
+		Integer v,t,l,lp= 0;
 		 v = getMovimento().getVendresp().getIdpessoa();
 		 t = getMovimento().getTipomv().getIdmv();
-		 
+		/*busca lista d epreco principal*/ 
 		ListaPreco li = new ListaPreco();
 		List<TipoMvVend>  tipomvvs = servicoTipomv.buscalistapreco(t,v);
 		for (TipoMvVend ti : tipomvvs){
 			li = ti.getListapreco();
 			}
 		l = Integer.parseInt(li.getIdlista().toString());
+		/*fim*/
 		
-		List<ListaPrecoItem> listaprecoitens = new ArrayList<>();
-		listaprecoitens = servicoListapreco.buscaitens( l, descricao);
+		/*busca lista d epreco promoção*/ 
+		ListaPreco lip = new ListaPreco();
+		//List<TipoMvVend>  tipomvvs = servicoTipomv.buscalistapreco(t,v);
+		for (TipoMvVend tip : tipomvvs){
+			lip = tip.getListaprecopromocao();
+			}
+		lp = Integer.parseInt(lip.getIdlista().toString());
+		/*fim*/
+		
+		/*busca itens da lista principal*/
+		//List<ListaPrecoItem> listaprecoitens = new ArrayList<>();
+		listaprecoi = servicoListapreco.buscaitens( l, descricao);
 		
 		List<Produto> produtos = new ArrayList<>();
 		if (getMovimento().getTipomv() != null && getMovimento().getVendresp() != null){
-		for (ListaPrecoItem list : listaprecoitens){
+		for (ListaPrecoItem list : listaprecoi){
 			Produto ve = new Produto();
 			ve = list.getProduto();
 			produtos.add(ve);
 			}
 		}
+		/*fim e retorna os itens*/
+		
+		/*busca itens da lista promoção*/
+		listaprecoip = servicoListapreco.buscaitens( lp, descricao);
+		/*fim*/
+		
+		/*retorna itens da principal*/
 		return produtos;
+		
 		//return servicoProd.consultaprodutopelonome(descricao);
 	}
 	
