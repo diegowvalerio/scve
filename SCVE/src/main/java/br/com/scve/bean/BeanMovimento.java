@@ -2,6 +2,7 @@ package br.com.scve.bean;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -27,9 +28,9 @@ import br.com.scve.modelo.servico.ServicoCondicaoPagto;
 import br.com.scve.modelo.servico.ServicoFormaPag;
 import br.com.scve.modelo.servico.ServicoListaPreco;
 import br.com.scve.modelo.servico.ServicoMovimento;
-import br.com.scve.modelo.servico.ServicoProduto;
 import br.com.scve.modelo.servico.ServicoTipoMv;
-import br.com.scve.modelo.servico.ServicoVendedor;
+import br.com.scve.msn.FacesMessageUtil;
+
 
 
 @Named
@@ -50,32 +51,41 @@ public class BeanMovimento implements Serializable {
 	@Inject 
 	private ServicoCondicaoPagto servicoCondpagto;
 	@Inject
-	private ServicoProduto servicoProd;
-	@Inject
 	private ServicoListaPreco servicoListapreco;
-	@Inject
-	private ServicoVendedor servicoVendedor;
+
 	
-	private List<Movimento> lista;
+	private List<Movimento> lista = new ArrayList<>();
 	private List<ItemMov> items = new ArrayList<>();
 	
 	private List<ListaPrecoItem> listaprecoi = new ArrayList<>();
 	private List<ListaPrecoItem> listaprecoip = new ArrayList<>();
+	
+	private Date dt = new Date();
 
 	@PostConstruct
 	public void carregar(){
 		lista = servico.consultar();
-			
-		/*this.cliente = this.getCliente();
-		this.opcao = this.cliente.getTipojf();
-		this.enderecos = this.cliente.getEnderecos();
-		this.contatos = this.cliente.getContatos();*/
-		
+		this.movimento.setDtvenda(dt);
+		/*
 		this.movimento = this.getMovimento();
 		this.items = this.movimento.getItems();
+		
+		*/
 	}
-	
-	public List<ListaPrecoItem> listasprecos(){
+	public void calcularItem(){
+		if(item.getQtde()==null){
+			item.setQtde(0);
+		}
+		if(item.getDesconto()==null){
+			item.setDesconto(0.0);
+		}
+		if(item.getValor()==null){
+			item.setValor(0.0);
+		}
+		item.setSubtotal((item.getQtde()* item.getValor())-item.getDesconto());
+	}
+	public List<ListaPrecoItem> listasprecos(){		
+		
 		/*
 		if (item.getProduto() != null){
 		Integer idtipo = Integer.parseInt(movimento.getTipomv().toString());
@@ -90,7 +100,7 @@ public class BeanMovimento implements Serializable {
 		List<ListaPrecoItem> precos = new ArrayList<>();
 		
 		
-		if (getMovimento().getTipomv() != null && getMovimento().getVendresp() != null && item.getProduto() != null){
+		if(item.getProduto() != null){
 			for (ListaPrecoItem list : listaprecoi){
 				if(list.getProduto().equals(item.getProduto())){
 					precos.add(list);	
@@ -214,6 +224,8 @@ public class BeanMovimento implements Serializable {
 			throw new RuntimeException("O Tipo de Movimento não pode ser nulo");
 		} else {
 			item = new ItemMov();
+			item.setQtde(0);
+			
 		}
 	}
 	
@@ -262,7 +274,9 @@ public class BeanMovimento implements Serializable {
 		/*fim e retorna os itens*/
 		
 		/*busca itens da lista promoção*/
+		if (lp != null){
 		listaprecoip = servicoListapreco.buscaitens( lp, descricao);
+		}
 		/*fim*/
 		
 		/*retorna itens da principal*/
@@ -272,10 +286,17 @@ public class BeanMovimento implements Serializable {
 	}
 	
 	public void editarsalvarProduto() {
-		
+		int p = 0;
 		if(item.getProduto() == null){
 			throw new IllegalArgumentException("Produto nao pode ser nulo");	
 	    }
+		
+		for (int i = 0; i < items.size(); i++) {
+			if (items.get(i).getProduto().getIdproduto().equals(item.getProduto().getIdproduto())) {
+				p = p + 1;
+			}
+		}
+		if (p == 0) {
 		try {
 			int index = items.indexOf(item);
 			if (index > -1) {
@@ -290,6 +311,9 @@ public class BeanMovimento implements Serializable {
 			e.printStackTrace();
 		}
 		
+		} else {
+			FacesMessageUtil.addMensagemWarn("Produto já consta na Lista de Items");
+		}
 		item = new ItemMov();
 	}
 	/*fim produtos*/

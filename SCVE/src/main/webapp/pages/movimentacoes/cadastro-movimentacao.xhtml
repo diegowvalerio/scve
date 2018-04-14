@@ -18,7 +18,7 @@
 		<adm:breadcrumb title="Movimentação"
 			link="cadastro-movimentacao.xhtml" />
 		<h:form id="form">
-		<p:growl id="erros" showDetail="true" sticky="true" />
+		
 			<p:tabView dynamic="false" cache="false" id="tabview">
 				<p:tab title="Dados" id="dados">
 
@@ -144,7 +144,7 @@
 
 			<!-- dados de items -->
 			<p:dialog id="dlg" header="Novo Item" widgetVar="dialogp"
-				responsive="true" resizable="true" modal="true" position="center"
+				responsive="true" resizable="true" modal="false" position="center"
 				onShow="position='center'">
 				<p:panelGrid id="painelDados" columns="2">
 
@@ -153,25 +153,28 @@
 							completeMethod="#{beanMovimento.completaProduto}" var="c"
 							itemLabel="#{c.descricao}" itemValue="#{c}" forceSelection="true"
 							converter="conversorProduto" >
+							<p:ajax event="itemSelect" update="valor" />
 							</p:autoComplete>						
 					
 
 					<p:outputLabel value="Qtde:" for="qtde" />
-					<p:inputNumber id="qtde" value="#{beanMovimento.item.qtde}">
+					<p:inputNumber id="qtde" value="#{beanMovimento.item.qtde}" >
+					<p:ajax event="blur" listener="#{beanMovimento.calcularItem()}" update="subtotal"/>
 					</p:inputNumber>
 
 					<p:outputLabel value="Valor:" for="valor" /> 
-					<p:selectOneMenu id="valor" value="#{beanMovimento.item.valor}"
-						converter="conversorListaPrecoItem">
+					<p:selectOneMenu id="valor" value="#{beanMovimento.item.valor}">
 						<f:selectItem itemLabel="Selecionar" noSelectionOption="true" />
 						<f:selectItems value="#{beanMovimento.listasprecos()}" var="tmv"
 							itemLabel="#{tmv.listapreco.nome}- R$ #{tmv.valor}"
 							itemValue="#{tmv.valor}" />
-							
+					<p:ajax event="blur" listener="#{beanMovimento.calcularItem()}" update="subtotal"/>		
 					</p:selectOneMenu>
 
 					<p:outputLabel value="Desconto:" for="desconto" />
-					<p:inputNumber id="desconto" value="#{beanMovimento.item.desconto}" />
+					<p:inputNumber id="desconto" value="#{beanMovimento.item.desconto}" >
+					<p:ajax event="blur" listener="#{beanMovimento.calcularItem()}" update="subtotal"/>
+					</p:inputNumber>
 
 					<p:outputLabel value="Total Item:" for="subtotal" />
 					<p:inputNumber id="subtotal" value="#{beanMovimento.item.subtotal}" />

@@ -30,7 +30,9 @@ public class ServicoProduto implements Serializable{
 		}
 	}
 	
-	
+	/*public Produto consultar(Integer id){
+		return dao.consultar(id);
+	}*/
 	
 	@Transacao
 	public boolean excluir(Integer id){
