@@ -41,6 +41,10 @@
 					<p:commandButton action="cadastro-cliente?faces-redirect=true"
 						ajax="false" icon="fa fa-plus" value="Novo"
 						styleClass="btn-primary" />
+					
+					<p:commandButton actionListener="#{beanCliente.getRelatorio()}"
+						ajax="false" icon="ui-icon-print" value="Visualizar"
+						styleClass="btn-primary" />
 
 					<p:spacer width="5" />
 

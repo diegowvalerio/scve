@@ -1,9 +1,13 @@
 package br.com.scve.bean;
 
 import java.io.Serializable;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.faces.context.FacesContext;
@@ -11,6 +15,9 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
+
+import org.omnifaces.util.Faces;
+
 
 import br.com.scve.entidades.Pfisica;
 import br.com.scve.entidades.Pjuridica;
@@ -24,6 +31,18 @@ import br.com.scve.modelo.servico.ServicoCidade;
 import br.com.scve.modelo.servico.ServicoCliente;
 import br.com.scve.modelo.servico.ServicoTipoEndereco;
 import br.com.scve.modelo.servico.ServicoVendedor;
+import br.com.scve.msn.FacesMessageUtil;
+import net.sf.jasperreports.engine.JRExporter;
+import net.sf.jasperreports.engine.JRExporterParameter;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperPrintManager;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.export.JRPdfExporter;
+import net.sf.jasperreports.view.JasperViewer;
 
 
 @Named
@@ -281,7 +300,58 @@ public class BeanCliente implements Serializable {
 		 return "edita-cliente";
 	 }
 	 
-		public List<Cidade> completaCidade(String nome) {
-			return servicoCidade.buscacidadenome(nome);
+	public List<Cidade> completaCidade(String nome) {
+		return servicoCidade.buscacidadenome(nome);
+	}
+		
+	/* RELATORIOS */
+	public void rel_visualizar(){
+		String caminho = Faces.getRealPath("/reports/clientes/Clientes");
+				
+		Connection connection = null;
+		
+		/*paramtros*/
+		Map<String, Object> parametros = new HashMap<>();
+		/*fim parametros*/
+		try {
+			/*conexao*/
+			
+			//Class.forName("org.postgresql.Driver");
+			connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/scve", "postgres", "postgres");
+			
+			/*fim conexao*/
+			
+			/*JasperCompileManager.compileReportToFile(caminho+".jrxml");
+			JasperPrint print = JasperFillManager.fillReport(caminho+".jasper", parametros, connection);
+			JasperPrintManager.printReport(print, true);*/
+			
+			JasperReport report = JasperCompileManager.compileReport(caminho+".jrxml");  
+	        JasperPrint print = JasperFillManager.fillReport(report, null, connection);  
+	        //JasperViewer.viewReport(print, false);// viewer = new JasperViewer(print, false);  
+	        //viewer.setVisible(true); 
+	        JasperExportManager.exportReportToPdf(print);
+	        
+		} catch (Exception e) {
+			FacesMessageUtil.addMensagemWarn("Erro ao conecta/gerar !");
+		}finally {
+			if (connection != null) {
+                try {
+                    connection.close();
+                } catch (Exception e) {
+                }
+            }
 		}
+			
+		
+	}
+	public void getRelatorio() {
+		Relatorio<Cliente> report = new Relatorio<Cliente>();
+		if (lista.size() > 0) {
+			report.getRelatorio(lista);
+		}else{
+			FacesMessageUtil.addMensagemWarn("Não há registros!");
+		}
+	}
+	
+	/* FIM RELATORIOS */
 }
