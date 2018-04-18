@@ -1,6 +1,5 @@
 package br.com.scve.bean;
 
-import java.io.FileOutputStream;
 import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -19,6 +18,7 @@ import javax.servlet.http.HttpSession;
 
 import org.omnifaces.util.Faces;
 
+
 import br.com.scve.entidades.Pfisica;
 import br.com.scve.entidades.Pjuridica;
 import br.com.scve.entidades.TipoEndereco;
@@ -35,6 +35,7 @@ import br.com.scve.msn.FacesMessageUtil;
 import net.sf.jasperreports.engine.JRExporter;
 import net.sf.jasperreports.engine.JRExporterParameter;
 import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperPrintManager;
@@ -326,9 +327,9 @@ public class BeanCliente implements Serializable {
 			
 			JasperReport report = JasperCompileManager.compileReport(caminho+".jrxml");  
 	        JasperPrint print = JasperFillManager.fillReport(report, null, connection);  
-	        JasperViewer.viewReport(print, false);// viewer = new JasperViewer(print, false);  
+	        //JasperViewer.viewReport(print, false);// viewer = new JasperViewer(print, false);  
 	        //viewer.setVisible(true); 
-	        
+	        JasperExportManager.exportReportToPdf(print);
 	        
 		} catch (Exception e) {
 			FacesMessageUtil.addMensagemWarn("Erro ao conecta/gerar !");
@@ -343,5 +344,14 @@ public class BeanCliente implements Serializable {
 			
 		
 	}
+	public void getRelatorio() {
+		Relatorio<Cliente> report = new Relatorio<Cliente>();
+		if (lista.size() > 0) {
+			report.getRelatorio(lista);
+		}else{
+			FacesMessageUtil.addMensagemWarn("Não há registros!");
+		}
+	}
+	
 	/* FIM RELATORIOS */
 }
