@@ -84,7 +84,7 @@ left join tbjuridica j on j.idpessoa = e.idpessoa]]>
 			</staticText>
 			<image>
 				<reportElement x="10" y="0" width="50" height="51" uuid="dbf2f00a-169b-4efb-b55f-55fb96a4568c"/>
-				<imageExpression><![CDATA["C:/Users/Valerio/Documents/GitHub/scve/SCVE/src/main/webapp/resources/images/scve.png"]]></imageExpression>
+				<imageExpression><![CDATA["src/main/webapp/resources/images/scve.png"]]></imageExpression>
 			</image>
 			<textField>
 				<reportElement x="450" y="0" width="58" height="17" uuid="97847387-91d3-4b55-a75f-5bc5b9871f28"/>
