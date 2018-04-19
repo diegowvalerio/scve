@@ -3,6 +3,9 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Clientes" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a440fa82-5c67-451b-a1cf-387ade025665">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="jasper_scve"/>
+	<parameter name="LOGOS" class="java.lang.String">
+		<parameterDescription><![CDATA[logo]]></parameterDescription>
+	</parameter>
 	<queryString language="SQL">
 		<![CDATA[select * from tbcliente e
 inner join tbpessoa p on p.idpessoa = e.idpessoa
@@ -68,9 +71,9 @@ left join tbjuridica j on j.idpessoa = e.idpessoa]]>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="51" splitType="Stretch">
+		<band height="40" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="0" width="552" height="50" uuid="dc728dbc-c60c-4399-8920-aa76e5f492b6"/>
+				<reportElement x="0" y="0" width="552" height="40" uuid="dc728dbc-c60c-4399-8920-aa76e5f492b6"/>
 				<box>
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -82,10 +85,6 @@ left join tbjuridica j on j.idpessoa = e.idpessoa]]>
 				</textElement>
 				<text><![CDATA[Relatório de Clientes]]></text>
 			</staticText>
-			<image>
-				<reportElement x="10" y="0" width="50" height="51" uuid="dbf2f00a-169b-4efb-b55f-55fb96a4568c"/>
-				<imageExpression><![CDATA["src/main/webapp/resources/images/scve.png"]]></imageExpression>
-			</image>
 			<textField>
 				<reportElement x="450" y="0" width="58" height="17" uuid="97847387-91d3-4b55-a75f-5bc5b9871f28"/>
 				<textElement textAlignment="Right"/>
@@ -106,6 +105,10 @@ left join tbjuridica j on j.idpessoa = e.idpessoa]]>
 				<textElement textAlignment="Right"/>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
+			<image>
+				<reportElement x="0" y="0" width="50" height="40" uuid="2eb2e8ce-b844-4f02-b3ea-45c9f006ce62"/>
+				<imageExpression><![CDATA[$P{LOGOS}]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<columnHeader>

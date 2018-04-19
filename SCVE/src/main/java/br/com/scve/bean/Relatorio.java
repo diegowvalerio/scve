@@ -13,6 +13,7 @@ import java.util.Map;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.ImageIcon;
 
 import org.omnifaces.util.Faces;
 
@@ -23,6 +24,7 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 public class Relatorio <T>{
 	
@@ -38,20 +40,27 @@ public class Relatorio <T>{
 	
 	public void getRelatorio(List<T> lista){
 		try{
-			String caminho = Faces.getRealPath("/reports/clientes/Clientes");
-			
-			JasperReport report = JasperCompileManager.compileReport(caminho+".jrxml");
-			InputStream stream = this.getClass().getResourceAsStream(caminho+".jasper");
+			String caminho = Faces.getRealPath("/pages/reports/clientes/Clientes");
+			String caminhoimagem = Faces.getRealPath("/pages/reports/scve.png");
+			//JasperReport report = JasperCompileManager.compileReport(caminho+".jrxml");
+			JasperCompileManager.compileReportToFile(caminho+".jrxml");
+			JasperReport rp = (JasperReport) JRLoader.loadObjectFromFile(caminho+".jasper");
+			//InputStream stream = getClass().getResourceAsStream("Clientes.jasper"); //this.getClass().getResourceAsStream(caminho+".jasper");
 			Map<String, Object> params = new HashMap<String, Object>();
+			//Map params = new HashMap();
+			
+			//ImageIcon gto = new ImageIcon(getClass().getResource(caminhoimagem));
+			params.put("LOGOS", caminhoimagem);
+			
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		
-			JRBeanCollectionDataSource datasrc = new JRBeanCollectionDataSource(lista);
+			//JRBeanCollectionDataSource datasrc = new JRBeanCollectionDataSource(lista);
 			
 			//JasperReport jasper = (JasperReport) JRLoader.loadObject(stream);
 			
 			//para usar JavaBeanDataSource define 'datasrc' como datasource
 			//JasperPrint print = JasperFillManager.fillReport(report, params, getConexao());
-			JasperPrint print = JasperFillManager.fillReport(report, params, datasrc);
+			JasperPrint print = JasperFillManager.fillReport(rp, params, getConexao());
 			
 			JasperExportManager.exportReportToPdfStream(print, baos);
 			
