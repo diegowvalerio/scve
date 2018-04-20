@@ -48,14 +48,12 @@
 				<p:calendar  locale="pt_BR"	id="dtcadastro" 
 					pattern="dd/MM/yyyy" mask="true"  effect="fold" />
 
-				<p:outputLabel value="Vendedor:" for="vendedor" />
-				<p:selectOneMenu id="vendedor" value="#{beanCliente.cliente.vendresp}"
-					converter="conversorVendedor">
-					<f:selectItem itemLabel="Todos" itemValue="T" />
-					<f:selectItems value="#{beanCliente.vendedores}" var="vendedor"
-						itemLabel="#{vendedor.idpessoa} - #{vendedor.nome}"
-						itemValue="#{vendedor.nome}" />
-				</p:selectOneMenu>
+				<p:outputLabel value="Vendedor de:" for="vendedor" />
+				<p:inputText id="vendedor" value="#{beanCliente.filtro_vendedor}">
+				</p:inputText>
+				<p:outputLabel value="Até Vendedor:" for="vendedor" />
+				<p:inputText id="vendedor1" value="#{beanCliente.filtro_vendedor1}">
+				</p:inputText>
 
 				<p:outputLabel value="Ativo : " for="situacao" />
 				<p:selectOneMenu id="situacao" value="#{beanCliente.filtro_situacao}">

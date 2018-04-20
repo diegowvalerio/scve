@@ -67,7 +67,7 @@ public class Relatorio <T>{
 		
 	}
 	
-	public void rel_clientes_lista(String situacao,String vendedor){
+	public void rel_clientes_lista(String situacao,String vendedor,String vendedor1){
 		try{
 			String caminho = "";
 			caminho = Faces.getRealPath("/pages/reports/clientes/Clientes_Lista");
@@ -91,10 +91,12 @@ public class Relatorio <T>{
 				params.put("SITUACAO1", b1);
 			}
 			
-			if(vendedor.equals("T")){
-				params.put("VENDEDOR", "%%");
+			if(vendedor.equals("")){
+				params.put("VENDEDOR", 0);
+				params.put("VENDEDOR1", 999999999);
 			}else{
-				params.put("VENDEDOR", vendedor);
+				params.put("VENDEDOR", Integer.parseInt(vendedor));
+				params.put("VENDEDOR1", Integer.parseInt(vendedor1));
 			}
 			
 			params.put("LOGOS", caminhoimagem);
