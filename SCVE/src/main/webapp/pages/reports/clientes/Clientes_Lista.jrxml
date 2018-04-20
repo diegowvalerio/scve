@@ -17,6 +17,8 @@
 		<parameterDescription><![CDATA[logo]]></parameterDescription>
 	</parameter>
 	<parameter name="SITUACAO" class="java.lang.Boolean"/>
+	<parameter name="SITUACAO1" class="java.lang.Boolean"/>
+	<parameter name="VENDEDOR" class="java.lang.String"/>
 	<queryString language="SQL">
 		<![CDATA[SELECT e.idpessoa,
 	p.dtcadastro,
@@ -39,7 +41,10 @@ FROM tbcliente e
 	left join tbpessoa v ON 
 	 v.idpessoa = p.vendresp_idpessoa 
 WHERE 
-	 (p.situacao = $P{SITUACAO} or $P{SITUACAO} is null)]]>
+	  ( 
+	 p.situacao = $P{SITUACAO} 
+	 OR p.situacao = $P{SITUACAO1}) 
+	 AND v.nome LIKE $P{VENDEDOR}]]>
 	</queryString>
 	<field name="idpessoa" class="java.lang.Integer">
 		<property name="com.jaspersoft.studio.field.label" value="idpessoa"/>

@@ -61,8 +61,10 @@ public class BeanCliente implements Serializable {
 	private Boolean isRederiza = false;
 	private Boolean isRederiza2 = false;
 	
-	//relatorio
-	private String situacao;
+	//filtros de relatorio
+	private String filtro_situacao;
+	private String filtro_vendedor;
+	
 
 	@PostConstruct
 	public void carregar(){
@@ -295,16 +297,24 @@ public class BeanCliente implements Serializable {
 	}
 		
 	/* RELATORIOS */
-	public String getSituacao() {
-		return situacao;
+	/*gets e seters*/
+	public String getFiltro_situacao() {
+		return filtro_situacao;
 	}
 
-	public void setSituacao(String situacao) {
-		this.situacao = situacao;
+	public void setFiltro_situacao(String filtro_situacao) {
+		this.filtro_situacao = filtro_situacao;
 	}
+	public String getFiltro_vendedor() {
+		return filtro_vendedor;
+	}
+
+	public void setFiltro_vendedor(String filtro_vendedor) {
+		this.filtro_vendedor = filtro_vendedor;
+	}
+	/*gets e seters*/
 	
-	
-	
+
 	public void rel_clientes() {
 		Relatorio<Cliente> report = new Relatorio<Cliente>();
 		if (lista.size() > 0) {
@@ -314,10 +324,11 @@ public class BeanCliente implements Serializable {
 		}
 	}
 	
+
 	public void rel_clientes_lista() {
 		Relatorio<Cliente> report = new Relatorio<Cliente>();
 		if (lista.size() > 0) {
-			report.rel_clientes_lista(situacao);
+			report.rel_clientes_lista(filtro_situacao,cliente.getVendresp().getNome().toString());
 		}else{
 			FacesMessageUtil.addMensagemWarn("Não há registros!");
 		}
