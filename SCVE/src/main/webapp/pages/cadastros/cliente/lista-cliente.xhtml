@@ -41,10 +41,6 @@
 					<p:commandButton action="cadastro-cliente?faces-redirect=true"
 						ajax="false" icon="fa fa-plus" value="Novo"
 						styleClass="btn-primary" />
-					
-					<p:commandButton actionListener="#{beanCliente.getRelatorio()}"
-						ajax="false" icon="ui-icon-print" value="Visualizar"
-						styleClass="btn-primary" />
 
 					<p:spacer width="5" />
 
@@ -60,28 +56,28 @@
 
 
 						<p:column headerText="Id" style="text-align:right" width="3%">
-						<h:outputLabel value="#{cliente.idpessoa}" />
+							<h:outputLabel value="#{cliente.idpessoa}" />
 						</p:column>
-						<p:column headerText="Nome"
-						filterBy="#{cliente.nome}"
-						sortBy="#{cliente.nome}" filterMatchMode="contains">
-						<h:outputLabel value="#{cliente.nome}" />
+						<p:column headerText="Nome" filterBy="#{cliente.nome}"
+							sortBy="#{cliente.nome}" filterMatchMode="contains">
+							<h:outputLabel value="#{cliente.nome}" />
 						</p:column>
 						<p:column headerText="Vendedor"
-						filterBy="#{cliente.vendresp.nome}"
-						sortBy="#{cliente.vendresp.nome}" filterMatchMode="contains">
-						<h:outputLabel value="#{cliente.vendresp.nome}" />
+							filterBy="#{cliente.vendresp.nome}"
+							sortBy="#{cliente.vendresp.nome}" filterMatchMode="contains">
+							<h:outputLabel value="#{cliente.vendresp.nome}" />
 						</p:column>
+
 
 						<p:column width="15%" headerText="Operações"
 							style="text-align:center">
 							<p:commandButton action="#{beanCliente.excluir()}"
-								oncomplete="#{beanCliente.lista}"  icon="fa fa-trash" >
+								oncomplete="#{beanCliente.lista}" icon="fa fa-trash">
 								<f:setPropertyActionListener value="#{cliente}"
 									target="#{beanCliente.cliente}" />
 							</p:commandButton>
 
-							<p:commandButton  icon="fa fa-edit"
+							<p:commandButton icon="fa fa-edit"
 								action="#{beanCliente.encaminha()}">
 								<f:setPropertyActionListener value="#{cliente}"
 									target="#{beanCliente.cliente}" />

@@ -60,6 +60,9 @@ public class BeanCliente implements Serializable {
 	private Date data;
 	private Boolean isRederiza = false;
 	private Boolean isRederiza2 = false;
+	
+	//relatorio
+	private String situacao;
 
 	@PostConstruct
 	public void carregar(){
@@ -292,14 +295,32 @@ public class BeanCliente implements Serializable {
 	}
 		
 	/* RELATORIOS */
-	public void getRelatorio() {
+	public String getSituacao() {
+		return situacao;
+	}
+
+	public void setSituacao(String situacao) {
+		this.situacao = situacao;
+	}
+	
+	
+	
+	public void rel_clientes() {
 		Relatorio<Cliente> report = new Relatorio<Cliente>();
 		if (lista.size() > 0) {
-			report.getRelatorio(lista);
+			report.rel_clientes(lista);
 		}else{
 			FacesMessageUtil.addMensagemWarn("Não há registros!");
 		}
 	}
 	
+	public void rel_clientes_lista() {
+		Relatorio<Cliente> report = new Relatorio<Cliente>();
+		if (lista.size() > 0) {
+			report.rel_clientes_lista(situacao);
+		}else{
+			FacesMessageUtil.addMensagemWarn("Não há registros!");
+		}
+	}
 	/* FIM RELATORIOS */
 }
