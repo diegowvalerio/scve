@@ -10,6 +10,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import br.com.scve.entidades.Cliente;
@@ -35,7 +36,7 @@ import br.com.scve.msn.FacesMessageUtil;
 
 @Named
 @ViewScoped
-public class BeanMovimento implements Serializable {
+public class BeanEditaMovimento implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Movimento movimento = new Movimento();
@@ -65,11 +66,20 @@ public class BeanMovimento implements Serializable {
 	@PostConstruct
 	public void carregar(){
 		lista = servico.consultar();
-		this.movimento.setDtvenda(dt);
 		
+		HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+		HttpSession session = (HttpSession) request.getSession();
+		this.movimento = (Movimento) session.getAttribute("movimentoAux");
+		this.movimento = this.getMovimento();
+		this.items = this.movimento.getItems();
+		session.removeAttribute("movimentoAux");
+		
+
+		/*
 		this.movimento = this.getMovimento();
 		this.items = this.movimento.getItems();
 		
+		*/
 	}
 	public void calcularItem(){
 		if(item.getQtde()==null){
@@ -223,7 +233,6 @@ public class BeanMovimento implements Serializable {
 			throw new RuntimeException("O Tipo de Movimento não pode ser nulo");
 		} else {
 			item = new ItemMov();
-			item.setMovimento(movimento);
 			item.setQtde(0);
 			
 		}
@@ -301,10 +310,10 @@ public class BeanMovimento implements Serializable {
 			int index = items.indexOf(item);
 			if (index > -1) {
 				items.remove(index);
-				item.setMovimento(movimento);
+				item.setMovimento(this.movimento);
 				items.add(index, item);
 			}else{
-				item.setMovimento(movimento);
+				item.setMovimento(this.movimento);
 				items.add(item);
 			}
 		} catch (Exception e) {
@@ -317,17 +326,7 @@ public class BeanMovimento implements Serializable {
 		item = new ItemMov();
 	}
 	/*fim produtos*/
-	
-	
-	
-	/*editar movimento*/
-	 public String encaminha() {
-		 FacesContext fc = FacesContext.getCurrentInstance();
-		 HttpSession session = (HttpSession) fc.getExternalContext().getSession(true);
-		 session.setAttribute("movimentoAux", this.movimento );
-		 
-		 return "edita-movimentacao";
-	 }
+
 	 
 		
 }

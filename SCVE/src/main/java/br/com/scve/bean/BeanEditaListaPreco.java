@@ -48,7 +48,7 @@ public class BeanEditaListaPreco implements Serializable {
 
 		this.listapreco = this.getListapreco();
 		this.dt = this.listapreco.getDtcadastro();
-		this.listapreco.setDtcadastro(dt);
+		//this.listapreco.setDtcadastro(dt);
 		this.listaprecoitems = this.listapreco.getListaprecoitens();
 
 	}

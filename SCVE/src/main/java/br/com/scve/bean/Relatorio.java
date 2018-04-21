@@ -68,7 +68,7 @@ public class Relatorio <T>{
 		
 	}
 	
-	public void rel_clientes_lista(String situacao,String vendedor,String vendedor1, Date data, Date data1){
+	public void rel_clientes_lista(String situacao,String vendedor,String vendedor1, Date data, Date data1,String nome){
 		try{
 			String caminho = "";
 			caminho = Faces.getRealPath("/pages/reports/clientes/Clientes_Lista");
@@ -100,6 +100,11 @@ public class Relatorio <T>{
 				params.put("VENDEDOR1", Integer.parseInt(vendedor1));
 			}
 			
+			if(nome.equals("")){
+				params.put("NOME","%%");
+			}else{
+				params.put("NOME", "%"+nome+"%");
+			}
 			
 			params.put("DATA", data);
 			params.put("DATA1", data1);			
@@ -109,6 +114,8 @@ public class Relatorio <T>{
 			
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
 			JasperPrint print = JasperFillManager.fillReport(rp, params,  getConexao());
+						
+			
 			JasperExportManager.exportReportToPdfStream(print, baos);
 			
 			response.reset();

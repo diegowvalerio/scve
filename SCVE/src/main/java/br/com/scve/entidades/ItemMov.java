@@ -6,6 +6,8 @@ import java.lang.Integer;
 import java.lang.String;
 import javax.persistence.*;
 
+import br.com.scve.entidades.ListaPrecoItem.scvePkListaPrecoItem;
+
 
 @Entity
 @Table(name="tbitemmov")
@@ -13,6 +15,9 @@ public class ItemMov implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
+	@GeneratedValue (strategy=GenerationType.IDENTITY)
+	private Integer iditemmov;
+	
 	@ManyToOne
 	@JoinColumn(name = "idmov" , referencedColumnName="idmov" )
 	private Movimento movimento;
@@ -35,6 +40,7 @@ public class ItemMov implements Serializable {
 	public ItemMov() {
 		super();
 	}   
+	
 	public Double getValor() {
 		return this.valor;
 	}
@@ -82,6 +88,14 @@ public class ItemMov implements Serializable {
 	}
 	public void setMovimento(Movimento movimento) {
 		this.movimento = movimento;
+	}
+
+	public Integer getIditemmov() {
+		return iditemmov;
+	}
+
+	public void setIditemmov(Integer iditemmov) {
+		this.iditemmov = iditemmov;
 	}
 
 	

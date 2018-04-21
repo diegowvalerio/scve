@@ -24,6 +24,7 @@
 	<parameter name="SITUACAO1" class="java.lang.Boolean"/>
 	<parameter name="VENDEDOR" class="java.lang.Integer"/>
 	<parameter name="VENDEDOR1" class="java.lang.Integer"/>
+	<parameter name="NOME" class="java.lang.String"/>
 	<queryString language="SQL">
 		<![CDATA[SELECT e.idpessoa,
 	p.dtcadastro,
@@ -50,7 +51,8 @@ WHERE
 	 p.situacao = $P{SITUACAO} 
 	 OR p.situacao = $P{SITUACAO1})
 	 and p.vendresp_idpessoa  between $P{VENDEDOR} and $P{VENDEDOR1}
-	 and p.dtcadastro between $P{DATA} and $P{DATA1}]]>
+	 and p.dtcadastro between $P{DATA} and $P{DATA1}
+	 and p.nome like $P{NOME}]]>
 	</queryString>
 	<field name="idpessoa" class="java.lang.Integer">
 		<property name="com.jaspersoft.studio.field.label" value="idpessoa"/>
