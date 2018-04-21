@@ -5,6 +5,7 @@ import java.io.ByteArrayOutputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -67,7 +68,7 @@ public class Relatorio <T>{
 		
 	}
 	
-	public void rel_clientes_lista(String situacao,String vendedor,String vendedor1){
+	public void rel_clientes_lista(String situacao,String vendedor,String vendedor1, Date data, Date data1){
 		try{
 			String caminho = "";
 			caminho = Faces.getRealPath("/pages/reports/clientes/Clientes_Lista");
@@ -98,6 +99,10 @@ public class Relatorio <T>{
 				params.put("VENDEDOR", Integer.parseInt(vendedor));
 				params.put("VENDEDOR1", Integer.parseInt(vendedor1));
 			}
+			
+			
+			params.put("DATA", data);
+			params.put("DATA1", data1);			
 			
 			params.put("LOGOS", caminhoimagem);
 			

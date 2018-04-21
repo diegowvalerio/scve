@@ -38,29 +38,34 @@
 		<h:form id="form">
 		<div class="box box-primary">
 		<p:separator />
-			<p:panelGrid columns="2" id="paineld">
+			<p:panelGrid columns="4" id="paineld">
 				
 				<p:outputLabel value="Nome:" for="nome" />
 				<p:inputText id="nome">
 				</p:inputText>
-
-				<p:outputLabel value="Data Cadastro:" for="dtcadastro" />
-				<p:calendar  locale="pt_BR"	id="dtcadastro" 
-					pattern="dd/MM/yyyy" mask="true"  effect="fold" />
-
-				<p:outputLabel value="Vendedor de:" for="vendedor" />
-				<p:inputText id="vendedor" value="#{beanCliente.filtro_vendedor}">
-				</p:inputText>
-				<p:outputLabel value="Até Vendedor:" for="vendedor" />
-				<p:inputText id="vendedor1" value="#{beanCliente.filtro_vendedor1}">
-				</p:inputText>
-
+				
 				<p:outputLabel value="Ativo : " for="situacao" />
 				<p:selectOneMenu id="situacao" value="#{beanCliente.filtro_situacao}">
 					<f:selectItem itemLabel="Todos"  itemValue="T"/>
 					<f:selectItem itemLabel="Ativo"  itemValue="A"/>
 					<f:selectItem itemLabel="Inativo"  itemValue="I"/>
 				</p:selectOneMenu>
+
+				
+				<p:outputLabel value="Vendedor:" for="vendedor" />
+				<p:inputText id="vendedor" value="#{beanCliente.filtro_vendedor}">
+				</p:inputText>
+				<p:outputLabel value="Até:" for="vendedor" />
+				<p:inputText id="vendedor1" value="#{beanCliente.filtro_vendedor1}">
+				</p:inputText>
+
+				<p:outputLabel value="Data Cadastro:" for="dtcadastro" />
+				<p:calendar  locale="pt_BR"	id="dtcadastro" value="#{beanCliente.filtro_data}"
+					pattern="dd/MM/yyyy" mask="true"  effect="fold" />
+				
+				<p:outputLabel value="Até:" for="dtcadastro" />
+				<p:calendar  locale="pt_BR"	id="dtcadastro1"  value="#{beanCliente.filtro_data1}"
+					pattern="dd/MM/yyyy" mask="true"  effect="fold" />
 				
 			</p:panelGrid>
 			

@@ -15,6 +15,8 @@
 	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="380"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="613"/>
+	<parameter name="DATA" class="java.util.Date"/>
+	<parameter name="DATA1" class="java.util.Date"/>
 	<parameter name="LOGOS" class="java.lang.String">
 		<parameterDescription><![CDATA[logo]]></parameterDescription>
 	</parameter>
@@ -47,7 +49,8 @@ WHERE
 	  ( 
 	 p.situacao = $P{SITUACAO} 
 	 OR p.situacao = $P{SITUACAO1})
-	 and p.vendresp_idpessoa  between $P{VENDEDOR} and $P{VENDEDOR1}]]>
+	 and p.vendresp_idpessoa  between $P{VENDEDOR} and $P{VENDEDOR1}
+	 and p.dtcadastro between $P{DATA} and $P{DATA1}]]>
 	</queryString>
 	<field name="idpessoa" class="java.lang.Integer">
 		<property name="com.jaspersoft.studio.field.label" value="idpessoa"/>

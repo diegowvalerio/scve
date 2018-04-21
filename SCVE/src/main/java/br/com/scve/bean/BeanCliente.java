@@ -65,10 +65,13 @@ public class BeanCliente implements Serializable {
 	private String filtro_situacao;
 	private String filtro_vendedor;
 	private String filtro_vendedor1;
+	private Date filtro_data = new Date();
+	private Date filtro_data1 = new Date();
 	
 
 	@PostConstruct
 	public void carregar(){
+		
 		lista = servico.consultar();
 		
 		/*HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
@@ -318,6 +321,22 @@ public class BeanCliente implements Serializable {
 		return filtro_vendedor1;
 	}
 
+	public Date getFiltro_data() {
+		return filtro_data;
+	}
+
+	public void setFiltro_data(Date filtro_data) {
+		this.filtro_data = filtro_data;
+	}
+
+	public Date getFiltro_data1() {
+		return filtro_data1;
+	}
+
+	public void setFiltro_data1(Date filtro_data1) {
+		this.filtro_data1 = filtro_data1;
+	}
+
 	public void setFiltro_vendedor1(String filtro_vendedor1) {
 		this.filtro_vendedor1 = filtro_vendedor1;
 	}
@@ -335,7 +354,7 @@ public class BeanCliente implements Serializable {
 	public void rel_clientes_lista() {
 		Relatorio<Cliente> report = new Relatorio<Cliente>();
 		if (lista.size() > 0) {
-			report.rel_clientes_lista(filtro_situacao,filtro_vendedor,filtro_vendedor1);
+			report.rel_clientes_lista(filtro_situacao,filtro_vendedor,filtro_vendedor1,filtro_data,filtro_data1);
 		}else{
 			FacesMessageUtil.addMensagemWarn("Não há registros!");
 		}
