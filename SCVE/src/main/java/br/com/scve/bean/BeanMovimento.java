@@ -61,6 +61,7 @@ public class BeanMovimento implements Serializable {
 	private List<ListaPrecoItem> listaprecoip = new ArrayList<>();
 	
 	private Date dt = new Date();
+	private double totalvenda = 0.0;
 
 	@PostConstruct
 	public void carregar(){
@@ -116,7 +117,8 @@ public class BeanMovimento implements Serializable {
 	}
 	
 	public String salvar() {
-		movimento.setTotalvenda(0.0);
+		
+		movimento.setTotalvenda(totalvenda);
 		servico.salvar(movimento);
 		lista = servico.consultar();
 
@@ -136,6 +138,12 @@ public class BeanMovimento implements Serializable {
 		return item;
 	}
 
+	public double getTotalvenda() {
+		return totalvenda;
+	}
+	public void setTotalvenda(double totalvenda) {
+		this.totalvenda = totalvenda;
+	}
 	public void setItem(ItemMov item) {
 		this.item = item;
 	}
@@ -307,6 +315,10 @@ public class BeanMovimento implements Serializable {
 				item.setMovimento(movimento);
 				items.add(item);
 			}
+			totalvenda = 0.0;
+			for (ItemMov itm : items){
+				totalvenda = totalvenda + itm.getSubtotal();
+				}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
