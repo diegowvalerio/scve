@@ -84,6 +84,12 @@ public class BeanMovimento implements Serializable {
 		}
 		item.setSubtotal((item.getQtde()* item.getValor())-item.getDesconto());
 	}
+	public void calcularItem_total(){
+		if(item.getQtde() != null || item.getValor() != null){
+			//item.setSubtotal((item.getQtde()* item.getValor())-item.getDesconto());
+			item.setDesconto((item.getQtde()* item.getValor())- item.getSubtotal() );
+		}
+	}
 	public List<ListaPrecoItem> listasprecos(){		
 		
 		/*
@@ -299,12 +305,12 @@ public class BeanMovimento implements Serializable {
 			throw new IllegalArgumentException("Produto nao pode ser nulo");	
 	    }
 		
-		for (int i = 0; i < items.size(); i++) {
+		/*for (int i = 0; i < items.size(); i++) {
 			if (items.get(i).getProduto().getIdproduto().equals(item.getProduto().getIdproduto())) {
 				p = p + 1;
 			}
 		}
-		if (p == 0) {
+		if (p == 0) {*/
 		try {
 			int index = items.indexOf(item);
 			if (index > -1) {
@@ -322,10 +328,10 @@ public class BeanMovimento implements Serializable {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+		/*
 		} else {
 			FacesMessageUtil.addMensagemWarn("Produto já consta na Lista de Items");
-		}
+		}*/
 		item = new ItemMov();
 	}
 	/*fim produtos*/

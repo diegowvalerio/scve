@@ -62,6 +62,7 @@ public class BeanEditaMovimento implements Serializable {
 	private List<ListaPrecoItem> listaprecoip = new ArrayList<>();
 	
 	private Date dt = new Date();
+	private double totalvenda = 0.0;
 
 	@PostConstruct
 	public void carregar(){
@@ -72,6 +73,7 @@ public class BeanEditaMovimento implements Serializable {
 		this.movimento = (Movimento) session.getAttribute("movimentoAux");
 		this.movimento = this.getMovimento();
 		this.items = this.movimento.getItems();
+		totalvenda = this.movimento.getTotalvenda();
 		session.removeAttribute("movimentoAux");
 		
 
@@ -92,6 +94,12 @@ public class BeanEditaMovimento implements Serializable {
 			item.setValor(0.0);
 		}
 		item.setSubtotal((item.getQtde()* item.getValor())-item.getDesconto());
+	}
+	public void calcularItem_total(){
+		if(item.getQtde() != null || item.getValor() != null){
+			//item.setSubtotal((item.getQtde()* item.getValor())-item.getDesconto());
+			item.setDesconto((item.getQtde()* item.getValor())- item.getSubtotal() );
+		}
 	}
 	public List<ListaPrecoItem> listasprecos(){		
 		
@@ -126,7 +134,7 @@ public class BeanEditaMovimento implements Serializable {
 	}
 	
 	public String salvar() {
-		movimento.setTotalvenda(0.0);
+		movimento.setTotalvenda(totalvenda);
 		servico.salvar(movimento);
 		lista = servico.consultar();
 
@@ -158,6 +166,12 @@ public class BeanEditaMovimento implements Serializable {
 		this.movimento = movimento;
 	}
 
+	public double getTotalvenda() {
+		return totalvenda;
+	}
+	public void setTotalvenda(double totalvenda) {
+		this.totalvenda = totalvenda;
+	}
 	public List<Movimento> getLista() {
 		return lista;
 	}
@@ -300,12 +314,12 @@ public class BeanEditaMovimento implements Serializable {
 			throw new IllegalArgumentException("Produto nao pode ser nulo");	
 	    }
 		
-		for (int i = 0; i < items.size(); i++) {
+		/*for (int i = 0; i < items.size(); i++) {
 			if (items.get(i).getProduto().getIdproduto().equals(item.getProduto().getIdproduto())) {
 				p = p + 1;
 			}
 		}
-		if (p == 0) {
+		if (p == 0) {*/
 		try {
 			int index = items.indexOf(item);
 			if (index > -1) {
@@ -316,13 +330,17 @@ public class BeanEditaMovimento implements Serializable {
 				item.setMovimento(this.movimento);
 				items.add(item);
 			}
+			totalvenda = 0.0;
+			for (ItemMov itm : items){
+				totalvenda = totalvenda + itm.getSubtotal();
+				}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+		/*
 		} else {
 			FacesMessageUtil.addMensagemWarn("Produto já consta na Lista de Items");
-		}
+		}*/
 		item = new ItemMov();
 	}
 	/*fim produtos*/

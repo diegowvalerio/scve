@@ -79,7 +79,7 @@
 
 
 						<p:outputLabel value="Data Cadastro:" for="dtvenda" />
-						<p:calendar locale="pt_BR" id="dtvenda"
+						<p:calendar readonly="true" locale="pt_BR" id="dtvenda"
 							value="#{beanMovimento.movimento.dtvenda}" pattern="dd/MM/yyyy"
 							mask="true" required="true" effect="fold" />
 							
@@ -140,7 +140,7 @@
 					
 					<p:separator />
 					<p:outputLabel value="Total :" ></p:outputLabel>
-					<p:inputNumber value="#{beanMovimento.totalvenda}"></p:inputNumber>
+					<p:inputNumber readonly="true" value="#{beanMovimento.totalvenda}"></p:inputNumber>
 					<!-- dados de items -->
 				</p:tab>
 
@@ -181,7 +181,9 @@
 					</p:inputNumber>
 
 					<p:outputLabel value="Total Item:" for="subtotal" />
-					<p:inputNumber id="subtotal" value="#{beanMovimento.item.subtotal}" />
+					<p:inputNumber id="subtotal" value="#{beanMovimento.item.subtotal}">
+					<p:ajax event="blur" listener="#{beanMovimento.calcularItem_total()}" update="desconto"/>	
+					</p:inputNumber>
 
 					<p:outputLabel value="Observação:" for="itemobservacao" />
 					<p:inputText id="itemobservacao"

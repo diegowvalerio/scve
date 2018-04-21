@@ -137,6 +137,11 @@
 
 						</p:column>
 					</p:dataTable>
+					
+					<p:separator />
+					<p:outputLabel value="Total :" ></p:outputLabel>
+					<p:inputNumber readonly="true" value="#{beanEditaMovimento.totalvenda}"></p:inputNumber>
+					
 					<!-- dados de items -->
 				</p:tab>
 
@@ -177,7 +182,9 @@
 					</p:inputNumber>
 
 					<p:outputLabel value="Total Item:" for="subtotal" />
-					<p:inputNumber id="subtotal" value="#{beanEditaMovimento.item.subtotal}" />
+					<p:inputNumber id="subtotal" value="#{beanEditaMovimento.item.subtotal}" >
+					<p:ajax event="blur" listener="#{beanEditaMovimento.calcularItem_total()}" update="desconto"/>	
+					</p:inputNumber>
 
 					<p:outputLabel value="Observação:" for="itemobservacao" />
 					<p:inputText id="itemobservacao"

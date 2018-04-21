@@ -55,17 +55,17 @@
 						currentPageReportTemplate="" rowsPerPageTemplate="5,10,15,20,30">
 
 
-						<p:column headerText="Id"  
+						<p:column width="12%" headerText="Id"  
 						filterBy="#{mov.idmov}"
 						sortBy="#{mov.idmov}" filterMatchMode="contains">
 						<h:outputLabel value="#{mov.idmov}" />
 						</p:column>
-						<p:column headerText="Tipo"
+						<p:column width="12%" headerText="Tipo"
 						filterBy="#{mov.tipomv.nome}"
 						sortBy="#{mov.tipomv.nome}" filterMatchMode="contains">
 						<h:outputLabel value="#{mov.tipomv.nome}" />
 						</p:column>
-						<p:column headerText="Cod. Cliente"
+						<p:column width="12%" headerText="Cod. Cliente"
 						filterBy="#{mov.cliente.idpessoa}"
 						sortBy="#{mov.cliente.idpessoa}" filterMatchMode="contains">
 						<h:outputLabel value="#{mov.cliente.idpessoa}" />
@@ -77,7 +77,7 @@
 						<h:outputLabel value="#{mov.cliente.nome}" />
 						</p:column>
 						
-						<p:column headerText="Data Venda"
+						<p:column width="12%" headerText="Data Venda"
 						filterBy="#{mov.dtvenda}"
 						sortBy="#{mov.dtvenda}" filterMatchMode="contains">
 						<h:outputLabel value="#{mov.dtvenda}" />
