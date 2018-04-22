@@ -82,6 +82,7 @@ public class BeanCliente implements Serializable {
 		this.opcao = this.cliente.getTipojf();
 		this.enderecos = this.cliente.getEnderecos();
 		this.contatos = this.cliente.getContatos();
+		
 	}
 	
 	public String salvar() {
