@@ -2,7 +2,6 @@ package br.com.scve.bean;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -30,7 +29,7 @@ import br.com.scve.modelo.servico.ServicoFormaPag;
 import br.com.scve.modelo.servico.ServicoListaPreco;
 import br.com.scve.modelo.servico.ServicoMovimento;
 import br.com.scve.modelo.servico.ServicoTipoMv;
-import br.com.scve.msn.FacesMessageUtil;
+
 
 
 
@@ -61,7 +60,7 @@ public class BeanEditaMovimento implements Serializable {
 	private List<ListaPrecoItem> listaprecoi = new ArrayList<>();
 	private List<ListaPrecoItem> listaprecoip = new ArrayList<>();
 	
-	private Date dt = new Date();
+	//private Date dt = new Date();
 	private double totalvenda = 0.0;
 
 	@PostConstruct
@@ -309,7 +308,7 @@ public class BeanEditaMovimento implements Serializable {
 	}
 	
 	public void editarsalvarProduto() {
-		int p = 0;
+		//int p = 0;
 		if(item.getProduto() == null){
 			throw new IllegalArgumentException("Produto nao pode ser nulo");	
 	    }

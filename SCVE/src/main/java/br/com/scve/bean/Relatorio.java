@@ -66,7 +66,7 @@ public class Relatorio <T>{
 		}
 		
 	}
-	
+	/*clientes*/
 	public void rel_clientes_lista(String situacao,String vendedor,String vendedor1, Date data, Date data1,String nome){
 		try{
 			String caminho = "";
@@ -209,7 +209,7 @@ public class Relatorio <T>{
 		
 	}
 
-	
+	/*conexao*/
 	private Connection getConexao(){
 		try {
 			Class.forName("org.postgresql.Driver");

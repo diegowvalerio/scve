@@ -29,7 +29,7 @@ import br.com.scve.modelo.servico.ServicoFormaPag;
 import br.com.scve.modelo.servico.ServicoListaPreco;
 import br.com.scve.modelo.servico.ServicoMovimento;
 import br.com.scve.modelo.servico.ServicoTipoMv;
-import br.com.scve.msn.FacesMessageUtil;
+
 
 
 
@@ -300,7 +300,7 @@ public class BeanMovimento implements Serializable {
 	}
 	
 	public void editarsalvarProduto() {
-		int p = 0;
+		//int p = 0;
 		if(item.getProduto() == null){
 			throw new IllegalArgumentException("Produto nao pode ser nulo");	
 	    }
