@@ -30,6 +30,8 @@ public class Movimento implements Serializable {
 	private Double totalvenda;
 	@ManyToOne
 	private Vendedor vendresp;
+	@Column(nullable=true, columnDefinition="numeric(5,2)")
+	private double perc_comissao;
 	@ManyToOne
 	private TipoMv tipomv;
 	@ManyToOne
@@ -45,7 +47,16 @@ public class Movimento implements Serializable {
 
 	public Movimento() {
 		super();
-	}   
+	} 
+	
+	public double getPerc_comissao() {
+		return perc_comissao;
+	}
+
+	public void setPerc_comissao(double perc_comissao) {
+		this.perc_comissao = perc_comissao;
+	}
+
 	public Integer getIdmov() {
 		return this.idmov;
 	}

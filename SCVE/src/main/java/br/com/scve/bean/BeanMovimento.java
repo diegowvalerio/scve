@@ -29,6 +29,7 @@ import br.com.scve.modelo.servico.ServicoFormaPag;
 import br.com.scve.modelo.servico.ServicoListaPreco;
 import br.com.scve.modelo.servico.ServicoMovimento;
 import br.com.scve.modelo.servico.ServicoTipoMv;
+import br.com.scve.msn.FacesMessageUtil;
 
 
 
@@ -62,6 +63,15 @@ public class BeanMovimento implements Serializable {
 	
 	private Date dt = new Date();
 	private double totalvenda = 0.0;
+	
+	/*filtro relatorio*/
+	private String filtro_tipo;
+	private String filtro_vendedor;
+	private String filtro_vendedor1;
+	private String filtro_cliente;
+	private String filtro_cliente1;
+	private Date filtro_data = new Date();
+	private Date filtro_data1 = new Date();
 
 	@PostConstruct
 	public void carregar(){
@@ -123,7 +133,7 @@ public class BeanMovimento implements Serializable {
 	}
 	
 	public String salvar() {
-		
+		movimento.setPerc_comissao(movimento.getVendresp().getPerc_comissao());
 		movimento.setTotalvenda(totalvenda);
 		servico.salvar(movimento);
 		lista = servico.consultar();
@@ -347,5 +357,69 @@ public class BeanMovimento implements Serializable {
 		 return "edita-movimentacao";
 	 }
 	 
+	/*relatorios*/
+	 
+	public String getFiltro_tipo() {
+		return filtro_tipo;
+	}
+	public void setFiltro_tipo(String filtro_tipo) {
+		this.filtro_tipo = filtro_tipo;
+	}
+	public String getFiltro_vendedor() {
+		return filtro_vendedor;
+	}
+	public void setFiltro_vendedor(String filtro_vendedor) {
+		this.filtro_vendedor = filtro_vendedor;
+	}
+	public String getFiltro_vendedor1() {
+		return filtro_vendedor1;
+	}
+	public void setFiltro_vendedor1(String filtro_vendedor1) {
+		this.filtro_vendedor1 = filtro_vendedor1;
+	}
+	public String getFiltro_cliente() {
+		return filtro_cliente;
+	}
+	public void setFiltro_cliente(String filtro_cliente) {
+		this.filtro_cliente = filtro_cliente;
+	}
+	public String getFiltro_cliente1() {
+		return filtro_cliente1;
+	}
+	public void setFiltro_cliente1(String filtro_cliente1) {
+		this.filtro_cliente1 = filtro_cliente1;
+	}
+	public Date getFiltro_data() {
+		return filtro_data;
+	}
+	public void setFiltro_data(Date filtro_data) {
+		this.filtro_data = filtro_data;
+	}
+	public Date getFiltro_data1() {
+		return filtro_data1;
+	}
+	public void setFiltro_data1(Date filtro_data1) {
+		this.filtro_data1 = filtro_data1;
+	}
+	 
+	public void rel_movimentacoes_lista() {
+		Relatorio<Movimento> report = new Relatorio<Movimento>();
+		if (lista.size() > 0) {
+			report.rel_movimentacoes_lista(filtro_tipo,filtro_vendedor,filtro_vendedor1,filtro_cliente,filtro_cliente1,filtro_data,filtro_data1);
+		}else{
+			FacesMessageUtil.addMensagemWarn("Não há registros!");
+		}
+	}
+	
+	public void rel_comissao_lista() {
+		Relatorio<Movimento> report = new Relatorio<Movimento>();
+		if (lista.size() > 0) {
+			report.rel_comissao_lista(filtro_tipo,filtro_vendedor,filtro_vendedor1,filtro_cliente,filtro_cliente1,filtro_data,filtro_data1);
+		}else{
+			FacesMessageUtil.addMensagemWarn("Não há registros!");
+		}
+	}
+	 
+	 /*frim relatorios*/
 		
 }

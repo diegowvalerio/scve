@@ -133,6 +133,7 @@ public class BeanEditaMovimento implements Serializable {
 	}
 	
 	public String salvar() {
+		movimento.setPerc_comissao(movimento.getVendresp().getPerc_comissao());
 		movimento.setTotalvenda(totalvenda);
 		servico.salvar(movimento);
 		lista = servico.consultar();

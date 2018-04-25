@@ -208,7 +208,128 @@ public class Relatorio <T>{
 		}
 		
 	}
+	
+	/*movimentacao*/
+	public void rel_movimentacoes_lista(String filtro_tipo,String filtro_vendedor,String filtro_vendedor1,String filtro_cliente,String filtro_cliente1,Date filtro_data, Date filtro_data1){
+		try{
+			String caminho = "";
+			caminho = Faces.getRealPath("/pages/reports/movimentacoes/Movimentacoes");
+			String caminhoimagem = Faces.getRealPath("/pages/reports/scve.png");
+			JasperCompileManager.compileReportToFile(caminho+".jrxml");
+			JasperReport rp = (JasperReport) JRLoader.loadObjectFromFile(caminho+".jasper");
+			
+			Map<String, Object> params = new HashMap<String, Object>();
+			
+			if (filtro_tipo.equals("T")){
+				params.put("TIPO", "%%");
+			}else{
+				params.put("TIPO", filtro_tipo);
+			}
+			
+			if(filtro_cliente.equals("")){
+				params.put("CLIENTE", 0);
+				params.put("CLIENTE1", 999999999);
+			}else{
+				params.put("CLIENTE", Integer.parseInt(filtro_cliente));
+				params.put("CLIENTE", Integer.parseInt(filtro_cliente1));
+			}
+			
+			if(filtro_vendedor.equals("")){
+				params.put("VENDEDOR", 0);
+				params.put("VENDEDOR1", 999999999);
+			}else{
+				params.put("VENDEDOR", Integer.parseInt(filtro_vendedor));
+				params.put("VENDEDOR1", Integer.parseInt(filtro_vendedor));
+			}			
+			
+			params.put("DATA", filtro_data);
+			params.put("DATA1", filtro_data1);
+						
+			params.put("LOGOS", caminhoimagem);
+			
+			
+			ByteArrayOutputStream baos = new ByteArrayOutputStream();
+			JasperPrint print = JasperFillManager.fillReport(rp, params,  getConexao());
+						
+			
+			JasperExportManager.exportReportToPdfStream(print, baos);
+			
+			response.reset();
+			response.setContentType("application/pdf");
+			response.setContentLength(baos.size());
+			response.setHeader("Content-disposition","inline; filename=relatorio.pdf");
+			response.getOutputStream().write(baos.toByteArray());
+			response.getOutputStream().flush();
+			response.getOutputStream().close();
+			context.responseComplete();
+			closeConnection();
+			
+		}catch(Exception e){
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Erro ao gerar o relatorio!"));
+		}
+		
+	}
 
+	/*comissao*/
+	public void rel_comissao_lista(String filtro_tipo,String filtro_vendedor,String filtro_vendedor1,String filtro_cliente,String filtro_cliente1,Date filtro_data, Date filtro_data1){
+		try{
+			String caminho = "";
+			caminho = Faces.getRealPath("/pages/reports/movimentacoes/Comissao");
+			String caminhoimagem = Faces.getRealPath("/pages/reports/scve.png");
+			JasperCompileManager.compileReportToFile(caminho+".jrxml");
+			JasperReport rp = (JasperReport) JRLoader.loadObjectFromFile(caminho+".jasper");
+			
+			Map<String, Object> params = new HashMap<String, Object>();
+			
+			if (filtro_tipo.equals("T")){
+				params.put("TIPO", "%%");
+			}else{
+				params.put("TIPO", filtro_tipo);
+			}
+			
+			if(filtro_cliente.equals("")){
+				params.put("CLIENTE", 0);
+				params.put("CLIENTE1", 999999999);
+			}else{
+				params.put("CLIENTE", Integer.parseInt(filtro_cliente));
+				params.put("CLIENTE1", Integer.parseInt(filtro_cliente1));
+			}
+			
+			if(filtro_vendedor.equals("")){
+				params.put("VENDEDOR", 0);
+				params.put("VENDEDOR1", 999999999);
+			}else{
+				params.put("VENDEDOR", Integer.parseInt(filtro_vendedor));
+				params.put("VENDEDOR1", Integer.parseInt(filtro_vendedor1));
+			}			
+			
+			params.put("DATA", filtro_data);
+			params.put("DATA1", filtro_data1);
+						
+			params.put("LOGOS", caminhoimagem);
+			
+			
+			ByteArrayOutputStream baos = new ByteArrayOutputStream();
+			JasperPrint print = JasperFillManager.fillReport(rp, params,  getConexao());
+						
+			
+			JasperExportManager.exportReportToPdfStream(print, baos);
+			
+			response.reset();
+			response.setContentType("application/pdf");
+			response.setContentLength(baos.size());
+			response.setHeader("Content-disposition","inline; filename=relatorio.pdf");
+			response.getOutputStream().write(baos.toByteArray());
+			response.getOutputStream().flush();
+			response.getOutputStream().close();
+			context.responseComplete();
+			closeConnection();
+			
+		}catch(Exception e){
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Erro ao gerar o relatorio!"));
+		}
+		
+	}
 	/*conexao*/
 	private Connection getConexao(){
 		try {
