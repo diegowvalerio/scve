@@ -164,6 +164,8 @@ public class ServicoVendedor implements Serializable {
 		return v;
 	}
 	
+	
+	/*SERvidor WS*/
 	public Vendedor loginVendedor(Integer id){
 		return dao.consultar(id);
 	}
