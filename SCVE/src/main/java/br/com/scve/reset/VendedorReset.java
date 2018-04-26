@@ -11,6 +11,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import br.com.scve.entidades.Vendedor;
+import br.com.scve.entidades.WsVendedor;
 import br.com.scve.modelo.servico.ServicoVendedor;
 
 
@@ -31,11 +32,19 @@ public class VendedorReset {
 		return lista;
 	}
 	
-	@GET
+	/*@GET
 	@Produces({MediaType.APPLICATION_JSON})
 	@Path("/{id}")
 	public Vendedor loginVendedor(@PathParam("id") Integer id){
 		Vendedor vendedor = servico.loginVendedor(id);
+		return vendedor;
+	}*/
+	
+	@GET
+	@Produces({MediaType.APPLICATION_JSON})
+	@Path("/{id}")
+	public WsVendedor wsvendedor(@PathParam("id") Integer id){
+		WsVendedor vendedor = servico.wsvendedor(id);
 		return vendedor;
 	}
 	

@@ -37,6 +37,8 @@ public interface DAOGenerico<E> {
 	public List<E> consultarAtivos();
 	
 	
+	/*ws*/
+	public E wsvendedor(Integer e);
 	
 	
 }

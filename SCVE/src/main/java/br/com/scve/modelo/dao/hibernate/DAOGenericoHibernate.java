@@ -282,4 +282,10 @@ public class DAOGenericoHibernate<E> implements DAOGenerico<E>, Serializable{
 		return criteria.list();
 	}
 	
+	/*ws*/
+	@Override
+	public E wsvendedor(Integer e){
+		return (E) manager.find(classeEntidade, e);
+	}
+	
 }

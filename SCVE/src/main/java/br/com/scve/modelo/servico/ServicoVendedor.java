@@ -9,11 +9,13 @@ import javax.inject.Inject;
 import br.com.scve.entidades.Pfisica;
 import br.com.scve.entidades.Pjuridica;
 import br.com.scve.entidades.Vendedor;
+import br.com.scve.entidades.WsVendedor;
 import br.com.scve.entidades.Contato;
 import br.com.scve.entidades.Endereco;
 import br.com.scve.modelo.dao.DAOPfisica;
 import br.com.scve.modelo.dao.DAOPjuridica;
 import br.com.scve.modelo.dao.DAOVendedor;
+import br.com.scve.modelo.dao.DAOWsVendedor;
 //import br.com.scve.modelo.dao.DAOContato;
 //import br.com.scve.modelo.dao.DAOEndereco;
 import br.com.scve.modelo.dao.hibernate.Transacao;
@@ -28,6 +30,8 @@ public class ServicoVendedor implements Serializable {
 	private DAOPfisica daoF;
 	@Inject
 	private DAOPjuridica daoJ;
+	@Inject 
+	private DAOWsVendedor daoWs;
 	
 	//@Inject
 	//private DAOEndereco daoEnde;
@@ -169,4 +173,8 @@ public class ServicoVendedor implements Serializable {
 	public Vendedor loginVendedor(Integer id){
 		return dao.consultar(id);
 	}
+	public WsVendedor wsvendedor(Integer id){
+		return daoWs.wsvendedor(id);
+	}	
+	
 }
