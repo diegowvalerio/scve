@@ -19,6 +19,7 @@ public class IniciaReset extends Application {
 	public void addReset(Set<Class<?>> resources){
 		resources.add(UsuarioReset.class);
 		resources.add(VendedorReset.class);
+		resources.add(EstadoReset.class);
 	}
 
 }
