@@ -4,9 +4,11 @@ import java.io.Serializable;
 import java.lang.Integer;
 import java.lang.String;
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @Table(name="tbestado")
+@XmlRootElement
 public class Estado implements Serializable {
 	private static final long serialVersionUID = 1L;
 	   
