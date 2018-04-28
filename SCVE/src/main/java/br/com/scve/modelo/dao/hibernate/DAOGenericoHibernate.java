@@ -1,22 +1,27 @@
 package br.com.scve.modelo.dao.hibernate;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.sql.JoinType;
 
 import br.com.scve.entidades.Cidade;
 import br.com.scve.entidades.Cliente;
+import br.com.scve.entidades.Endereco;
+import br.com.scve.entidades.Estado;
 import br.com.scve.entidades.ListaPrecoItem;
+import br.com.scve.entidades.Pessoa;
 import br.com.scve.entidades.Produto;
-import br.com.scve.entidades.TipoMv;
 import br.com.scve.entidades.TipoMvVend;
 import br.com.scve.entidades.Vendedor;
 import br.com.scve.modelo.dao.DAOGenerico;
@@ -286,6 +291,63 @@ public class DAOGenericoHibernate<E> implements DAOGenerico<E>, Serializable{
 	@Override
 	public E wsvendedor(Integer e){
 		return (E) manager.find(classeEntidade, e);
+	}
+	
+	@Override
+	public List<E> wscidadesPorclienteDovendedor(Integer e){
+		/*Session session = manager.unwrap(Session.class);
+		Transaction tx;
+		tx = session.beginTransaction();
+		String s = ("select e.idcidade,e.nome,e.estado_id from tbcidade e"
+										+"inner join tbendereco en on en.cidade_idcidade = e.idcidade"
+										+"inner join tbpessoa p on p.idpessoa = en.idpessoa"
+										+"inner join tbcliente c on c.idpessoa = p.idpessoa"
+										+"where en.idpessoa = ?");	
+		Query query = session.createSQLQuery(s).setParameter ("id",e);
+		List<E> lista =  query.getResultList();
+		tx.commit();
+		return lista;*/
+		
+		Session session = manager.unwrap(Session.class);
+		Criteria criteria = session.createCriteria(Pessoa.class,"p");
+		criteria.add(Restrictions.eq("p.vendresp.idpessoa", e));
+		List<Pessoa> pessoas = new ArrayList<>();
+		pessoas.addAll(criteria.list());
+		List<Endereco> enderecos = new ArrayList<>();
+		for(Pessoa pe : pessoas){
+			Pessoa p = new Pessoa();
+			p = pe;
+			enderecos.addAll(p.getEnderecos());
+		}
+		//List<Integer> ids ;
+		List<Cidade> cidades= new ArrayList<>();
+		for (Endereco en : enderecos){
+			Endereco end = new Endereco();
+			end = en;
+			Criteria criteria2 = session.createCriteria(Cidade.class,"c");
+			criteria2.add(Restrictions.eq("c.idcidade", end.getCidade().getIdcidade()));
+			cidades.addAll(criteria2.list());
+		}
+		
+		//List<Integer> idss ;
+		List<Estado> estados= new ArrayList<>();
+		List<E> cidadess= new ArrayList<>();
+		for (Cidade cid : cidades){
+			Cidade cids = new Cidade();
+			cids = cid;
+			Criteria criteria3 = session.createCriteria(Estado.class,"c");
+			criteria3.add(Restrictions.eq("c.idestado", cids.getEstado().getIdestado()));
+			estados.addAll(criteria3.list());
+		}
+		
+		for(Estado es : estados){
+			Estado est = new Estado();
+			est = es;
+			Criteria criteria4 = session.createCriteria(Cidade.class,"c");
+			criteria4.add(Restrictions.eq("c.estado.idestado", est.getIdestado()));
+			cidadess.addAll(criteria4.list());
+		}
+		return cidadess;
 	}
 	
 }

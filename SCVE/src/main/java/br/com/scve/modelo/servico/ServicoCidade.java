@@ -48,4 +48,9 @@ public class ServicoCidade implements Serializable{
 		}
 		return v;
 	}
+	
+	/*ws*/
+	public List<Cidade> buscacidadePorclienteDovendedor(Integer e){
+		return dao.wscidadesPorclienteDovendedor(e);
+	}
 }
