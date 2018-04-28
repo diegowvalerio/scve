@@ -4,9 +4,11 @@ import java.io.Serializable;
 import java.lang.Integer;
 import java.lang.String;
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @Table(name="tbcidade")
+@XmlRootElement
 public class Cidade implements Serializable {
 	private static final long serialVersionUID = 1L;
 	   

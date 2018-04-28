@@ -20,6 +20,7 @@ public class IniciaReset extends Application {
 		resources.add(UsuarioReset.class);
 		resources.add(VendedorReset.class);
 		resources.add(EstadoReset.class);
+		resources.add(CidadeReset.class);
 	}
 
 }
