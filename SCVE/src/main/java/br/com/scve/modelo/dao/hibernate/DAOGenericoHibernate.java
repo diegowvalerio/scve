@@ -315,9 +315,9 @@ public class DAOGenericoHibernate<E> implements DAOGenerico<E>, Serializable{
 		pessoas.addAll(criteria.list());
 		List<Endereco> enderecos = new ArrayList<>();
 		for(Pessoa pe : pessoas){
-			Pessoa p = new Pessoa();
-			p = pe;
-			enderecos.addAll(p.getEnderecos());
+			//Pessoa p = new Pessoa();
+			//p = pe;
+			enderecos.addAll(pe.getEnderecos());
 		}
 		//List<Integer> ids ;
 		List<Cidade> cidades= new ArrayList<>();
@@ -327,6 +327,7 @@ public class DAOGenericoHibernate<E> implements DAOGenerico<E>, Serializable{
 			Criteria criteria2 = session.createCriteria(Cidade.class,"c");
 			criteria2.add(Restrictions.eq("c.idcidade", end.getCidade().getIdcidade()));
 			cidades.addAll(criteria2.list());
+			
 		}
 		
 		//List<Integer> idss ;
@@ -335,21 +336,21 @@ public class DAOGenericoHibernate<E> implements DAOGenerico<E>, Serializable{
 		for (Cidade cid : cidades){
 			Cidade cids = new Cidade();
 			cids = cid;
+			//if(cidades.contains(cids)){
 			Criteria criteria3 = session.createCriteria(Estado.class,"c");
 			criteria3.add(Restrictions.eq("c.idestado", cids.getEstado().getIdestado()));
 			estados.addAll(criteria3.list());
+			//cidades.remove(cids);
+			//} 
 		}
 		
 		for(Estado es : estados){
 			Estado est = new Estado();
 			est = es;
-			if(estados.contains(est)){
 			Criteria criteria4 = session.createCriteria(Cidade.class,"c");
 			criteria4.add(Restrictions.eq("c.estado.idestado", est.getIdestado()));
 			cidadess.addAll(criteria4.list());
-			
-			estados.remove(est);
-			}
+						
 		}
 		return cidadess;
 	}
