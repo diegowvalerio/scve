@@ -343,9 +343,13 @@ public class DAOGenericoHibernate<E> implements DAOGenerico<E>, Serializable{
 		for(Estado es : estados){
 			Estado est = new Estado();
 			est = es;
+			if(estados.contains(est)){
 			Criteria criteria4 = session.createCriteria(Cidade.class,"c");
 			criteria4.add(Restrictions.eq("c.estado.idestado", est.getIdestado()));
 			cidadess.addAll(criteria4.list());
+			
+			estados.remove(est);
+			}
 		}
 		return cidadess;
 	}
