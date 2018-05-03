@@ -12,6 +12,8 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.ProjectionList;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.sql.JoinType;
 
@@ -295,18 +297,6 @@ public class DAOGenericoHibernate<E> implements DAOGenerico<E>, Serializable{
 	
 	@Override
 	public List<E> wscidadesPorclienteDovendedor(Integer e){
-		/*Session session = manager.unwrap(Session.class);
-		Transaction tx;
-		tx = session.beginTransaction();
-		String s = ("select e.idcidade,e.nome,e.estado_id from tbcidade e"
-										+"inner join tbendereco en on en.cidade_idcidade = e.idcidade"
-										+"inner join tbpessoa p on p.idpessoa = en.idpessoa"
-										+"inner join tbcliente c on c.idpessoa = p.idpessoa"
-										+"where en.idpessoa = ?");	
-		Query query = session.createSQLQuery(s).setParameter ("id",e);
-		List<E> lista =  query.getResultList();
-		tx.commit();
-		return lista;*/
 		
 		Session session = manager.unwrap(Session.class);
 		Criteria criteria = session.createCriteria(Pessoa.class,"p");
@@ -344,14 +334,25 @@ public class DAOGenericoHibernate<E> implements DAOGenerico<E>, Serializable{
 			//} 
 		}
 		
-		for(Estado es : estados){
-			Estado est = new Estado();
-			est = es;
-			Criteria criteria4 = session.createCriteria(Cidade.class,"c");
-			criteria4.add(Restrictions.eq("c.estado.idestado", est.getIdestado()));
-			cidadess.addAll(criteria4.list());
-						
+		List<Integer> idestados = new ArrayList<>();
+		for (Estado es : estados){
+			idestados.add(es.getIdestado());
 		}
+		
+		Criteria criteria4 = session.createCriteria(Cidade.class,"c");
+		criteria4.add(Restrictions.in("c.estado.idestado", idestados));	
+			
+		/*agrupar*/
+		/*ProjectionList projList = Projections.projectionList();
+		projList.add(Projections.property("idcidade"));
+		//projList.add(Projections.property("nome"));
+		//projList.add(Projections.property("estado"));
+	    projList.add(Projections.groupProperty("idcidade"));
+	    //projList.add(Projections.groupProperty("nome"));
+	    //projList.add(Projections.groupProperty("estado"));
+	    criteria4.setProjection(projList);*/
+	    
+		cidadess.addAll(criteria4.list());
 		return cidadess;
 	}
 	
