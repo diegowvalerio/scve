@@ -63,13 +63,13 @@ public class Pessoa implements Serializable {
 	@JoinColumn(nullable = true)
 	private Vendedor vendresp;
 	
-	@XmlElementWrapper(name="contatos")
-	@XmlElement(name="contato")
+	@XmlElementWrapper(name="contato")
+	@XmlElement(name="contatos")
 	@OneToMany(mappedBy="pessoa", cascade ={CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE },orphanRemoval = true,fetch = FetchType.EAGER)
 	@Fetch(FetchMode.SUBSELECT)
     private List<Contato> contatos = new ArrayList<>();
 	
-	@XmlElementWrapper(name="enderecos")
+	@XmlElementWrapper(name="endereco")
 	@XmlElement(name="endereco")
 	@OneToMany(mappedBy="pessoa", cascade ={CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE },orphanRemoval = true,fetch = FetchType.EAGER)
 	@Fetch(FetchMode.SUBSELECT)
