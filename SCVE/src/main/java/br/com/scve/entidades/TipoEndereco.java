@@ -4,9 +4,11 @@ import java.io.Serializable;
 import java.lang.Integer;
 import java.lang.String;
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @Table(name="tbtipoendereco")
+@XmlRootElement
 public class TipoEndereco implements Serializable {
 	private static final long serialVersionUID = 1L;
 	   
