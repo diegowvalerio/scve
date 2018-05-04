@@ -22,6 +22,7 @@ public class IniciaReset extends Application {
 		resources.add(EstadoReset.class);
 		resources.add(CidadeReset.class);
 		resources.add(TipoEnderecoReset.class);
+		resources.add(PessoaReset.class);
 	}
 
 }
