@@ -35,14 +35,14 @@ public class PessoaReset {
 		return lista;
 	}
 	
-	/*@GET
+	@GET
 	@Produces({MediaType.APPLICATION_JSON})
 	@Path("/{id}")
-	public List<Pessoa> buscaTodasCidadesp(@PathParam("id") Integer id){
-		lista = servico.buscacidadePorclienteDovendedor(id);
+	public List<Pessoa> buscaPessoasPorVendedor(@PathParam("id") Integer id){
+		lista = servico.wspessoas(id);
 		//List<Usuario> users = new ArrayList<>();
 		//users.addAll(lista);
 		return lista;
 	}
-*/
+
 }

@@ -27,4 +27,9 @@ public class ServicoPessoa implements Serializable{
 		return dao.consultar();
 	}
 	
+	/*ws*/
+	public List<Pessoa> wspessoas(Integer id){
+		return dao.wspessoas(id);
+	}
+	
 }

@@ -356,4 +356,14 @@ public class DAOGenericoHibernate<E> implements DAOGenerico<E>, Serializable{
 		return cidadess;
 	}
 	
+	@Override
+	public List<E> wspessoas(Integer e){
+		
+		Session session = manager.unwrap(Session.class);
+		Criteria criteria = session.createCriteria(Pessoa.class,"p");
+		criteria.add(Restrictions.eq("p.vendresp.idpessoa", e));
+		
+		return criteria.list();
+	}
+	
 }

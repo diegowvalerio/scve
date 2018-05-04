@@ -41,6 +41,9 @@ public interface DAOGenerico<E> {
 	public E wsvendedor(Integer e);
 	/*consultar cidades por cliente do vendedor especifico*/
 	public List<E> wscidadesPorclienteDovendedor(Integer e);
+	/*consultar pessoas por vendedor com vendedor is not null*/
+	public List<E> wspessoas(Integer e);
+	
 	
 	
 }
