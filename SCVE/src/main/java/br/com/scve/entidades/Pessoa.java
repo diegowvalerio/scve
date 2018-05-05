@@ -64,7 +64,7 @@ public class Pessoa implements Serializable {
 	private Vendedor vendresp;
 	
 	@XmlElementWrapper(name="contato")
-	@XmlElement(name="contatos")
+	@XmlElement(name="contato")
 	@OneToMany(mappedBy="pessoa", cascade ={CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE },orphanRemoval = true,fetch = FetchType.EAGER)
 	@Fetch(FetchMode.SUBSELECT)
     private List<Contato> contatos = new ArrayList<>();
