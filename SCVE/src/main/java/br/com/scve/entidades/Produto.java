@@ -5,9 +5,11 @@ import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @Table(name="tbproduto")
+@XmlRootElement
 public class Produto implements Serializable {
 
 	   

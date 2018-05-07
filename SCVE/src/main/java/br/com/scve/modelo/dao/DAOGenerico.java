@@ -43,7 +43,8 @@ public interface DAOGenerico<E> {
 	public List<E> wscidadesPorclienteDovendedor(Integer e);
 	/*consultar pessoas por vendedor com vendedor is not null*/
 	public List<E> wspessoas(Integer e);
-	
+	/*busca tipomv por vendedor*/
+	public List<E> wstipomv(Integer e);	
 	
 	
 }

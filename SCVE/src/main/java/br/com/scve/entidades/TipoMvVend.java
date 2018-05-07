@@ -2,11 +2,19 @@ package br.com.scve.entidades;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlRootElement;
 
 
 
 @Entity
 @Table(name="tbtipomv_vend")
+@XmlRootElement
 public class TipoMvVend implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -20,7 +28,6 @@ public class TipoMvVend implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "idpessoa", referencedColumnName="idpessoa",insertable =false,updatable=false)
 	private Vendedor vendedor;
-	
 		
 	@ManyToOne
 	@JoinColumn(name = "idmv", referencedColumnName="idmv",insertable =false,updatable=false)

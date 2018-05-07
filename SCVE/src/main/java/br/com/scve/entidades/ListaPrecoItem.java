@@ -5,10 +5,12 @@ import java.lang.Double;
 import java.util.Date;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 
 
 @Entity
 @Table(name="tblistaprecoitem")
+@XmlRootElement
 public class ListaPrecoItem implements Serializable {
 	private static final long serialVersionUID = 1L;
 	

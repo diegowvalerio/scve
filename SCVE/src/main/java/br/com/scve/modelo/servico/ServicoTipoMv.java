@@ -56,5 +56,10 @@ public class ServicoTipoMv implements Serializable{
 		
 	}
 	
+	/*ws*/
+	public List<TipoMvVend> wstipomv(Integer id){
+		return daoV.wstipomv(id);
+	}
+	
 
 }

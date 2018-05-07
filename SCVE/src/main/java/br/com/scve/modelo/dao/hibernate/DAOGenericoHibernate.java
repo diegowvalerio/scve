@@ -24,6 +24,7 @@ import br.com.scve.entidades.Estado;
 import br.com.scve.entidades.ListaPrecoItem;
 import br.com.scve.entidades.Pessoa;
 import br.com.scve.entidades.Produto;
+import br.com.scve.entidades.TipoMv;
 import br.com.scve.entidades.TipoMvVend;
 import br.com.scve.entidades.Vendedor;
 import br.com.scve.modelo.dao.DAOGenerico;
@@ -362,6 +363,15 @@ public class DAOGenericoHibernate<E> implements DAOGenerico<E>, Serializable{
 		Session session = manager.unwrap(Session.class);
 		Criteria criteria = session.createCriteria(Pessoa.class,"p");
 		criteria.add(Restrictions.eq("p.vendresp.idpessoa", e));
+		
+		return criteria.list();
+	}
+	
+	@Override
+	public List<E> wstipomv(Integer e){
+		Session session = manager.unwrap(Session.class);
+		Criteria criteria = session.createCriteria(TipoMvVend.class,"p");
+		criteria.add(Restrictions.eq("p.vendedor.idpessoa", e));
 		
 		return criteria.list();
 	}
