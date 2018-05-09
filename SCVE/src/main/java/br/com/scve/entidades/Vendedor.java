@@ -6,6 +6,7 @@ import javax.persistence.*;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRegistry;
 import javax.xml.bind.annotation.XmlRootElement;
 
 
@@ -14,11 +15,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name="tbvendedor")
 @PrimaryKeyJoinColumn(name="idpessoa")
 @XmlRootElement
-@XmlAccessorType(XmlAccessType.FIELD)
 public class Vendedor extends Pessoa implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	@XmlElement
+	//@XmlElement
 	@Column(nullable=true, columnDefinition="numeric(5,2)")
 	private double perc_comissao;
 	
