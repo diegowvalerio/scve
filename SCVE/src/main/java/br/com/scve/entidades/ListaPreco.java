@@ -19,27 +19,27 @@ import javax.xml.bind.annotation.XmlRootElement;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
+import com.google.gson.annotations.Expose;
+
 @Entity
 @Table(name="tblistapreco")
-@XmlRootElement
-@XmlAccessorType(XmlAccessType.FIELD)
 public class ListaPreco implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	
 	@Id
 	@GeneratedValue (strategy=GenerationType.IDENTITY)
-	@XmlElement
+	@Expose
 	private Integer idlista;
 	@Column(nullable=false,columnDefinition="varchar(150)")
-	@XmlElement
+	@Expose
 	private String nome;
 	@Column(nullable=false)
 	@Temporal(TemporalType.DATE)
+	@Expose
 	private Date dtcadastro;
 	
-	@XmlElementWrapper(name="listaprecoiten")
-	@XmlElement(name="listaprecoiten")
+	@Expose
 	@OneToMany(mappedBy="listapreco", cascade ={CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE },orphanRemoval = true,fetch = FetchType.EAGER)
 	@Fetch(FetchMode.SUBSELECT)
     private List<ListaPrecoItem> listaprecoitens = new ArrayList<>();
@@ -47,8 +47,7 @@ public class ListaPreco implements Serializable {
 	public ListaPreco() {
 		super();
 	} 
-	@XmlAttribute    
-	@XmlID
+
 	public Integer getIdlista() {
 		return this.idlista;
 	}

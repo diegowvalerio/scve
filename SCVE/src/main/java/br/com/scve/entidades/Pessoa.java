@@ -32,45 +32,43 @@ import javax.xml.bind.annotation.XmlElement;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
+import com.google.gson.annotations.Expose;
+
 
 @Entity
 @Table(name="tbpessoa")
 @Inheritance(strategy = InheritanceType.JOINED)
-@XmlRootElement
-@XmlAccessorType(XmlAccessType.FIELD)
 public class Pessoa implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue (strategy=GenerationType.IDENTITY)
-	@XmlElement
+	@Expose
 	private Integer idpessoa;
-	@XmlElement
+	@Expose
 	@Column(nullable=false,columnDefinition="varchar(250)")
 	private String nome;
+	@Expose
 	@Column(nullable=false) 
-	@XmlElement
 	@Temporal(TemporalType.DATE)
 	private Date dtcadastro;
-	@XmlElement
+	@Expose
 	@Column(nullable=false, columnDefinition= "BOOLEAN DEFAULT TRUE")
 	private Boolean situacao;
-	@XmlElement
+	@Expose
 	@Column(nullable=false)
 	private String tipojf;
-	@XmlElement
+	@Expose
 	@ManyToOne
 	@JoinColumn(nullable = true)
 	private Vendedor vendresp;
 	
-	@XmlElementWrapper(name="contato")
-	@XmlElement(name="contato")
+	@Expose
 	@OneToMany(mappedBy="pessoa", cascade ={CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE },orphanRemoval = true,fetch = FetchType.EAGER)
 	@Fetch(FetchMode.SUBSELECT)
     private List<Contato> contatos = new ArrayList<>();
 	
-	@XmlElementWrapper(name="endereco")
-	@XmlElement(name="endereco")
+	@Expose
 	@OneToMany(mappedBy="pessoa", cascade ={CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE },orphanRemoval = true,fetch = FetchType.EAGER)
 	@Fetch(FetchMode.SUBSELECT)
     private List<Endereco> enderecos = new ArrayList<>();

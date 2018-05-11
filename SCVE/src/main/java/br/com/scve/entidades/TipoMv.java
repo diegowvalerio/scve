@@ -20,29 +20,34 @@ import javax.xml.bind.annotation.XmlTransient;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 @Entity
 @Table(name="tbtipomv")
-@XmlRootElement
-@XmlAccessorType(XmlAccessType.FIELD)
+//@XmlRootElement
+//@XmlAccessorType(XmlAccessType.FIELD)
 public class TipoMv implements Serializable {
 	private static final long serialVersionUID = 1L;
 	   
 	@Id
 	@GeneratedValue (strategy=GenerationType.IDENTITY)
-	@XmlElement
+	//@XmlElement
+	@Expose
 	private Integer idmv;
 	@Column(nullable=false,columnDefinition="varchar(150)")
-	@XmlElement
+	//@XmlElement
+	@Expose
 	private String nome;
-	
+	@Expose
 	@Column(nullable=false, columnDefinition= "BOOLEAN DEFAULT TRUE")
-	@XmlElement
+	//@XmlElement
 	private Boolean situacao;
 	
 
-	//@XmlElementWrapper(name="tipomvvend")
-	//@XmlElement(name="tipomvvend")
-	@XmlTransient
+	
+	//@XmlTransient
+	@Expose(serialize=false)
 	@OneToMany(mappedBy="tipomv", cascade ={CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE ,CascadeType.REFRESH},orphanRemoval = true,fetch = FetchType.EAGER)
 	@Fetch(FetchMode.SUBSELECT)
     private List<TipoMvVend> tipomvvends = new ArrayList<>();
@@ -51,8 +56,8 @@ public class TipoMv implements Serializable {
 		super();
 	} 
 	
-	@XmlAttribute    
-	@XmlID
+	//@XmlAttribute    
+	//@XmlID
 	public Integer getIdmv() {
 		return this.idmv;
 	}

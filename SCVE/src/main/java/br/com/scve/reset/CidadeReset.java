@@ -10,6 +10,8 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import com.google.gson.Gson;
+
 import br.com.scve.entidades.Cidade;
 import br.com.scve.modelo.servico.ServicoCidade;
 
@@ -23,7 +25,7 @@ public class CidadeReset {
 	@Inject
 	private ServicoCidade servico;
 	private List<Cidade> lista;
-	
+	/*
 	@GET
 	@Produces({MediaType.APPLICATION_JSON})
 	public List<Cidade> buscaTodasCidades(){
@@ -31,6 +33,14 @@ public class CidadeReset {
 		//List<Usuario> users = new ArrayList<>();
 		//users.addAll(lista);
 		return lista;
+	}
+	*/
+	@GET
+	@Produces({MediaType.APPLICATION_JSON})
+	public String buscaTodasCidades(){
+		lista = servico.consultar();
+		String e = new Gson().toJson(lista);
+		return e;
 	}
 	
 	@GET

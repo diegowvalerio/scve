@@ -6,24 +6,30 @@ import java.lang.String;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import com.google.gson.annotations.Expose;
+
 
 
 @Entity
 @Table(name="tbcontato")
-@XmlRootElement
 public class Contato implements Serializable {
 	private static final long serialVersionUID = 1L;
 	   
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Expose
 	private Integer idcontato;
 	@Column(nullable=false,columnDefinition="varchar(150)")
+	@Expose
 	private String nome;
 	@Column(nullable=false,columnDefinition="varchar(100)")
+	@Expose
 	private String email;
 	@Column(nullable=false,columnDefinition="varchar(3)")
+	@Expose
 	private String ddd;
 	@Column(nullable=false,columnDefinition="varchar(9)")
+	@Expose
 	private String numero;
 	
 	@ManyToOne

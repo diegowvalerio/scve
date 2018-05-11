@@ -9,16 +9,18 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRegistry;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import com.google.gson.annotations.Expose;
+
 
 
 @Entity
 @Table(name="tbvendedor")
 @PrimaryKeyJoinColumn(name="idpessoa")
-@XmlRootElement
 public class Vendedor extends Pessoa implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	//@XmlElement
+	@Expose
 	@Column(nullable=true, columnDefinition="numeric(5,2)")
 	private double perc_comissao;
 	

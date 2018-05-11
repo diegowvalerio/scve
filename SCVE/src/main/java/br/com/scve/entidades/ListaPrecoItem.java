@@ -7,10 +7,11 @@ import java.util.Date;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import com.google.gson.annotations.Expose;
+
 
 @Entity
 @Table(name="tblistaprecoitem")
-@XmlRootElement
 public class ListaPrecoItem implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
@@ -22,9 +23,11 @@ public class ListaPrecoItem implements Serializable {
 		@AttributeOverride(name = "idproduto", column = @Column(name = "IDPRODUTO", nullable = false)) })
 	
 	@Column(nullable=false, columnDefinition="numeric(6,2)")
+	@Expose
 	private double valor;
 	@Column(nullable=false) 
 	@Temporal(TemporalType.DATE)
+	@Expose
 	private Date dtultimaalt;
 	
 	
@@ -32,6 +35,7 @@ public class ListaPrecoItem implements Serializable {
 	@JoinColumn(name = "idlista", referencedColumnName="idlista",insertable =false,updatable=false)
 	private ListaPreco listapreco;
 	
+	@Expose
 	@ManyToOne
 	@JoinColumn(name = "idproduto", referencedColumnName="idproduto",insertable =false,updatable=false)
 	private Produto produto;

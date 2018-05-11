@@ -5,13 +5,10 @@ import java.lang.String;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
-
-
-
+import com.google.gson.annotations.Expose;
 
 @Entity
 @Table(name="tbendereco")
-@XmlRootElement
 public class Endereco implements Serializable {
 	private static final long serialVersionUID = 1L;	
 	
@@ -23,18 +20,24 @@ public class Endereco implements Serializable {
 		@AttributeOverride(name = "idtipoend", column = @Column(name = "IDTIPOEND", nullable = false)) })
 	
 	@Column(nullable=false,columnDefinition="varchar(100)")
+	@Expose
 	private String logadouro;
 	@Column(nullable=false,columnDefinition="varchar(10)")
+	@Expose
 	private String numero;
 	@Column(nullable=false,columnDefinition="varchar(10)")
+	@Expose
 	private String cep;
 	@Column(nullable=false,columnDefinition="varchar(40)")
+	@Expose
 	private String bairro;
 	@Column(nullable=true,columnDefinition="varchar(150)")
+	@Expose
 	private String complemento;
+	@Expose
 	@ManyToOne
 	private Cidade cidade;		
-	
+	@Expose
 	@ManyToOne
 	@JoinColumn(name = "idtipoend" , referencedColumnName="idtipoend" , insertable =false,updatable=false)
 	private TipoEndereco tipoendereco;

@@ -6,16 +6,19 @@ import java.lang.String;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import com.google.gson.annotations.Expose;
+
 @Entity
 @Table(name="tbtipoendereco")
-@XmlRootElement
 public class TipoEndereco implements Serializable {
 	private static final long serialVersionUID = 1L;
 	   
 	@Id
 	@GeneratedValue (strategy=GenerationType.IDENTITY)
+	@Expose
 	private Integer idtipoend;
 	@Column(nullable=false,columnDefinition="varchar(40)")
+	@Expose
 	private String nome;
 	
 

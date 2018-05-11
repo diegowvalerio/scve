@@ -10,6 +10,8 @@ import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlID;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import com.google.gson.annotations.Expose;
+
 
 
 @Entity
@@ -24,18 +26,18 @@ public class TipoMvVend implements Serializable {
 	@AttributeOverrides( {
 		@AttributeOverride(name = "idpessoa", column = @Column(name = "IDPESSOA", nullable = false)),
 		@AttributeOverride(name = "idmv", column = @Column(name = "IDMV", nullable = false)) })
-	
+	@Expose
 	@ManyToOne
 	@JoinColumn(name = "idpessoa", referencedColumnName="idpessoa",insertable =false,updatable=false)
 	private Vendedor vendedor;
-		
+	@Expose	
 	@ManyToOne
 	@JoinColumn(name = "idmv", referencedColumnName="idmv",insertable =false,updatable=false)
 	private TipoMv tipomv;
-	
+	@Expose
 	@ManyToOne
 	private ListaPreco listapreco;
-	
+	@Expose
 	@ManyToOne
 	@JoinColumn(nullable = true)
 	private ListaPreco listaprecopromocao;

@@ -6,18 +6,22 @@ import java.lang.String;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import com.google.gson.annotations.Expose;
+
 @Entity
 @Table(name="tbestado")
-@XmlRootElement
 public class Estado implements Serializable {
 	private static final long serialVersionUID = 1L;
 	   
 	@Id
 	@GeneratedValue (strategy=GenerationType.IDENTITY)
+	@Expose
 	private Integer idestado;
 	@Column(nullable=false,columnDefinition="varchar(50)")
+	@Expose
 	private String nome;
 	@Column(nullable=false,columnDefinition="varchar(2)")
+	@Expose
 	private String sigla;
 	
 

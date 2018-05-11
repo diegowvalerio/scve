@@ -7,22 +7,28 @@ import java.lang.String;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import com.google.gson.annotations.Expose;
+
 @Entity
 @Table(name="tbproduto")
-@XmlRootElement
 public class Produto implements Serializable {
 
 	   
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Expose
 	private Integer idproduto;
 	@Column(nullable=false,columnDefinition="varchar(300)")
+	@Expose
 	private String descricao;
 	@Column(nullable=false,columnDefinition="varchar(100)")
+	@Expose
 	private String descabreviada;
 	@Column(nullable=false,columnDefinition="varchar(13)")
+	@Expose
 	private String ean;
 	@Column(nullable=false, columnDefinition= "BOOLEAN DEFAULT TRUE")
+	@Expose
 	private Boolean situacao;
 	private static final long serialVersionUID = 1L;
 

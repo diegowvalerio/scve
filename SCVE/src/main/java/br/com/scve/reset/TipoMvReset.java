@@ -1,5 +1,6 @@
 package br.com.scve.reset;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
@@ -9,6 +10,9 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import br.com.scve.entidades.TipoMv;
 import br.com.scve.entidades.TipoMvVend;
@@ -25,7 +29,7 @@ public class TipoMvReset {
 	private ServicoTipoMv servico;
 	private List<TipoMv> lista;
 	private List<TipoMvVend> lista2;
-	
+	/*
 	@GET
 	@Produces({MediaType.APPLICATION_JSON})
 	public List<TipoMv> buscaTipoMv(){
@@ -34,15 +38,27 @@ public class TipoMvReset {
 		//users.addAll(lista);
 		return lista;
 	}
+	*/
+	@GET
+	@Produces({MediaType.APPLICATION_JSON})
+	public String buscaTipoMv(){
+		lista = servico.consultar();
+		List<TipoMv> l = new ArrayList<>();
+		l.addAll(lista);
+		Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create(); 
+	    String tipomv = gson.toJson(l);
+		return tipomv;
+	}
+	
 	
 	@GET
 	@Produces({MediaType.APPLICATION_JSON})
 	@Path("/{id}")
-	public List<TipoMvVend> buscaTipoMvVendedor(@PathParam("id") Integer id){
+	public String buscaTipoMvVendedor(@PathParam("id") Integer id){
 		lista2 = servico.wstipomv(id);
-		//List<Usuario> users = new ArrayList<>();
-		//users.addAll(lista);
-		return lista2;
+		Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create(); 
+	    String tipomvvend = gson.toJson(lista2);
+		return tipomvvend;
 	}
 
 }
