@@ -65,7 +65,7 @@ public class PessoaReset {
 	@Path("/{id}")
 	public String buscaPessoasPorVendedor(@PathParam("id") Integer id){
 		lista = servico.wspessoas(id);
-		Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create(); 
+		Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().setDateFormat("dd-MM-yyyy").create(); 
 	    String pessoa = gson.toJson(lista);
 		
 		return pessoa;

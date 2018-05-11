@@ -56,7 +56,7 @@ public class TipoMvReset {
 	@Path("/{id}")
 	public String buscaTipoMvVendedor(@PathParam("id") Integer id){
 		lista2 = servico.wstipomv(id);
-		Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create(); 
+		Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().setDateFormat("dd-MM-yyyy").create();
 	    String tipomvvend = gson.toJson(lista2);
 		return tipomvvend;
 	}
