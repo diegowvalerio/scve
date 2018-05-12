@@ -91,6 +91,12 @@ public class ServicoCliente implements Serializable {
 	public List<Cliente> consultar() {
 		return dao.consultar();
 	}
+	public List<Pfisica> consultarF() {
+		return daoF.consultar();
+	}
+	public List<Pjuridica> consultarJ() {
+		return daoJ.consultar();
+	}
 
 	public Pfisica consultarPfisica(Integer id) {
 

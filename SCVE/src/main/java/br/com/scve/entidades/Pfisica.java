@@ -7,6 +7,8 @@ import java.util.Date;
 
 import javax.persistence.*;
 
+import com.google.gson.annotations.Expose;
+
 @Entity
 @Table(name="tbfisica")
 //@PrimaryKeyJoinColumn(name="idpessoa")
@@ -16,14 +18,18 @@ public class Pfisica implements Serializable{
 	@Id
 	@OneToOne
 	@JoinColumn(name = "idpessoa", referencedColumnName = "idpessoa")
+	@Expose
 	private Pessoa pessoa;
 	
 	@Column(nullable=false, columnDefinition="varchar(14)", unique=true)
+	@Expose
 	private String cpf;
 	@Column(nullable=false)
 	@Temporal(TemporalType.DATE)
+	@Expose
 	private Date dtnasc;
 	@Column(nullable=false, columnDefinition="varchar(14)")
+	@Expose
 	private String rg;
 	
 	

@@ -5,6 +5,8 @@ import java.io.Serializable;
 import java.lang.String;
 import javax.persistence.*;
 
+import com.google.gson.annotations.Expose;
+
 @Entity
 @Table(name="tbjuridica")
 //@PrimaryKeyJoinColumn(name="idpessoa")
@@ -14,15 +16,20 @@ public class Pjuridica  implements Serializable {
 	@Id
 	@OneToOne
 	@JoinColumn(name = "idpessoa", referencedColumnName = "idpessoa")
+	@Expose
 	private Pessoa pessoa;
 	
 	@Column(nullable=false, columnDefinition="varchar(18)")
+	@Expose
 	private String cnpj;
 	@Column(nullable=false, columnDefinition="varchar(14)")
+	@Expose
 	private String insc_estadual;
 	@Column(nullable=false, columnDefinition="varchar(250)")
+	@Expose
 	private String razao_social;
 	@Column(nullable=true, columnDefinition="varchar(14)")
+	@Expose
 	private String insc_suframa;
 	
 
