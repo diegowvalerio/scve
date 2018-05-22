@@ -23,6 +23,8 @@ import br.com.scve.entidades.Endereco;
 import br.com.scve.entidades.Estado;
 import br.com.scve.entidades.ListaPrecoItem;
 import br.com.scve.entidades.Pessoa;
+import br.com.scve.entidades.Pfisica;
+import br.com.scve.entidades.Pjuridica;
 import br.com.scve.entidades.Produto;
 import br.com.scve.entidades.TipoMv;
 import br.com.scve.entidades.TipoMvVend;
@@ -374,6 +376,23 @@ public class DAOGenericoHibernate<E> implements DAOGenerico<E>, Serializable{
 		criteria.add(Restrictions.eq("p.vendedor.idpessoa", e));
 		
 		return criteria.list();
+	}
+	
+	@Override
+	public E wsPessoafisica(Integer e){
+		Session session = manager.unwrap(Session.class);
+		Criteria criteria = session.createCriteria(Pfisica.class,"p");
+		criteria.add(Restrictions.eq("p.pessoa.idpessoa", e));
+		
+		return (E) criteria.uniqueResult();
+	}
+	@Override
+	public E wsPessoajuridica(Integer e){
+		Session session = manager.unwrap(Session.class);
+		Criteria criteria = session.createCriteria(Pjuridica.class,"p");
+		criteria.add(Restrictions.eq("p.pessoa.idpessoa", e));
+		
+		return (E) criteria.uniqueResult();
 	}
 	
 }

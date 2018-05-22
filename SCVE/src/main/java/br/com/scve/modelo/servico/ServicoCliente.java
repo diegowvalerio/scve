@@ -139,4 +139,13 @@ public class ServicoCliente implements Serializable {
 	public List<Cliente> consultarAtivos(){
 		return dao.consultarAtivos();
 	}
+	
+	/*ws*/
+	public Pfisica consultaPfisicaWs(Integer id){
+		return daoF.wsPessoafisica(id);
+	}
+	public Pjuridica consultaPJuridicaWs(Integer id){
+		return daoJ.wsPessoajuridica(id);
+	}
+	
 }

@@ -1,5 +1,6 @@
 package br.com.scve.reset;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
@@ -29,36 +30,44 @@ public class FisicaJuridicaReset {
 	
 	@Inject
 	private ServicoCliente servico;
+	@Inject
 	private ServicoPessoa servicoP;
 	private List<Pessoa> listaC;
-	private List<Pfisica> listaF;
-	private List<Pjuridica> listaJ;
+	private List<Pfisica> listaF = new ArrayList<>();
+	private List<Pjuridica> listaJ = new ArrayList<>();
 	
 	@GET
 	@Produces({MediaType.APPLICATION_JSON})
-	@Path("/fisica/{id}")
-	public String buscadadosF(@PathParam("id") Integer id){
+	@Path("fisica/{id}")
+	public String buscaPessoasFisica(@PathParam("id") Integer id){
 		listaC = servicoP.wspessoas(id);
 		for(Pessoa p : listaC){
 			if(p.getTipojf().equals("F")){
-			Pfisica f = new Pfisica();
-			f= servico.consultarPfisica(p.getIdpessoa());
+			Pfisica f = servico.consultaPfisicaWs(p.getIdpessoa());
 			listaF.add(f);
 			}
 		}
-		Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().setDateFormat("dd-MM-yyyy").create();
-	    String fisica = gson.toJson(listaF);
-		return fisica;
+		Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().setDateFormat("dd/MM/yyyy").create(); 
+	    String pessoa = gson.toJson(listaF);
+		
+		return pessoa;
 	}
 	
 	@GET
 	@Produces({MediaType.APPLICATION_JSON})
-	@Path("/juridica")
-	public String buscadadosJ(){
-		listaJ = servico.consultarJ();
-		Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().setDateFormat("dd-MM-yyyy").create();
-	    String juridica = gson.toJson(listaJ);
-		return juridica;
+	@Path("juridica/{id}")
+	public String buscaPessoasJuridica(@PathParam("id") Integer id){
+		listaC = servicoP.wspessoas(id);
+		for(Pessoa p : listaC){
+			if(p.getTipojf().equals("J")){
+			Pjuridica j = servico.consultaPJuridicaWs(p.getIdpessoa());
+			listaJ.add(j);
+			}
+		}
+		Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().setDateFormat("dd/MM/yyyy").create(); 
+	    String pessoa = gson.toJson(listaJ);
+		
+		return pessoa;
 	}
 
 }

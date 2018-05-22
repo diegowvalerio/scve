@@ -45,6 +45,10 @@ public interface DAOGenerico<E> {
 	public List<E> wspessoas(Integer e);
 	/*busca tipomv por vendedor*/
 	public List<E> wstipomv(Integer e);	
+	/*busca dados pessoa fisica*/
+	public E wsPessoafisica(Integer e );
+	/*busca dados pessoa juridica*/
+	public E wsPessoajuridica(Integer e );
 	
 	
 }
