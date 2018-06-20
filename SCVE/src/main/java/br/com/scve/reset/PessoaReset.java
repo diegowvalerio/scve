@@ -4,7 +4,9 @@ import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -16,6 +18,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import br.com.scve.entidades.Pessoa;
+import br.com.scve.modelo.servico.ServicoCliente;
 import br.com.scve.modelo.servico.ServicoPessoa;
 import net.sf.jasperreports.web.util.JacksonUtil;
 
@@ -28,6 +31,7 @@ public class PessoaReset {
 	
 	@Inject
 	private ServicoPessoa servico;
+	private ServicoCliente servicocliente;
 	private List<Pessoa> lista;
 	/*
 	@GET
@@ -69,6 +73,17 @@ public class PessoaReset {
 	    String pessoa = gson.toJson(lista);
 		
 		return pessoa;
+	}
+	
+	@POST
+	@Produces({MediaType.APPLICATION_JSON})
+	@Consumes({MediaType.APPLICATION_JSON})
+	@Path("/gravar")
+	public String gravaPessoa(String wspessoa){
+		Gson gson = new Gson();
+		Pessoa pessoa =  gson.fromJson(wspessoa, Pessoa.class);
+		
+		return null;
 	}
 
 }
