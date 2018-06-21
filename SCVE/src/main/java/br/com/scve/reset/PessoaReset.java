@@ -1,5 +1,7 @@
 package br.com.scve.reset;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
@@ -13,7 +15,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import org.omnifaces.util.Json;
-
+import com.google.gson.reflect.TypeToken;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -80,10 +82,16 @@ public class PessoaReset {
 	@Consumes({MediaType.APPLICATION_JSON})
 	@Path("/gravar")
 	public String gravaPessoa(String wspessoa){
+		System.out.println(wspessoa);
+		/*Collection<Pessoa> pessoas = new ArrayList();
 		Gson gson = new Gson();
-		Pessoa pessoa =  gson.fromJson(wspessoa, Pessoa.class);
+		pessoas = gson.fromJson(wspessoa, new TypeToken<Collection<Pessoa>>(){}.getType());
 		
-		return null;
+		for(Pessoa p : pessoas){
+			System.out.println(p.getNome().toString());
+		}*/
+		
+		return "1";
 	}
 
 }
