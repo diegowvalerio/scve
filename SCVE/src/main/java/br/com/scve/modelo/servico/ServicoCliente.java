@@ -148,4 +148,16 @@ public class ServicoCliente implements Serializable {
 		return daoJ.wsPessoajuridica(id);
 	}
 	
+	@Transacao
+	public void salvarWs(Cliente cliente) {
+		try {
+			if (cliente.getIdpessoa() == null) {
+				dao.salvar(cliente);
+			} 			
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 }

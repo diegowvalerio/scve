@@ -2,6 +2,7 @@ package br.com.scve.reset;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
@@ -19,10 +20,14 @@ import com.google.gson.reflect.TypeToken;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import br.com.scve.entidades.Cliente;
+import br.com.scve.entidades.Contato;
+import br.com.scve.entidades.Endereco;
 import br.com.scve.entidades.Pessoa;
+import br.com.scve.entidades.Vendedor;
 import br.com.scve.modelo.servico.ServicoCliente;
 import br.com.scve.modelo.servico.ServicoPessoa;
-import net.sf.jasperreports.web.util.JacksonUtil;
+import br.com.scve.modelo.servico.ServicoVendedor;
 
 
 
@@ -33,7 +38,10 @@ public class PessoaReset {
 	
 	@Inject
 	private ServicoPessoa servico;
+	@Inject
 	private ServicoCliente servicocliente;
+	@Inject
+	private ServicoVendedor servicovendedor;
 	private List<Pessoa> lista;
 	/*
 	@GET
@@ -82,16 +90,46 @@ public class PessoaReset {
 	@Consumes({MediaType.APPLICATION_JSON})
 	@Path("/gravar")
 	public String gravaPessoa(String wspessoa){
-		System.out.println(wspessoa);
-		/*Collection<Pessoa> pessoas = new ArrayList();
+		try {
+		//System.out.println(wspessoa);
+		Collection<Pessoa> pessoas = new ArrayList();
 		Gson gson = new Gson();
 		pessoas = gson.fromJson(wspessoa, new TypeToken<Collection<Pessoa>>(){}.getType());
 		
 		for(Pessoa p : pessoas){
-			System.out.println(p.getNome().toString());
-		}*/
+			Cliente c = new Cliente();
+			c.setNome(p.getNome());
+			c.setSituacao(true);
+			c.setDtcadastro(p.getDtcadastro());
+			c.setTipojf(p.getTipojf());
+			/*trata contatos*/
+			List<Contato> pcontatos = p.getContatos();
+			List<Contato> clicontatos = new  ArrayList<>();
+			for (Contato contato : pcontatos){
+				contato.setIdcontato(null);
+				contato.setPessoa(c);
+				clicontatos.add(contato);
+			}
+			c.setContatos(clicontatos);
+			/*trata enderecos*/
+			List<Endereco> penderecos = p.getEnderecos();
+			List<Endereco> clienderecos= new ArrayList<>();
+			for(Endereco endereco : penderecos){
+				endereco.setPessoa(c);
+				clienderecos.add(endereco);
+			}
+			c.setEnderecos(p.getEnderecos());
+			/*trata o vendedor do cliente*/
+			c.setVendresp((Vendedor) p.getVendresp());
+			
+			servicocliente.salvarWs(c);
+			
+		}
+		return "ok";
+		} catch (Exception e) {
+			return "erro";
+		}
 		
-		return "1";
 	}
 
 }
