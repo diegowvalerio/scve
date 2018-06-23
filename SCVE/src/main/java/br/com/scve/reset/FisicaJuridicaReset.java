@@ -1,11 +1,14 @@
 package br.com.scve.reset;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -13,6 +16,7 @@ import javax.ws.rs.core.MediaType;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 
 import br.com.scve.entidades.Cliente;
 import br.com.scve.entidades.Pessoa;
@@ -69,5 +73,48 @@ public class FisicaJuridicaReset {
 		
 		return pessoa;
 	}
+	
+	
+	//gravarpfisica
+	@POST
+	@Produces({MediaType.APPLICATION_JSON})
+	@Consumes({MediaType.APPLICATION_JSON})
+	@Path("/gravarpfisica")
+	public String gravaPfisica(String wsfisica){
+		try {
+			System.out.println(wsfisica);
+			Collection<Pfisica> pfisicas = new ArrayList();
+			Gson gson = new Gson();
+			pfisicas = gson.fromJson(wsfisica, new TypeToken<Collection<Pfisica>>(){}.getType());
+			for(Pfisica p : pfisicas){
+				servico.salvaWsPfisica(p);
+				return p.getPessoa().getIdpessoa().toString();
+			}
+		} catch (Exception e) {
+			return "erro";
+		}
+		return null;
+	}
+	
+	//gravarpfisica
+		@POST
+		@Produces({MediaType.APPLICATION_JSON})
+		@Consumes({MediaType.APPLICATION_JSON})
+		@Path("/gravarpjuridica")
+		public String gravaPjuridica(String wsfisica){
+			try {
+				System.out.println(wsfisica);
+				Collection<Pjuridica> pfisicas = new ArrayList();
+				Gson gson = new Gson();
+				pfisicas = gson.fromJson(wsfisica, new TypeToken<Collection<Pjuridica>>(){}.getType());
+				for(Pjuridica p : pfisicas){
+					servico.salvaWsPjuridica(p);
+					return p.getPessoa().getIdpessoa().toString();
+				}
+			} catch (Exception e) {
+				return "erro";
+			}
+			return null;
+		}
 
 }

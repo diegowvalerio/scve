@@ -123,13 +123,14 @@ public class PessoaReset {
 			c.setVendresp((Vendedor) p.getVendresp());
 			
 			servicocliente.salvarWs(c);
-			
+			System.out.println("Id:"+c.getIdpessoa());
+			return c.getIdpessoa().toString();
 		}
-		return "ok";
+		
 		} catch (Exception e) {
 			return "erro";
 		}
-		
+		return null;
 	}
 
 }

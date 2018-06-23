@@ -160,4 +160,21 @@ public class ServicoCliente implements Serializable {
 		}
 	}
 	
+	@Transacao
+	public void salvaWsPfisica(Pfisica pfisica){
+		try{
+			daoF.salvar(pfisica);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	@Transacao
+	public void salvaWsPjuridica(Pjuridica p){
+		try{
+			daoJ.salvar(p);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	
 }
