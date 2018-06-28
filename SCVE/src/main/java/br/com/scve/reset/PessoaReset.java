@@ -90,6 +90,7 @@ public class PessoaReset {
 	@Consumes({MediaType.APPLICATION_JSON})
 	@Path("/gravar")
 	public String gravaPessoa(String wspessoa){
+		List<String> ids = new ArrayList<>();
 		try {
 		//System.out.println(wspessoa);
 		Collection<Pessoa> pessoas = new ArrayList();
@@ -124,13 +125,23 @@ public class PessoaReset {
 			
 			servicocliente.salvarWs(c);
 			System.out.println("Id:"+c.getIdpessoa());
-			return c.getIdpessoa().toString();
+			//return c.getIdpessoa().toString();
+			ids.add(c.getIdpessoa().toString());
 		}
-		
+		lista = new ArrayList<>();
+		for (int i = 0; i < ids.size(); i++){
+			Pessoa pe = new Pessoa();
+			pe = servico.consultarId(Integer.parseInt(ids.get(i).toString())); 
+			lista.add(pe);
+			 
+		 }
+		Gson gson2 = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().setDateFormat("dd/MM/yyyy").create();
+		String retorno = gson2.toJson(lista);
+		return retorno;
 		} catch (Exception e) {
 			return "erro";
 		}
-		return null;
+		//return null;
 	}
 
 }

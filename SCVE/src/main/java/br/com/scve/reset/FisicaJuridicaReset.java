@@ -82,7 +82,7 @@ public class FisicaJuridicaReset {
 	@Path("/gravarpfisica")
 	public String gravaPfisica(String wsfisica){
 		try {
-			System.out.println(wsfisica);
+			//System.out.println(wsfisica);
 			Collection<Pfisica> pfisicas = new ArrayList();
 			Gson gson = new Gson();
 			pfisicas = gson.fromJson(wsfisica, new TypeToken<Collection<Pfisica>>(){}.getType());
@@ -103,7 +103,7 @@ public class FisicaJuridicaReset {
 		@Path("/gravarpjuridica")
 		public String gravaPjuridica(String wsfisica){
 			try {
-				System.out.println(wsfisica);
+				//System.out.println(wsfisica);
 				Collection<Pjuridica> pfisicas = new ArrayList();
 				Gson gson = new Gson();
 				pfisicas = gson.fromJson(wsfisica, new TypeToken<Collection<Pjuridica>>(){}.getType());

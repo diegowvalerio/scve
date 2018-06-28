@@ -26,7 +26,9 @@ public class ServicoPessoa implements Serializable{
 	public List<Pessoa> consultar(){
 		return dao.consultar();
 	}
-	
+	public Pessoa consultarId(Integer id){
+		return dao.consultar(id);
+	}
 	/*ws*/
 	public List<Pessoa> wspessoas(Integer id){
 		return dao.wspessoas(id);
