@@ -6,6 +6,8 @@ import java.lang.Integer;
 import java.lang.String;
 import javax.persistence.*;
 
+import com.google.gson.annotations.Expose;
+
 @Entity
 @Table(name="tbcondicaopgto")
 public class CondPgto implements Serializable {
@@ -13,13 +15,17 @@ public class CondPgto implements Serializable {
 	   
 	@Id
 	@GeneratedValue (strategy=GenerationType.IDENTITY)
+	@Expose
 	private Integer idcondpgto;
+	@Expose
 	@Column(nullable=false,columnDefinition="varchar(50)")
 	private String nome;
 	@Column(nullable=false, columnDefinition= "BOOLEAN DEFAULT TRUE")
 	private Boolean situacao;
+	@Expose
 	@Column(nullable=false)
 	private Integer qtdeparcelas;
+	@Expose
 	@Column(nullable=false)
 	private Integer diasentreparc;
 	

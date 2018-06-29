@@ -6,6 +6,8 @@ import java.lang.Integer;
 import java.lang.String;
 import javax.persistence.*;
 
+import com.google.gson.annotations.Expose;
+
 @Entity
 @Table(name="tbformapag")
 public class FormaPag implements Serializable {
@@ -13,7 +15,9 @@ public class FormaPag implements Serializable {
 	   
 	@Id
 	@GeneratedValue (strategy=GenerationType.IDENTITY)
+	@Expose
 	private Integer idformapag;
+	@Expose
 	@Column(nullable=false,columnDefinition="varchar(100)")
 	private String nome;
 	@Column(nullable=false, columnDefinition= "BOOLEAN DEFAULT TRUE")
