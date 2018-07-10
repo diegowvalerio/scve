@@ -1,0 +1,34 @@
+2018-03-19 16:35:22,618 INFO  [org.jboss.modules] (main) JBoss Modules version 1.6.1.Final
+2018-03-19 16:35:23,025 INFO  [org.jboss.msc] (main) JBoss MSC version 1.2.7.SP1
+2018-03-19 16:35:23,118 INFO  [org.jboss.as] (MSC service thread 1-7) WFLYSRV0049: WildFly Full 11.0.0.Final (WildFly Core 3.0.8.Final) starting
+2018-03-19 16:35:24,259 INFO  [org.jboss.as.controller.management-deprecated] (Controller Boot Thread) WFLYCTL0028: Attribute 'security-realm' in the resource at address '/host=master/core-service=management/management-interface=native-interface' is deprecated, and may be removed in future version. See the attribute description in the output of the read-resource-description operation to learn more about the deprecation.
+2018-03-19 16:35:24,259 INFO  [org.jboss.as.controller.management-deprecated] (Controller Boot Thread) WFLYCTL0028: Attribute 'security-realm' in the resource at address '/host=master/core-service=management/management-interface=http-interface' is deprecated, and may be removed in future version. See the attribute description in the output of the read-resource-description operation to learn more about the deprecation.
+2018-03-19 16:35:24,415 INFO  [org.wildfly.security] (Controller Boot Thread) ELY00001: WildFly Elytron version 1.1.6.Final
+2018-03-19 16:35:24,478 INFO  [org.jboss.as.host.controller] (Controller Boot Thread) WFLYHC0003: Creating http management service using network interface (management) port (9990) securePort (-1)
+2018-03-19 16:35:24,493 INFO  [org.xnio] (MSC service thread 1-4) XNIO version 3.5.4.Final
+2018-03-19 16:35:24,493 INFO  [org.xnio.nio] (MSC service thread 1-4) XNIO NIO Implementation Version 3.5.4.Final
+2018-03-19 16:35:24,634 INFO  [org.jboss.as.patching] (MSC service thread 1-3) WFLYPAT0050: WildFly Full cumulative patch ID is: base, one-off patches include: none
+2018-03-19 16:35:24,665 WARN  [org.jboss.as.domain.management.security] (MSC service thread 1-3) WFLYDM0111: Keystore C:\wildfly-11.0.0.Final\domain\configuration\application.keystore not found, it will be auto generated on first use with a self signed certificate for host localhost
+2018-03-19 16:35:24,915 INFO  [org.jboss.remoting] (MSC service thread 1-3) JBoss Remoting version 5.0.5.Final
+2018-03-19 16:35:24,947 INFO  [org.jboss.as.remoting] (MSC service thread 1-5) WFLYRMT0001: Listening on 127.0.0.1:9999
+2018-03-19 16:35:28,728 INFO  [org.jboss.as.controller.management-deprecated] (Controller Boot Thread) WFLYCTL0028: Attribute 'security-realm' in the resource at address '/profile=default/subsystem=undertow/server=default-server/https-listener=https' is deprecated, and may be removed in future version. See the attribute description in the output of the read-resource-description operation to learn more about the deprecation.
+2018-03-19 16:35:28,806 INFO  [org.jboss.as.controller.management-deprecated] (Controller Boot Thread) WFLYCTL0028: Attribute 'security-realm' in the resource at address '/profile=ha/subsystem=undertow/server=default-server/https-listener=https' is deprecated, and may be removed in future version. See the attribute description in the output of the read-resource-description operation to learn more about the deprecation.
+2018-03-19 16:35:28,868 INFO  [org.jboss.as.controller.management-deprecated] (Controller Boot Thread) WFLYCTL0028: Attribute 'security-realm' in the resource at address '/profile=full/subsystem=undertow/server=default-server/https-listener=https' is deprecated, and may be removed in future version. See the attribute description in the output of the read-resource-description operation to learn more about the deprecation.
+2018-03-19 16:35:28,915 INFO  [org.jboss.as.controller.management-deprecated] (Controller Boot Thread) WFLYCTL0028: Attribute 'security-realm' in the resource at address '/profile=full-ha/subsystem=undertow/server=default-server/https-listener=https' is deprecated, and may be removed in future version. See the attribute description in the output of the read-resource-description operation to learn more about the deprecation.
+2018-03-19 16:35:29,353 INFO  [org.jboss.as.host.controller] (Controller Boot Thread) WFLYHC0023: Starting server server-one
+2018-03-19 16:35:32,680 INFO  [org.jboss.as.host.controller] (management task-4) WFLYHC0021: Server [Server:server-one] connected using connection [Channel ID 002f87c7 (inbound) of Remoting connection 71396391 to 127.0.0.1/127.0.0.1:50470 of endpoint "master:MANAGEMENT" <36aa07c8>]
+2018-03-19 16:35:32,727 INFO  [org.jboss.as.host.controller] (Controller Boot Thread) WFLYHC0023: Starting server server-two
+2018-03-19 16:35:32,773 INFO  [org.jboss.as.host.controller] (server-registration-threads - 1) WFLYHC0020: Registering server server-one
+2018-03-19 16:35:38,444 INFO  [org.jboss.as.host.controller] (management task-8) WFLYHC0021: Server [Server:server-two] connected using connection [Channel ID 50c1f5f7 (inbound) of Remoting connection 12bb7690 to 127.0.0.1/127.0.0.1:50499 of endpoint "master:MANAGEMENT" <36aa07c8>]
+2018-03-19 16:35:38,569 INFO  [org.jboss.as.host.controller] (server-registration-threads - 1) WFLYHC0020: Registering server server-two
+2018-03-19 16:35:39,303 INFO  [org.jboss.as] (Controller Boot Thread) WFLYSRV0062: Http management interface listening on http://127.0.0.1:9990/management and https://127.0.0.1:-1/management
+2018-03-19 16:35:39,303 INFO  [org.jboss.as] (Controller Boot Thread) WFLYSRV0053: Admin console listening on http://127.0.0.1:9990 and https://127.0.0.1:-1
+2018-03-19 16:35:39,303 INFO  [org.jboss.as] (Controller Boot Thread) WFLYSRV0025: WildFly Full 11.0.0.Final (WildFly Core 3.0.8.Final) (Host Controller) started in 17356ms - Started 77 of 79 services (23 services are lazy, passive or on-demand)
+2018-03-19 16:42:46,546 INFO  [org.jboss.as.host.controller] (main) WFLYHC0179: ProcessController has signalled to shut down; shutting down
+2018-03-19 16:42:46,624 INFO  [org.jboss.as.host.controller] (Host Controller Service Threads - 39) WFLYHC0024: Stopping server server-one
+2018-03-19 16:42:46,624 INFO  [org.jboss.as.host.controller] (Host Controller Service Threads - 39) WFLYHC0024: Stopping server server-two
+2018-03-19 16:42:47,187 INFO  [org.jboss.as.host.controller] (management task-1) WFLYHC0027: Unregistering server server-two
+2018-03-19 16:42:47,265 INFO  [org.jboss.as.host.controller] (management task-3) WFLYHC0027: Unregistering server server-one
+2018-03-19 16:42:47,359 INFO  [org.jboss.as.host.controller] (ProcessControllerConnection-thread - 2) WFLYHC0027: Unregistering server server-two
+2018-03-19 16:42:47,406 INFO  [org.jboss.as.host.controller] (ProcessControllerConnection-thread - 2) WFLYHC0027: Unregistering server server-one
+2018-03-19 16:42:47,421 INFO  [org.jboss.as] (MSC service thread 1-6) WFLYSRV0050: WildFly Full 11.0.0.Final (WildFly Core 3.0.8.Final) stopped in 810ms
