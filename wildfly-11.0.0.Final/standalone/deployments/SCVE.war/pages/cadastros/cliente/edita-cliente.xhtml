@@ -41,7 +41,7 @@
 						<p:outputLabel value="Cpf:" for="cpf"
 							rendered="#{beanEditaCliente.isRederiza2}" />
 						<p:inputMask mask="999.999.999-99" id="cpf"
-							value="#{beanEditaCliente.pfisica.cpf}" required="true"
+							value="#{beanEditaCliente.pfisica.cpf}" required="true" validator="cpfValidador"
 							rendered="#{beanEditaCliente.isRederiza2}" />
 						<p:outputLabel value="Rg:" for="rg"
 							rendered="#{beanEditaCliente.isRederiza2}" />
@@ -63,7 +63,7 @@
 						<p:outputLabel value="Cnpj:" for="cnpj"
 							rendered="#{beanEditaCliente.isRederiza}" />
 						<p:inputMask mask="99.999.999/9999-99" id="cnpj"
-							value="#{beanEditaCliente.pjuridica.cnpj}" required="true"
+							value="#{beanEditaCliente.pjuridica.cnpj}" required="true" validator="cnpjValidador"
 							rendered="#{beanEditaCliente.isRederiza}" />
 						<p:outputLabel value="Inscrição Estadual:" for="insc_estadual"
 							rendered="#{beanEditaCliente.isRederiza}" />
