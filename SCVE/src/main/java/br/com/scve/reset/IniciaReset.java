@@ -27,6 +27,7 @@ public class IniciaReset extends Application {
 		resources.add(FisicaJuridicaReset.class);
 		resources.add(FormaPagReset.class);
 		resources.add(CondPagtoReset.class);
+		resources.add(PedidosReset.class);
 	}
 
 }

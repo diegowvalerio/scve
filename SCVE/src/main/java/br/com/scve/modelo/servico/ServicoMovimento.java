@@ -41,5 +41,10 @@ public class ServicoMovimento implements Serializable{
 		return dao.consultar();
 	}
 	
+	public Movimento consultarId(Integer id){
+		
+		return dao.consultar(id);
+	}
+	
 
 }
