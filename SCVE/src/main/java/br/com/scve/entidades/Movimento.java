@@ -13,6 +13,8 @@ import javax.persistence.*;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
+import com.google.gson.annotations.Expose;
+
 @Entity
 @Table(name="tbmovimento")
 public class Movimento implements Serializable {
@@ -20,25 +22,35 @@ public class Movimento implements Serializable {
 	   
 	@Id
 	@GeneratedValue (strategy=GenerationType.IDENTITY)
+	@Expose
 	private Integer idmov;
 	@Column(nullable=false)
 	@Temporal(TemporalType.DATE)
+	@Expose
 	private Date dtvenda;
 	@Column(nullable=true,columnDefinition="varchar(250)")
+	@Expose
 	private String observacao;
 	@Column(nullable=false, columnDefinition="numeric(6,2)")
+	@Expose
 	private Double totalvenda;
 	@ManyToOne
+	@Expose
 	private Vendedor vendresp;
 	@Column(nullable=true, columnDefinition="numeric(5,2)")
+	@Expose
 	private double perc_comissao;
 	@ManyToOne
+	@Expose
 	private TipoMv tipomv;
 	@ManyToOne
+	@Expose
 	private CondPgto condpgto;
 	@ManyToOne
+	@Expose
 	private FormaPag formapag;
 	@ManyToOne
+	@Expose
 	private Cliente cliente;
 	
 	@OneToMany(mappedBy="movimento", cascade ={CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE },orphanRemoval = true,fetch = FetchType.EAGER)

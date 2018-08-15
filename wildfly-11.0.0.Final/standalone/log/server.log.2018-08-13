@@ -1,0 +1,835 @@
+2018-08-13 21:49:04,024 INFO  [org.jboss.modules] (main) JBoss Modules version 1.6.1.Final
+2018-08-13 21:49:06,484 INFO  [org.jboss.msc] (main) JBoss MSC version 1.2.7.SP1
+2018-08-13 21:49:06,894 INFO  [org.jboss.as] (MSC service thread 1-7) WFLYSRV0049: WildFly Full 11.0.0.Final (WildFly Core 3.0.8.Final) starting
+2018-08-13 21:49:06,896 DEBUG [org.jboss.as.config] (MSC service thread 1-7) Configured system properties:
+	awt.toolkit = sun.awt.windows.WToolkit
+	file.encoding = Cp1252
+	file.encoding.pkg = sun.io
+	file.separator = \
+	java.awt.graphicsenv = sun.awt.Win32GraphicsEnvironment
+	java.awt.headless = true
+	java.awt.printerjob = sun.awt.windows.WPrinterJob
+	java.class.path = C:\Users\Valerio\Documents\GitHub\scve\wildfly-11.0.0.Final\jboss-modules.jar
+	java.class.version = 52.0
+	java.endorsed.dirs = C:\Program Files (x86)\Java\jre1.8.0_171\lib\endorsed
+	java.ext.dirs = C:\Program Files (x86)\Java\jre1.8.0_171\lib\ext;C:\WINDOWS\Sun\Java\lib\ext
+	java.home = C:\Program Files (x86)\Java\jre1.8.0_171
+	java.io.tmpdir = C:\Users\Valerio\AppData\Local\Temp\
+	java.library.path = C:\Program Files (x86)\Java\jre1.8.0_171\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;native;C:/Program Files (x86)/Java/jre1.8.0_171/bin/client;C:/Program Files (x86)/Java/jre1.8.0_171/bin;C:/Program Files (x86)/Java/jre1.8.0_171/lib/i386;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\nodejs\;C:\Users\Valerio\AppData\Local\Microsoft\WindowsApps;C:\Users\Valerio\AppData\Local\GitHubDesktop\bin;C:\Users\Valerio\AppData\Local\Microsoft\WindowsApps;C:\Users\Valerio\AppData\Roaming\npm;C:\eclipse;;.
+	java.net.preferIPv4Stack = true
+	java.runtime.name = Java(TM) SE Runtime Environment
+	java.runtime.version = 1.8.0_171-b11
+	java.specification.name = Java Platform API Specification
+	java.specification.vendor = Oracle Corporation
+	java.specification.version = 1.8
+	java.util.logging.manager = org.jboss.logmanager.LogManager
+	java.vendor = Oracle Corporation
+	java.vendor.url = http://java.oracle.com/
+	java.vendor.url.bug = http://bugreport.sun.com/bugreport/
+	java.version = 1.8.0_171
+	java.vm.info = mixed mode
+	java.vm.name = Java HotSpot(TM) Client VM
+	java.vm.specification.name = Java Virtual Machine Specification
+	java.vm.specification.vendor = Oracle Corporation
+	java.vm.specification.version = 1.8
+	java.vm.vendor = Oracle Corporation
+	java.vm.version = 25.171-b11
+	javax.management.builder.initial = org.jboss.as.jmx.PluggableMBeanServerBuilder
+	javax.xml.datatype.DatatypeFactory = __redirected.__DatatypeFactory
+	javax.xml.parsers.DocumentBuilderFactory = __redirected.__DocumentBuilderFactory
+	javax.xml.parsers.SAXParserFactory = __redirected.__SAXParserFactory
+	javax.xml.stream.XMLEventFactory = __redirected.__XMLEventFactory
+	javax.xml.stream.XMLInputFactory = __redirected.__XMLInputFactory
+	javax.xml.stream.XMLOutputFactory = __redirected.__XMLOutputFactory
+	javax.xml.transform.TransformerFactory = __redirected.__TransformerFactory
+	javax.xml.validation.SchemaFactory:http://www.w3.org/2001/XMLSchema = __redirected.__SchemaFactory
+	javax.xml.xpath.XPathFactory:http://java.sun.com/jaxp/xpath/dom = __redirected.__XPathFactory
+	jboss.bind.address = localhost
+	jboss.bind.address.management = localhost
+	jboss.home.dir = C:\Users\Valerio\Documents\GitHub\scve\wildfly-11.0.0.Final
+	jboss.host.name = laptop-4f35ps1g
+	jboss.modules.dir = C:\Users\Valerio\Documents\GitHub\scve\wildfly-11.0.0.Final\modules
+	jboss.modules.system.pkgs = org.jboss.byteman
+	jboss.node.name = laptop-4f35ps1g
+	jboss.qualified.host.name = laptop-4f35ps1g
+	jboss.server.base.dir = C:\Users\Valerio\Documents\GitHub\scve\wildfly-11.0.0.Final\standalone
+	jboss.server.config.dir = C:\Users\Valerio\Documents\GitHub\scve\wildfly-11.0.0.Final\standalone\configuration
+	jboss.server.data.dir = C:\Users\Valerio\Documents\GitHub\scve\wildfly-11.0.0.Final\standalone\data
+	jboss.server.deploy.dir = C:\Users\Valerio\Documents\GitHub\scve\wildfly-11.0.0.Final\standalone\data\content
+	jboss.server.log.dir = C:\Users\Valerio\Documents\GitHub\scve\wildfly-11.0.0.Final\standalone\log
+	jboss.server.name = laptop-4f35ps1g
+	jboss.server.persist.config = true
+	jboss.server.temp.dir = C:\Users\Valerio\Documents\GitHub\scve\wildfly-11.0.0.Final\standalone\tmp
+	line.separator = 
+
+	logging.configuration = file:/C:/Users/Valerio/Documents/GitHub/scve/wildfly-11.0.0.Final/standalone/configuration/logging.properties
+	module.path = C:/Users/Valerio/Documents/GitHub/scve/wildfly-11.0.0.Final/modules
+	org.jboss.boot.log.file = C:/Users/Valerio/Documents/GitHub/scve/wildfly-11.0.0.Final/standalone/log/boot.log
+	org.jboss.logmanager.nocolor = true
+	org.jboss.resolver.warning = true
+	org.xml.sax.driver = __redirected.__XMLReaderFactory
+	os.arch = x86
+	os.name = Windows 10
+	os.version = 10.0
+	path.separator = ;
+	program.name = JBossTools: WildFly 11 (Tech Preview)
+	sun.arch.data.model = 32
+	sun.boot.class.path = C:\Program Files (x86)\Java\jre1.8.0_171\lib\resources.jar;C:\Program Files (x86)\Java\jre1.8.0_171\lib\rt.jar;C:\Program Files (x86)\Java\jre1.8.0_171\lib\sunrsasign.jar;C:\Program Files (x86)\Java\jre1.8.0_171\lib\jsse.jar;C:\Program Files (x86)\Java\jre1.8.0_171\lib\jce.jar;C:\Program Files (x86)\Java\jre1.8.0_171\lib\charsets.jar;C:\Program Files (x86)\Java\jre1.8.0_171\lib\jfr.jar;C:\Program Files (x86)\Java\jre1.8.0_171\classes
+	sun.boot.library.path = C:\Program Files (x86)\Java\jre1.8.0_171\bin
+	sun.cpu.endian = little
+	sun.cpu.isalist = pentium_pro+mmx pentium_pro pentium+mmx pentium i486 i386 i86
+	sun.desktop = windows
+	sun.io.unicode.encoding = UnicodeLittle
+	sun.java.command = org.jboss.modules.Main -mp C:/Users/Valerio/Documents/GitHub/scve/wildfly-11.0.0.Final/modules org.jboss.as.standalone -b localhost --server-config=standalone.xml -Djboss.server.base.dir=C:\Users\Valerio\Documents\GitHub\scve\wildfly-11.0.0.Final\standalone
+	sun.java.launcher = SUN_STANDARD
+	sun.jnu.encoding = Cp1252
+	sun.management.compiler = HotSpot Client Compiler
+	sun.os.patch.level = 
+	sun.rmi.dgc.client.gcInterval = 3600000
+	sun.rmi.dgc.server.gcInterval = 3600000
+	user.country = BR
+	user.dir = C:\Users\Valerio\Documents\GitHub\scve\wildfly-11.0.0.Final\bin
+	user.home = C:\Users\Valerio
+	user.language = pt
+	user.name = Valerio
+	user.script = 
+	user.timezone = America/Sao_Paulo
+	user.variant = 
+2018-08-13 21:49:06,897 DEBUG [org.jboss.as.config] (MSC service thread 1-7) VM Arguments: -Dprogram.name=JBossTools: WildFly 11 (Tech Preview) -Xms64m -Xmx512m -Dorg.jboss.resolver.warning=true -Djava.net.preferIPv4Stack=true -Dsun.rmi.dgc.client.gcInterval=3600000 -Dsun.rmi.dgc.server.gcInterval=3600000 -Djboss.modules.system.pkgs=org.jboss.byteman -Djava.awt.headless=true -Dorg.jboss.boot.log.file=C:/Users/Valerio/Documents/GitHub/scve/wildfly-11.0.0.Final/standalone/log/boot.log -Dlogging.configuration=file:/C:/Users/Valerio/Documents/GitHub/scve/wildfly-11.0.0.Final/standalone/configuration/logging.properties -Djboss.home.dir=C:/Users/Valerio/Documents/GitHub/scve/wildfly-11.0.0.Final -Dorg.jboss.logmanager.nocolor=true -Djboss.bind.address.management=localhost -Dfile.encoding=Cp1252 
+2018-08-13 21:49:17,494 INFO  [org.jboss.as.controller.management-deprecated] (Controller Boot Thread) WFLYCTL0028: Attribute 'security-realm' in the resource at address '/core-service=management/management-interface=http-interface' is deprecated, and may be removed in future version. See the attribute description in the output of the read-resource-description operation to learn more about the deprecation.
+2018-08-13 21:49:17,566 INFO  [org.wildfly.security] (ServerService Thread Pool -- 25) ELY00001: WildFly Elytron version 1.1.6.Final
+2018-08-13 21:49:17,587 INFO  [org.jboss.as.controller.management-deprecated] (ServerService Thread Pool -- 3) WFLYCTL0028: Attribute 'security-realm' in the resource at address '/subsystem=undertow/server=default-server/https-listener=https' is deprecated, and may be removed in future version. See the attribute description in the output of the read-resource-description operation to learn more about the deprecation.
+2018-08-13 21:49:17,784 INFO  [org.jboss.as.server.deployment.scanner] (DeploymentScanner-threads - 1) WFLYDS0004: Found SCVE.war in deployment directory. To trigger deployment create a file called SCVE.war.dodeploy
+2018-08-13 21:49:18,079 INFO  [org.jboss.as.server] (Controller Boot Thread) WFLYSRV0039: Creating http management service using socket-binding (management-http)
+2018-08-13 21:49:18,160 INFO  [org.xnio] (MSC service thread 1-3) XNIO version 3.5.4.Final
+2018-08-13 21:49:18,171 INFO  [org.xnio.nio] (MSC service thread 1-3) XNIO NIO Implementation Version 3.5.4.Final
+2018-08-13 21:49:18,288 WARN  [org.jboss.as.txn] (ServerService Thread Pool -- 58) WFLYTX0013: The node-identifier attribute on the /subsystem=transactions is set to the default value. This is a danger for environments running multiple servers. Please make sure the attribute value is unique.
+2018-08-13 21:49:18,289 INFO  [org.jboss.as.clustering.infinispan] (ServerService Thread Pool -- 42) WFLYCLINF0001: Activating Infinispan subsystem.
+2018-08-13 21:49:18,334 INFO  [org.jboss.as.jaxrs] (ServerService Thread Pool -- 43) WFLYRS0016: RESTEasy version 3.0.24.Final
+2018-08-13 21:49:18,370 INFO  [org.jboss.as.webservices] (ServerService Thread Pool -- 60) WFLYWS0002: Activating WebServices Extension
+2018-08-13 21:49:18,375 INFO  [org.jboss.as.security] (ServerService Thread Pool -- 57) WFLYSEC0002: Activating Security Subsystem
+2018-08-13 21:49:18,395 INFO  [org.jboss.as.naming] (ServerService Thread Pool -- 50) WFLYNAM0001: Activating Naming Subsystem
+2018-08-13 21:49:18,381 INFO  [org.jboss.as.jsf] (ServerService Thread Pool -- 48) WFLYJSF0007: Activated the following JSF Implementations: [main]
+2018-08-13 21:49:18,742 INFO  [org.jboss.as.connector.subsystems.datasources] (ServerService Thread Pool -- 36) WFLYJCA0004: Deploying JDBC-compliant driver class org.h2.Driver (version 1.4)
+2018-08-13 21:49:18,934 INFO  [org.jboss.as.connector] (MSC service thread 1-6) WFLYJCA0009: Starting JCA Subsystem (WildFly/IronJacamar 1.4.6.Final)
+2018-08-13 21:49:18,959 INFO  [org.jboss.as.security] (MSC service thread 1-8) WFLYSEC0001: Current PicketBox version=5.0.2.Final
+2018-08-13 21:49:19,028 INFO  [org.jboss.as.connector.deployers.jdbc] (MSC service thread 1-5) WFLYJCA0018: Started Driver service with driver-name = h2
+2018-08-13 21:49:19,032 INFO  [org.jboss.as.naming] (MSC service thread 1-2) WFLYNAM0003: Starting Naming Service
+2018-08-13 21:49:19,033 INFO  [org.jboss.as.mail.extension] (MSC service thread 1-7) WFLYMAIL0001: Bound mail session [java:jboss/mail/Default]
+2018-08-13 21:49:19,114 INFO  [org.wildfly.extension.io] (ServerService Thread Pool -- 41) WFLYIO001: Worker 'default' has auto-configured to 8 core threads with 64 task threads based on your 4 available processors
+2018-08-13 21:49:19,296 INFO  [org.wildfly.extension.undertow] (MSC service thread 1-4) WFLYUT0003: Undertow 1.4.18.Final starting
+2018-08-13 21:49:19,325 INFO  [org.jboss.remoting] (MSC service thread 1-3) JBoss Remoting version 5.0.5.Final
+2018-08-13 21:49:19,333 INFO  [org.wildfly.extension.undertow] (ServerService Thread Pool -- 59) WFLYUT0014: Creating file handler for path 'C:\Users\Valerio\Documents\GitHub\scve\wildfly-11.0.0.Final/welcome-content' with options [directory-listing: 'false', follow-symlink: 'false', case-sensitive: 'true', safe-symlink-paths: '[]']
+2018-08-13 21:49:19,449 INFO  [org.wildfly.extension.undertow] (MSC service thread 1-2) WFLYUT0012: Started server default-server.
+2018-08-13 21:49:19,457 INFO  [org.wildfly.extension.undertow] (MSC service thread 1-5) WFLYUT0018: Host default-host starting
+2018-08-13 21:49:19,623 INFO  [org.wildfly.extension.undertow] (MSC service thread 1-1) WFLYUT0006: Undertow HTTP listener default listening on 0.0.0.0:8080
+2018-08-13 21:49:19,987 INFO  [org.jboss.as.ejb3] (MSC service thread 1-1) WFLYEJB0493: EJB subsystem suspension complete
+2018-08-13 21:49:20,167 INFO  [org.jboss.as.ejb3] (MSC service thread 1-6) WFLYEJB0482: Strict pool mdb-strict-max-pool is using a max instance size of 16 (per class), which is derived from the number of CPUs on this host.
+2018-08-13 21:49:20,172 INFO  [org.jboss.as.ejb3] (MSC service thread 1-1) WFLYEJB0481: Strict pool slsb-strict-max-pool is using a max instance size of 64 (per class), which is derived from thread worker pool sizing.
+2018-08-13 21:49:20,424 INFO  [org.jboss.as.connector.subsystems.datasources] (MSC service thread 1-7) WFLYJCA0001: Bound data source [java:jboss/datasources/ExampleDS]
+2018-08-13 21:49:22,256 INFO  [org.jboss.as.patching] (MSC service thread 1-7) WFLYPAT0050: WildFly Full cumulative patch ID is: base, one-off patches include: none
+2018-08-13 21:49:22,307 INFO  [org.jboss.as.server.deployment.scanner] (MSC service thread 1-4) WFLYDS0013: Started FileSystemDeploymentService for directory C:\Users\Valerio\Documents\GitHub\scve\wildfly-11.0.0.Final\standalone\deployments
+2018-08-13 21:49:22,319 INFO  [org.jboss.as.server.deployment] (MSC service thread 1-4) WFLYSRV0027: Starting deployment of "SCVE.war" (runtime-name: "SCVE.war")
+2018-08-13 21:49:24,051 INFO  [org.wildfly.extension.undertow] (MSC service thread 1-1) WFLYUT0006: Undertow HTTPS listener https listening on 0.0.0.0:8443
+2018-08-13 21:49:26,428 INFO  [org.jboss.ws.common.management] (MSC service thread 1-8) JBWS022052: Starting JBossWS 5.1.9.Final (Apache CXF 3.1.12) 
+2018-08-13 21:49:30,802 INFO  [org.jboss.as.jpa] (MSC service thread 1-4) WFLYJPA0002: Read persistence.xml for crudPU
+2018-08-13 21:49:31,760 INFO  [org.jboss.as.jpa] (ServerService Thread Pool -- 63) WFLYJPA0010: Starting Persistence Unit (phase 1 of 2) Service 'SCVE.war#crudPU'
+2018-08-13 21:49:31,897 INFO  [org.hibernate.jpa.internal.util.LogHelper] (ServerService Thread Pool -- 63) HHH000204: Processing PersistenceUnitInfo [
+	name: crudPU
+	...]
+2018-08-13 21:49:32,021 INFO  [org.jboss.weld.deployer] (MSC service thread 1-6) WFLYWELD0003: Processing weld deployment SCVE.war
+2018-08-13 21:49:32,319 INFO  [org.hibernate.Version] (ServerService Thread Pool -- 63) HHH000412: Hibernate Core {5.1.10.Final}
+2018-08-13 21:49:32,324 INFO  [org.hibernate.cfg.Environment] (ServerService Thread Pool -- 63) HHH000206: hibernate.properties not found
+2018-08-13 21:49:32,327 INFO  [org.hibernate.cfg.Environment] (ServerService Thread Pool -- 63) HHH000021: Bytecode provider name : javassist
+2018-08-13 21:49:32,476 INFO  [org.hibernate.validator.internal.util.Version] (MSC service thread 1-6) HV000001: Hibernate Validator 5.3.5.Final
+2018-08-13 21:49:32,543 INFO  [org.hibernate.annotations.common.Version] (ServerService Thread Pool -- 63) HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2018-08-13 21:49:33,094 INFO  [org.infinispan.factories.GlobalComponentRegistry] (MSC service thread 1-3) ISPN000128: Infinispan version: Infinispan 'Chakra' 8.2.8.Final
+2018-08-13 21:49:33,422 WARN  [org.jboss.as.connector.deployers.jdbc] (MSC service thread 1-6) WFLYJCA0003: Unable to instantiate driver class "org.olap4j.driver.xmla.XmlaOlap4jDriver": java.lang.NoSuchMethodException: org.olap4j.driver.xmla.XmlaOlap4jDriver.<init>()
+2018-08-13 21:49:33,558 INFO  [org.jboss.as.connector.deployers.jdbc] (MSC service thread 1-6) WFLYJCA0005: Deploying non-JDBC-compliant driver class org.postgresql.Driver (version 42.1)
+2018-08-13 21:49:33,692 INFO  [org.jboss.weld.Version] (MSC service thread 1-6) WELD-000900: 2.4.3 (Final)
+2018-08-13 21:49:33,858 INFO  [org.jboss.as.connector.deployers.jdbc] (MSC service thread 1-6) WFLYJCA0018: Started Driver service with driver-name = SCVE.war_org.postgresql.Driver_42_1
+2018-08-13 21:49:34,073 INFO  [org.jboss.as.jpa] (ServerService Thread Pool -- 63) WFLYJPA0010: Starting Persistence Unit (phase 2 of 2) Service 'SCVE.war#crudPU'
+2018-08-13 21:49:34,157 INFO  [org.jboss.as.clustering.infinispan] (ServerService Thread Pool -- 64) WFLYCLINF0002: Started client-mappings cache from ejb container
+2018-08-13 21:49:34,217 WARN  [org.hibernate.orm.connections.pooling] (ServerService Thread Pool -- 63) HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2018-08-13 21:49:34,218 INFO  [org.hibernate.orm.connections.pooling] (ServerService Thread Pool -- 63) HHH10001005: using driver [org.postgresql.Driver] at URL [jdbc:postgresql://localhost:5432/scve]
+2018-08-13 21:49:34,219 INFO  [org.hibernate.orm.connections.pooling] (ServerService Thread Pool -- 63) HHH10001001: Connection properties: {user=postgres, password=****}
+2018-08-13 21:49:34,219 INFO  [org.hibernate.orm.connections.pooling] (ServerService Thread Pool -- 63) HHH10001003: Autocommit mode: false
+2018-08-13 21:49:34,222 INFO  [org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl] (ServerService Thread Pool -- 63) HHH000115: Hibernate connection pool size: 20 (min=1)
+2018-08-13 21:49:34,636 INFO  [org.hibernate.dialect.Dialect] (ServerService Thread Pool -- 63) HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2018-08-13 21:49:34,950 INFO  [org.hibernate.engine.jdbc.env.internal.LobCreatorBuilderImpl] (ServerService Thread Pool -- 63) HHH000424: Disabling contextual LOB creation as createClob() method threw error : java.lang.reflect.InvocationTargetException
+2018-08-13 21:49:34,953 INFO  [org.hibernate.type.BasicTypeRegistry] (ServerService Thread Pool -- 63) HHH000270: Type registration [java.util.UUID] overrides previous : org.hibernate.type.UUIDBinaryType@19dc55
+2018-08-13 21:49:34,971 INFO  [org.hibernate.envers.boot.internal.EnversServiceImpl] (ServerService Thread Pool -- 63) Envers integration enabled? : true
+2018-08-13 21:49:35,664 WARN  [org.hibernate.mapping.RootClass] (ServerService Thread Pool -- 63) HHH000038: Composite-id class does not override equals(): br.com.scve.entidades.Pjuridica
+2018-08-13 21:49:35,664 WARN  [org.hibernate.mapping.RootClass] (ServerService Thread Pool -- 63) HHH000039: Composite-id class does not override hashCode(): br.com.scve.entidades.Pjuridica
+2018-08-13 21:49:35,665 WARN  [org.hibernate.mapping.RootClass] (ServerService Thread Pool -- 63) HHH000038: Composite-id class does not override equals(): br.com.scve.entidades.Pfisica
+2018-08-13 21:49:35,665 WARN  [org.hibernate.mapping.RootClass] (ServerService Thread Pool -- 63) HHH000039: Composite-id class does not override hashCode(): br.com.scve.entidades.Pfisica
+2018-08-13 21:49:36,254 INFO  [org.hibernate.orm.connections.access] (ServerService Thread Pool -- 63) HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@3858f5] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2018-08-13 21:49:37,688 INFO  [org.omnifaces.ApplicationInitializer] (ServerService Thread Pool -- 63) Using OmniFaces version 2.6.1
+2018-08-13 21:49:37,951 INFO  [io.undertow.servlet] (ServerService Thread Pool -- 63) No Spring WebApplicationInitializer types detected on classpath
+2018-08-13 21:49:37,976 WARN  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 63) RESTEASY002150: resteasy.scan is no longer supported.  Use a servlet 3.0 container and the ResteasyServletInitializer
+2018-08-13 21:49:38,696 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 63) RESTEASY002225: Deploying javax.ws.rs.core.Application: class br.com.scve.reset.IniciaReset$Proxy$_$$_WeldClientProxy
+2018-08-13 21:49:38,700 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 63) RESTEASY002200: Adding class resource br.com.scve.reset.FormaPagReset from Application class br.com.scve.reset.IniciaReset$Proxy$_$$_WeldClientProxy
+2018-08-13 21:49:38,700 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 63) RESTEASY002200: Adding class resource br.com.scve.reset.PedidosReset from Application class br.com.scve.reset.IniciaReset$Proxy$_$$_WeldClientProxy
+2018-08-13 21:49:38,700 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 63) RESTEASY002200: Adding class resource br.com.scve.reset.VendedorReset from Application class br.com.scve.reset.IniciaReset$Proxy$_$$_WeldClientProxy
+2018-08-13 21:49:38,700 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 63) RESTEASY002200: Adding class resource br.com.scve.reset.EstadoReset from Application class br.com.scve.reset.IniciaReset$Proxy$_$$_WeldClientProxy
+2018-08-13 21:49:38,700 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 63) RESTEASY002200: Adding class resource br.com.scve.reset.CondPagtoReset from Application class br.com.scve.reset.IniciaReset$Proxy$_$$_WeldClientProxy
+2018-08-13 21:49:38,700 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 63) RESTEASY002200: Adding class resource br.com.scve.reset.CidadeReset from Application class br.com.scve.reset.IniciaReset$Proxy$_$$_WeldClientProxy
+2018-08-13 21:49:38,700 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 63) RESTEASY002200: Adding class resource br.com.scve.reset.TipoMvReset from Application class br.com.scve.reset.IniciaReset$Proxy$_$$_WeldClientProxy
+2018-08-13 21:49:38,700 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 63) RESTEASY002200: Adding class resource br.com.scve.reset.PessoaReset from Application class br.com.scve.reset.IniciaReset$Proxy$_$$_WeldClientProxy
+2018-08-13 21:49:38,700 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 63) RESTEASY002200: Adding class resource br.com.scve.reset.FisicaJuridicaReset from Application class br.com.scve.reset.IniciaReset$Proxy$_$$_WeldClientProxy
+2018-08-13 21:49:38,701 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 63) RESTEASY002200: Adding class resource br.com.scve.reset.UsuarioReset from Application class br.com.scve.reset.IniciaReset$Proxy$_$$_WeldClientProxy
+2018-08-13 21:49:38,701 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 63) RESTEASY002200: Adding class resource br.com.scve.reset.TipoEnderecoReset from Application class br.com.scve.reset.IniciaReset$Proxy$_$$_WeldClientProxy
+2018-08-13 21:49:38,754 INFO  [io.undertow.servlet] (ServerService Thread Pool -- 63) Initializing Spring root WebApplicationContext
+2018-08-13 21:49:38,754 INFO  [org.springframework.web.context.ContextLoader] (ServerService Thread Pool -- 63) Root WebApplicationContext: initialization started
+2018-08-13 21:49:38,805 INFO  [org.springframework.web.context.support.XmlWebApplicationContext] (ServerService Thread Pool -- 63) Refreshing Root WebApplicationContext: startup date [Mon Aug 13 21:49:38 BRT 2018]; root of context hierarchy
+2018-08-13 21:49:38,840 INFO  [org.springframework.beans.factory.xml.XmlBeanDefinitionReader] (ServerService Thread Pool -- 63) Loading XML bean definitions from ServletContext resource [/WEB-INF/applicationContext.xml]
+2018-08-13 21:49:38,894 INFO  [org.springframework.security.core.SpringSecurityCoreVersion] (ServerService Thread Pool -- 63) You are running with Spring Security Core 3.2.6.RELEASE
+2018-08-13 21:49:38,897 INFO  [org.springframework.security.config.SecurityNamespaceHandler] (ServerService Thread Pool -- 63) Spring Security 'config' module version is 3.2.6.RELEASE
+2018-08-13 21:49:38,934 INFO  [org.springframework.security.config.http.FilterInvocationSecurityMetadataSourceParser] (ServerService Thread Pool -- 63) Creating access control expression attribute 'hasRole('ADM')' for /**
+2018-08-13 21:49:38,948 INFO  [org.springframework.security.config.http.HttpSecurityBeanDefinitionParser] (ServerService Thread Pool -- 63) Checking sorted filter chain: [Root bean: class [org.springframework.security.web.context.SecurityContextPersistenceFilter]; scope=; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null, order = 200, Root bean: class [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter]; scope=; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null, order = 400, Root bean: class [org.springframework.security.web.authentication.logout.LogoutFilter]; scope=; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null, order = 700, <org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter#0>, order = 1100, Root bean: class [org.springframework.security.web.authentication.www.BasicAuthenticationFilter]; scope=; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null, order = 1500, Root bean: class [org.springframework.security.web.savedrequest.RequestCacheAwareFilter]; scope=; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null, order = 1600, Root bean: class [org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter]; scope=; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null, order = 1700, Root bean: class [org.springframework.security.web.authentication.AnonymousAuthenticationFilter]; scope=; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null, order = 2000, Root bean: class [org.springframework.security.web.session.SessionManagementFilter]; scope=; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null, order = 2100, Root bean: class [org.springframework.security.web.access.ExceptionTranslationFilter]; scope=; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null, order = 2200, <org.springframework.security.web.access.intercept.FilterSecurityInterceptor#0>, order = 2300]
+2018-08-13 21:49:38,973 INFO  [org.springframework.beans.factory.support.DefaultListableBeanFactory] (ServerService Thread Pool -- 63) Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@c95116: defining beans [org.springframework.security.filterChains,org.springframework.security.filterChainProxy,org.springframework.security.web.DefaultSecurityFilterChain#0,org.springframework.security.web.DefaultSecurityFilterChain#1,org.springframework.security.web.DefaultSecurityFilterChain#2,org.springframework.security.web.DefaultSecurityFilterChain#3,org.springframework.security.web.PortMapperImpl#0,org.springframework.security.web.PortResolverImpl#0,org.springframework.security.config.authentication.AuthenticationManagerFactoryBean#0,org.springframework.security.authentication.ProviderManager#0,org.springframework.security.web.context.HttpSessionSecurityContextRepository#0,org.springframework.security.web.authentication.session.CompositeSessionAuthenticationStrategy#0,org.springframework.security.web.savedrequest.HttpSessionRequestCache#0,org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler#0,org.springframework.security.access.vote.AffirmativeBased#0,org.springframework.security.web.access.intercept.FilterSecurityInterceptor#0,org.springframework.security.web.access.DefaultWebInvocationPrivilegeEvaluator#0,org.springframework.security.authentication.AnonymousAuthenticationProvider#0,org.springframework.security.web.authentication.www.BasicAuthenticationEntryPoint#0,org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter#0,org.springframework.security.userDetailsServiceFactory,org.springframework.security.web.DefaultSecurityFilterChain#4,org.springframework.security.provisioning.JdbcUserDetailsManager#0,org.springframework.security.authentication.dao.DaoAuthenticationProvider#0,org.springframework.security.authentication.DefaultAuthenticationEventPublisher#0,org.springframework.security.authenticationManager,dataSource]; root of factory hierarchy
+2018-08-13 21:49:39,048 INFO  [org.springframework.security.web.DefaultSecurityFilterChain] (ServerService Thread Pool -- 63) Creating filter chain: Ant [pattern='/login.xhtml'], []
+2018-08-13 21:49:39,049 INFO  [org.springframework.security.web.DefaultSecurityFilterChain] (ServerService Thread Pool -- 63) Creating filter chain: Ant [pattern='/negado.xhtml'], []
+2018-08-13 21:49:39,050 INFO  [org.springframework.security.web.DefaultSecurityFilterChain] (ServerService Thread Pool -- 63) Creating filter chain: Ant [pattern='/javax.faces.resource/**'], []
+2018-08-13 21:49:39,051 INFO  [org.springframework.security.web.DefaultSecurityFilterChain] (ServerService Thread Pool -- 63) Creating filter chain: Ant [pattern='/reset/**'], []
+2018-08-13 21:49:39,115 INFO  [org.springframework.jdbc.datasource.DriverManagerDataSource] (ServerService Thread Pool -- 63) Loaded JDBC driver: org.postgresql.Driver
+2018-08-13 21:49:39,125 INFO  [org.springframework.security.provisioning.JdbcUserDetailsManager] (ServerService Thread Pool -- 63) No authentication manager set. Reauthentication of users when changing passwords will not be performed.
+2018-08-13 21:49:39,183 INFO  [org.springframework.security.web.DefaultSecurityFilterChain] (ServerService Thread Pool -- 63) Creating filter chain: org.springframework.security.web.util.matcher.AnyRequestMatcher@1, [org.springframework.security.web.context.SecurityContextPersistenceFilter@16c71c2, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@106828c, org.springframework.security.web.authentication.logout.LogoutFilter@19c38ab, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@1505658, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@1b6c511, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7f2509, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@c817cd, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@12f75da, org.springframework.security.web.session.SessionManagementFilter@84b0e3, org.springframework.security.web.access.ExceptionTranslationFilter@1729a57, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@1f2970b]
+2018-08-13 21:49:39,191 INFO  [org.springframework.security.config.http.DefaultFilterChainValidator] (ServerService Thread Pool -- 63) Checking whether login URL '/login.xhtml' is accessible with your configuration
+2018-08-13 21:49:39,204 INFO  [org.springframework.web.context.ContextLoader] (ServerService Thread Pool -- 63) Root WebApplicationContext: initialization completed in 450 ms
+2018-08-13 21:49:39,281 INFO  [javax.enterprise.resource.webcontainer.jsf.config] (ServerService Thread Pool -- 63) Inicializando Mojarra 2.2.13.SP4  para o contexto '/SCVE'
+2018-08-13 21:49:41,526 WARNING [javax.enterprise.resource.webcontainer.jsf.application] (ServerService Thread Pool -- 63) @FacesConverter is using both value and forClass, only value will be applied.
+2018-08-13 21:49:41,526 WARNING [javax.enterprise.resource.webcontainer.jsf.application] (ServerService Thread Pool -- 63) @FacesConverter is using both value and forClass, only value will be applied.
+2018-08-13 21:49:41,526 WARNING [javax.enterprise.resource.webcontainer.jsf.application] (ServerService Thread Pool -- 63) @FacesConverter is using both value and forClass, only value will be applied.
+2018-08-13 21:49:41,526 WARNING [javax.enterprise.resource.webcontainer.jsf.application] (ServerService Thread Pool -- 63) @FacesConverter is using both value and forClass, only value will be applied.
+2018-08-13 21:49:41,527 WARNING [javax.enterprise.resource.webcontainer.jsf.application] (ServerService Thread Pool -- 63) @FacesConverter is using both value and forClass, only value will be applied.
+2018-08-13 21:49:41,527 WARNING [javax.enterprise.resource.webcontainer.jsf.application] (ServerService Thread Pool -- 63) @FacesConverter is using both value and forClass, only value will be applied.
+2018-08-13 21:49:41,527 WARNING [javax.enterprise.resource.webcontainer.jsf.application] (ServerService Thread Pool -- 63) @FacesConverter is using both value and forClass, only value will be applied.
+2018-08-13 21:49:41,527 WARNING [javax.enterprise.resource.webcontainer.jsf.application] (ServerService Thread Pool -- 63) @FacesConverter is using both value and forClass, only value will be applied.
+2018-08-13 21:49:41,528 WARNING [javax.enterprise.resource.webcontainer.jsf.application] (ServerService Thread Pool -- 63) @FacesConverter is using both value and forClass, only value will be applied.
+2018-08-13 21:49:41,528 WARNING [javax.enterprise.resource.webcontainer.jsf.application] (ServerService Thread Pool -- 63) @FacesConverter is using both value and forClass, only value will be applied.
+2018-08-13 21:49:41,528 WARNING [javax.enterprise.resource.webcontainer.jsf.application] (ServerService Thread Pool -- 63) @FacesConverter is using both value and forClass, only value will be applied.
+2018-08-13 21:49:43,408 INFO  [javax.enterprise.resource.webcontainer.jsf.config] (ServerService Thread Pool -- 63) Monitoring file:/C:/Users/Valerio/Documents/GitHub/scve/wildfly-11.0.0.Final/standalone/deployments/SCVE.war/WEB-INF/faces-config.xml for modifications
+2018-08-13 21:49:43,545 INFO  [org.primefaces.webapp.PostConstructApplicationEventListener] (ServerService Thread Pool -- 63) Running on PrimeFaces 6.0
+2018-08-13 21:49:43,545 INFO  [org.primefaces.extensions.application.PostConstructApplicationEventListener] (ServerService Thread Pool -- 63) Running on PrimeFaces Extensions 6.0.0
+2018-08-13 21:49:43,581 INFO  [org.wildfly.extension.undertow] (ServerService Thread Pool -- 63) WFLYUT0021: Registered web context: '/SCVE' for server 'default-server'
+2018-08-13 21:49:43,599 INFO  [org.jboss.as.server] (ServerService Thread Pool -- 37) WFLYSRV0010: Deployed "SCVE.war" (runtime-name : "SCVE.war")
+2018-08-13 21:49:43,679 INFO  [org.jboss.as.server] (Controller Boot Thread) WFLYSRV0212: Resuming server
+2018-08-13 21:49:43,683 INFO  [org.jboss.as] (Controller Boot Thread) WFLYSRV0060: Http management interface listening on http://0.0.0.0:9990/management
+2018-08-13 21:49:43,684 INFO  [org.jboss.as] (Controller Boot Thread) WFLYSRV0051: Admin console listening on http://0.0.0.0:9990
+2018-08-13 21:49:43,684 INFO  [org.jboss.as] (Controller Boot Thread) WFLYSRV0025: WildFly Full 11.0.0.Final (WildFly Core 3.0.8.Final) started in 41044ms - Started 488 of 714 services (353 services are lazy, passive or on-demand)
+2018-08-13 21:51:15,568 INFO  [com.github.adminfaces.template.session.AdminFilter] (default task-2) Using Admin Template 1.0.0-RC2
+2018-08-13 21:51:15,991 ERROR [stderr] (default task-2) javax.persistence.PersistenceException: org.hibernate.PersistentObjectException: detached entity passed to persist: br.com.scve.entidades.ItemMov
+2018-08-13 21:51:15,992 ERROR [stderr] (default task-2) 	at org.hibernate.jpa.spi.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1692)
+2018-08-13 21:51:15,992 ERROR [stderr] (default task-2) 	at org.hibernate.jpa.spi.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1602)
+2018-08-13 21:51:15,992 ERROR [stderr] (default task-2) 	at org.hibernate.jpa.spi.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1608)
+2018-08-13 21:51:15,992 ERROR [stderr] (default task-2) 	at org.hibernate.jpa.spi.AbstractEntityManagerImpl.persist(AbstractEntityManagerImpl.java:1152)
+2018-08-13 21:51:15,992 ERROR [stderr] (default task-2) 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+2018-08-13 21:51:15,993 ERROR [stderr] (default task-2) 	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+2018-08-13 21:51:15,993 ERROR [stderr] (default task-2) 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+2018-08-13 21:51:15,993 ERROR [stderr] (default task-2) 	at java.lang.reflect.Method.invoke(Unknown Source)
+2018-08-13 21:51:15,993 ERROR [stderr] (default task-2) 	at org.jboss.weld.bean.proxy.AbstractBeanInstance.invoke(AbstractBeanInstance.java:38)
+2018-08-13 21:51:15,993 ERROR [stderr] (default task-2) 	at org.jboss.weld.bean.proxy.ProxyMethodHandler.invoke(ProxyMethodHandler.java:100)
+2018-08-13 21:51:15,993 ERROR [stderr] (default task-2) 	at org.jboss.weldx.persistence.EntityManager$497745645$Proxy$_$$_WeldClientProxy.persist(Unknown Source)
+2018-08-13 21:51:15,994 ERROR [stderr] (default task-2) 	at br.com.scve.modelo.dao.hibernate.DAOGenericoHibernate.salvar(DAOGenericoHibernate.java:47)
+2018-08-13 21:51:15,994 ERROR [stderr] (default task-2) 	at br.com.scve.modelo.servico.ServicoMovimento.salvar(ServicoMovimento.java:24)
+2018-08-13 21:51:15,994 ERROR [stderr] (default task-2) 	at br.com.scve.modelo.servico.ServicoMovimento$Proxy$_$$_WeldSubclass.salvar$$super(Unknown Source)
+2018-08-13 21:51:15,994 ERROR [stderr] (default task-2) 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+2018-08-13 21:51:15,994 ERROR [stderr] (default task-2) 	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+2018-08-13 21:51:15,994 ERROR [stderr] (default task-2) 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+2018-08-13 21:51:15,995 ERROR [stderr] (default task-2) 	at java.lang.reflect.Method.invoke(Unknown Source)
+2018-08-13 21:51:15,995 ERROR [stderr] (default task-2) 	at org.jboss.weld.interceptor.proxy.TerminalAroundInvokeInvocationContext.proceedInternal(TerminalAroundInvokeInvocationContext.java:49)
+2018-08-13 21:51:15,995 ERROR [stderr] (default task-2) 	at org.jboss.weld.interceptor.proxy.AroundInvokeInvocationContext.proceed(AroundInvokeInvocationContext.java:77)
+2018-08-13 21:51:15,995 ERROR [stderr] (default task-2) 	at br.com.scve.modelo.dao.hibernate.TransacaoInterceptor.invoke(TransacaoInterceptor.java:38)
+2018-08-13 21:51:15,995 ERROR [stderr] (default task-2) 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+2018-08-13 21:51:15,996 ERROR [stderr] (default task-2) 	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+2018-08-13 21:51:15,996 ERROR [stderr] (default task-2) 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+2018-08-13 21:51:15,996 ERROR [stderr] (default task-2) 	at java.lang.reflect.Method.invoke(Unknown Source)
+2018-08-13 21:51:15,996 ERROR [stderr] (default task-2) 	at org.jboss.weld.interceptor.reader.SimpleInterceptorInvocation$SimpleMethodInvocation.invoke(SimpleInterceptorInvocation.java:73)
+2018-08-13 21:51:15,996 ERROR [stderr] (default task-2) 	at org.jboss.weld.interceptor.proxy.InterceptorMethodHandler.executeAroundInvoke(InterceptorMethodHandler.java:84)
+2018-08-13 21:51:15,996 ERROR [stderr] (default task-2) 	at org.jboss.weld.interceptor.proxy.InterceptorMethodHandler.executeInterception(InterceptorMethodHandler.java:72)
+2018-08-13 21:51:15,997 ERROR [stderr] (default task-2) 	at org.jboss.weld.interceptor.proxy.InterceptorMethodHandler.invoke(InterceptorMethodHandler.java:56)
+2018-08-13 21:51:15,997 ERROR [stderr] (default task-2) 	at org.jboss.weld.bean.proxy.CombinedInterceptorAndDecoratorStackMethodHandler.invoke(CombinedInterceptorAndDecoratorStackMethodHandler.java:79)
+2018-08-13 21:51:15,997 ERROR [stderr] (default task-2) 	at org.jboss.weld.bean.proxy.CombinedInterceptorAndDecoratorStackMethodHandler.invoke(CombinedInterceptorAndDecoratorStackMethodHandler.java:68)
+2018-08-13 21:51:15,997 ERROR [stderr] (default task-2) 	at br.com.scve.modelo.servico.ServicoMovimento$Proxy$_$$_WeldSubclass.salvar(Unknown Source)
+2018-08-13 21:51:15,997 ERROR [stderr] (default task-2) 	at br.com.scve.reset.PedidosReset.gravaPessoa(PedidosReset.java:74)
+2018-08-13 21:51:15,997 ERROR [stderr] (default task-2) 	at br.com.scve.reset.PedidosReset$Proxy$_$$_WeldClientProxy.gravaPessoa(Unknown Source)
+2018-08-13 21:51:15,997 ERROR [stderr] (default task-2) 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+2018-08-13 21:51:15,998 ERROR [stderr] (default task-2) 	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+2018-08-13 21:51:15,998 ERROR [stderr] (default task-2) 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+2018-08-13 21:51:15,998 ERROR [stderr] (default task-2) 	at java.lang.reflect.Method.invoke(Unknown Source)
+2018-08-13 21:51:15,998 ERROR [stderr] (default task-2) 	at org.jboss.resteasy.core.MethodInjectorImpl.invoke(MethodInjectorImpl.java:140)
+2018-08-13 21:51:15,998 ERROR [stderr] (default task-2) 	at org.jboss.resteasy.core.ResourceMethodInvoker.invokeOnTarget(ResourceMethodInvoker.java:295)
+2018-08-13 21:51:15,998 ERROR [stderr] (default task-2) 	at org.jboss.resteasy.core.ResourceMethodInvoker.invoke(ResourceMethodInvoker.java:249)
+2018-08-13 21:51:15,998 ERROR [stderr] (default task-2) 	at org.jboss.resteasy.core.ResourceMethodInvoker.invoke(ResourceMethodInvoker.java:236)
+2018-08-13 21:51:15,999 ERROR [stderr] (default task-2) 	at org.jboss.resteasy.core.SynchronousDispatcher.invoke(SynchronousDispatcher.java:406)
+2018-08-13 21:51:15,999 ERROR [stderr] (default task-2) 	at org.jboss.resteasy.core.SynchronousDispatcher.invoke(SynchronousDispatcher.java:213)
+2018-08-13 21:51:15,999 ERROR [stderr] (default task-2) 	at org.jboss.resteasy.plugins.server.servlet.ServletContainerDispatcher.service(ServletContainerDispatcher.java:228)
+2018-08-13 21:51:15,999 ERROR [stderr] (default task-2) 	at org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher.service(HttpServletDispatcher.java:56)
+2018-08-13 21:51:15,999 ERROR [stderr] (default task-2) 	at org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher.service(HttpServletDispatcher.java:51)
+2018-08-13 21:51:15,999 ERROR [stderr] (default task-2) 	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+2018-08-13 21:51:16,000 ERROR [stderr] (default task-2) 	at io.undertow.servlet.handlers.ServletHandler.handleRequest(ServletHandler.java:85)
+2018-08-13 21:51:16,000 ERROR [stderr] (default task-2) 	at io.undertow.servlet.handlers.FilterHandler$FilterChainImpl.doFilter(FilterHandler.java:129)
+2018-08-13 21:51:16,000 ERROR [stderr] (default task-2) 	at com.github.adminfaces.template.session.AdminFilter.doFilter(AdminFilter.java:101)
+2018-08-13 21:51:16,000 ERROR [stderr] (default task-2) 	at io.undertow.servlet.core.ManagedFilter.doFilter(ManagedFilter.java:61)
+2018-08-13 21:51:16,000 ERROR [stderr] (default task-2) 	at io.undertow.servlet.handlers.FilterHandler$FilterChainImpl.doFilter(FilterHandler.java:131)
+2018-08-13 21:51:16,000 ERROR [stderr] (default task-2) 	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:186)
+2018-08-13 21:51:16,000 ERROR [stderr] (default task-2) 	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:160)
+2018-08-13 21:51:16,000 ERROR [stderr] (default task-2) 	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:343)
+2018-08-13 21:51:16,001 ERROR [stderr] (default task-2) 	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:260)
+2018-08-13 21:51:16,001 ERROR [stderr] (default task-2) 	at io.undertow.servlet.core.ManagedFilter.doFilter(ManagedFilter.java:61)
+2018-08-13 21:51:16,001 ERROR [stderr] (default task-2) 	at io.undertow.servlet.handlers.FilterHandler$FilterChainImpl.doFilter(FilterHandler.java:131)
+2018-08-13 21:51:16,001 ERROR [stderr] (default task-2) 	at io.undertow.servlet.handlers.FilterHandler.handleRequest(FilterHandler.java:84)
+2018-08-13 21:51:16,002 ERROR [stderr] (default task-2) 	at io.undertow.servlet.handlers.security.ServletSecurityRoleHandler.handleRequest(ServletSecurityRoleHandler.java:62)
+2018-08-13 21:51:16,002 ERROR [stderr] (default task-2) 	at io.undertow.servlet.handlers.ServletDispatchingHandler.handleRequest(ServletDispatchingHandler.java:36)
+2018-08-13 21:51:16,002 ERROR [stderr] (default task-2) 	at org.wildfly.extension.undertow.security.SecurityContextAssociationHandler.handleRequest(SecurityContextAssociationHandler.java:78)
+2018-08-13 21:51:16,003 ERROR [stderr] (default task-2) 	at io.undertow.server.handlers.PredicateHandler.handleRequest(PredicateHandler.java:43)
+2018-08-13 21:51:16,003 ERROR [stderr] (default task-2) 	at io.undertow.servlet.handlers.security.SSLInformationAssociationHandler.handleRequest(SSLInformationAssociationHandler.java:131)
+2018-08-13 21:51:16,003 ERROR [stderr] (default task-2) 	at io.undertow.servlet.handlers.security.ServletAuthenticationCallHandler.handleRequest(ServletAuthenticationCallHandler.java:57)
+2018-08-13 21:51:16,004 ERROR [stderr] (default task-2) 	at io.undertow.server.handlers.PredicateHandler.handleRequest(PredicateHandler.java:43)
+2018-08-13 21:51:16,004 ERROR [stderr] (default task-2) 	at io.undertow.security.handlers.AbstractConfidentialityHandler.handleRequest(AbstractConfidentialityHandler.java:46)
+2018-08-13 21:51:16,004 ERROR [stderr] (default task-2) 	at io.undertow.servlet.handlers.security.ServletConfidentialityConstraintHandler.handleRequest(ServletConfidentialityConstraintHandler.java:64)
+2018-08-13 21:51:16,005 ERROR [stderr] (default task-2) 	at io.undertow.security.handlers.AuthenticationMechanismsHandler.handleRequest(AuthenticationMechanismsHandler.java:60)
+2018-08-13 21:51:16,005 ERROR [stderr] (default task-2) 	at io.undertow.servlet.handlers.security.CachedAuthenticatedSessionHandler.handleRequest(CachedAuthenticatedSessionHandler.java:77)
+2018-08-13 21:51:16,005 ERROR [stderr] (default task-2) 	at io.undertow.security.handlers.NotificationReceiverHandler.handleRequest(NotificationReceiverHandler.java:50)
+2018-08-13 21:51:16,005 ERROR [stderr] (default task-2) 	at io.undertow.security.handlers.AbstractSecurityContextAssociationHandler.handleRequest(AbstractSecurityContextAssociationHandler.java:43)
+2018-08-13 21:51:16,006 ERROR [stderr] (default task-2) 	at io.undertow.server.handlers.PredicateHandler.handleRequest(PredicateHandler.java:43)
+2018-08-13 21:51:16,006 ERROR [stderr] (default task-2) 	at org.wildfly.extension.undertow.security.jacc.JACCContextIdHandler.handleRequest(JACCContextIdHandler.java:61)
+2018-08-13 21:51:16,006 ERROR [stderr] (default task-2) 	at io.undertow.server.handlers.PredicateHandler.handleRequest(PredicateHandler.java:43)
+2018-08-13 21:51:16,006 ERROR [stderr] (default task-2) 	at org.wildfly.extension.undertow.deployment.GlobalRequestControllerHandler.handleRequest(GlobalRequestControllerHandler.java:68)
+2018-08-13 21:51:16,007 ERROR [stderr] (default task-2) 	at io.undertow.server.handlers.PredicateHandler.handleRequest(PredicateHandler.java:43)
+2018-08-13 21:51:16,007 ERROR [stderr] (default task-2) 	at io.undertow.servlet.handlers.ServletInitialHandler.handleFirstRequest(ServletInitialHandler.java:292)
+2018-08-13 21:51:16,007 ERROR [stderr] (default task-2) 	at io.undertow.servlet.handlers.ServletInitialHandler.access$100(ServletInitialHandler.java:81)
+2018-08-13 21:51:16,007 ERROR [stderr] (default task-2) 	at io.undertow.servlet.handlers.ServletInitialHandler$2.call(ServletInitialHandler.java:138)
+2018-08-13 21:51:16,007 ERROR [stderr] (default task-2) 	at io.undertow.servlet.handlers.ServletInitialHandler$2.call(ServletInitialHandler.java:135)
+2018-08-13 21:51:16,007 ERROR [stderr] (default task-2) 	at io.undertow.servlet.core.ServletRequestContextThreadSetupAction$1.call(ServletRequestContextThreadSetupAction.java:48)
+2018-08-13 21:51:16,008 ERROR [stderr] (default task-2) 	at io.undertow.servlet.core.ContextClassLoaderSetupAction$1.call(ContextClassLoaderSetupAction.java:43)
+2018-08-13 21:51:16,008 ERROR [stderr] (default task-2) 	at org.wildfly.extension.undertow.security.SecurityContextThreadSetupAction.lambda$create$0(SecurityContextThreadSetupAction.java:105)
+2018-08-13 21:51:16,008 ERROR [stderr] (default task-2) 	at org.wildfly.extension.undertow.deployment.UndertowDeploymentInfoService$UndertowThreadSetupAction.lambda$create$0(UndertowDeploymentInfoService.java:1508)
+2018-08-13 21:51:16,008 ERROR [stderr] (default task-2) 	at org.wildfly.extension.undertow.deployment.UndertowDeploymentInfoService$UndertowThreadSetupAction.lambda$create$0(UndertowDeploymentInfoService.java:1508)
+2018-08-13 21:51:16,008 ERROR [stderr] (default task-2) 	at org.wildfly.extension.undertow.deployment.UndertowDeploymentInfoService$UndertowThreadSetupAction.lambda$create$0(UndertowDeploymentInfoService.java:1508)
+2018-08-13 21:51:16,008 ERROR [stderr] (default task-2) 	at org.wildfly.extension.undertow.deployment.UndertowDeploymentInfoService$UndertowThreadSetupAction.lambda$create$0(UndertowDeploymentInfoService.java:1508)
+2018-08-13 21:51:16,008 ERROR [stderr] (default task-2) 	at org.wildfly.extension.undertow.deployment.UndertowDeploymentInfoService$UndertowThreadSetupAction.lambda$create$0(UndertowDeploymentInfoService.java:1508)
+2018-08-13 21:51:16,009 ERROR [stderr] (default task-2) 	at io.undertow.servlet.handlers.ServletInitialHandler.dispatchRequest(ServletInitialHandler.java:272)
+2018-08-13 21:51:16,009 ERROR [stderr] (default task-2) 	at io.undertow.servlet.handlers.ServletInitialHandler.access$000(ServletInitialHandler.java:81)
+2018-08-13 21:51:16,009 ERROR [stderr] (default task-2) 	at io.undertow.servlet.handlers.ServletInitialHandler$1.handleRequest(ServletInitialHandler.java:104)
+2018-08-13 21:51:16,009 ERROR [stderr] (default task-2) 	at io.undertow.server.Connectors.executeRootHandler(Connectors.java:326)
+2018-08-13 21:51:16,009 ERROR [stderr] (default task-2) 	at io.undertow.server.HttpServerExchange$1.run(HttpServerExchange.java:812)
+2018-08-13 21:51:16,009 ERROR [stderr] (default task-2) 	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+2018-08-13 21:51:16,010 ERROR [stderr] (default task-2) 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+2018-08-13 21:51:16,010 ERROR [stderr] (default task-2) 	at java.lang.Thread.run(Unknown Source)
+2018-08-13 21:51:16,010 ERROR [stderr] (default task-2) Caused by: org.hibernate.PersistentObjectException: detached entity passed to persist: br.com.scve.entidades.ItemMov
+2018-08-13 21:51:16,010 ERROR [stderr] (default task-2) 	at org.hibernate.event.internal.DefaultPersistEventListener.onPersist(DefaultPersistEventListener.java:124)
+2018-08-13 21:51:16,011 ERROR [stderr] (default task-2) 	at org.hibernate.internal.SessionImpl.firePersist(SessionImpl.java:768)
+2018-08-13 21:51:16,011 ERROR [stderr] (default task-2) 	at org.hibernate.internal.SessionImpl.persist(SessionImpl.java:761)
+2018-08-13 21:51:16,011 ERROR [stderr] (default task-2) 	at org.hibernate.jpa.event.internal.core.JpaPersistEventListener$1.cascade(JpaPersistEventListener.java:80)
+2018-08-13 21:51:16,011 ERROR [stderr] (default task-2) 	at org.hibernate.engine.internal.Cascade.cascadeToOne(Cascade.java:423)
+2018-08-13 21:51:16,012 ERROR [stderr] (default task-2) 	at org.hibernate.engine.internal.Cascade.cascadeAssociation(Cascade.java:348)
+2018-08-13 21:51:16,012 ERROR [stderr] (default task-2) 	at org.hibernate.engine.internal.Cascade.cascadeProperty(Cascade.java:187)
+2018-08-13 21:51:16,012 ERROR [stderr] (default task-2) 	at org.hibernate.engine.internal.Cascade.cascadeCollectionElements(Cascade.java:456)
+2018-08-13 21:51:16,013 ERROR [stderr] (default task-2) 	at org.hibernate.engine.internal.Cascade.cascadeCollection(Cascade.java:388)
+2018-08-13 21:51:16,013 ERROR [stderr] (default task-2) 	at org.hibernate.engine.internal.Cascade.cascadeAssociation(Cascade.java:351)
+2018-08-13 21:51:16,013 ERROR [stderr] (default task-2) 	at org.hibernate.engine.internal.Cascade.cascadeProperty(Cascade.java:187)
+2018-08-13 21:51:16,013 ERROR [stderr] (default task-2) 	at org.hibernate.engine.internal.Cascade.cascade(Cascade.java:136)
+2018-08-13 21:51:16,014 ERROR [stderr] (default task-2) 	at org.hibernate.event.internal.AbstractSaveEventListener.cascadeAfterSave(AbstractSaveEventListener.java:445)
+2018-08-13 21:51:16,014 ERROR [stderr] (default task-2) 	at org.hibernate.event.internal.AbstractSaveEventListener.performSaveOrReplicate(AbstractSaveEventListener.java:281)
+2018-08-13 21:51:16,014 ERROR [stderr] (default task-2) 	at org.hibernate.event.internal.AbstractSaveEventListener.performSave(AbstractSaveEventListener.java:182)
+2018-08-13 21:51:16,014 ERROR [stderr] (default task-2) 	at org.hibernate.event.internal.AbstractSaveEventListener.saveWithGeneratedId(AbstractSaveEventListener.java:113)
+2018-08-13 21:51:16,014 ERROR [stderr] (default task-2) 	at org.hibernate.jpa.event.internal.core.JpaPersistEventListener.saveWithGeneratedId(JpaPersistEventListener.java:67)
+2018-08-13 21:51:16,015 ERROR [stderr] (default task-2) 	at org.hibernate.event.internal.DefaultPersistEventListener.entityIsTransient(DefaultPersistEventListener.java:189)
+2018-08-13 21:51:16,015 ERROR [stderr] (default task-2) 	at org.hibernate.event.internal.DefaultPersistEventListener.onPersist(DefaultPersistEventListener.java:132)
+2018-08-13 21:51:16,015 ERROR [stderr] (default task-2) 	at org.hibernate.event.internal.DefaultPersistEventListener.onPersist(DefaultPersistEventListener.java:58)
+2018-08-13 21:51:16,015 ERROR [stderr] (default task-2) 	at org.hibernate.internal.SessionImpl.firePersist(SessionImpl.java:778)
+2018-08-13 21:51:16,016 ERROR [stderr] (default task-2) 	at org.hibernate.internal.SessionImpl.persist(SessionImpl.java:751)
+2018-08-13 21:51:16,016 ERROR [stderr] (default task-2) 	at org.hibernate.internal.SessionImpl.persist(SessionImpl.java:756)
+2018-08-13 21:51:16,016 ERROR [stderr] (default task-2) 	at org.hibernate.jpa.spi.AbstractEntityManagerImpl.persist(AbstractEntityManagerImpl.java:1146)
+2018-08-13 21:51:16,016 ERROR [stderr] (default task-2) 	... 94 more
+2018-08-13 21:56:29,519 INFO  [org.jboss.as.connector.deployers.jdbc] (MSC service thread 1-8) WFLYJCA0019: Stopped Driver service with driver-name = SCVE.war_org.postgresql.Driver_42_1
+2018-08-13 21:56:29,522 INFO  [org.wildfly.extension.undertow] (ServerService Thread Pool -- 27) WFLYUT0022: Unregistered web context: '/SCVE' from server 'default-server'
+2018-08-13 21:56:29,529 INFO  [io.undertow.servlet] (ServerService Thread Pool -- 27) Closing Spring root WebApplicationContext
+2018-08-13 21:56:29,529 INFO  [org.springframework.web.context.support.XmlWebApplicationContext] (ServerService Thread Pool -- 27) Closing Root WebApplicationContext: startup date [Mon Aug 13 21:49:38 BRT 2018]; root of context hierarchy
+2018-08-13 21:56:29,529 INFO  [org.springframework.beans.factory.support.DefaultListableBeanFactory] (ServerService Thread Pool -- 27) Destroying singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@c95116: defining beans [org.springframework.security.filterChains,org.springframework.security.filterChainProxy,org.springframework.security.web.DefaultSecurityFilterChain#0,org.springframework.security.web.DefaultSecurityFilterChain#1,org.springframework.security.web.DefaultSecurityFilterChain#2,org.springframework.security.web.DefaultSecurityFilterChain#3,org.springframework.security.web.PortMapperImpl#0,org.springframework.security.web.PortResolverImpl#0,org.springframework.security.config.authentication.AuthenticationManagerFactoryBean#0,org.springframework.security.authentication.ProviderManager#0,org.springframework.security.web.context.HttpSessionSecurityContextRepository#0,org.springframework.security.web.authentication.session.CompositeSessionAuthenticationStrategy#0,org.springframework.security.web.savedrequest.HttpSessionRequestCache#0,org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler#0,org.springframework.security.access.vote.AffirmativeBased#0,org.springframework.security.web.access.intercept.FilterSecurityInterceptor#0,org.springframework.security.web.access.DefaultWebInvocationPrivilegeEvaluator#0,org.springframework.security.authentication.AnonymousAuthenticationProvider#0,org.springframework.security.web.authentication.www.BasicAuthenticationEntryPoint#0,org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter#0,org.springframework.security.userDetailsServiceFactory,org.springframework.security.web.DefaultSecurityFilterChain#4,org.springframework.security.provisioning.JdbcUserDetailsManager#0,org.springframework.security.authentication.dao.DaoAuthenticationProvider#0,org.springframework.security.authentication.DefaultAuthenticationEventPublisher#0,org.springframework.security.authenticationManager,dataSource]; root of factory hierarchy
+2018-08-13 21:56:29,575 INFO  [org.jboss.as.jpa] (ServerService Thread Pool -- 93) WFLYJPA0011: Stopping Persistence Unit (phase 2 of 2) Service 'SCVE.war#crudPU'
+2018-08-13 21:56:29,576 INFO  [org.hibernate.orm.connections.pooling] (ServerService Thread Pool -- 93) HHH10001008: Cleaning up connection pool [jdbc:postgresql://localhost:5432/scve]
+2018-08-13 21:56:29,579 INFO  [org.jboss.as.jpa] (ServerService Thread Pool -- 93) WFLYJPA0011: Stopping Persistence Unit (phase 1 of 2) Service 'SCVE.war#crudPU'
+2018-08-13 21:56:30,194 INFO  [org.jboss.as.server.deployment] (MSC service thread 1-6) WFLYSRV0028: Stopped deployment SCVE.war (runtime-name: SCVE.war) in 678ms
+2018-08-13 21:56:30,273 INFO  [org.jboss.as.server] (DeploymentScanner-threads - 1) WFLYSRV0009: Undeployed "SCVE.war" (runtime-name: "SCVE.war")
+2018-08-13 21:56:35,283 INFO  [org.jboss.as.server.deployment.scanner] (DeploymentScanner-threads - 2) WFLYDS0004: Found SCVE.war in deployment directory. To trigger deployment create a file called SCVE.war.dodeploy
+2018-08-13 21:56:40,552 INFO  [org.jboss.as.server.deployment] (MSC service thread 1-5) WFLYSRV0027: Starting deployment of "SCVE.war" (runtime-name: "SCVE.war")
+2018-08-13 21:56:44,708 INFO  [org.jboss.as.jpa] (MSC service thread 1-8) WFLYJPA0002: Read persistence.xml for crudPU
+2018-08-13 21:56:45,145 INFO  [org.jboss.as.jpa] (ServerService Thread Pool -- 93) WFLYJPA0010: Starting Persistence Unit (phase 1 of 2) Service 'SCVE.war#crudPU'
+2018-08-13 21:56:45,145 INFO  [org.hibernate.jpa.internal.util.LogHelper] (ServerService Thread Pool -- 93) HHH000204: Processing PersistenceUnitInfo [
+	name: crudPU
+	...]
+2018-08-13 21:56:45,185 INFO  [org.jboss.weld.deployer] (MSC service thread 1-4) WFLYWELD0003: Processing weld deployment SCVE.war
+2018-08-13 21:56:45,550 WARN  [org.jboss.as.connector.deployers.jdbc] (MSC service thread 1-4) WFLYJCA0003: Unable to instantiate driver class "org.olap4j.driver.xmla.XmlaOlap4jDriver": java.lang.NoSuchMethodException: org.olap4j.driver.xmla.XmlaOlap4jDriver.<init>()
+2018-08-13 21:56:45,554 INFO  [org.jboss.as.connector.deployers.jdbc] (MSC service thread 1-4) WFLYJCA0005: Deploying non-JDBC-compliant driver class org.postgresql.Driver (version 42.1)
+2018-08-13 21:56:45,573 INFO  [org.jboss.as.connector.deployers.jdbc] (MSC service thread 1-8) WFLYJCA0018: Started Driver service with driver-name = SCVE.war_org.postgresql.Driver_42_1
+2018-08-13 21:56:45,595 INFO  [org.jboss.as.jpa] (ServerService Thread Pool -- 93) WFLYJPA0010: Starting Persistence Unit (phase 2 of 2) Service 'SCVE.war#crudPU'
+2018-08-13 21:56:45,596 WARN  [org.hibernate.orm.connections.pooling] (ServerService Thread Pool -- 93) HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2018-08-13 21:56:45,597 INFO  [org.hibernate.orm.connections.pooling] (ServerService Thread Pool -- 93) HHH10001005: using driver [org.postgresql.Driver] at URL [jdbc:postgresql://localhost:5432/scve]
+2018-08-13 21:56:45,597 INFO  [org.hibernate.orm.connections.pooling] (ServerService Thread Pool -- 93) HHH10001001: Connection properties: {user=postgres, password=****}
+2018-08-13 21:56:45,597 INFO  [org.hibernate.orm.connections.pooling] (ServerService Thread Pool -- 93) HHH10001003: Autocommit mode: false
+2018-08-13 21:56:45,597 INFO  [org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl] (ServerService Thread Pool -- 93) HHH000115: Hibernate connection pool size: 20 (min=1)
+2018-08-13 21:56:45,689 INFO  [org.hibernate.dialect.Dialect] (ServerService Thread Pool -- 93) HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2018-08-13 21:56:45,873 INFO  [org.hibernate.engine.jdbc.env.internal.LobCreatorBuilderImpl] (ServerService Thread Pool -- 93) HHH000424: Disabling contextual LOB creation as createClob() method threw error : java.lang.reflect.InvocationTargetException
+2018-08-13 21:56:45,874 INFO  [org.hibernate.type.BasicTypeRegistry] (ServerService Thread Pool -- 93) HHH000270: Type registration [java.util.UUID] overrides previous : org.hibernate.type.UUIDBinaryType@19dc55
+2018-08-13 21:56:45,876 INFO  [org.hibernate.envers.boot.internal.EnversServiceImpl] (ServerService Thread Pool -- 93) Envers integration enabled? : true
+2018-08-13 21:56:45,937 WARN  [org.hibernate.mapping.RootClass] (ServerService Thread Pool -- 93) HHH000038: Composite-id class does not override equals(): br.com.scve.entidades.Pjuridica
+2018-08-13 21:56:45,937 WARN  [org.hibernate.mapping.RootClass] (ServerService Thread Pool -- 93) HHH000039: Composite-id class does not override hashCode(): br.com.scve.entidades.Pjuridica
+2018-08-13 21:56:45,938 WARN  [org.hibernate.mapping.RootClass] (ServerService Thread Pool -- 93) HHH000038: Composite-id class does not override equals(): br.com.scve.entidades.Pfisica
+2018-08-13 21:56:45,938 WARN  [org.hibernate.mapping.RootClass] (ServerService Thread Pool -- 93) HHH000039: Composite-id class does not override hashCode(): br.com.scve.entidades.Pfisica
+2018-08-13 21:56:46,124 INFO  [org.hibernate.orm.connections.access] (ServerService Thread Pool -- 93) HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@18cbcc6] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2018-08-13 21:56:46,843 INFO  [org.omnifaces.ApplicationInitializer] (ServerService Thread Pool -- 82) Using OmniFaces version 2.6.1
+2018-08-13 21:56:46,870 INFO  [io.undertow.servlet] (ServerService Thread Pool -- 82) No Spring WebApplicationInitializer types detected on classpath
+2018-08-13 21:56:46,871 WARN  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 82) RESTEASY002150: resteasy.scan is no longer supported.  Use a servlet 3.0 container and the ResteasyServletInitializer
+2018-08-13 21:56:46,913 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 82) RESTEASY002225: Deploying javax.ws.rs.core.Application: class br.com.scve.reset.IniciaReset$Proxy$_$$_WeldClientProxy
+2018-08-13 21:56:46,914 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 82) RESTEASY002200: Adding class resource br.com.scve.reset.CidadeReset from Application class br.com.scve.reset.IniciaReset$Proxy$_$$_WeldClientProxy
+2018-08-13 21:56:46,914 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 82) RESTEASY002200: Adding class resource br.com.scve.reset.CondPagtoReset from Application class br.com.scve.reset.IniciaReset$Proxy$_$$_WeldClientProxy
+2018-08-13 21:56:46,914 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 82) RESTEASY002200: Adding class resource br.com.scve.reset.UsuarioReset from Application class br.com.scve.reset.IniciaReset$Proxy$_$$_WeldClientProxy
+2018-08-13 21:56:46,914 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 82) RESTEASY002200: Adding class resource br.com.scve.reset.TipoEnderecoReset from Application class br.com.scve.reset.IniciaReset$Proxy$_$$_WeldClientProxy
+2018-08-13 21:56:46,914 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 82) RESTEASY002200: Adding class resource br.com.scve.reset.TipoMvReset from Application class br.com.scve.reset.IniciaReset$Proxy$_$$_WeldClientProxy
+2018-08-13 21:56:46,915 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 82) RESTEASY002200: Adding class resource br.com.scve.reset.FormaPagReset from Application class br.com.scve.reset.IniciaReset$Proxy$_$$_WeldClientProxy
+2018-08-13 21:56:46,915 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 82) RESTEASY002200: Adding class resource br.com.scve.reset.PedidosReset from Application class br.com.scve.reset.IniciaReset$Proxy$_$$_WeldClientProxy
+2018-08-13 21:56:46,915 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 82) RESTEASY002200: Adding class resource br.com.scve.reset.PessoaReset from Application class br.com.scve.reset.IniciaReset$Proxy$_$$_WeldClientProxy
+2018-08-13 21:56:46,915 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 82) RESTEASY002200: Adding class resource br.com.scve.reset.EstadoReset from Application class br.com.scve.reset.IniciaReset$Proxy$_$$_WeldClientProxy
+2018-08-13 21:56:46,915 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 82) RESTEASY002200: Adding class resource br.com.scve.reset.VendedorReset from Application class br.com.scve.reset.IniciaReset$Proxy$_$$_WeldClientProxy
+2018-08-13 21:56:46,915 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 82) RESTEASY002200: Adding class resource br.com.scve.reset.FisicaJuridicaReset from Application class br.com.scve.reset.IniciaReset$Proxy$_$$_WeldClientProxy
+2018-08-13 21:56:46,927 INFO  [io.undertow.servlet] (ServerService Thread Pool -- 82) Initializing Spring root WebApplicationContext
+2018-08-13 21:56:46,927 INFO  [org.springframework.web.context.ContextLoader] (ServerService Thread Pool -- 82) Root WebApplicationContext: initialization started
+2018-08-13 21:56:46,976 INFO  [org.springframework.web.context.support.XmlWebApplicationContext] (ServerService Thread Pool -- 82) Refreshing Root WebApplicationContext: startup date [Mon Aug 13 21:56:46 BRT 2018]; root of context hierarchy
+2018-08-13 21:56:47,009 INFO  [org.springframework.beans.factory.xml.XmlBeanDefinitionReader] (ServerService Thread Pool -- 82) Loading XML bean definitions from ServletContext resource [/WEB-INF/applicationContext.xml]
+2018-08-13 21:56:47,051 INFO  [org.springframework.security.core.SpringSecurityCoreVersion] (ServerService Thread Pool -- 82) You are running with Spring Security Core 3.2.6.RELEASE
+2018-08-13 21:56:47,053 INFO  [org.springframework.security.config.SecurityNamespaceHandler] (ServerService Thread Pool -- 82) Spring Security 'config' module version is 3.2.6.RELEASE
+2018-08-13 21:56:47,086 INFO  [org.springframework.security.config.http.FilterInvocationSecurityMetadataSourceParser] (ServerService Thread Pool -- 82) Creating access control expression attribute 'hasRole('ADM')' for /**
+2018-08-13 21:56:47,101 INFO  [org.springframework.security.config.http.HttpSecurityBeanDefinitionParser] (ServerService Thread Pool -- 82) Checking sorted filter chain: [Root bean: class [org.springframework.security.web.context.SecurityContextPersistenceFilter]; scope=; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null, order = 200, Root bean: class [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter]; scope=; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null, order = 400, Root bean: class [org.springframework.security.web.authentication.logout.LogoutFilter]; scope=; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null, order = 700, <org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter#0>, order = 1100, Root bean: class [org.springframework.security.web.authentication.www.BasicAuthenticationFilter]; scope=; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null, order = 1500, Root bean: class [org.springframework.security.web.savedrequest.RequestCacheAwareFilter]; scope=; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null, order = 1600, Root bean: class [org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter]; scope=; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null, order = 1700, Root bean: class [org.springframework.security.web.authentication.AnonymousAuthenticationFilter]; scope=; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null, order = 2000, Root bean: class [org.springframework.security.web.session.SessionManagementFilter]; scope=; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null, order = 2100, Root bean: class [org.springframework.security.web.access.ExceptionTranslationFilter]; scope=; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null, order = 2200, <org.springframework.security.web.access.intercept.FilterSecurityInterceptor#0>, order = 2300]
+2018-08-13 21:56:47,124 INFO  [org.springframework.beans.factory.support.DefaultListableBeanFactory] (ServerService Thread Pool -- 82) Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@171c862: defining beans [org.springframework.security.filterChains,org.springframework.security.filterChainProxy,org.springframework.security.web.DefaultSecurityFilterChain#0,org.springframework.security.web.DefaultSecurityFilterChain#1,org.springframework.security.web.DefaultSecurityFilterChain#2,org.springframework.security.web.DefaultSecurityFilterChain#3,org.springframework.security.web.PortMapperImpl#0,org.springframework.security.web.PortResolverImpl#0,org.springframework.security.config.authentication.AuthenticationManagerFactoryBean#0,org.springframework.security.authentication.ProviderManager#0,org.springframework.security.web.context.HttpSessionSecurityContextRepository#0,org.springframework.security.web.authentication.session.CompositeSessionAuthenticationStrategy#0,org.springframework.security.web.savedrequest.HttpSessionRequestCache#0,org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler#0,org.springframework.security.access.vote.AffirmativeBased#0,org.springframework.security.web.access.intercept.FilterSecurityInterceptor#0,org.springframework.security.web.access.DefaultWebInvocationPrivilegeEvaluator#0,org.springframework.security.authentication.AnonymousAuthenticationProvider#0,org.springframework.security.web.authentication.www.BasicAuthenticationEntryPoint#0,org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter#0,org.springframework.security.userDetailsServiceFactory,org.springframework.security.web.DefaultSecurityFilterChain#4,org.springframework.security.provisioning.JdbcUserDetailsManager#0,org.springframework.security.authentication.dao.DaoAuthenticationProvider#0,org.springframework.security.authentication.DefaultAuthenticationEventPublisher#0,org.springframework.security.authenticationManager,dataSource]; root of factory hierarchy
+2018-08-13 21:56:47,186 INFO  [org.springframework.security.web.DefaultSecurityFilterChain] (ServerService Thread Pool -- 82) Creating filter chain: Ant [pattern='/login.xhtml'], []
+2018-08-13 21:56:47,186 INFO  [org.springframework.security.web.DefaultSecurityFilterChain] (ServerService Thread Pool -- 82) Creating filter chain: Ant [pattern='/negado.xhtml'], []
+2018-08-13 21:56:47,187 INFO  [org.springframework.security.web.DefaultSecurityFilterChain] (ServerService Thread Pool -- 82) Creating filter chain: Ant [pattern='/javax.faces.resource/**'], []
+2018-08-13 21:56:47,188 INFO  [org.springframework.security.web.DefaultSecurityFilterChain] (ServerService Thread Pool -- 82) Creating filter chain: Ant [pattern='/reset/**'], []
+2018-08-13 21:56:47,239 INFO  [org.springframework.jdbc.datasource.DriverManagerDataSource] (ServerService Thread Pool -- 82) Loaded JDBC driver: org.postgresql.Driver
+2018-08-13 21:56:47,248 INFO  [org.springframework.security.provisioning.JdbcUserDetailsManager] (ServerService Thread Pool -- 82) No authentication manager set. Reauthentication of users when changing passwords will not be performed.
+2018-08-13 21:56:47,308 INFO  [org.springframework.security.web.DefaultSecurityFilterChain] (ServerService Thread Pool -- 82) Creating filter chain: org.springframework.security.web.util.matcher.AnyRequestMatcher@1, [org.springframework.security.web.context.SecurityContextPersistenceFilter@1576a9b, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1f7611d, org.springframework.security.web.authentication.logout.LogoutFilter@18d30bd, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@db6f5d, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@acdeaf, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@39a66e, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@91750c, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1ed44c4, org.springframework.security.web.session.SessionManagementFilter@1a0b770, org.springframework.security.web.access.ExceptionTranslationFilter@7f65fc, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@1755d6a]
+2018-08-13 21:56:47,316 INFO  [org.springframework.security.config.http.DefaultFilterChainValidator] (ServerService Thread Pool -- 82) Checking whether login URL '/login.xhtml' is accessible with your configuration
+2018-08-13 21:56:47,329 INFO  [org.springframework.web.context.ContextLoader] (ServerService Thread Pool -- 82) Root WebApplicationContext: initialization completed in 401 ms
+2018-08-13 21:56:47,354 INFO  [javax.enterprise.resource.webcontainer.jsf.config] (ServerService Thread Pool -- 82) Inicializando Mojarra 2.2.13.SP4  para o contexto '/SCVE'
+2018-08-13 21:56:49,278 WARNING [javax.enterprise.resource.webcontainer.jsf.application] (ServerService Thread Pool -- 82) @FacesConverter is using both value and forClass, only value will be applied.
+2018-08-13 21:56:49,278 WARNING [javax.enterprise.resource.webcontainer.jsf.application] (ServerService Thread Pool -- 82) @FacesConverter is using both value and forClass, only value will be applied.
+2018-08-13 21:56:49,279 WARNING [javax.enterprise.resource.webcontainer.jsf.application] (ServerService Thread Pool -- 82) @FacesConverter is using both value and forClass, only value will be applied.
+2018-08-13 21:56:49,279 WARNING [javax.enterprise.resource.webcontainer.jsf.application] (ServerService Thread Pool -- 82) @FacesConverter is using both value and forClass, only value will be applied.
+2018-08-13 21:56:49,279 WARNING [javax.enterprise.resource.webcontainer.jsf.application] (ServerService Thread Pool -- 82) @FacesConverter is using both value and forClass, only value will be applied.
+2018-08-13 21:56:49,279 WARNING [javax.enterprise.resource.webcontainer.jsf.application] (ServerService Thread Pool -- 82) @FacesConverter is using both value and forClass, only value will be applied.
+2018-08-13 21:56:49,279 WARNING [javax.enterprise.resource.webcontainer.jsf.application] (ServerService Thread Pool -- 82) @FacesConverter is using both value and forClass, only value will be applied.
+2018-08-13 21:56:49,279 WARNING [javax.enterprise.resource.webcontainer.jsf.application] (ServerService Thread Pool -- 82) @FacesConverter is using both value and forClass, only value will be applied.
+2018-08-13 21:56:49,279 WARNING [javax.enterprise.resource.webcontainer.jsf.application] (ServerService Thread Pool -- 82) @FacesConverter is using both value and forClass, only value will be applied.
+2018-08-13 21:56:49,279 WARNING [javax.enterprise.resource.webcontainer.jsf.application] (ServerService Thread Pool -- 82) @FacesConverter is using both value and forClass, only value will be applied.
+2018-08-13 21:56:49,279 WARNING [javax.enterprise.resource.webcontainer.jsf.application] (ServerService Thread Pool -- 82) @FacesConverter is using both value and forClass, only value will be applied.
+2018-08-13 21:56:51,094 INFO  [javax.enterprise.resource.webcontainer.jsf.config] (ServerService Thread Pool -- 82) Monitoring file:/C:/Users/Valerio/Documents/GitHub/scve/wildfly-11.0.0.Final/standalone/deployments/SCVE.war/WEB-INF/faces-config.xml for modifications
+2018-08-13 21:56:51,097 INFO  [org.primefaces.webapp.PostConstructApplicationEventListener] (ServerService Thread Pool -- 82) Running on PrimeFaces 6.0
+2018-08-13 21:56:51,098 INFO  [org.primefaces.extensions.application.PostConstructApplicationEventListener] (ServerService Thread Pool -- 82) Running on PrimeFaces Extensions 6.0.0
+2018-08-13 21:56:51,099 INFO  [org.wildfly.extension.undertow] (ServerService Thread Pool -- 82) WFLYUT0021: Registered web context: '/SCVE' for server 'default-server'
+2018-08-13 21:56:51,125 INFO  [org.jboss.as.server] (DeploymentScanner-threads - 1) WFLYSRV0010: Deployed "SCVE.war" (runtime-name : "SCVE.war")
+2018-08-13 21:58:42,383 INFO  [com.github.adminfaces.template.session.AdminFilter] (default task-3) Using Admin Template 1.0.0-RC2
+2018-08-13 21:58:42,570 INFO  [stdout] (default task-3) Id:16
+2018-08-13 22:01:29,908 INFO  [org.hibernate.hql.internal.QueryTranslatorFactoryInitiator] (default task-30) HHH000397: Using ASTQueryTranslatorFactory
+2018-08-13 22:19:31,855 INFO  [org.jboss.modules] (main) JBoss Modules version 1.6.1.Final
+2018-08-13 22:19:32,271 INFO  [org.jboss.msc] (main) JBoss MSC version 1.2.7.SP1
+2018-08-13 22:19:32,422 INFO  [org.jboss.as] (MSC service thread 1-7) WFLYSRV0049: WildFly Full 11.0.0.Final (WildFly Core 3.0.8.Final) starting
+2018-08-13 22:19:32,423 DEBUG [org.jboss.as.config] (MSC service thread 1-7) Configured system properties:
+	awt.toolkit = sun.awt.windows.WToolkit
+	file.encoding = Cp1252
+	file.encoding.pkg = sun.io
+	file.separator = \
+	java.awt.graphicsenv = sun.awt.Win32GraphicsEnvironment
+	java.awt.headless = true
+	java.awt.printerjob = sun.awt.windows.WPrinterJob
+	java.class.path = C:\Users\Valerio\Documents\GitHub\scve\wildfly-11.0.0.Final\jboss-modules.jar
+	java.class.version = 52.0
+	java.endorsed.dirs = C:\Program Files (x86)\Java\jre1.8.0_171\lib\endorsed
+	java.ext.dirs = C:\Program Files (x86)\Java\jre1.8.0_171\lib\ext;C:\WINDOWS\Sun\Java\lib\ext
+	java.home = C:\Program Files (x86)\Java\jre1.8.0_171
+	java.io.tmpdir = C:\Users\Valerio\AppData\Local\Temp\
+	java.library.path = C:\Program Files (x86)\Java\jre1.8.0_171\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;native;C:/Program Files (x86)/Java/jre1.8.0_171/bin/client;C:/Program Files (x86)/Java/jre1.8.0_171/bin;C:/Program Files (x86)/Java/jre1.8.0_171/lib/i386;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\nodejs\;C:\Users\Valerio\AppData\Local\Microsoft\WindowsApps;C:\Users\Valerio\AppData\Local\GitHubDesktop\bin;C:\Users\Valerio\AppData\Local\Microsoft\WindowsApps;C:\Users\Valerio\AppData\Roaming\npm;C:\eclipse;;.
+	java.net.preferIPv4Stack = true
+	java.runtime.name = Java(TM) SE Runtime Environment
+	java.runtime.version = 1.8.0_171-b11
+	java.specification.name = Java Platform API Specification
+	java.specification.vendor = Oracle Corporation
+	java.specification.version = 1.8
+	java.util.logging.manager = org.jboss.logmanager.LogManager
+	java.vendor = Oracle Corporation
+	java.vendor.url = http://java.oracle.com/
+	java.vendor.url.bug = http://bugreport.sun.com/bugreport/
+	java.version = 1.8.0_171
+	java.vm.info = mixed mode
+	java.vm.name = Java HotSpot(TM) Client VM
+	java.vm.specification.name = Java Virtual Machine Specification
+	java.vm.specification.vendor = Oracle Corporation
+	java.vm.specification.version = 1.8
+	java.vm.vendor = Oracle Corporation
+	java.vm.version = 25.171-b11
+	javax.management.builder.initial = org.jboss.as.jmx.PluggableMBeanServerBuilder
+	javax.xml.datatype.DatatypeFactory = __redirected.__DatatypeFactory
+	javax.xml.parsers.DocumentBuilderFactory = __redirected.__DocumentBuilderFactory
+	javax.xml.parsers.SAXParserFactory = __redirected.__SAXParserFactory
+	javax.xml.stream.XMLEventFactory = __redirected.__XMLEventFactory
+	javax.xml.stream.XMLInputFactory = __redirected.__XMLInputFactory
+	javax.xml.stream.XMLOutputFactory = __redirected.__XMLOutputFactory
+	javax.xml.transform.TransformerFactory = __redirected.__TransformerFactory
+	javax.xml.validation.SchemaFactory:http://www.w3.org/2001/XMLSchema = __redirected.__SchemaFactory
+	javax.xml.xpath.XPathFactory:http://java.sun.com/jaxp/xpath/dom = __redirected.__XPathFactory
+	jboss.bind.address = localhost
+	jboss.bind.address.management = localhost
+	jboss.home.dir = C:\Users\Valerio\Documents\GitHub\scve\wildfly-11.0.0.Final
+	jboss.host.name = laptop-4f35ps1g
+	jboss.modules.dir = C:\Users\Valerio\Documents\GitHub\scve\wildfly-11.0.0.Final\modules
+	jboss.modules.system.pkgs = org.jboss.byteman
+	jboss.node.name = laptop-4f35ps1g
+	jboss.qualified.host.name = laptop-4f35ps1g
+	jboss.server.base.dir = C:\Users\Valerio\Documents\GitHub\scve\wildfly-11.0.0.Final\standalone
+	jboss.server.config.dir = C:\Users\Valerio\Documents\GitHub\scve\wildfly-11.0.0.Final\standalone\configuration
+	jboss.server.data.dir = C:\Users\Valerio\Documents\GitHub\scve\wildfly-11.0.0.Final\standalone\data
+	jboss.server.deploy.dir = C:\Users\Valerio\Documents\GitHub\scve\wildfly-11.0.0.Final\standalone\data\content
+	jboss.server.log.dir = C:\Users\Valerio\Documents\GitHub\scve\wildfly-11.0.0.Final\standalone\log
+	jboss.server.name = laptop-4f35ps1g
+	jboss.server.persist.config = true
+	jboss.server.temp.dir = C:\Users\Valerio\Documents\GitHub\scve\wildfly-11.0.0.Final\standalone\tmp
+	line.separator = 
+
+	logging.configuration = file:/C:/Users/Valerio/Documents/GitHub/scve/wildfly-11.0.0.Final/standalone/configuration/logging.properties
+	module.path = C:/Users/Valerio/Documents/GitHub/scve/wildfly-11.0.0.Final/modules
+	org.jboss.boot.log.file = C:/Users/Valerio/Documents/GitHub/scve/wildfly-11.0.0.Final/standalone/log/boot.log
+	org.jboss.logmanager.nocolor = true
+	org.jboss.resolver.warning = true
+	org.xml.sax.driver = __redirected.__XMLReaderFactory
+	os.arch = x86
+	os.name = Windows 10
+	os.version = 10.0
+	path.separator = ;
+	program.name = JBossTools: WildFly 11 (Tech Preview)
+	sun.arch.data.model = 32
+	sun.boot.class.path = C:\Program Files (x86)\Java\jre1.8.0_171\lib\resources.jar;C:\Program Files (x86)\Java\jre1.8.0_171\lib\rt.jar;C:\Program Files (x86)\Java\jre1.8.0_171\lib\sunrsasign.jar;C:\Program Files (x86)\Java\jre1.8.0_171\lib\jsse.jar;C:\Program Files (x86)\Java\jre1.8.0_171\lib\jce.jar;C:\Program Files (x86)\Java\jre1.8.0_171\lib\charsets.jar;C:\Program Files (x86)\Java\jre1.8.0_171\lib\jfr.jar;C:\Program Files (x86)\Java\jre1.8.0_171\classes
+	sun.boot.library.path = C:\Program Files (x86)\Java\jre1.8.0_171\bin
+	sun.cpu.endian = little
+	sun.cpu.isalist = pentium_pro+mmx pentium_pro pentium+mmx pentium i486 i386 i86
+	sun.desktop = windows
+	sun.io.unicode.encoding = UnicodeLittle
+	sun.java.command = org.jboss.modules.Main -mp C:/Users/Valerio/Documents/GitHub/scve/wildfly-11.0.0.Final/modules org.jboss.as.standalone -b localhost --server-config=standalone.xml -Djboss.server.base.dir=C:\Users\Valerio\Documents\GitHub\scve\wildfly-11.0.0.Final\standalone
+	sun.java.launcher = SUN_STANDARD
+	sun.jnu.encoding = Cp1252
+	sun.management.compiler = HotSpot Client Compiler
+	sun.os.patch.level = 
+	sun.rmi.dgc.client.gcInterval = 3600000
+	sun.rmi.dgc.server.gcInterval = 3600000
+	user.country = BR
+	user.dir = C:\Users\Valerio\Documents\GitHub\scve\wildfly-11.0.0.Final\bin
+	user.home = C:\Users\Valerio
+	user.language = pt
+	user.name = Valerio
+	user.script = 
+	user.timezone = America/Sao_Paulo
+	user.variant = 
+2018-08-13 22:19:32,424 DEBUG [org.jboss.as.config] (MSC service thread 1-7) VM Arguments: -Dprogram.name=JBossTools: WildFly 11 (Tech Preview) -Xms64m -Xmx512m -Dorg.jboss.resolver.warning=true -Djava.net.preferIPv4Stack=true -Dsun.rmi.dgc.client.gcInterval=3600000 -Dsun.rmi.dgc.server.gcInterval=3600000 -Djboss.modules.system.pkgs=org.jboss.byteman -Djava.awt.headless=true -Dorg.jboss.boot.log.file=C:/Users/Valerio/Documents/GitHub/scve/wildfly-11.0.0.Final/standalone/log/boot.log -Dlogging.configuration=file:/C:/Users/Valerio/Documents/GitHub/scve/wildfly-11.0.0.Final/standalone/configuration/logging.properties -Djboss.home.dir=C:/Users/Valerio/Documents/GitHub/scve/wildfly-11.0.0.Final -Dorg.jboss.logmanager.nocolor=true -Djboss.bind.address.management=localhost -Dfile.encoding=Cp1252 
+2018-08-13 22:19:33,895 INFO  [org.jboss.as.controller.management-deprecated] (Controller Boot Thread) WFLYCTL0028: Attribute 'security-realm' in the resource at address '/core-service=management/management-interface=http-interface' is deprecated, and may be removed in future version. See the attribute description in the output of the read-resource-description operation to learn more about the deprecation.
+2018-08-13 22:19:33,922 INFO  [org.wildfly.security] (ServerService Thread Pool -- 22) ELY00001: WildFly Elytron version 1.1.6.Final
+2018-08-13 22:19:33,937 INFO  [org.jboss.as.controller.management-deprecated] (ServerService Thread Pool -- 9) WFLYCTL0028: Attribute 'security-realm' in the resource at address '/subsystem=undertow/server=default-server/https-listener=https' is deprecated, and may be removed in future version. See the attribute description in the output of the read-resource-description operation to learn more about the deprecation.
+2018-08-13 22:19:34,047 INFO  [org.jboss.as.server.deployment.scanner] (DeploymentScanner-threads - 1) WFLYDS0004: Found SCVE.war in deployment directory. To trigger deployment create a file called SCVE.war.dodeploy
+2018-08-13 22:19:34,074 INFO  [org.jboss.as.server] (Controller Boot Thread) WFLYSRV0039: Creating http management service using socket-binding (management-http)
+2018-08-13 22:19:34,091 INFO  [org.xnio] (MSC service thread 1-8) XNIO version 3.5.4.Final
+2018-08-13 22:19:34,098 INFO  [org.xnio.nio] (MSC service thread 1-8) XNIO NIO Implementation Version 3.5.4.Final
+2018-08-13 22:19:34,170 INFO  [org.jboss.as.jaxrs] (ServerService Thread Pool -- 43) WFLYRS0016: RESTEasy version 3.0.24.Final
+2018-08-13 22:19:34,177 WARN  [org.jboss.as.txn] (ServerService Thread Pool -- 58) WFLYTX0013: The node-identifier attribute on the /subsystem=transactions is set to the default value. This is a danger for environments running multiple servers. Please make sure the attribute value is unique.
+2018-08-13 22:19:34,181 INFO  [org.jboss.as.clustering.infinispan] (ServerService Thread Pool -- 42) WFLYCLINF0001: Activating Infinispan subsystem.
+2018-08-13 22:19:34,181 INFO  [org.jboss.as.webservices] (ServerService Thread Pool -- 60) WFLYWS0002: Activating WebServices Extension
+2018-08-13 22:19:34,197 INFO  [org.jboss.as.security] (ServerService Thread Pool -- 57) WFLYSEC0002: Activating Security Subsystem
+2018-08-13 22:19:34,200 INFO  [org.jboss.as.security] (MSC service thread 1-1) WFLYSEC0001: Current PicketBox version=5.0.2.Final
+2018-08-13 22:19:34,216 INFO  [org.jboss.as.naming] (ServerService Thread Pool -- 50) WFLYNAM0001: Activating Naming Subsystem
+2018-08-13 22:19:34,219 INFO  [org.jboss.as.jsf] (ServerService Thread Pool -- 48) WFLYJSF0007: Activated the following JSF Implementations: [main]
+2018-08-13 22:19:34,260 INFO  [org.jboss.as.connector.subsystems.datasources] (ServerService Thread Pool -- 36) WFLYJCA0004: Deploying JDBC-compliant driver class org.h2.Driver (version 1.4)
+2018-08-13 22:19:34,267 INFO  [org.jboss.as.connector] (MSC service thread 1-5) WFLYJCA0009: Starting JCA Subsystem (WildFly/IronJacamar 1.4.6.Final)
+2018-08-13 22:19:34,271 INFO  [org.jboss.as.naming] (MSC service thread 1-5) WFLYNAM0003: Starting Naming Service
+2018-08-13 22:19:34,271 INFO  [org.jboss.as.connector.deployers.jdbc] (MSC service thread 1-4) WFLYJCA0018: Started Driver service with driver-name = h2
+2018-08-13 22:19:34,273 INFO  [org.jboss.as.mail.extension] (MSC service thread 1-4) WFLYMAIL0001: Bound mail session [java:jboss/mail/Default]
+2018-08-13 22:19:34,359 INFO  [org.wildfly.extension.undertow] (MSC service thread 1-5) WFLYUT0003: Undertow 1.4.18.Final starting
+2018-08-13 22:19:34,448 INFO  [org.wildfly.extension.undertow] (ServerService Thread Pool -- 59) WFLYUT0014: Creating file handler for path 'C:\Users\Valerio\Documents\GitHub\scve\wildfly-11.0.0.Final/welcome-content' with options [directory-listing: 'false', follow-symlink: 'false', case-sensitive: 'true', safe-symlink-paths: '[]']
+2018-08-13 22:19:34,745 INFO  [org.wildfly.extension.io] (ServerService Thread Pool -- 41) WFLYIO001: Worker 'default' has auto-configured to 8 core threads with 64 task threads based on your 4 available processors
+2018-08-13 22:19:34,748 INFO  [org.jboss.as.ejb3] (MSC service thread 1-6) WFLYEJB0481: Strict pool slsb-strict-max-pool is using a max instance size of 64 (per class), which is derived from thread worker pool sizing.
+2018-08-13 22:19:34,749 INFO  [org.jboss.as.ejb3] (MSC service thread 1-6) WFLYEJB0482: Strict pool mdb-strict-max-pool is using a max instance size of 16 (per class), which is derived from the number of CPUs on this host.
+2018-08-13 22:19:34,776 INFO  [org.wildfly.extension.undertow] (MSC service thread 1-7) WFLYUT0012: Started server default-server.
+2018-08-13 22:19:34,778 INFO  [org.wildfly.extension.undertow] (MSC service thread 1-4) WFLYUT0018: Host default-host starting
+2018-08-13 22:19:34,814 INFO  [org.jboss.remoting] (MSC service thread 1-8) JBoss Remoting version 5.0.5.Final
+2018-08-13 22:19:34,872 INFO  [org.wildfly.extension.undertow] (MSC service thread 1-6) WFLYUT0006: Undertow HTTP listener default listening on 0.0.0.0:8080
+2018-08-13 22:19:34,900 INFO  [org.jboss.as.patching] (MSC service thread 1-6) WFLYPAT0050: WildFly Full cumulative patch ID is: base, one-off patches include: none
+2018-08-13 22:19:34,992 INFO  [org.jboss.as.server.deployment.scanner] (MSC service thread 1-4) WFLYDS0013: Started FileSystemDeploymentService for directory C:\Users\Valerio\Documents\GitHub\scve\wildfly-11.0.0.Final\standalone\deployments
+2018-08-13 22:19:35,002 INFO  [org.jboss.as.server.deployment] (MSC service thread 1-5) WFLYSRV0027: Starting deployment of "SCVE.war" (runtime-name: "SCVE.war")
+2018-08-13 22:19:35,048 INFO  [org.jboss.as.ejb3] (MSC service thread 1-3) WFLYEJB0493: EJB subsystem suspension complete
+2018-08-13 22:19:35,167 INFO  [org.jboss.as.connector.subsystems.datasources] (MSC service thread 1-6) WFLYJCA0001: Bound data source [java:jboss/datasources/ExampleDS]
+2018-08-13 22:19:35,568 INFO  [org.wildfly.extension.undertow] (MSC service thread 1-3) WFLYUT0006: Undertow HTTPS listener https listening on 0.0.0.0:8443
+2018-08-13 22:19:35,771 INFO  [org.jboss.ws.common.management] (MSC service thread 1-8) JBWS022052: Starting JBossWS 5.1.9.Final (Apache CXF 3.1.12) 
+2018-08-13 22:19:39,276 INFO  [org.jboss.as.jpa] (MSC service thread 1-4) WFLYJPA0002: Read persistence.xml for crudPU
+2018-08-13 22:19:39,838 INFO  [org.jboss.as.jpa] (ServerService Thread Pool -- 62) WFLYJPA0010: Starting Persistence Unit (phase 1 of 2) Service 'SCVE.war#crudPU'
+2018-08-13 22:19:39,864 INFO  [org.hibernate.jpa.internal.util.LogHelper] (ServerService Thread Pool -- 62) HHH000204: Processing PersistenceUnitInfo [
+	name: crudPU
+	...]
+2018-08-13 22:19:39,923 INFO  [org.jboss.weld.deployer] (MSC service thread 1-1) WFLYWELD0003: Processing weld deployment SCVE.war
+2018-08-13 22:19:39,944 INFO  [org.hibernate.Version] (ServerService Thread Pool -- 62) HHH000412: Hibernate Core {5.1.10.Final}
+2018-08-13 22:19:39,946 INFO  [org.hibernate.cfg.Environment] (ServerService Thread Pool -- 62) HHH000206: hibernate.properties not found
+2018-08-13 22:19:39,948 INFO  [org.hibernate.cfg.Environment] (ServerService Thread Pool -- 62) HHH000021: Bytecode provider name : javassist
+2018-08-13 22:19:39,986 INFO  [org.hibernate.annotations.common.Version] (ServerService Thread Pool -- 62) HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2018-08-13 22:19:40,009 INFO  [org.hibernate.validator.internal.util.Version] (MSC service thread 1-1) HV000001: Hibernate Validator 5.3.5.Final
+2018-08-13 22:19:40,342 INFO  [org.infinispan.factories.GlobalComponentRegistry] (MSC service thread 1-5) ISPN000128: Infinispan version: Infinispan 'Chakra' 8.2.8.Final
+2018-08-13 22:19:40,779 WARN  [org.jboss.as.connector.deployers.jdbc] (MSC service thread 1-1) WFLYJCA0003: Unable to instantiate driver class "org.olap4j.driver.xmla.XmlaOlap4jDriver": java.lang.NoSuchMethodException: org.olap4j.driver.xmla.XmlaOlap4jDriver.<init>()
+2018-08-13 22:19:40,782 INFO  [org.jboss.as.connector.deployers.jdbc] (MSC service thread 1-1) WFLYJCA0005: Deploying non-JDBC-compliant driver class org.postgresql.Driver (version 42.1)
+2018-08-13 22:19:40,808 INFO  [org.jboss.weld.Version] (MSC service thread 1-1) WELD-000900: 2.4.3 (Final)
+2018-08-13 22:19:40,842 INFO  [org.jboss.as.clustering.infinispan] (ServerService Thread Pool -- 63) WFLYCLINF0002: Started client-mappings cache from ejb container
+2018-08-13 22:19:40,868 INFO  [org.jboss.as.connector.deployers.jdbc] (MSC service thread 1-2) WFLYJCA0018: Started Driver service with driver-name = SCVE.war_org.postgresql.Driver_42_1
+2018-08-13 22:19:41,046 INFO  [org.jboss.as.jpa] (ServerService Thread Pool -- 63) WFLYJPA0010: Starting Persistence Unit (phase 2 of 2) Service 'SCVE.war#crudPU'
+2018-08-13 22:19:41,099 WARN  [org.hibernate.orm.connections.pooling] (ServerService Thread Pool -- 63) HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2018-08-13 22:19:41,100 INFO  [org.hibernate.orm.connections.pooling] (ServerService Thread Pool -- 63) HHH10001005: using driver [org.postgresql.Driver] at URL [jdbc:postgresql://localhost:5432/scve]
+2018-08-13 22:19:41,101 INFO  [org.hibernate.orm.connections.pooling] (ServerService Thread Pool -- 63) HHH10001001: Connection properties: {user=postgres, password=****}
+2018-08-13 22:19:41,101 INFO  [org.hibernate.orm.connections.pooling] (ServerService Thread Pool -- 63) HHH10001003: Autocommit mode: false
+2018-08-13 22:19:41,104 INFO  [org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl] (ServerService Thread Pool -- 63) HHH000115: Hibernate connection pool size: 20 (min=1)
+2018-08-13 22:19:41,221 INFO  [org.hibernate.dialect.Dialect] (ServerService Thread Pool -- 63) HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2018-08-13 22:19:41,431 INFO  [org.hibernate.engine.jdbc.env.internal.LobCreatorBuilderImpl] (ServerService Thread Pool -- 63) HHH000424: Disabling contextual LOB creation as createClob() method threw error : java.lang.reflect.InvocationTargetException
+2018-08-13 22:19:41,433 INFO  [org.hibernate.type.BasicTypeRegistry] (ServerService Thread Pool -- 63) HHH000270: Type registration [java.util.UUID] overrides previous : org.hibernate.type.UUIDBinaryType@16a0bef
+2018-08-13 22:19:41,439 INFO  [org.hibernate.envers.boot.internal.EnversServiceImpl] (ServerService Thread Pool -- 63) Envers integration enabled? : true
+2018-08-13 22:19:41,763 WARN  [org.hibernate.mapping.RootClass] (ServerService Thread Pool -- 63) HHH000038: Composite-id class does not override equals(): br.com.scve.entidades.Pjuridica
+2018-08-13 22:19:41,764 WARN  [org.hibernate.mapping.RootClass] (ServerService Thread Pool -- 63) HHH000039: Composite-id class does not override hashCode(): br.com.scve.entidades.Pjuridica
+2018-08-13 22:19:41,764 WARN  [org.hibernate.mapping.RootClass] (ServerService Thread Pool -- 63) HHH000038: Composite-id class does not override equals(): br.com.scve.entidades.Pfisica
+2018-08-13 22:19:41,764 WARN  [org.hibernate.mapping.RootClass] (ServerService Thread Pool -- 63) HHH000039: Composite-id class does not override hashCode(): br.com.scve.entidades.Pfisica
+2018-08-13 22:19:42,206 INFO  [org.hibernate.orm.connections.access] (ServerService Thread Pool -- 63) HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@2334c1] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2018-08-13 22:19:43,467 INFO  [io.undertow.servlet] (ServerService Thread Pool -- 64) No Spring WebApplicationInitializer types detected on classpath
+2018-08-13 22:19:43,467 INFO  [org.omnifaces.ApplicationInitializer] (ServerService Thread Pool -- 64) Using OmniFaces version 2.6.1
+2018-08-13 22:19:43,599 WARN  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 64) RESTEASY002150: resteasy.scan is no longer supported.  Use a servlet 3.0 container and the ResteasyServletInitializer
+2018-08-13 22:19:43,955 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 64) RESTEASY002225: Deploying javax.ws.rs.core.Application: class br.com.scve.reset.IniciaReset$Proxy$_$$_WeldClientProxy
+2018-08-13 22:19:43,958 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 64) RESTEASY002200: Adding class resource br.com.scve.reset.PedidosReset from Application class br.com.scve.reset.IniciaReset$Proxy$_$$_WeldClientProxy
+2018-08-13 22:19:43,958 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 64) RESTEASY002200: Adding class resource br.com.scve.reset.TipoEnderecoReset from Application class br.com.scve.reset.IniciaReset$Proxy$_$$_WeldClientProxy
+2018-08-13 22:19:43,958 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 64) RESTEASY002200: Adding class resource br.com.scve.reset.FormaPagReset from Application class br.com.scve.reset.IniciaReset$Proxy$_$$_WeldClientProxy
+2018-08-13 22:19:43,958 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 64) RESTEASY002200: Adding class resource br.com.scve.reset.PessoaReset from Application class br.com.scve.reset.IniciaReset$Proxy$_$$_WeldClientProxy
+2018-08-13 22:19:43,958 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 64) RESTEASY002200: Adding class resource br.com.scve.reset.FisicaJuridicaReset from Application class br.com.scve.reset.IniciaReset$Proxy$_$$_WeldClientProxy
+2018-08-13 22:19:43,959 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 64) RESTEASY002200: Adding class resource br.com.scve.reset.CidadeReset from Application class br.com.scve.reset.IniciaReset$Proxy$_$$_WeldClientProxy
+2018-08-13 22:19:43,959 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 64) RESTEASY002200: Adding class resource br.com.scve.reset.VendedorReset from Application class br.com.scve.reset.IniciaReset$Proxy$_$$_WeldClientProxy
+2018-08-13 22:19:43,959 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 64) RESTEASY002200: Adding class resource br.com.scve.reset.CondPagtoReset from Application class br.com.scve.reset.IniciaReset$Proxy$_$$_WeldClientProxy
+2018-08-13 22:19:43,959 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 64) RESTEASY002200: Adding class resource br.com.scve.reset.UsuarioReset from Application class br.com.scve.reset.IniciaReset$Proxy$_$$_WeldClientProxy
+2018-08-13 22:19:43,959 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 64) RESTEASY002200: Adding class resource br.com.scve.reset.EstadoReset from Application class br.com.scve.reset.IniciaReset$Proxy$_$$_WeldClientProxy
+2018-08-13 22:19:43,959 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 64) RESTEASY002200: Adding class resource br.com.scve.reset.TipoMvReset from Application class br.com.scve.reset.IniciaReset$Proxy$_$$_WeldClientProxy
+2018-08-13 22:19:44,001 INFO  [io.undertow.servlet] (ServerService Thread Pool -- 64) Initializing Spring root WebApplicationContext
+2018-08-13 22:19:44,002 INFO  [org.springframework.web.context.ContextLoader] (ServerService Thread Pool -- 64) Root WebApplicationContext: initialization started
+2018-08-13 22:19:44,052 INFO  [org.springframework.web.context.support.XmlWebApplicationContext] (ServerService Thread Pool -- 64) Refreshing Root WebApplicationContext: startup date [Mon Aug 13 22:19:44 BRT 2018]; root of context hierarchy
+2018-08-13 22:19:44,087 INFO  [org.springframework.beans.factory.xml.XmlBeanDefinitionReader] (ServerService Thread Pool -- 64) Loading XML bean definitions from ServletContext resource [/WEB-INF/applicationContext.xml]
+2018-08-13 22:19:44,145 INFO  [org.springframework.security.core.SpringSecurityCoreVersion] (ServerService Thread Pool -- 64) You are running with Spring Security Core 3.2.6.RELEASE
+2018-08-13 22:19:44,147 INFO  [org.springframework.security.config.SecurityNamespaceHandler] (ServerService Thread Pool -- 64) Spring Security 'config' module version is 3.2.6.RELEASE
+2018-08-13 22:19:44,184 INFO  [org.springframework.security.config.http.FilterInvocationSecurityMetadataSourceParser] (ServerService Thread Pool -- 64) Creating access control expression attribute 'hasRole('ADM')' for /**
+2018-08-13 22:19:44,201 INFO  [org.springframework.security.config.http.HttpSecurityBeanDefinitionParser] (ServerService Thread Pool -- 64) Checking sorted filter chain: [Root bean: class [org.springframework.security.web.context.SecurityContextPersistenceFilter]; scope=; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null, order = 200, Root bean: class [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter]; scope=; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null, order = 400, Root bean: class [org.springframework.security.web.authentication.logout.LogoutFilter]; scope=; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null, order = 700, <org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter#0>, order = 1100, Root bean: class [org.springframework.security.web.authentication.www.BasicAuthenticationFilter]; scope=; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null, order = 1500, Root bean: class [org.springframework.security.web.savedrequest.RequestCacheAwareFilter]; scope=; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null, order = 1600, Root bean: class [org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter]; scope=; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null, order = 1700, Root bean: class [org.springframework.security.web.authentication.AnonymousAuthenticationFilter]; scope=; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null, order = 2000, Root bean: class [org.springframework.security.web.session.SessionManagementFilter]; scope=; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null, order = 2100, Root bean: class [org.springframework.security.web.access.ExceptionTranslationFilter]; scope=; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null, order = 2200, <org.springframework.security.web.access.intercept.FilterSecurityInterceptor#0>, order = 2300]
+2018-08-13 22:19:44,226 INFO  [org.springframework.beans.factory.support.DefaultListableBeanFactory] (ServerService Thread Pool -- 64) Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@1a5ce8f: defining beans [org.springframework.security.filterChains,org.springframework.security.filterChainProxy,org.springframework.security.web.DefaultSecurityFilterChain#0,org.springframework.security.web.DefaultSecurityFilterChain#1,org.springframework.security.web.DefaultSecurityFilterChain#2,org.springframework.security.web.DefaultSecurityFilterChain#3,org.springframework.security.web.PortMapperImpl#0,org.springframework.security.web.PortResolverImpl#0,org.springframework.security.config.authentication.AuthenticationManagerFactoryBean#0,org.springframework.security.authentication.ProviderManager#0,org.springframework.security.web.context.HttpSessionSecurityContextRepository#0,org.springframework.security.web.authentication.session.CompositeSessionAuthenticationStrategy#0,org.springframework.security.web.savedrequest.HttpSessionRequestCache#0,org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler#0,org.springframework.security.access.vote.AffirmativeBased#0,org.springframework.security.web.access.intercept.FilterSecurityInterceptor#0,org.springframework.security.web.access.DefaultWebInvocationPrivilegeEvaluator#0,org.springframework.security.authentication.AnonymousAuthenticationProvider#0,org.springframework.security.web.authentication.www.BasicAuthenticationEntryPoint#0,org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter#0,org.springframework.security.userDetailsServiceFactory,org.springframework.security.web.DefaultSecurityFilterChain#4,org.springframework.security.provisioning.JdbcUserDetailsManager#0,org.springframework.security.authentication.dao.DaoAuthenticationProvider#0,org.springframework.security.authentication.DefaultAuthenticationEventPublisher#0,org.springframework.security.authenticationManager,dataSource]; root of factory hierarchy
+2018-08-13 22:19:44,289 INFO  [org.springframework.security.web.DefaultSecurityFilterChain] (ServerService Thread Pool -- 64) Creating filter chain: Ant [pattern='/login.xhtml'], []
+2018-08-13 22:19:44,290 INFO  [org.springframework.security.web.DefaultSecurityFilterChain] (ServerService Thread Pool -- 64) Creating filter chain: Ant [pattern='/negado.xhtml'], []
+2018-08-13 22:19:44,291 INFO  [org.springframework.security.web.DefaultSecurityFilterChain] (ServerService Thread Pool -- 64) Creating filter chain: Ant [pattern='/javax.faces.resource/**'], []
+2018-08-13 22:19:44,291 INFO  [org.springframework.security.web.DefaultSecurityFilterChain] (ServerService Thread Pool -- 64) Creating filter chain: Ant [pattern='/reset/**'], []
+2018-08-13 22:19:44,349 INFO  [org.springframework.jdbc.datasource.DriverManagerDataSource] (ServerService Thread Pool -- 64) Loaded JDBC driver: org.postgresql.Driver
+2018-08-13 22:19:44,358 INFO  [org.springframework.security.provisioning.JdbcUserDetailsManager] (ServerService Thread Pool -- 64) No authentication manager set. Reauthentication of users when changing passwords will not be performed.
+2018-08-13 22:19:44,412 INFO  [org.springframework.security.web.DefaultSecurityFilterChain] (ServerService Thread Pool -- 64) Creating filter chain: org.springframework.security.web.util.matcher.AnyRequestMatcher@1, [org.springframework.security.web.context.SecurityContextPersistenceFilter@4094e0, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@624e8e, org.springframework.security.web.authentication.logout.LogoutFilter@22d693, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@512b2b, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@884e95, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@f87734, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2cb236, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@11bdceb, org.springframework.security.web.session.SessionManagementFilter@12dd4fb, org.springframework.security.web.access.ExceptionTranslationFilter@41493d, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@135f881]
+2018-08-13 22:19:44,420 INFO  [org.springframework.security.config.http.DefaultFilterChainValidator] (ServerService Thread Pool -- 64) Checking whether login URL '/login.xhtml' is accessible with your configuration
+2018-08-13 22:19:44,432 INFO  [org.springframework.web.context.ContextLoader] (ServerService Thread Pool -- 64) Root WebApplicationContext: initialization completed in 430 ms
+2018-08-13 22:19:44,480 INFO  [javax.enterprise.resource.webcontainer.jsf.config] (ServerService Thread Pool -- 64) Inicializando Mojarra 2.2.13.SP4  para o contexto '/SCVE'
+2018-08-13 22:19:46,640 WARNING [javax.enterprise.resource.webcontainer.jsf.application] (ServerService Thread Pool -- 64) @FacesConverter is using both value and forClass, only value will be applied.
+2018-08-13 22:19:46,641 WARNING [javax.enterprise.resource.webcontainer.jsf.application] (ServerService Thread Pool -- 64) @FacesConverter is using both value and forClass, only value will be applied.
+2018-08-13 22:19:46,641 WARNING [javax.enterprise.resource.webcontainer.jsf.application] (ServerService Thread Pool -- 64) @FacesConverter is using both value and forClass, only value will be applied.
+2018-08-13 22:19:46,641 WARNING [javax.enterprise.resource.webcontainer.jsf.application] (ServerService Thread Pool -- 64) @FacesConverter is using both value and forClass, only value will be applied.
+2018-08-13 22:19:46,641 WARNING [javax.enterprise.resource.webcontainer.jsf.application] (ServerService Thread Pool -- 64) @FacesConverter is using both value and forClass, only value will be applied.
+2018-08-13 22:19:46,641 WARNING [javax.enterprise.resource.webcontainer.jsf.application] (ServerService Thread Pool -- 64) @FacesConverter is using both value and forClass, only value will be applied.
+2018-08-13 22:19:46,641 WARNING [javax.enterprise.resource.webcontainer.jsf.application] (ServerService Thread Pool -- 64) @FacesConverter is using both value and forClass, only value will be applied.
+2018-08-13 22:19:46,642 WARNING [javax.enterprise.resource.webcontainer.jsf.application] (ServerService Thread Pool -- 64) @FacesConverter is using both value and forClass, only value will be applied.
+2018-08-13 22:19:46,642 WARNING [javax.enterprise.resource.webcontainer.jsf.application] (ServerService Thread Pool -- 64) @FacesConverter is using both value and forClass, only value will be applied.
+2018-08-13 22:19:46,642 WARNING [javax.enterprise.resource.webcontainer.jsf.application] (ServerService Thread Pool -- 64) @FacesConverter is using both value and forClass, only value will be applied.
+2018-08-13 22:19:46,642 WARNING [javax.enterprise.resource.webcontainer.jsf.application] (ServerService Thread Pool -- 64) @FacesConverter is using both value and forClass, only value will be applied.
+2018-08-13 22:19:48,285 INFO  [javax.enterprise.resource.webcontainer.jsf.config] (ServerService Thread Pool -- 64) Monitoring file:/C:/Users/Valerio/Documents/GitHub/scve/wildfly-11.0.0.Final/standalone/deployments/SCVE.war/WEB-INF/faces-config.xml for modifications
+2018-08-13 22:19:48,318 INFO  [org.primefaces.webapp.PostConstructApplicationEventListener] (ServerService Thread Pool -- 64) Running on PrimeFaces 6.0
+2018-08-13 22:19:48,319 INFO  [org.primefaces.extensions.application.PostConstructApplicationEventListener] (ServerService Thread Pool -- 64) Running on PrimeFaces Extensions 6.0.0
+2018-08-13 22:19:48,342 INFO  [org.wildfly.extension.undertow] (ServerService Thread Pool -- 64) WFLYUT0021: Registered web context: '/SCVE' for server 'default-server'
+2018-08-13 22:19:48,354 INFO  [org.jboss.as.server] (ServerService Thread Pool -- 37) WFLYSRV0010: Deployed "SCVE.war" (runtime-name : "SCVE.war")
+2018-08-13 22:19:48,406 INFO  [org.jboss.as.server] (Controller Boot Thread) WFLYSRV0212: Resuming server
+2018-08-13 22:19:48,408 INFO  [org.jboss.as] (Controller Boot Thread) WFLYSRV0060: Http management interface listening on http://0.0.0.0:9990/management
+2018-08-13 22:19:48,409 INFO  [org.jboss.as] (Controller Boot Thread) WFLYSRV0051: Admin console listening on http://0.0.0.0:9990
+2018-08-13 22:19:48,409 INFO  [org.jboss.as] (Controller Boot Thread) WFLYSRV0025: WildFly Full 11.0.0.Final (WildFly Core 3.0.8.Final) started in 16913ms - Started 488 of 714 services (353 services are lazy, passive or on-demand)
+2018-08-13 22:21:03,355 INFO  [com.github.adminfaces.template.session.AdminFilter] (default task-2) Using Admin Template 1.0.0-RC2
+2018-08-13 22:21:03,432 INFO  [stdout] (default task-2) [{"cliente":{"contatos":[{"ddd":"44","email":"jose@gmail.com","idcontato":2,"nome":"jose","numero":"99875462"}],"dtcadastro":"2018-04-21","enderecos":[{"bairro":"planalto","cep":"98.484-948","cidade":{"estado":{"idestado":18},"idcidade":2974,"nome":"Loanda"},"complemento":"","logadouro":"rua jose","numero":"130","tipoendereco":{"idtipoend":2,"nome":"Cobrança"}}],"idpessoa":3,"nome":"Cliente de Teste","tipojf":"J","vendresp":{"idpessoa":2,"nome":"Vendedor Teste","perc_comissao":9.0,"tipojf":"F"}},"condPagto":{"diasentreparc":30,"idcondpgto":2,"nome":"30/60/90 DIAS","qtdeparcelas":3},"dtvenda":"2018-08-13","formaPag":{"idformapag":1,"nome":"BOLETO"},"idmov":4,"items":[{"desconto":0.0,"iditemmov":6,"itemobservacao":"","produto":{},"qtde":5,"subtotal":100.0,"valor":20.0}],"observacao":"","tipoMv":{},"totalvenda":100.0,"vendedor":{"idpessoa":2,"nome":"Vendedor Teste","perc_comissao":9.0,"tipojf":"F"}}]
+2018-08-13 22:21:03,593 INFO  [stdout] (default task-2) Id:17
+2018-08-13 22:27:47,126 INFO  [stdout] (default task-4) [{"cliente":{"contatos":[{"ddd":"44","email":"die_gow@hotmail.com","idcontato":6,"nome":"diego","numero":"988534860"}],"dtcadastro":"2018-08-07","enderecos":[{"bairro":"15","cep":"48.484-848","cidade":{"estado":{"idestado":18},"idcidade":2974,"nome":"Loanda"},"complemento":"15","logadouro":"rua carlos de campos","numero":"15","tipoendereco":{"idtipoend":1,"nome":"Entrega"}}],"idpessoa":8,"nome":"Testar Cpf","tipojf":"F","vendresp":{"idpessoa":2,"nome":"Vendedor Teste","perc_comissao":9.0,"tipojf":"F"}},"condPagto":{"diasentreparc":30,"idcondpgto":2,"nome":"30/60/90 DIAS","qtdeparcelas":3},"dtvenda":"2018-08-13","formaPag":{"idformapag":1,"nome":"BOLETO"},"idmov":3,"items":[{"desconto":0.0,"iditemmov":4,"itemobservacao":"","produto":{},"qtde":6,"subtotal":120.0,"valor":20.0},{"desconto":0.0,"iditemmov":5,"itemobservacao":"","produto":{},"qtde":6,"subtotal":108.0,"valor":18.0}],"observacao":"","tipoMv":{},"totalvenda":228.0,"vendedor":{"idpessoa":2,"nome":"Vendedor Teste","perc_comissao":9.0,"tipojf":"F"}}]
+2018-08-13 22:27:47,135 INFO  [stdout] (default task-4) Id:18
+2018-08-13 22:28:33,309 INFO  [org.hibernate.hql.internal.QueryTranslatorFactoryInitiator] (default task-26) HHH000397: Using ASTQueryTranslatorFactory
+2018-08-13 22:34:36,224 INFO  [stdout] (default task-62) [{"cliente":{"contatos":[{"ddd":"44","email":"die_gow@hotmail.com","idcontato":6,"nome":"diego","numero":"988534860"}],"dtcadastro":"2018-08-07","enderecos":[{"bairro":"15","cep":"48.484-848","cidade":{"estado":{"idestado":18},"idcidade":2974,"nome":"Loanda"},"complemento":"15","logadouro":"rua carlos de campos","numero":"15","tipoendereco":{"idtipoend":1,"nome":"Entrega"}}],"idpessoa":8,"nome":"Testar Cpf","tipojf":"F","vendresp":{"idpessoa":2,"nome":"Vendedor Teste","perc_comissao":9.0,"tipojf":"F"}},"condPagto":{"diasentreparc":30,"idcondpgto":2,"nome":"30/60/90 DIAS","qtdeparcelas":3},"dtvenda":"2018-08-13","formaPag":{"idformapag":1,"nome":"BOLETO"},"idmov":3,"items":[{"desconto":0.0,"iditemmov":4,"itemobservacao":"","produto":{},"qtde":6,"subtotal":120.0,"valor":20.0},{"desconto":0.0,"iditemmov":5,"itemobservacao":"","produto":{},"qtde":6,"subtotal":108.0,"valor":18.0}],"observacao":"","tipoMv":{"idmv":1,"nome":"VENDA"},"totalvenda":228.0,"vendedor":{"idpessoa":2,"nome":"Vendedor Teste","perc_comissao":9.0,"tipojf":"F"}}]
+2018-08-13 22:34:36,257 INFO  [stdout] (default task-62) Id:19
+2018-08-13 22:44:16,192 INFO  [org.jboss.as.connector.deployers.jdbc] (MSC service thread 1-8) WFLYJCA0019: Stopped Driver service with driver-name = SCVE.war_org.postgresql.Driver_42_1
+2018-08-13 22:44:16,196 INFO  [org.wildfly.extension.undertow] (ServerService Thread Pool -- 64) WFLYUT0022: Unregistered web context: '/SCVE' from server 'default-server'
+2018-08-13 22:44:16,204 INFO  [io.undertow.servlet] (ServerService Thread Pool -- 64) Closing Spring root WebApplicationContext
+2018-08-13 22:44:16,204 INFO  [org.springframework.web.context.support.XmlWebApplicationContext] (ServerService Thread Pool -- 64) Closing Root WebApplicationContext: startup date [Mon Aug 13 22:19:44 BRT 2018]; root of context hierarchy
+2018-08-13 22:44:16,205 INFO  [org.springframework.beans.factory.support.DefaultListableBeanFactory] (ServerService Thread Pool -- 64) Destroying singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@1a5ce8f: defining beans [org.springframework.security.filterChains,org.springframework.security.filterChainProxy,org.springframework.security.web.DefaultSecurityFilterChain#0,org.springframework.security.web.DefaultSecurityFilterChain#1,org.springframework.security.web.DefaultSecurityFilterChain#2,org.springframework.security.web.DefaultSecurityFilterChain#3,org.springframework.security.web.PortMapperImpl#0,org.springframework.security.web.PortResolverImpl#0,org.springframework.security.config.authentication.AuthenticationManagerFactoryBean#0,org.springframework.security.authentication.ProviderManager#0,org.springframework.security.web.context.HttpSessionSecurityContextRepository#0,org.springframework.security.web.authentication.session.CompositeSessionAuthenticationStrategy#0,org.springframework.security.web.savedrequest.HttpSessionRequestCache#0,org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler#0,org.springframework.security.access.vote.AffirmativeBased#0,org.springframework.security.web.access.intercept.FilterSecurityInterceptor#0,org.springframework.security.web.access.DefaultWebInvocationPrivilegeEvaluator#0,org.springframework.security.authentication.AnonymousAuthenticationProvider#0,org.springframework.security.web.authentication.www.BasicAuthenticationEntryPoint#0,org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter#0,org.springframework.security.userDetailsServiceFactory,org.springframework.security.web.DefaultSecurityFilterChain#4,org.springframework.security.provisioning.JdbcUserDetailsManager#0,org.springframework.security.authentication.dao.DaoAuthenticationProvider#0,org.springframework.security.authentication.DefaultAuthenticationEventPublisher#0,org.springframework.security.authenticationManager,dataSource]; root of factory hierarchy
+2018-08-13 22:44:16,232 INFO  [org.jboss.as.jpa] (ServerService Thread Pool -- 78) WFLYJPA0011: Stopping Persistence Unit (phase 2 of 2) Service 'SCVE.war#crudPU'
+2018-08-13 22:44:16,234 INFO  [org.hibernate.orm.connections.pooling] (ServerService Thread Pool -- 78) HHH10001008: Cleaning up connection pool [jdbc:postgresql://localhost:5432/scve]
+2018-08-13 22:44:16,238 INFO  [org.jboss.as.jpa] (ServerService Thread Pool -- 78) WFLYJPA0011: Stopping Persistence Unit (phase 1 of 2) Service 'SCVE.war#crudPU'
+2018-08-13 22:44:16,910 INFO  [org.jboss.as.server.deployment] (MSC service thread 1-8) WFLYSRV0028: Stopped deployment SCVE.war (runtime-name: SCVE.war) in 723ms
+2018-08-13 22:44:17,013 INFO  [org.jboss.as.server] (DeploymentScanner-threads - 2) WFLYSRV0009: Undeployed "SCVE.war" (runtime-name: "SCVE.war")
+2018-08-13 22:44:22,030 INFO  [org.jboss.as.server.deployment.scanner] (DeploymentScanner-threads - 1) WFLYDS0004: Found SCVE.war in deployment directory. To trigger deployment create a file called SCVE.war.dodeploy
+2018-08-13 22:44:27,101 INFO  [org.jboss.as.server.deployment] (MSC service thread 1-5) WFLYSRV0027: Starting deployment of "SCVE.war" (runtime-name: "SCVE.war")
+2018-08-13 22:44:30,664 INFO  [org.jboss.as.jpa] (MSC service thread 1-4) WFLYJPA0002: Read persistence.xml for crudPU
+2018-08-13 22:44:31,112 INFO  [org.jboss.as.jpa] (ServerService Thread Pool -- 78) WFLYJPA0010: Starting Persistence Unit (phase 1 of 2) Service 'SCVE.war#crudPU'
+2018-08-13 22:44:31,113 INFO  [org.hibernate.jpa.internal.util.LogHelper] (ServerService Thread Pool -- 78) HHH000204: Processing PersistenceUnitInfo [
+	name: crudPU
+	...]
+2018-08-13 22:44:31,159 INFO  [org.jboss.weld.deployer] (MSC service thread 1-3) WFLYWELD0003: Processing weld deployment SCVE.war
+2018-08-13 22:44:31,538 WARN  [org.jboss.as.connector.deployers.jdbc] (MSC service thread 1-2) WFLYJCA0003: Unable to instantiate driver class "org.olap4j.driver.xmla.XmlaOlap4jDriver": java.lang.NoSuchMethodException: org.olap4j.driver.xmla.XmlaOlap4jDriver.<init>()
+2018-08-13 22:44:31,543 INFO  [org.jboss.as.connector.deployers.jdbc] (MSC service thread 1-2) WFLYJCA0005: Deploying non-JDBC-compliant driver class org.postgresql.Driver (version 42.1)
+2018-08-13 22:44:31,568 INFO  [org.jboss.as.connector.deployers.jdbc] (MSC service thread 1-1) WFLYJCA0018: Started Driver service with driver-name = SCVE.war_org.postgresql.Driver_42_1
+2018-08-13 22:44:31,598 INFO  [org.jboss.as.jpa] (ServerService Thread Pool -- 78) WFLYJPA0010: Starting Persistence Unit (phase 2 of 2) Service 'SCVE.war#crudPU'
+2018-08-13 22:44:31,599 WARN  [org.hibernate.orm.connections.pooling] (ServerService Thread Pool -- 78) HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2018-08-13 22:44:31,600 INFO  [org.hibernate.orm.connections.pooling] (ServerService Thread Pool -- 78) HHH10001005: using driver [org.postgresql.Driver] at URL [jdbc:postgresql://localhost:5432/scve]
+2018-08-13 22:44:31,600 INFO  [org.hibernate.orm.connections.pooling] (ServerService Thread Pool -- 78) HHH10001001: Connection properties: {user=postgres, password=****}
+2018-08-13 22:44:31,600 INFO  [org.hibernate.orm.connections.pooling] (ServerService Thread Pool -- 78) HHH10001003: Autocommit mode: false
+2018-08-13 22:44:31,600 INFO  [org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl] (ServerService Thread Pool -- 78) HHH000115: Hibernate connection pool size: 20 (min=1)
+2018-08-13 22:44:31,696 INFO  [org.hibernate.dialect.Dialect] (ServerService Thread Pool -- 78) HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2018-08-13 22:44:31,874 INFO  [org.hibernate.engine.jdbc.env.internal.LobCreatorBuilderImpl] (ServerService Thread Pool -- 78) HHH000424: Disabling contextual LOB creation as createClob() method threw error : java.lang.reflect.InvocationTargetException
+2018-08-13 22:44:31,875 INFO  [org.hibernate.type.BasicTypeRegistry] (ServerService Thread Pool -- 78) HHH000270: Type registration [java.util.UUID] overrides previous : org.hibernate.type.UUIDBinaryType@16a0bef
+2018-08-13 22:44:31,877 INFO  [org.hibernate.envers.boot.internal.EnversServiceImpl] (ServerService Thread Pool -- 78) Envers integration enabled? : true
+2018-08-13 22:44:31,946 WARN  [org.hibernate.mapping.RootClass] (ServerService Thread Pool -- 78) HHH000038: Composite-id class does not override equals(): br.com.scve.entidades.Pjuridica
+2018-08-13 22:44:31,947 WARN  [org.hibernate.mapping.RootClass] (ServerService Thread Pool -- 78) HHH000039: Composite-id class does not override hashCode(): br.com.scve.entidades.Pjuridica
+2018-08-13 22:44:31,947 WARN  [org.hibernate.mapping.RootClass] (ServerService Thread Pool -- 78) HHH000038: Composite-id class does not override equals(): br.com.scve.entidades.Pfisica
+2018-08-13 22:44:31,947 WARN  [org.hibernate.mapping.RootClass] (ServerService Thread Pool -- 78) HHH000039: Composite-id class does not override hashCode(): br.com.scve.entidades.Pfisica
+2018-08-13 22:44:32,137 INFO  [org.hibernate.orm.connections.access] (ServerService Thread Pool -- 78) HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@14d2612] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2018-08-13 22:44:32,932 INFO  [org.omnifaces.ApplicationInitializer] (ServerService Thread Pool -- 82) Using OmniFaces version 2.6.1
+2018-08-13 22:44:33,001 INFO  [io.undertow.servlet] (ServerService Thread Pool -- 82) No Spring WebApplicationInitializer types detected on classpath
+2018-08-13 22:44:33,003 WARN  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 82) RESTEASY002150: resteasy.scan is no longer supported.  Use a servlet 3.0 container and the ResteasyServletInitializer
+2018-08-13 22:44:33,058 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 82) RESTEASY002225: Deploying javax.ws.rs.core.Application: class br.com.scve.reset.IniciaReset$Proxy$_$$_WeldClientProxy
+2018-08-13 22:44:33,058 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 82) RESTEASY002200: Adding class resource br.com.scve.reset.VendedorReset from Application class br.com.scve.reset.IniciaReset$Proxy$_$$_WeldClientProxy
+2018-08-13 22:44:33,058 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 82) RESTEASY002200: Adding class resource br.com.scve.reset.EstadoReset from Application class br.com.scve.reset.IniciaReset$Proxy$_$$_WeldClientProxy
+2018-08-13 22:44:33,059 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 82) RESTEASY002200: Adding class resource br.com.scve.reset.FisicaJuridicaReset from Application class br.com.scve.reset.IniciaReset$Proxy$_$$_WeldClientProxy
+2018-08-13 22:44:33,059 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 82) RESTEASY002200: Adding class resource br.com.scve.reset.UsuarioReset from Application class br.com.scve.reset.IniciaReset$Proxy$_$$_WeldClientProxy
+2018-08-13 22:44:33,059 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 82) RESTEASY002200: Adding class resource br.com.scve.reset.TipoEnderecoReset from Application class br.com.scve.reset.IniciaReset$Proxy$_$$_WeldClientProxy
+2018-08-13 22:44:33,059 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 82) RESTEASY002200: Adding class resource br.com.scve.reset.FormaPagReset from Application class br.com.scve.reset.IniciaReset$Proxy$_$$_WeldClientProxy
+2018-08-13 22:44:33,059 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 82) RESTEASY002200: Adding class resource br.com.scve.reset.PessoaReset from Application class br.com.scve.reset.IniciaReset$Proxy$_$$_WeldClientProxy
+2018-08-13 22:44:33,059 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 82) RESTEASY002200: Adding class resource br.com.scve.reset.CondPagtoReset from Application class br.com.scve.reset.IniciaReset$Proxy$_$$_WeldClientProxy
+2018-08-13 22:44:33,059 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 82) RESTEASY002200: Adding class resource br.com.scve.reset.PedidosReset from Application class br.com.scve.reset.IniciaReset$Proxy$_$$_WeldClientProxy
+2018-08-13 22:44:33,059 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 82) RESTEASY002200: Adding class resource br.com.scve.reset.CidadeReset from Application class br.com.scve.reset.IniciaReset$Proxy$_$$_WeldClientProxy
+2018-08-13 22:44:33,060 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 82) RESTEASY002200: Adding class resource br.com.scve.reset.TipoMvReset from Application class br.com.scve.reset.IniciaReset$Proxy$_$$_WeldClientProxy
+2018-08-13 22:44:33,077 INFO  [io.undertow.servlet] (ServerService Thread Pool -- 82) Initializing Spring root WebApplicationContext
+2018-08-13 22:44:33,078 INFO  [org.springframework.web.context.ContextLoader] (ServerService Thread Pool -- 82) Root WebApplicationContext: initialization started
+2018-08-13 22:44:33,130 INFO  [org.springframework.web.context.support.XmlWebApplicationContext] (ServerService Thread Pool -- 82) Refreshing Root WebApplicationContext: startup date [Mon Aug 13 22:44:33 BRT 2018]; root of context hierarchy
+2018-08-13 22:44:33,164 INFO  [org.springframework.beans.factory.xml.XmlBeanDefinitionReader] (ServerService Thread Pool -- 82) Loading XML bean definitions from ServletContext resource [/WEB-INF/applicationContext.xml]
+2018-08-13 22:44:33,218 INFO  [org.springframework.security.core.SpringSecurityCoreVersion] (ServerService Thread Pool -- 82) You are running with Spring Security Core 3.2.6.RELEASE
+2018-08-13 22:44:33,220 INFO  [org.springframework.security.config.SecurityNamespaceHandler] (ServerService Thread Pool -- 82) Spring Security 'config' module version is 3.2.6.RELEASE
+2018-08-13 22:44:33,255 INFO  [org.springframework.security.config.http.FilterInvocationSecurityMetadataSourceParser] (ServerService Thread Pool -- 82) Creating access control expression attribute 'hasRole('ADM')' for /**
+2018-08-13 22:44:33,274 INFO  [org.springframework.security.config.http.HttpSecurityBeanDefinitionParser] (ServerService Thread Pool -- 82) Checking sorted filter chain: [Root bean: class [org.springframework.security.web.context.SecurityContextPersistenceFilter]; scope=; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null, order = 200, Root bean: class [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter]; scope=; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null, order = 400, Root bean: class [org.springframework.security.web.authentication.logout.LogoutFilter]; scope=; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null, order = 700, <org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter#0>, order = 1100, Root bean: class [org.springframework.security.web.authentication.www.BasicAuthenticationFilter]; scope=; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null, order = 1500, Root bean: class [org.springframework.security.web.savedrequest.RequestCacheAwareFilter]; scope=; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null, order = 1600, Root bean: class [org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter]; scope=; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null, order = 1700, Root bean: class [org.springframework.security.web.authentication.AnonymousAuthenticationFilter]; scope=; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null, order = 2000, Root bean: class [org.springframework.security.web.session.SessionManagementFilter]; scope=; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null, order = 2100, Root bean: class [org.springframework.security.web.access.ExceptionTranslationFilter]; scope=; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null, order = 2200, <org.springframework.security.web.access.intercept.FilterSecurityInterceptor#0>, order = 2300]
+2018-08-13 22:44:33,301 INFO  [org.springframework.beans.factory.support.DefaultListableBeanFactory] (ServerService Thread Pool -- 82) Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@1b1aa5a: defining beans [org.springframework.security.filterChains,org.springframework.security.filterChainProxy,org.springframework.security.web.DefaultSecurityFilterChain#0,org.springframework.security.web.DefaultSecurityFilterChain#1,org.springframework.security.web.DefaultSecurityFilterChain#2,org.springframework.security.web.DefaultSecurityFilterChain#3,org.springframework.security.web.PortMapperImpl#0,org.springframework.security.web.PortResolverImpl#0,org.springframework.security.config.authentication.AuthenticationManagerFactoryBean#0,org.springframework.security.authentication.ProviderManager#0,org.springframework.security.web.context.HttpSessionSecurityContextRepository#0,org.springframework.security.web.authentication.session.CompositeSessionAuthenticationStrategy#0,org.springframework.security.web.savedrequest.HttpSessionRequestCache#0,org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler#0,org.springframework.security.access.vote.AffirmativeBased#0,org.springframework.security.web.access.intercept.FilterSecurityInterceptor#0,org.springframework.security.web.access.DefaultWebInvocationPrivilegeEvaluator#0,org.springframework.security.authentication.AnonymousAuthenticationProvider#0,org.springframework.security.web.authentication.www.BasicAuthenticationEntryPoint#0,org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter#0,org.springframework.security.userDetailsServiceFactory,org.springframework.security.web.DefaultSecurityFilterChain#4,org.springframework.security.provisioning.JdbcUserDetailsManager#0,org.springframework.security.authentication.dao.DaoAuthenticationProvider#0,org.springframework.security.authentication.DefaultAuthenticationEventPublisher#0,org.springframework.security.authenticationManager,dataSource]; root of factory hierarchy
+2018-08-13 22:44:33,359 INFO  [org.springframework.security.web.DefaultSecurityFilterChain] (ServerService Thread Pool -- 82) Creating filter chain: Ant [pattern='/login.xhtml'], []
+2018-08-13 22:44:33,360 INFO  [org.springframework.security.web.DefaultSecurityFilterChain] (ServerService Thread Pool -- 82) Creating filter chain: Ant [pattern='/negado.xhtml'], []
+2018-08-13 22:44:33,361 INFO  [org.springframework.security.web.DefaultSecurityFilterChain] (ServerService Thread Pool -- 82) Creating filter chain: Ant [pattern='/javax.faces.resource/**'], []
+2018-08-13 22:44:33,362 INFO  [org.springframework.security.web.DefaultSecurityFilterChain] (ServerService Thread Pool -- 82) Creating filter chain: Ant [pattern='/reset/**'], []
+2018-08-13 22:44:33,411 INFO  [org.springframework.jdbc.datasource.DriverManagerDataSource] (ServerService Thread Pool -- 82) Loaded JDBC driver: org.postgresql.Driver
+2018-08-13 22:44:33,421 INFO  [org.springframework.security.provisioning.JdbcUserDetailsManager] (ServerService Thread Pool -- 82) No authentication manager set. Reauthentication of users when changing passwords will not be performed.
+2018-08-13 22:44:33,480 INFO  [org.springframework.security.web.DefaultSecurityFilterChain] (ServerService Thread Pool -- 82) Creating filter chain: org.springframework.security.web.util.matcher.AnyRequestMatcher@1, [org.springframework.security.web.context.SecurityContextPersistenceFilter@10a9158, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1a86837, org.springframework.security.web.authentication.logout.LogoutFilter@111a77d, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@1a90b09, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@8c435, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2be7d3, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5581a4, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@11d3a24, org.springframework.security.web.session.SessionManagementFilter@1a2619e, org.springframework.security.web.access.ExceptionTranslationFilter@f20706, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@48fa9d]
+2018-08-13 22:44:33,488 INFO  [org.springframework.security.config.http.DefaultFilterChainValidator] (ServerService Thread Pool -- 82) Checking whether login URL '/login.xhtml' is accessible with your configuration
+2018-08-13 22:44:33,502 INFO  [org.springframework.web.context.ContextLoader] (ServerService Thread Pool -- 82) Root WebApplicationContext: initialization completed in 424 ms
+2018-08-13 22:44:33,519 INFO  [javax.enterprise.resource.webcontainer.jsf.config] (ServerService Thread Pool -- 82) Inicializando Mojarra 2.2.13.SP4  para o contexto '/SCVE'
+2018-08-13 22:44:35,289 WARNING [javax.enterprise.resource.webcontainer.jsf.application] (ServerService Thread Pool -- 82) @FacesConverter is using both value and forClass, only value will be applied.
+2018-08-13 22:44:35,290 WARNING [javax.enterprise.resource.webcontainer.jsf.application] (ServerService Thread Pool -- 82) @FacesConverter is using both value and forClass, only value will be applied.
+2018-08-13 22:44:35,290 WARNING [javax.enterprise.resource.webcontainer.jsf.application] (ServerService Thread Pool -- 82) @FacesConverter is using both value and forClass, only value will be applied.
+2018-08-13 22:44:35,290 WARNING [javax.enterprise.resource.webcontainer.jsf.application] (ServerService Thread Pool -- 82) @FacesConverter is using both value and forClass, only value will be applied.
+2018-08-13 22:44:35,290 WARNING [javax.enterprise.resource.webcontainer.jsf.application] (ServerService Thread Pool -- 82) @FacesConverter is using both value and forClass, only value will be applied.
+2018-08-13 22:44:35,290 WARNING [javax.enterprise.resource.webcontainer.jsf.application] (ServerService Thread Pool -- 82) @FacesConverter is using both value and forClass, only value will be applied.
+2018-08-13 22:44:35,291 WARNING [javax.enterprise.resource.webcontainer.jsf.application] (ServerService Thread Pool -- 82) @FacesConverter is using both value and forClass, only value will be applied.
+2018-08-13 22:44:35,291 WARNING [javax.enterprise.resource.webcontainer.jsf.application] (ServerService Thread Pool -- 82) @FacesConverter is using both value and forClass, only value will be applied.
+2018-08-13 22:44:35,291 WARNING [javax.enterprise.resource.webcontainer.jsf.application] (ServerService Thread Pool -- 82) @FacesConverter is using both value and forClass, only value will be applied.
+2018-08-13 22:44:35,291 WARNING [javax.enterprise.resource.webcontainer.jsf.application] (ServerService Thread Pool -- 82) @FacesConverter is using both value and forClass, only value will be applied.
+2018-08-13 22:44:35,291 WARNING [javax.enterprise.resource.webcontainer.jsf.application] (ServerService Thread Pool -- 82) @FacesConverter is using both value and forClass, only value will be applied.
+2018-08-13 22:44:37,099 INFO  [javax.enterprise.resource.webcontainer.jsf.config] (ServerService Thread Pool -- 82) Monitoring file:/C:/Users/Valerio/Documents/GitHub/scve/wildfly-11.0.0.Final/standalone/deployments/SCVE.war/WEB-INF/faces-config.xml for modifications
+2018-08-13 22:44:37,102 INFO  [org.primefaces.webapp.PostConstructApplicationEventListener] (ServerService Thread Pool -- 82) Running on PrimeFaces 6.0
+2018-08-13 22:44:37,102 INFO  [org.primefaces.extensions.application.PostConstructApplicationEventListener] (ServerService Thread Pool -- 82) Running on PrimeFaces Extensions 6.0.0
+2018-08-13 22:44:37,104 INFO  [org.wildfly.extension.undertow] (ServerService Thread Pool -- 82) WFLYUT0021: Registered web context: '/SCVE' for server 'default-server'
+2018-08-13 22:44:37,140 INFO  [org.jboss.as.server] (DeploymentScanner-threads - 2) WFLYSRV0010: Deployed "SCVE.war" (runtime-name : "SCVE.war")
+2018-08-13 22:44:46,624 INFO  [com.github.adminfaces.template.session.AdminFilter] (default task-17) Using Admin Template 1.0.0-RC2
+2018-08-13 22:44:57,572 INFO  [org.hibernate.hql.internal.QueryTranslatorFactoryInitiator] (default task-35) HHH000397: Using ASTQueryTranslatorFactory
+2018-08-13 22:45:14,169 INFO  [stdout] (default task-45) [{"cliente":{"contatos":[{"ddd":"44","email":"jose@gmail.com","idcontato":2,"nome":"jose","numero":"99875462"}],"dtcadastro":"2018-04-21","enderecos":[{"bairro":"planalto","cep":"98.484-948","cidade":{"estado":{"idestado":18},"idcidade":2974,"nome":"Loanda"},"complemento":"","logadouro":"rua jose","numero":"130","tipoendereco":{"idtipoend":2,"nome":"Cobrança"}}],"idpessoa":3,"nome":"Cliente de Teste","tipojf":"J","vendresp":{"idpessoa":2,"nome":"Vendedor Teste","perc_comissao":9.0,"tipojf":"F"}},"condPagto":{"diasentreparc":30,"idcondpgto":2,"nome":"30/60/90 DIAS","qtdeparcelas":3},"dtvenda":"2018-08-13","formaPag":{"idformapag":1,"nome":"BOLETO"},"idmov":4,"items":[{"desconto":0.0,"iditemmov":6,"itemobservacao":"","produto":{},"qtde":5,"subtotal":100.0,"valor":20.0}],"observacao":"","tipoMv":{"idmv":1,"nome":"VENDA"},"totalvenda":100.0,"vendedor":{"idpessoa":2,"nome":"Vendedor Teste","perc_comissao":9.0,"tipojf":"F"}}]
+2018-08-13 22:45:14,219 INFO  [stdout] (default task-45) Id:20
+2018-08-13 22:45:14,220 INFO  [stdout] (default task-45) Id-retorno:20
+2018-08-13 22:56:35,824 INFO  [stdout] (default task-21) [{"cliente":{"contatos":[{"ddd":"44","email":"jose@gmail.com","idcontato":2,"nome":"jose","numero":"99875462"}],"dtcadastro":"2018-04-21","enderecos":[{"bairro":"planalto","cep":"98.484-948","cidade":{"estado":{"idestado":18},"idcidade":2974,"nome":"Loanda"},"complemento":"","logadouro":"rua jose","numero":"130","tipoendereco":{"idtipoend":2,"nome":"Cobrança"}}],"idpessoa":3,"nome":"Cliente de Teste","tipojf":"J","vendresp":{"idpessoa":2,"nome":"Vendedor Teste","perc_comissao":9.0,"tipojf":"F"}},"condpagto":{"diasentreparc":30,"idcondpgto":2,"nome":"30/60/90 DIAS","qtdeparcelas":3},"dtvenda":"2018-08-13","formapag":{"idformapag":1,"nome":"BOLETO"},"idmov":4,"items":[{"desconto":0.0,"iditemmov":6,"itemobservacao":"","produto":{},"qtde":5,"subtotal":100.0,"valor":20.0}],"observacao":"","tipomv":{"idmv":1,"nome":"VENDA"},"totalvenda":100.0,"vendedor":{"idpessoa":2,"nome":"Vendedor Teste","perc_comissao":9.0,"tipojf":"F"}}]
+2018-08-13 22:56:35,837 INFO  [stdout] (default task-21) Id:21
+2018-08-13 22:56:35,837 INFO  [stdout] (default task-21) Id-retorno:21
+2018-08-13 22:58:25,292 WARNING [javax.enterprise.resource.webcontainer.jsf.application] (default task-29) JSF1064: Não foi possível encontrar ou fornecer o recurso, eNpdi0sKwzAMRE8Uu4tCwbdRhEyTINloHLzJ4eNmUUIWA29-DCR8S2eCBAaOoVR9gV6uy7ySI-VibaIuKCrxHT7hFUcd7_G0Il-f8VbJxILERWsxsYZn06mJK_kW__ScLFb3ZrvO4vHGv9kJRyhHkQ.css, pela biblioteca, omnifaces.combined.
+2018-08-13 22:58:25,292 WARNING [javax.enterprise.resource.webcontainer.jsf.application] (default task-29) : java.io.IOException: Uma conexão estabelecida foi anulada pelo software no computador host
+	at sun.nio.ch.SocketDispatcher.writev0(Native Method)
+	at sun.nio.ch.SocketDispatcher.writev(Unknown Source)
+	at sun.nio.ch.IOUtil.write(Unknown Source)
+	at sun.nio.ch.SocketChannelImpl.write(Unknown Source)
+	at org.xnio.nio.NioSocketConduit.write(NioSocketConduit.java:162)
+	at io.undertow.server.protocol.http.HttpResponseConduit.write(HttpResponseConduit.java:645)
+	at io.undertow.conduits.ChunkedStreamSinkConduit.doWrite(ChunkedStreamSinkConduit.java:163)
+	at io.undertow.conduits.ChunkedStreamSinkConduit.write(ChunkedStreamSinkConduit.java:127)
+	at org.xnio.conduits.ConduitStreamSinkChannel.write(ConduitStreamSinkChannel.java:150)
+	at io.undertow.channels.DetachableStreamSinkChannel.write(DetachableStreamSinkChannel.java:240)
+	at io.undertow.server.HttpServerExchange$WriteDispatchChannel.write(HttpServerExchange.java:2063)
+	at io.undertow.servlet.spec.ServletOutputStreamImpl.writeBufferBlocking(ServletOutputStreamImpl.java:570)
+	at io.undertow.servlet.spec.ServletOutputStreamImpl.write(ServletOutputStreamImpl.java:146)
+	at java.nio.channels.Channels$WritableByteChannelImpl.write(Unknown Source)
+	at com.sun.faces.application.resource.ResourceHandlerImpl.handleResourceRequest(ResourceHandlerImpl.java:358)
+	at javax.faces.application.ResourceHandlerWrapper.handleResourceRequest(ResourceHandlerWrapper.java:153)
+	at org.primefaces.application.resource.PrimeResourceHandler.handleResourceRequest(PrimeResourceHandler.java:87)
+	at javax.faces.application.ResourceHandlerWrapper.handleResourceRequest(ResourceHandlerWrapper.java:153)
+	at javax.faces.application.ResourceHandlerWrapper.handleResourceRequest(ResourceHandlerWrapper.java:153)
+	at javax.faces.application.ResourceHandlerWrapper.handleResourceRequest(ResourceHandlerWrapper.java:153)
+	at javax.faces.application.ResourceHandlerWrapper.handleResourceRequest(ResourceHandlerWrapper.java:153)
+	at javax.faces.webapp.FacesServlet.service(FacesServlet.java:655)
+	at io.undertow.servlet.handlers.ServletHandler.handleRequest(ServletHandler.java:85)
+	at io.undertow.servlet.handlers.FilterHandler$FilterChainImpl.doFilter(FilterHandler.java:129)
+	at com.github.adminfaces.template.session.AdminFilter.doFilter(AdminFilter.java:101)
+	at io.undertow.servlet.core.ManagedFilter.doFilter(ManagedFilter.java:61)
+	at io.undertow.servlet.handlers.FilterHandler$FilterChainImpl.doFilter(FilterHandler.java:131)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:186)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:160)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:343)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:260)
+	at io.undertow.servlet.core.ManagedFilter.doFilter(ManagedFilter.java:61)
+	at io.undertow.servlet.handlers.FilterHandler$FilterChainImpl.doFilter(FilterHandler.java:131)
+	at io.undertow.servlet.handlers.FilterHandler.handleRequest(FilterHandler.java:84)
+	at io.undertow.servlet.handlers.security.ServletSecurityRoleHandler.handleRequest(ServletSecurityRoleHandler.java:62)
+	at io.undertow.servlet.handlers.ServletDispatchingHandler.handleRequest(ServletDispatchingHandler.java:36)
+	at org.wildfly.extension.undertow.security.SecurityContextAssociationHandler.handleRequest(SecurityContextAssociationHandler.java:78)
+	at io.undertow.server.handlers.PredicateHandler.handleRequest(PredicateHandler.java:43)
+	at io.undertow.servlet.handlers.security.SSLInformationAssociationHandler.handleRequest(SSLInformationAssociationHandler.java:131)
+	at io.undertow.servlet.handlers.security.ServletAuthenticationCallHandler.handleRequest(ServletAuthenticationCallHandler.java:57)
+	at io.undertow.server.handlers.PredicateHandler.handleRequest(PredicateHandler.java:43)
+	at io.undertow.security.handlers.AbstractConfidentialityHandler.handleRequest(AbstractConfidentialityHandler.java:46)
+	at io.undertow.servlet.handlers.security.ServletConfidentialityConstraintHandler.handleRequest(ServletConfidentialityConstraintHandler.java:64)
+	at io.undertow.security.handlers.AuthenticationMechanismsHandler.handleRequest(AuthenticationMechanismsHandler.java:60)
+	at io.undertow.servlet.handlers.security.CachedAuthenticatedSessionHandler.handleRequest(CachedAuthenticatedSessionHandler.java:77)
+	at io.undertow.security.handlers.NotificationReceiverHandler.handleRequest(NotificationReceiverHandler.java:50)
+	at io.undertow.security.handlers.AbstractSecurityContextAssociationHandler.handleRequest(AbstractSecurityContextAssociationHandler.java:43)
+	at io.undertow.server.handlers.PredicateHandler.handleRequest(PredicateHandler.java:43)
+	at org.wildfly.extension.undertow.security.jacc.JACCContextIdHandler.handleRequest(JACCContextIdHandler.java:61)
+	at io.undertow.server.handlers.PredicateHandler.handleRequest(PredicateHandler.java:43)
+	at org.wildfly.extension.undertow.deployment.GlobalRequestControllerHandler.handleRequest(GlobalRequestControllerHandler.java:68)
+	at io.undertow.server.handlers.PredicateHandler.handleRequest(PredicateHandler.java:43)
+	at io.undertow.servlet.handlers.ServletInitialHandler.handleFirstRequest(ServletInitialHandler.java:292)
+	at io.undertow.servlet.handlers.ServletInitialHandler.access$100(ServletInitialHandler.java:81)
+	at io.undertow.servlet.handlers.ServletInitialHandler$2.call(ServletInitialHandler.java:138)
+	at io.undertow.servlet.handlers.ServletInitialHandler$2.call(ServletInitialHandler.java:135)
+	at io.undertow.servlet.core.ServletRequestContextThreadSetupAction$1.call(ServletRequestContextThreadSetupAction.java:48)
+	at io.undertow.servlet.core.ContextClassLoaderSetupAction$1.call(ContextClassLoaderSetupAction.java:43)
+	at org.wildfly.extension.undertow.security.SecurityContextThreadSetupAction.lambda$create$0(SecurityContextThreadSetupAction.java:105)
+	at org.wildfly.extension.undertow.deployment.UndertowDeploymentInfoService$UndertowThreadSetupAction.lambda$create$0(UndertowDeploymentInfoService.java:1508)
+	at org.wildfly.extension.undertow.deployment.UndertowDeploymentInfoService$UndertowThreadSetupAction.lambda$create$0(UndertowDeploymentInfoService.java:1508)
+	at org.wildfly.extension.undertow.deployment.UndertowDeploymentInfoService$UndertowThreadSetupAction.lambda$create$0(UndertowDeploymentInfoService.java:1508)
+	at org.wildfly.extension.undertow.deployment.UndertowDeploymentInfoService$UndertowThreadSetupAction.lambda$create$0(UndertowDeploymentInfoService.java:1508)
+	at org.wildfly.extension.undertow.deployment.UndertowDeploymentInfoService$UndertowThreadSetupAction.lambda$create$0(UndertowDeploymentInfoService.java:1508)
+	at io.undertow.servlet.handlers.ServletInitialHandler.dispatchRequest(ServletInitialHandler.java:272)
+	at io.undertow.servlet.handlers.ServletInitialHandler.access$000(ServletInitialHandler.java:81)
+	at io.undertow.servlet.handlers.ServletInitialHandler$1.handleRequest(ServletInitialHandler.java:104)
+	at io.undertow.server.Connectors.executeRootHandler(Connectors.java:326)
+	at io.undertow.server.HttpServerExchange$1.run(HttpServerExchange.java:812)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+
+2018-08-13 23:02:25,694 INFO  [stdout] (default task-33) [{"cliente":{"contatos":[{"ddd":"44","email":"jose@gmail.com","idcontato":2,"nome":"jose","numero":"99875462"}],"dtcadastro":"2018-04-21","enderecos":[{"bairro":"planalto","cep":"98.484-948","cidade":{"estado":{"idestado":18},"idcidade":2974,"nome":"Loanda"},"complemento":"","logadouro":"rua jose","numero":"130","tipoendereco":{"idtipoend":2,"nome":"Cobrança"}}],"idpessoa":3,"nome":"Cliente de Teste","tipojf":"J","vendresp":{"idpessoa":2,"nome":"Vendedor Teste","perc_comissao":9.0,"tipojf":"F"}},"condpgto":{"diasentreparc":30,"idcondpgto":2,"nome":"30/60/90 DIAS","qtdeparcelas":3},"dtvenda":"2018-08-13","formapag":{"idformapag":1,"nome":"BOLETO"},"idmov":4,"items":[{"desconto":0.0,"iditemmov":6,"itemobservacao":"","produto":{},"qtde":5,"subtotal":100.0,"valor":20.0}],"observacao":"","tipomv":{"idmv":1,"nome":"VENDA"},"totalvenda":100.0,"vendresp":{"idpessoa":2,"nome":"Vendedor Teste","perc_comissao":9.0,"tipojf":"F"}}]
+2018-08-13 23:02:25,704 INFO  [stdout] (default task-33) Id:22
+2018-08-13 23:02:25,705 INFO  [stdout] (default task-33) Id-retorno:22

@@ -20,6 +20,7 @@ import com.google.gson.reflect.TypeToken;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import br.com.scve.entidades.ItemMov;
 import br.com.scve.entidades.Movimento;
 import br.com.scve.modelo.servico.ServicoMovimento;
 
@@ -40,7 +41,7 @@ public class PedidosReset {
 	@Produces({MediaType.APPLICATION_JSON})
 	@Consumes({MediaType.APPLICATION_JSON})
 	@Path("/gravar")
-	public String gravaPessoa(String wspedidos){
+	public String gravaPedido(String wspedidos){
 		List<String> ids = new ArrayList<>();
 		try {
 			System.out.println(wspedidos);
@@ -55,22 +56,27 @@ public class PedidosReset {
 			c.setFormapag(p.getFormapag());
 			c.setObservacao(p.getObservacao());
 			//c.setItems(p.getItems());
-			c.setPerc_comissao(p.getPerc_comissao());
+			c.setPerc_comissao(p.getVendresp().getPerc_comissao());
 			c.setTipomv(p.getTipomv());
 			c.setTotalvenda(p.getTotalvenda());
 			c.setVendresp(p.getVendresp());
 			c.setDtvenda(p.getDtvenda());
 			
-			/*trata contatos
-			List<> pcontatos = p.getContatos();
-			List<Contato> clicontatos = new  ArrayList<>();
-			for (Contato contato : pcontatos){
-				contato.setIdcontato(null);
-				contato.setPessoa(c);
-				clicontatos.add(contato);
+			/*trata items*/
+			List<ItemMov> pitems = p.getItems();
+			List<ItemMov> citems = new  ArrayList<>();
+			for (ItemMov item : pitems){
+				ItemMov i = new ItemMov();
+				i.setDesconto(item.getDesconto());
+				i.setItemobservacao(item.getItemobservacao());
+				i.setMovimento(c);
+				i.setProduto(item.getProduto());
+				i.setQtde(item.getQtde());
+				i.setSubtotal(item.getSubtotal());
+				i.setValor(item.getValor());
+				citems.add(i);
 			}
-			c.setContatos(clicontatos);*/
-			
+			c.setItems(citems);
 			
 			servico.salvar(c);
 			System.out.println("Id:"+c.getIdmov());
@@ -89,6 +95,7 @@ public class PedidosReset {
 		String retorno = gson2.toJson(lista);
 		return retorno;
 		} catch (Exception e) {
+			e.printStackTrace();
 			return "erro";
 		}
 		//return null;
