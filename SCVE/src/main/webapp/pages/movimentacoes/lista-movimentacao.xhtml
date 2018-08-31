@@ -80,7 +80,9 @@
 						<p:column width="12%" headerText="Data Venda"
 						filterBy="#{mov.dtvenda}"
 						sortBy="#{mov.dtvenda}" filterMatchMode="contains">
-						<h:outputLabel value="#{mov.dtvenda}" />
+						<h:outputLabel value="#{mov.dtvenda}">
+						<f:convertDateTime pattern="dd/MM/yyyy"/>
+						</h:outputLabel>
 						</p:column>
 
 						<p:column width="15%" headerText="Operações"
