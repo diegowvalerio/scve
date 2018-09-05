@@ -222,7 +222,7 @@ AND m.dtvenda between $P{DATA} and $P{DATA1}]]>
 				</reportElement>
 				<textFieldExpression><![CDATA[$F{dtvenda}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField pattern="¤#,##0.00;¤-#,##0.00">
 				<reportElement x="430" y="0" width="68" height="20" uuid="16d72957-3e6c-4a2c-907c-3f5ca53324ee">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="95427640-88e8-4ef6-86a6-b7d83199c9fd"/>
 				</reportElement>

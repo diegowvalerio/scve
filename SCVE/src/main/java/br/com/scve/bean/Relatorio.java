@@ -231,7 +231,7 @@ public class Relatorio <T>{
 				params.put("CLIENTE1", 999999999);
 			}else{
 				params.put("CLIENTE", Integer.parseInt(filtro_cliente));
-				params.put("CLIENTE", Integer.parseInt(filtro_cliente1));
+				params.put("CLIENTE1", Integer.parseInt(filtro_cliente1));
 			}
 			
 			if(filtro_vendedor.equals("")){

@@ -39,7 +39,9 @@ where
 	 t.nome like $P{TIPO} 
 and m.cliente_idpessoa between $P{CLIENTE} AND $P{CLIENTE1}
 and m.vendresp_idpessoa between $P{VENDEDOR} AND $P{VENDEDOR1}
-AND m.dtvenda between $P{DATA} and $P{DATA1}]]>
+AND m.dtvenda between $P{DATA} and $P{DATA1}
+
+order by m.vendresp_idpessoa]]>
 	</queryString>
 	<field name="tipo" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="tipo"/>
@@ -222,7 +224,7 @@ AND m.dtvenda between $P{DATA} and $P{DATA1}]]>
 		</groupHeader>
 		<groupFooter>
 			<band height="50">
-				<textField>
+				<textField pattern="¤#,##0.00;¤-#,##0.00">
 					<reportElement x="91" y="28" width="99" height="20" uuid="b9328057-a887-4bb6-9edd-f10202522e8a"/>
 					<box>
 						<pen lineWidth="1.0" lineStyle="Solid"/>
@@ -246,7 +248,7 @@ AND m.dtvenda between $P{DATA} and $P{DATA1}]]>
 					</textElement>
 					<text><![CDATA[Total Comissão:]]></text>
 				</staticText>
-				<textField>
+				<textField pattern="¤#,##0.00;¤-#,##0.00">
 					<reportElement x="91" y="8" width="84" height="20" uuid="df56ad5a-8ec3-4275-8820-a687927074ad"/>
 					<textFieldExpression><![CDATA[$V{total_venda}]]></textFieldExpression>
 				</textField>
@@ -340,7 +342,7 @@ AND m.dtvenda between $P{DATA} and $P{DATA1}]]>
 				</box>
 				<textFieldExpression><![CDATA[$F{dtvenda}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField pattern="¤#,##0.00;¤-#,##0.00">
 				<reportElement x="400" y="0" width="68" height="15" uuid="16d72957-3e6c-4a2c-907c-3f5ca53324ee">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="95427640-88e8-4ef6-86a6-b7d83199c9fd"/>
 				</reportElement>
@@ -376,7 +378,7 @@ AND m.dtvenda between $P{DATA} and $P{DATA1}]]>
 				</box>
 				<textFieldExpression><![CDATA[$F{idcliente}+" -  "+$F{nomecliente}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField pattern="¤#,##0.00;¤-#,##0.00">
 				<reportElement x="498" y="0" width="54" height="15" uuid="c1d54ded-52b2-4f66-b886-35a6338b531a"/>
 				<box>
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
