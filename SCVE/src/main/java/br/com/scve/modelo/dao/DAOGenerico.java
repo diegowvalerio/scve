@@ -1,6 +1,7 @@
 package br.com.scve.modelo.dao;
 
 
+import java.util.Date;
 import java.util.List;
 
 public interface DAOGenerico<E> {
@@ -49,6 +50,9 @@ public interface DAOGenerico<E> {
 	public E wsPessoafisica(Integer e );
 	/*busca dados pessoa juridica*/
 	public E wsPessoajuridica(Integer e );
+	
+	/*grafico*/
+	public List<E> movimentodia(Date data);
 	
 	
 }

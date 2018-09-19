@@ -1,6 +1,7 @@
 package br.com.scve.modelo.servico;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import javax.enterprise.context.Dependent;
@@ -46,5 +47,9 @@ public class ServicoMovimento implements Serializable{
 		return dao.consultar(id);
 	}
 	
+	//Grafico
+	public List<Movimento> movimentodia(Date data){
+		return dao.movimentodia(data);
+	}
 
 }

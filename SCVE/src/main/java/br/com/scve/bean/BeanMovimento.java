@@ -72,7 +72,9 @@ public class BeanMovimento implements Serializable {
 	private String filtro_cliente1;
 	private Date filtro_data = new Date();
 	private Date filtro_data1 = new Date();
-
+	
+	
+	
 	@PostConstruct
 	public void carregar(){
 		lista = servico.consultar();
@@ -419,7 +421,11 @@ public class BeanMovimento implements Serializable {
 			FacesMessageUtil.addMensagemWarn("Não há registros!");
 		}
 	}
+	
 	 
 	 /*frim relatorios*/
+	
+	
+	
 		
 }

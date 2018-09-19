@@ -2,6 +2,7 @@ package br.com.scve.modelo.dao.hibernate;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -393,6 +394,19 @@ public class DAOGenericoHibernate<E> implements DAOGenerico<E>, Serializable{
 		criteria.add(Restrictions.eq("p.pessoa.idpessoa", e));
 		
 		return (E) criteria.uniqueResult();
+	}
+	
+	/*grafico*/
+	@SuppressWarnings({ "unchecked" })
+	@Override
+	public List<E> movimentodia(Date data){
+		//boolean bo = true; 
+		Session session = manager.unwrap(Session.class);
+		Criteria criteria = session.createCriteria(classeEntidade);
+		
+		criteria.add(Restrictions.eq("dtvenda", data));
+		
+		return criteria.list();
 	}
 	
 }
