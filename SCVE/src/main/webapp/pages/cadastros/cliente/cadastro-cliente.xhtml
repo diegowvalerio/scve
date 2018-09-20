@@ -138,7 +138,9 @@
 							<p:column width="15%" headerText="Operações"
 								style="text-align:center">
 								<p:commandButton action="#{beanCliente.removerEndereco()}"
-									oncomplete="#{beanCliente.enderecos}" icon="ui-icon-trash">
+									ajax="false" immediate="true" partialSubmit="true"  process="@this"
+									oncomplete="#{beanCliente.enderecos}" icon="ui-icon-trash"
+									onclick="if(!confirm('Confirma a exclusão ?')) return false;">
 									<f:setPropertyActionListener value="#{enderecos}"
 										target="#{beanCliente.endereco}" />
 								</p:commandButton>
@@ -183,7 +185,9 @@
 							<p:column width="15%" headerText="Operações"
 								style="text-align:center">
 								<p:commandButton action="#{beanCliente.excluirContato()}"
-									oncomplete="#{beanCliente.contatos}" icon="ui-icon-trash">
+									ajax="false" immediate="true" partialSubmit="true"  process="@this"
+									oncomplete="#{beanCliente.contatos}" icon="ui-icon-trash"
+									onclick="if(!confirm('Confirma a exclusão ?')) return false;">
 									<f:setPropertyActionListener value="#{contatos}"
 										target="#{beanCliente.contato}" />
 								</p:commandButton>

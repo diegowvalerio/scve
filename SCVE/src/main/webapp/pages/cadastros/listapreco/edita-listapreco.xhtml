@@ -71,8 +71,10 @@
 					<p:column width="15%" headerText="Operações"
 						style="text-align:center">
 						<p:commandButton action="#{beanEditaListaPreco.excluiritem()}"
+							ajax="false" immediate="true" partialSubmit="true"  process="@this"
 							oncomplete="#{beanEditaListaPreco.listaprecoitems}"
-							icon="ui-icon-trash">
+							icon="ui-icon-trash"
+							onclick="if(!confirm('Confirma a exclusão ?')) return false;">
 							<f:setPropertyActionListener value="#{items}"
 								target="#{beanEditaListaPreco.listaprecoitem}" />
 						</p:commandButton>

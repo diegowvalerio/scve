@@ -78,7 +78,9 @@
 						<p:column width="15%" headerText="Operações"
 							style="text-align:center">
 							<p:commandButton action="#{beanEditaTipoMv.excluiritem()}"
-								oncomplete="#{beanEditaTipoMv.tipomvvends}" icon="ui-icon-trash">
+								ajax="false" immediate="true" partialSubmit="true"  process="@this"
+								oncomplete="#{beanEditaTipoMv.tipomvvends}" icon="ui-icon-trash"
+								onclick="if(!confirm('Confirma a exclusão ?')) return false;">
 								<f:setPropertyActionListener value="#{vends}"
 									target="#{beanEditaTipoMv.tipomvvend}" />
 							</p:commandButton>

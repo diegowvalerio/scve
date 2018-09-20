@@ -67,7 +67,9 @@
 						<p:column width="15%" headerText="Operações"
 							style="text-align:center">
 							<p:commandButton action="#{beanVendedor.excluir()}"
-								oncomplete="#{beanVendedor.lista}"  icon="fa fa-trash" >
+								ajax="false" immediate="true" partialSubmit="true"  process="@this"
+								oncomplete="#{beanVendedor.lista}"  icon="fa fa-trash"
+								onclick="if(!confirm('Confirma a exclusão ?')) return false;">
 								<f:setPropertyActionListener value="#{vendedor}"
 									target="#{beanVendedor.vendedor}" />
 							</p:commandButton>

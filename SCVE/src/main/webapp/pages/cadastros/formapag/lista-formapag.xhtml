@@ -41,9 +41,9 @@
 					<p:commandButton action="cadastro-formapag?faces-redirect=true"
 						ajax="false" icon="fa fa-plus" value="Novo"
 						styleClass="btn-primary" />
-						
+
 					<p:spacer width="5" />
-					
+
 					<p:separator />
 
 
@@ -55,23 +55,27 @@
 						currentPageReportTemplate="" rowsPerPageTemplate="5,10,15,20,30">
 
 
-						<p:column headerText="Nome" 
-						filterBy="#{formapag.nome}"
-						sortBy="#{formapag.nome}" filterMatchMode="contains">
-						<h:outputLabel value="#{formapag.nome}" /> 
+						<p:column headerText="Nome" filterBy="#{formapag.nome}"
+							sortBy="#{formapag.nome}" filterMatchMode="contains">
+							<h:outputLabel value="#{formapag.nome}" />
 						</p:column>
-						<p:column headerText="Situação"  
-						sortBy="#{formapag.situacao}"> 
-						<h:selectBooleanCheckbox id="situacao"
-									value="#{formapag.situacao}" />
+						<p:column headerText="Situação" sortBy="#{formapag.situacao}">
+							<h:selectBooleanCheckbox id="situacao"
+								value="#{formapag.situacao}" />
 						</p:column>
 						<p:column width="15%" headerText="Operações"
 							style="text-align:center">
+							
 							<p:commandButton action="#{beanFormaPag.excluir()}"
-								oncomplete="#{beanFormaPag.lista}" icon="fa fa-trash" >
-								<f:setPropertyActionListener value="#{formapag}"
-									target="#{beanFormaPag.formapag}" />
+								id="buttonColunaExcluir" ajax="false" immediate="true"
+								partialSubmit="true" process="@this" 
+								oncomplete="#{beanFormaPag.lista}" icon="fa fa-trash" 
+								onclick="if(!confirm('Confirma a exclusão ?')) return false;">
+								<f:setPropertyActionListener
+									target="#{beanFormaPag.formapag}"
+									value="#{formapag}" />
 							</p:commandButton>
+							
 							<p:commandButton oncomplete="PF('dialog').show();"
 								update=":form:painelDados" icon="fa fa-edit">
 								<f:setPropertyActionListener value="#{formapag}"
@@ -84,22 +88,22 @@
 					</p:dataTable>
 				</div>
 			</div>
-		
+
 
 			<p:dialog id="dlg" header="Editar Forma Pagamento" widgetVar="dialog"
-					 responsive="true" modal="true">
-					<p:panelGrid id="painelDados" columns="2">
-						<p:outputLabel value="Nome:" for="nome" />
-						<p:inputText id="nome" value="#{beanFormaPag.formapag.nome}" />
-						<p:outputLabel value="Situação:" for="situacao" />
-						<p:selectBooleanCheckbox id="situacao"
-									value="#{beanFormaPag.formapag.situacao}"  />
-						
-					</p:panelGrid>
-					<p:commandButton icon="fa fa-check" styleClass="btn-primary"
-						action="#{beanFormaPag.salvar}" ajax="false" />
-				</p:dialog>
-				
+				responsive="true" modal="true">
+				<p:panelGrid id="painelDados" columns="2">
+					<p:outputLabel value="Nome:" for="nome" />
+					<p:inputText id="nome" value="#{beanFormaPag.formapag.nome}" />
+					<p:outputLabel value="Situação:" for="situacao" />
+					<p:selectBooleanCheckbox id="situacao"
+						value="#{beanFormaPag.formapag.situacao}" />
+
+				</p:panelGrid>
+				<p:commandButton icon="fa fa-check" styleClass="btn-primary"
+					action="#{beanFormaPag.salvar}" ajax="false" />
+			</p:dialog>
+
 		</h:form>
 	</ui:define>
 

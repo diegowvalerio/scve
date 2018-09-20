@@ -46,7 +46,7 @@
 								rendered="#{beanVendedor.isRederiza2}" />
 							<p:outputLabel value="Rg:" for="rg"
 								rendered="#{beanVendedor.isRederiza2}" />
-							<p:inputMask mask="99.999.999-9" id="rg"
+							<p:inputMask id="rg"
 								value="#{beanVendedor.pfisica.rg}" required="true"
 								rendered="#{beanVendedor.isRederiza2}" />
 							<p:outputLabel value="Data Nascimento:" for="dtnasc"
@@ -131,7 +131,9 @@
 							<p:column width="15%" headerText="Operações"
 								style="text-align:center">
 								<p:commandButton action="#{beanVendedor.removerEndereco()}"
-									oncomplete="#{beanVendedor.enderecos}" icon="ui-icon-trash">
+									ajax="false" immediate="true" partialSubmit="true"  process="@this"
+									oncomplete="#{beanVendedor.enderecos}" icon="ui-icon-trash"
+									onclick="if(!confirm('Confirma a exclusão ?')) return false;">
 									<f:setPropertyActionListener value="#{enderecos}"
 										target="#{beanVendedor.endereco}" />
 								</p:commandButton>
@@ -176,7 +178,9 @@
 							<p:column width="15%" headerText="Operações"
 								style="text-align:center">
 								<p:commandButton action="#{beanVendedor.excluirContato()}"
-									oncomplete="#{beanVendedor.contatos}" icon="ui-icon-trash">
+									ajax="false" immediate="true" partialSubmit="true"  process="@this"
+									oncomplete="#{beanVendedor.contatos}" icon="ui-icon-trash"
+									onclick="if(!confirm('Confirma a exclusão ?')) return false;">
 									<f:setPropertyActionListener value="#{contatos}"
 										target="#{beanVendedor.contato}" />
 								</p:commandButton>

@@ -7,6 +7,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.persistence.RollbackException;
 
 import br.com.scve.entidades.FormaPag;
 import br.com.scve.modelo.servico.ServicoFormaPag;
@@ -55,9 +56,16 @@ public class BeanFormaPag implements Serializable{
 	}
 
 	public String excluir() {
-		servico.excluir(formapag.getIdformapag());
-
-		lista = servico.consultar();
+		try {
+			servico.excluir(formapag.getIdformapag());
+			lista = servico.consultar();
+		}
+		catch (RollbackException e){
+			throw new RollbackException("SCVE não pode Excluir : Registro já está sendo utilizado.", e);
+		}
+		catch (Exception e) {
+			// TODO: handle exception
+		}
 
 		return "lista-formapag";
 	}

@@ -125,7 +125,9 @@
 						<p:column width="15%" headerText="Operações"
 							style="text-align:center">
 							<p:commandButton action="#{beanEditaMovimento.removerProduto}"
-								oncomplete="#{beanEditaMovimento.items}" icon="ui-icon-trash">
+								ajax="false" immediate="true" partialSubmit="true"  process="@this"
+								oncomplete="#{beanEditaMovimento.items}" icon="ui-icon-trash"
+								onclick="if(!confirm('Confirma a exclusão ?')) return false;">
 								<f:setPropertyActionListener value="#{items}"
 									target="#{beanEditaMovimento.item}" />
 							</p:commandButton>
