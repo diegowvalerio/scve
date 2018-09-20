@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.faces.bean.ManagedBean;
+import javax.faces.event.AjaxBehaviorEvent;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -39,6 +41,7 @@ public class ChartView implements Serializable {
     @PostConstruct
     public void init() {
         createAnimatedModels();
+       // listamovimentos = servico.movimentodia(data_grafico);
         
     }
  
@@ -50,7 +53,15 @@ public class ChartView implements Serializable {
         return animatedModel2;
     }
  
-    private void createAnimatedModels() {
+    public List<Movimento> getListamovimentos() {
+		return listamovimentos;
+	}
+
+	public void setListamovimentos(List<Movimento> listamovimentos) {
+		this.listamovimentos = listamovimentos;
+	}
+
+	public void createAnimatedModels() {
         animatedModel1 = initLinearModel();
         animatedModel1.setTitle("Line Chart");
         animatedModel1.setAnimate(true);
@@ -71,10 +82,14 @@ public class ChartView implements Serializable {
         
         Axis XAxis = animatedModel2.getAxis(AxisType.X);
         XAxis.setLabel("Tipo de Pedido");
+        
+        //listamovimentos = servico.movimentodia(data_grafico);
+        
     }
+    
      
     @SuppressWarnings("null")
-	private BarChartModel initBarModel() {
+	public BarChartModel initBarModel() {
     	
     	listamovimentos = servico.movimentodia(data_grafico);
     	
@@ -93,8 +108,8 @@ public class ChartView implements Serializable {
     		}
     		
     		ChartSeries tipopedido = new ChartSeries();
-    		Date d = new Date();
-    		String dStr = java.text.DateFormat.getDateInstance(DateFormat.MEDIUM).format(d);
+    		//Date d = new Date();
+    		String dStr = java.text.DateFormat.getDateInstance(DateFormat.MEDIUM).format(data_grafico);
     		tipopedido.setLabel(dStr);
     		for(String c:tipoc){
     			double total = 0;
@@ -106,6 +121,12 @@ public class ChartView implements Serializable {
     		 tipopedido.set(c, total);	
     		 
     		}
+    		model.addSeries(tipopedido);
+    	}else{
+    		ChartSeries tipopedido = new ChartSeries();
+    		String dStr = java.text.DateFormat.getDateInstance(DateFormat.MEDIUM).format(data_grafico);
+    		tipopedido.setLabel(dStr);
+    		tipopedido.set("0",0);
     		model.addSeries(tipopedido);
     	}
                 
