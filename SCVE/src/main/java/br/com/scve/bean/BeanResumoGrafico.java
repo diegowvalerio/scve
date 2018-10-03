@@ -25,7 +25,7 @@ import br.com.scve.modelo.servico.ServicoMovimento;
  
 @Named
 @ViewScoped
-public class ChartView implements Serializable {
+public class BeanResumoGrafico implements Serializable {
 	private static final long serialVersionUID = 1L;
  
     private LineChartModel animatedModel1;
