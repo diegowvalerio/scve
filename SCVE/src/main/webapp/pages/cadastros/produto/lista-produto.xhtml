@@ -61,19 +61,19 @@
 						<h:outputLabel value="#{produto.descricao}" /> 
 						</p:column>
 						
-						<p:column headerText="Descrição Abreviada"  
+						<p:column width="15%" headerText="Descrição Abreviada"  
 						filterBy="#{produto.descabreviada}"
 						sortBy="#{produto.descabreviada}" filterMatchMode="contains">
 						<h:outputLabel value="#{produto.descabreviada}" /> 
 						</p:column>
 						
-						<p:column headerText="Ean"  
+						<p:column width="13%" headerText="Ean"  
 						filterBy="#{produto.ean}"
 						sortBy="#{produto.ean}" filterMatchMode="contains">
 						<h:outputLabel value="#{produto.ean}" /> 
 						</p:column>
 						
-						<p:column headerText="Situação"  
+						<p:column width="8%" headerText="Situação"  
 						sortBy="#{produto.situacao}"> 
 						<h:selectBooleanCheckbox id="situacao"
 									value="#{produto.situacao}" />
