@@ -110,13 +110,21 @@ public class ServicoCliente implements Serializable {
 	
 	@Transacao
 	public boolean excluirJ(Integer id) {
-
+		Pjuridica pj = daoJ.consultar(id);
+		if(pj != null){
 		return daoJ.excluir(id);
+		}else{
+			return false;
+		}
 	}
 	@Transacao
 	public boolean excluirF(Integer id) {
-
-		return daoF.excluir(id);
+		Pfisica pf = daoF.consultar(id);
+		if(pf != null){
+			return daoF.excluir(id);
+			}else{
+				return false;
+			}
 	}
 	
 	public List<Cliente> buscaclientenome(String nome){

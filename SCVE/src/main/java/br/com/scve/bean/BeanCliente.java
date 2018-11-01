@@ -97,7 +97,8 @@ public class BeanCliente implements Serializable {
 		// servico.excluirEnde(cliente.getIdpessoa());
 		if (cliente.getTipojf().equals("F")) {
 			servico.excluirF(cliente.getIdpessoa());
-		} else {
+		}
+		if(cliente.getTipojf().equals("J")) {
 			servico.excluirJ(cliente.getIdpessoa());
 		}
 		servico.excluir(cliente.getIdpessoa());
