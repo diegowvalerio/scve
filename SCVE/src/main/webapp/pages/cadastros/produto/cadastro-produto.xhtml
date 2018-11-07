@@ -15,7 +15,7 @@
         <adm:breadcrumb title="Cadastro Produto" link="cadastro-produto.xhtml"/>
 			<p:panel>
 				<h:form id="form">
-				<p:growl id="erros" showDetail="true" sticky="true" />
+				<p:growl id="erros" showDetail="true" sticky="false" />
 					<p:panelGrid columns="2">
 						<p:outputLabel value="Descrição:" for="descricao" />
 						<p:inputText id="descricao" value="#{beanProduto.produto.descricao}" required="true" />

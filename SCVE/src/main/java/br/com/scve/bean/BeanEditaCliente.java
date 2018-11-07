@@ -25,6 +25,7 @@ import br.com.scve.modelo.servico.ServicoCidade;
 import br.com.scve.modelo.servico.ServicoCliente;
 import br.com.scve.modelo.servico.ServicoTipoEndereco;
 import br.com.scve.modelo.servico.ServicoVendedor;
+import br.com.scve.msn.FacesMessageUtil;
 
 
 @Named
@@ -85,10 +86,10 @@ public class BeanEditaCliente implements Serializable {
 	}
 	
 	public String salvar() {
-		servico.salvar(cliente, pfisica, pjuridica, getOpcao(), contatos, enderecos);
-		lista = servico.consultar();
+			servico.salvar(cliente, pfisica, pjuridica, getOpcao(), contatos, enderecos);
+			lista = servico.consultar();
 
-		return "lista-cliente";
+			return "lista-cliente";
 	}
 
 	public String excluir() {
@@ -233,6 +234,7 @@ public class BeanEditaCliente implements Serializable {
 		if(endereco == null){
 			throw new IllegalArgumentException("Cliente nao pode ser nulo");	
 	    }
+		if(endereco.getCep().length()>0 && endereco.getBairro().length()>0 && endereco.getLogadouro().length()>0 && endereco.getNumero().length()>0 ){
 		int index = enderecos.indexOf(endereco);
 		if (index > -1) {
 			enderecos.remove(index);
@@ -243,6 +245,9 @@ public class BeanEditaCliente implements Serializable {
 			enderecos.add(endereco);
 		}
 		endereco = new Endereco();
+		}else{
+			FacesMessageUtil.addMensagemWarn("Preencha todos os dados");
+		}
 	}
 
 	/* contato */
@@ -272,6 +277,7 @@ public class BeanEditaCliente implements Serializable {
 		if(contato == null){
 			throw new IllegalArgumentException("Cliente nao pode ser nulo");
 	    }
+		if(contato.getNome().length()>0 && contato.getEmail().length()>0  && contato.getDdd().length()>0  && contato.getNumero().length()>0 ){
 		int index = contatos.indexOf(contato);
 		if (index > -1) {
 			contatos.remove(index);
@@ -281,7 +287,11 @@ public class BeanEditaCliente implements Serializable {
 			contato.setPessoa(cliente);
 			contatos.add(contato);
 		}
+		
 		contato = new Contato();
+		}else{
+			FacesMessageUtil.addMensagemWarn("Preencha todos os dados");
+		}
 	}
 	
 
