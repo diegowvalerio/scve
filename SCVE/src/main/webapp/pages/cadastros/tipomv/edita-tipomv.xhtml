@@ -18,7 +18,7 @@
 		<adm:breadcrumb title="Cadastro Tipo de Movimento"
 			link="cadastro-tipomv.xhtml" />
 		<h:form id="form">
-			<!-- <p:growl id="erros" showDetail="true" sticky="true" /> -->
+			<p:growl id="erros" showDetail="true" sticky="false" />
 			<p:tabView dynamic="false" cache="false" id="tabview">
 				<p:tab title="Dados" id="dados">
 
@@ -143,7 +143,7 @@
 
 
 			<p:commandButton action="#{beanEditaTipoMv.salvar}" value="Salvar"
-				icon="fa fa-check" styleClass="btn-primary" />
+				icon="fa fa-check" styleClass="btn-primary" update="erros"/>
 		</h:form>
 
 	</ui:define>

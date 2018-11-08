@@ -118,6 +118,7 @@ public class BeanListaPreco implements Serializable {
 		if (listaprecoitem == null) {
 			throw new IllegalArgumentException("Lista nao pode ser nulo");
 		}
+		if (listaprecoitem.getProduto() != null && listaprecoitem.getValor().doubleValue() > 0){
 		for (int i = 0; i < listaprecoitems.size(); i++) {
 			if (listaprecoitems.get(i).getProduto().getIdproduto().equals(listaprecoitem.getProduto().getIdproduto())) {
 				p = p + 1;
@@ -138,6 +139,9 @@ public class BeanListaPreco implements Serializable {
 
 		} else {
 			FacesMessageUtil.addMensagemWarn("Produto já consta na Lista de Preço");
+		}
+		}else{
+		FacesMessageUtil.addMensagemWarn("Preencha todos os dados");
 		}
 		listaprecoitem = new ListaPrecoItem();
 

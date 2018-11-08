@@ -21,6 +21,7 @@ import br.com.scve.entidades.Contato;
 import br.com.scve.entidades.Endereco;
 import br.com.scve.modelo.servico.ServicoCidade;
 import br.com.scve.modelo.servico.ServicoVendedor;
+import br.com.scve.msn.FacesMessageUtil;
 import br.com.scve.modelo.servico.ServicoTipoEndereco;
 
 @Named
@@ -200,6 +201,7 @@ public class BeanVendedor implements Serializable{
 		if(endereco == null){
 			throw new IllegalArgumentException("Cliente nao pode ser nulo");	
 	    }
+		if(endereco.getCep().length()>0 && endereco.getBairro().length()>0 && endereco.getLogadouro().length()>0 && endereco.getNumero().length()>0 ){
 		int index = enderecos.indexOf(endereco);
 		if (index > -1) {
 			enderecos.remove(index);
@@ -210,6 +212,9 @@ public class BeanVendedor implements Serializable{
 			enderecos.add(endereco);
 		}
 		endereco = new Endereco();
+		}else{
+			FacesMessageUtil.addMensagemWarn("Preencha todos os dados");
+		}
 	}
 	
 	/*contato*/
@@ -234,6 +239,7 @@ public class BeanVendedor implements Serializable{
 		if(contato == null){
 			throw new IllegalArgumentException("Vendedor nao pode ser nulo");
 	    }
+		if(contato.getNome().length()>0 && contato.getEmail().length()>0  && contato.getDdd().length()>0  && contato.getNumero().length()>0 ){
 		int index = contatos.indexOf(contato);
 		if (index > -1) {
 			contatos.remove(index);
@@ -244,6 +250,9 @@ public class BeanVendedor implements Serializable{
 			contatos.add(contato);
 		}
 		contato = new Contato();
+		}else{
+			FacesMessageUtil.addMensagemWarn("Preencha todos os dados");
+		}
 				
 	}
 	
