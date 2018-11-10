@@ -62,22 +62,35 @@ public class BeanVendedor implements Serializable{
 	}
 	
 	public String salvar(){	
-		//System.out.println("Cpf: "+pfisica.getCpf().toString());
+		try{
 		servico.salvar(vendedor,pfisica,pjuridica ,getOpcao(),contatos,enderecos);
+		}catch (Exception e){
+			if(e.getCause().toString().contains("ConstraintViolationException")){
+				FacesMessageUtil.addMensagemError("Registro já existente! Não foi possível realizar a operação.");
+			}else{
+				FacesMessageUtil.addMensagemError(e.getCause().toString());
+			}
+		}
 		lista = servico.consultar();
 		
 		return "lista-vendedor";
 	}
 	public String excluir(){
 		
-		//servico.excluirEnde(cliente.getIdpessoa());
+		try{
 		if (vendedor.getTipojf().equals("F")) {
 			servico.excluirF(vendedor.getIdpessoa());
 		}else{
 			servico.excluirJ(vendedor.getIdpessoa());
 		}
 		servico.excluir(vendedor.getIdpessoa());
-		
+		}catch(Exception e){
+			if(e.getCause().toString().contains("ConstraintViolationException")){
+				FacesMessageUtil.addMensagemError("Registro utilizado em outro local! Não foi possível realizar a operação.");
+			}else{
+				FacesMessageUtil.addMensagemError(e.getCause().toString());
+			}
+		}
 		lista = servico.consultar();
 		
 		return "lista-vendedor";

@@ -46,7 +46,15 @@ public class BeanTipoMv implements Serializable {
 	}
 
 	public String salvar() {
+		try{
 		servico.salvar(tipomv);
+		}catch (Exception e){
+			if(e.getCause().toString().contains("ConstraintViolationException")){
+				FacesMessageUtil.addMensagemError("Registro já existente! Não foi possível realizar a operação.");
+			}else{
+				FacesMessageUtil.addMensagemError(e.getCause().toString());
+			}
+		}
 		lista = servico.consultar();
 
 		return "lista-tipomv";

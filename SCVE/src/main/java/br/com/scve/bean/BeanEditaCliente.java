@@ -86,22 +86,36 @@ public class BeanEditaCliente implements Serializable {
 	}
 	
 	public String salvar() {
-			servico.salvar(cliente, pfisica, pjuridica, getOpcao(), contatos, enderecos);
-			lista = servico.consultar();
+		try{
+		servico.salvar(cliente, pfisica, pjuridica, getOpcao(), contatos, enderecos);
+		}catch (Exception e){
+			if(e.getCause().toString().contains("ConstraintViolationException")){
+				FacesMessageUtil.addMensagemError("Registro já existente! Não foi possível realizar a operação.");
+			}else{
+				FacesMessageUtil.addMensagemError(e.getCause().toString());
+			}
+		}
+		lista = servico.consultar();
 
-			return "lista-cliente";
+		return "lista-cliente";
 	}
 
 	public String excluir() {
 
-		// servico.excluirEnde(cliente.getIdpessoa());
+		try{
 		if (cliente.getTipojf().equals("F")) {
 			servico.excluirF(cliente.getIdpessoa());
 		} else {
 			servico.excluirJ(cliente.getIdpessoa());
 		}
 		servico.excluir(cliente.getIdpessoa());
-
+		}catch(Exception e){
+			if(e.getCause().toString().contains("ConstraintViolationException")){
+				FacesMessageUtil.addMensagemError("Registro utilizado em outro local! Não foi possível realizar a operação.");
+			}else{
+				FacesMessageUtil.addMensagemError(e.getCause().toString());
+			}
+		}
 		lista = servico.consultar();
 
 		return "lista-cliente";

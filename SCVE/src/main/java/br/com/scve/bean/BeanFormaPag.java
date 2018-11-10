@@ -11,6 +11,7 @@ import javax.persistence.RollbackException;
 
 import br.com.scve.entidades.FormaPag;
 import br.com.scve.modelo.servico.ServicoFormaPag;
+import br.com.scve.msn.FacesMessageUtil;
 
 @Named
 @ViewScoped
@@ -59,12 +60,12 @@ public class BeanFormaPag implements Serializable{
 		try {
 			servico.excluir(formapag.getIdformapag());
 			lista = servico.consultar();
-		}
-		catch (RollbackException e){
-			throw new RollbackException("SCVE não pode Excluir : Registro já está sendo utilizado.", e);
-		}
-		catch (Exception e) {
-			// TODO: handle exception
+		}catch(Exception e){
+			if(e.getCause().toString().contains("ConstraintViolationException")){
+				FacesMessageUtil.addMensagemError("Registro utilizado em outro local! Não foi possível realizar a operação.");
+			}else{
+				FacesMessageUtil.addMensagemError(e.getCause().toString());
+			}
 		}
 
 		return "lista-formapag";

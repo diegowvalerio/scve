@@ -11,6 +11,7 @@ import br.com.scve.entidades.Cidade;
 import br.com.scve.entidades.Estado;
 import br.com.scve.modelo.servico.ServicoCidade;
 import br.com.scve.modelo.servico.ServicoEstado;
+import br.com.scve.msn.FacesMessageUtil;
 
 @Named
 @RequestScoped
@@ -27,7 +28,15 @@ public class BeanCidade implements Serializable{
 	
 	
 	public String salvar(){
+		try{
 		servico.salvar(cidade);
+		}catch(Exception e){
+			if(e.getCause().toString().contains("ConstraintViolationException")){
+				FacesMessageUtil.addMensagemError("Registro já existente! Não foi possível realizar a operação.");
+			}else{
+				FacesMessageUtil.addMensagemError(e.getCause().toString());
+			}
+		}
 		lista = servico.consultar();
 		return "lista-cidade";
 	}

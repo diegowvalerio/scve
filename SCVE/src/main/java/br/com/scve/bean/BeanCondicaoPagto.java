@@ -10,6 +10,7 @@ import javax.inject.Named;
 
 import br.com.scve.entidades.CondPgto;
 import br.com.scve.modelo.servico.ServicoCondicaoPagto;
+import br.com.scve.msn.FacesMessageUtil;
 
 @Named
 @ViewScoped
@@ -46,15 +47,30 @@ public class BeanCondicaoPagto implements Serializable{
 	}
 
 	public String salvar(){
+		try{
 		servico.salvar(condicaopagto);
+		}catch(Exception e){
+			if(e.getCause().toString().contains("ConstraintViolationException")){
+				FacesMessageUtil.addMensagemError("Registro já existente! Não foi possível realizar a operação.");
+			}else{
+				FacesMessageUtil.addMensagemError(e.getCause().toString());
+			}
+		}
 		lista = servico.consultar();
 		
 		return "lista-condicaopagto";
 	}
 
 	public String excluir() {
+		try{
 		servico.excluir(condicaopagto.getIdcondpgto());
-
+		}catch(Exception e){
+			if(e.getCause().toString().contains("ConstraintViolationException")){
+				FacesMessageUtil.addMensagemError("Registro utilizado em outro local! Não foi possível realizar a operação.");
+			}else{
+				FacesMessageUtil.addMensagemError(e.getCause().toString());
+			}
+		}
 		lista = servico.consultar();
 
 		return "lista-condicaopagto";

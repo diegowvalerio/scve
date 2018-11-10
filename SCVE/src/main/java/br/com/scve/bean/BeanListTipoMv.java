@@ -14,6 +14,7 @@ import br.com.scve.entidades.ListaPreco;
 import br.com.scve.entidades.TipoMv;
 import br.com.scve.modelo.servico.ServicoListaPreco;
 import br.com.scve.modelo.servico.ServicoTipoMv;
+import br.com.scve.msn.FacesMessageUtil;
 
 @Named
 @ViewScoped
@@ -50,7 +51,15 @@ public class BeanListTipoMv implements Serializable{
 	}
 	
 	public void excluir(){
+		try{
 		servico.excluir(tipomv.getIdmv());
+		}catch(Exception e){
+			if(e.getCause().toString().contains("ConstraintViolationException")){
+				FacesMessageUtil.addMensagemError("Registro utilizado em outro local! Não foi possível realizar a operação.");
+			}else{
+				FacesMessageUtil.addMensagemError(e.getCause().toString());
+			}
+		}
 		lista = servico.consultar();
 	}
 

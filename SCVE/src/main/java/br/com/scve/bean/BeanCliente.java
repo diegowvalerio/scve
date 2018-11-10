@@ -14,7 +14,8 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
 
-
+import org.apache.commons.lang.exception.ExceptionUtils;
+import org.hibernate.exception.ConstraintViolationException;
 
 import br.com.scve.entidades.Pfisica;
 import br.com.scve.entidades.Pjuridica;
@@ -86,7 +87,15 @@ public class BeanCliente implements Serializable {
 	}
 	
 	public String salvar() {
+		try{
 		servico.salvar(cliente, pfisica, pjuridica, getOpcao(), contatos, enderecos);
+		}catch (Exception e){
+			if(e.getCause().toString().contains("ConstraintViolationException")){
+				FacesMessageUtil.addMensagemError("Registro já existente! Não foi possível realizar a operação.");
+			}else{
+				FacesMessageUtil.addMensagemError(e.getCause().toString());
+			}
+		}
 		lista = servico.consultar();
 
 		return "lista-cliente";
@@ -95,7 +104,7 @@ public class BeanCliente implements Serializable {
 
 	public String excluir() {
 
-		// servico.excluirEnde(cliente.getIdpessoa());
+		try{
 		if (cliente.getTipojf().equals("F")) {
 			servico.excluirF(cliente.getIdpessoa());
 		}
@@ -103,7 +112,13 @@ public class BeanCliente implements Serializable {
 			servico.excluirJ(cliente.getIdpessoa());
 		}
 		servico.excluir(cliente.getIdpessoa());
-
+		}catch(Exception e){
+			if(e.getCause().toString().contains("ConstraintViolationException")){
+				FacesMessageUtil.addMensagemError("Registro utilizado em outro local! Não foi possível realizar a operação.");
+			}else{
+				FacesMessageUtil.addMensagemError(e.getCause().toString());
+			}
+		}
 		lista = servico.consultar();
 
 		return "lista-cliente";

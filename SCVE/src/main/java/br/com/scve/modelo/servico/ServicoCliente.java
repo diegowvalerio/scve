@@ -6,6 +6,8 @@ import java.util.List;
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 
+import org.hibernate.exception.ConstraintViolationException;
+
 import br.com.scve.entidades.Pfisica;
 import br.com.scve.entidades.Pjuridica;
 import br.com.scve.entidades.Cliente;
@@ -17,6 +19,7 @@ import br.com.scve.modelo.dao.DAOCliente;
 //import br.com.scve.modelo.dao.DAOContato;
 //import br.com.scve.modelo.dao.DAOEndereco;
 import br.com.scve.modelo.dao.hibernate.Transacao;
+import br.com.scve.msn.FacesMessageUtil;
 
 @Dependent
 public class ServicoCliente implements Serializable {

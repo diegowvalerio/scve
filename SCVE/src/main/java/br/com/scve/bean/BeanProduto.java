@@ -38,7 +38,15 @@ public class BeanProduto implements Serializable{
 	}
 	
 	public String salvar(){
+		try{
 		servico.salvar(produto);
+		}catch (Exception e){
+			if(e.getCause().toString().contains("ConstraintViolationException")){
+				FacesMessageUtil.addMensagemError("Registro já existente! Não foi possível realizar a operação.");
+			}else{
+				FacesMessageUtil.addMensagemError(e.getCause().toString());
+			}
+		}
 		lista = servico.consultar();
 		
 		return "lista-produto";
@@ -59,8 +67,15 @@ public class BeanProduto implements Serializable{
 	}
 	
 	public String excluir() {
+		try{
 		servico.excluir(produto.getIdproduto());
-
+		}catch(Exception e){
+			if(e.getCause().toString().contains("ConstraintViolationException")){
+				FacesMessageUtil.addMensagemError("Registro utilizado em outro local! Não foi possível realizar a operação.");
+			}else{
+				FacesMessageUtil.addMensagemError(e.getCause().toString());
+			}
+		}
 		lista = servico.consultar();
 
 		return "lista-produto";
