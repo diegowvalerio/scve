@@ -6,12 +6,15 @@ import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.ViewHandler;
+import javax.faces.component.UIViewRoot;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.ws.rs.core.Application;
 
 import br.com.scve.entidades.Pfisica;
 import br.com.scve.entidades.Pjuridica;
@@ -26,7 +29,6 @@ import br.com.scve.modelo.servico.ServicoCliente;
 import br.com.scve.modelo.servico.ServicoTipoEndereco;
 import br.com.scve.modelo.servico.ServicoVendedor;
 import br.com.scve.msn.FacesMessageUtil;
-
 
 @Named
 @ViewScoped
@@ -58,20 +60,21 @@ public class BeanEditaCliente implements Serializable {
 	private Boolean isRederiza2 = false;
 
 	@PostConstruct
-	public void ini(){
+	public void ini() {
 		lista = servico.consultar();
-		
-		HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+
+		HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext()
+				.getRequest();
 		HttpSession session = (HttpSession) request.getSession();
 		this.cliente = (Cliente) session.getAttribute("clienteAux");
 		session.removeAttribute("clienteAux");
 		this.opcao = this.cliente.getTipojf();
-		//this.pfisica = (Pfisica) session.getAttribute("pfisica");
+		// this.pfisica = (Pfisica) session.getAttribute("pfisica");
 		this.enderecos = this.cliente.getEnderecos();
 		this.contatos = this.cliente.getContatos();
-		//this.enderecos = (List<Endereco>) session.getAttribute("enderecos");	
-		//this.contatos = (List<Contato>) session.getAttribute("contatos");
-		
+		// this.enderecos = (List<Endereco>) session.getAttribute("enderecos");
+		// this.contatos = (List<Contato>) session.getAttribute("contatos");
+
 		if (this.cliente.getTipojf().equals("J")) {
 			isRederiza = true;
 			isRederiza2 = false;
@@ -82,37 +85,55 @@ public class BeanEditaCliente implements Serializable {
 			isRederiza2 = true;
 			this.pfisica = servico.consultarPfisica(this.cliente.getIdpessoa());
 		}
-				
+
 	}
-	
+
 	public String salvar() {
-		try{
-		servico.salvar(cliente, pfisica, pjuridica, getOpcao(), contatos, enderecos);
-		}catch (Exception e){
-			if(e.getCause().toString().contains("ConstraintViolationException")){
+		//verifica tipo de enderecos repetidos
+		int p = 0;
+		List<Endereco> repetidos = new ArrayList<>();
+		repetidos.addAll(enderecos);
+		for (int i = 0; i < enderecos.size(); i++) {
+			for (int b = 0; b < enderecos.size(); b++) {
+				if(enderecos.get(i).getTipoendereco().equals(repetidos.get(b).getTipoendereco()) && i != b){
+					p++;
+				}
+			}
+		}
+		if(p == 0){
+		try {
+			cliente.setEnderecos(enderecos);
+			servico.salvar(cliente, pfisica, pjuridica, getOpcao(), contatos, enderecos);
+		} catch (Exception e) {
+			if (e.getCause().toString().contains("ConstraintViolationException")) {
 				FacesMessageUtil.addMensagemError("Registro já existente! Não foi possível realizar a operação.");
-			}else{
+			} else {
 				FacesMessageUtil.addMensagemError(e.getCause().toString());
 			}
 		}
 		lista = servico.consultar();
 
 		return "lista-cliente";
+		}else{
+			FacesMessageUtil.addMensagemError("Não é possivel registrar Tipo de Endereços iguais, revise os dados informados");
+			return null;
+		}
 	}
 
 	public String excluir() {
 
-		try{
-		if (cliente.getTipojf().equals("F")) {
-			servico.excluirF(cliente.getIdpessoa());
-		} else {
-			servico.excluirJ(cliente.getIdpessoa());
-		}
-		servico.excluir(cliente.getIdpessoa());
-		}catch(Exception e){
-			if(e.getCause().toString().contains("ConstraintViolationException")){
-				FacesMessageUtil.addMensagemError("Registro utilizado em outro local! Não foi possível realizar a operação.");
-			}else{
+		try {
+			if (cliente.getTipojf().equals("F")) {
+				servico.excluirF(cliente.getIdpessoa());
+			} else {
+				servico.excluirJ(cliente.getIdpessoa());
+			}
+			servico.excluir(cliente.getIdpessoa());
+		} catch (Exception e) {
+			if (e.getCause().toString().contains("ConstraintViolationException")) {
+				FacesMessageUtil
+						.addMensagemError("Registro utilizado em outro local! Não foi possível realizar a operação.");
+			} else {
 				FacesMessageUtil.addMensagemError(e.getCause().toString());
 			}
 		}
@@ -217,10 +238,10 @@ public class BeanEditaCliente implements Serializable {
 	}
 
 	public void removerEndereco() {
-			int index = enderecos.indexOf(endereco);
-			if (index > -1) {
+		int index = enderecos.indexOf(endereco);
+		if (index > -1) {
 			this.enderecos.remove(index);
-			}
+		}
 	}
 
 	public Endereco getEndereco() {
@@ -234,7 +255,7 @@ public class BeanEditaCliente implements Serializable {
 	public List<Cidade> getCidades() {
 		return servicoCidade.consultar();
 	}
-	
+
 	public List<Vendedor> getVendedores() {
 		return servicoVendedor.consultar();
 	}
@@ -244,26 +265,48 @@ public class BeanEditaCliente implements Serializable {
 	}
 
 	public void editarEnd() {
-		
-		if(endereco == null){
-			throw new IllegalArgumentException("Cliente nao pode ser nulo");	
-	    }
-		if(endereco.getCep().length()>0 && endereco.getBairro().length()>0 && endereco.getLogadouro().length()>0 && endereco.getNumero().length()>0 ){
-		int index = enderecos.indexOf(endereco);
-		if (index > -1) {
-			enderecos.remove(index);
-			endereco.setPessoa(cliente);
-			enderecos.add(index, endereco);
-		}else{
-			endereco.setPessoa(cliente);
-			enderecos.add(endereco);
+
+		int p = 0;
+		if (endereco == null) {
+			throw new IllegalArgumentException("Cliente nao pode ser nulo");
 		}
-		endereco = new Endereco();
-		}else{
+		if (endereco.getCep().length() > 0 && endereco.getBairro().length() > 0 && endereco.getLogadouro().length() > 0
+				&& endereco.getNumero().length() > 0) {
+			int index = enderecos.indexOf(endereco);
+			if (index > -1) {
+				for (int i = 0; i < enderecos.size(); i++) {
+					if (enderecos.get(i).getTipoendereco().getIdtipoend()
+							.equals(endereco.getTipoendereco().getIdtipoend())) {
+						p = p + 1;
+					}
+				}
+				if (p == 0 || p == 1) {
+					enderecos.remove(index);
+					endereco.setPessoa(cliente);
+					enderecos.add(endereco);
+				} else {
+					FacesMessageUtil.addMensagemWarn("Tipo de endereço já existente");
+				}
+			} else {
+				for (int i = 0; i < enderecos.size(); i++) {
+					if (enderecos.get(i).getTipoendereco().getIdtipoend()
+							.equals(endereco.getTipoendereco().getIdtipoend())) {
+						p = p + 1;
+					}
+				}
+				if (p == 0) {
+					endereco.setPessoa(cliente);
+					enderecos.add(endereco);
+				} else {
+					FacesMessageUtil.addMensagemWarn("Tipo de endereço já existente");
+				}
+
+			}
+			endereco = new Endereco();
+		} else {
 			FacesMessageUtil.addMensagemWarn("Preencha todos os dados");
 		}
 	}
-
 	/* contato */
 
 	public void novocontato() {
@@ -288,33 +331,34 @@ public class BeanEditaCliente implements Serializable {
 	}
 
 	public void addcontato() {
-		if(contato == null){
+		if (contato == null) {
 			throw new IllegalArgumentException("Cliente nao pode ser nulo");
-	    }
-		if(contato.getNome().length()>0 && contato.getEmail().length()>0  && contato.getDdd().length()>0  && contato.getNumero().length()>0 ){
-		int index = contatos.indexOf(contato);
-		if (index > -1) {
-			contatos.remove(index);
-			contato.setPessoa(cliente);
-			contatos.add(index, contato);
-		}else{
-			contato.setPessoa(cliente);
-			contatos.add(contato);
 		}
-		
-		contato = new Contato();
-		}else{
+		if (contato.getNome().length() > 0 && contato.getEmail().length() > 0 && contato.getDdd().length() > 0
+				&& contato.getNumero().length() > 0) {
+			int index = contatos.indexOf(contato);
+			if (index > -1) {
+				contatos.remove(index);
+				contato.setPessoa(cliente);
+				contatos.add(index, contato);
+			} else {
+				contato.setPessoa(cliente);
+				contatos.add(contato);
+			}
+
+			contato = new Contato();
+		} else {
 			FacesMessageUtil.addMensagemWarn("Preencha todos os dados");
 		}
 	}
-	
 
 	public void excluirContato() {
 		// servico.excluir(this.contato.getIdcontato());
 		this.contatos.remove(contato);
 	}
+
 	public List<Cidade> completaCidade(String nome) {
 		return servicoCidade.buscacidadenome(nome);
 	}
-	
+
 }

@@ -143,7 +143,7 @@ public class BeanEditaTipoMv implements Serializable {
 			p1 = tipomvvend.getListapreco();
 		}
 		if(tipomvvend.getListaprecopromocao() != null){
-			p2 = tipomvvend.getListapreco();
+			p2 = tipomvvend.getListaprecopromocao();
 		}
 		if(p1 != null){
 		if (p1.equals(p2)){// si for listas iguais exibe msg e nao salva o campo PROMOÇÃO

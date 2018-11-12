@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-
 import javax.annotation.PostConstruct;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
@@ -30,8 +29,6 @@ import br.com.scve.modelo.servico.ServicoCliente;
 import br.com.scve.modelo.servico.ServicoTipoEndereco;
 import br.com.scve.modelo.servico.ServicoVendedor;
 import br.com.scve.msn.FacesMessageUtil;
-
-
 
 @Named
 @ViewScoped
@@ -61,33 +58,48 @@ public class BeanCliente implements Serializable {
 	private Date data;
 	private Boolean isRederiza = false;
 	private Boolean isRederiza2 = false;
-	
-	//filtros de relatorio
+
+	// filtros de relatorio
 	private String filtro_situacao;
 	private String filtro_vendedor;
 	private String filtro_vendedor1;
 	private Date filtro_data = new Date();
 	private Date filtro_data1 = new Date();
-	private String filtro_nome ; 
+	private String filtro_nome;
 
 	@PostConstruct
-	public void carregar(){
-		
+	public void carregar() {
+
 		lista = servico.consultar();
-		
-		/*HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-		HttpSession session = (HttpSession) request.getSession();
-		this.cliente = (Cliente) session.getAttribute("clienteAux");
-				*/
+
+		/*
+		 * HttpServletRequest request = (HttpServletRequest)
+		 * FacesContext.getCurrentInstance().getExternalContext().getRequest();
+		 * HttpSession session = (HttpSession) request.getSession();
+		 * this.cliente = (Cliente) session.getAttribute("clienteAux");
+		 */
 		this.cliente = this.getCliente();
 		this.opcao = this.cliente.getTipojf();
 		this.enderecos = this.cliente.getEnderecos();
 		this.contatos = this.cliente.getContatos();
-		
+
 	}
-	
+
 	public String salvar() {
+		//verifica tipo de enderecos repetidos
+		int p = 0;
+		List<Endereco> repetidos = new ArrayList<>();
+		repetidos.addAll(enderecos);
+		for (int i = 0; i < enderecos.size(); i++) {
+			for (int b = 0; b < enderecos.size(); b++) {
+				if(enderecos.get(i).getTipoendereco().equals(repetidos.get(b).getTipoendereco()) && i != b){
+					p++;
+				}
+			}
+		}
+		if(p == 0){
 		try{
+		cliente.setEnderecos(enderecos);
 		servico.salvar(cliente, pfisica, pjuridica, getOpcao(), contatos, enderecos);
 		}catch (Exception e){
 			if(e.getCause().toString().contains("ConstraintViolationException")){
@@ -99,23 +111,28 @@ public class BeanCliente implements Serializable {
 		lista = servico.consultar();
 
 		return "lista-cliente";
+		}else{
+			FacesMessageUtil.addMensagemError("Não é possivel registrar Tipo de Endereços iguais, revise os dados informados");
+			return null;
+		}
 	
 	}
 
 	public String excluir() {
 
-		try{
-		if (cliente.getTipojf().equals("F")) {
-			servico.excluirF(cliente.getIdpessoa());
-		}
-		if(cliente.getTipojf().equals("J")) {
-			servico.excluirJ(cliente.getIdpessoa());
-		}
-		servico.excluir(cliente.getIdpessoa());
-		}catch(Exception e){
-			if(e.getCause().toString().contains("ConstraintViolationException")){
-				FacesMessageUtil.addMensagemError("Registro utilizado em outro local! Não foi possível realizar a operação.");
-			}else{
+		try {
+			if (cliente.getTipojf().equals("F")) {
+				servico.excluirF(cliente.getIdpessoa());
+			}
+			if (cliente.getTipojf().equals("J")) {
+				servico.excluirJ(cliente.getIdpessoa());
+			}
+			servico.excluir(cliente.getIdpessoa());
+		} catch (Exception e) {
+			if (e.getCause().toString().contains("ConstraintViolationException")) {
+				FacesMessageUtil
+						.addMensagemError("Registro utilizado em outro local! Não foi possível realizar a operação.");
+			} else {
 				FacesMessageUtil.addMensagemError(e.getCause().toString());
 			}
 		}
@@ -216,7 +233,7 @@ public class BeanCliente implements Serializable {
 			throw new RuntimeException("O cliente não pode ser nulo");
 		} else {
 			this.endereco = new Endereco();
-			//this.endereco.setPessoa(cliente);
+			// this.endereco.setPessoa(cliente);
 		}
 	}
 
@@ -235,7 +252,7 @@ public class BeanCliente implements Serializable {
 	public List<Cidade> getCidades() {
 		return servicoCidade.consultar();
 	}
-	
+
 	public List<Vendedor> getVendedores() {
 		return servicoVendedor.consultar();
 	}
@@ -245,22 +262,45 @@ public class BeanCliente implements Serializable {
 	}
 
 	public void editarEnd() {
-		
-		if(endereco == null){
-			throw new IllegalArgumentException("Cliente nao pode ser nulo");	
-	    }
-		if(endereco.getCep().length()>0 && endereco.getBairro().length()>0 && endereco.getLogadouro().length()>0 && endereco.getNumero().length()>0 ){
-		int index = enderecos.indexOf(endereco);
-		if (index > -1) {
-			enderecos.remove(index);
-			endereco.setPessoa(cliente);
-			enderecos.add(index, endereco);
-		}else{
-			endereco.setPessoa(cliente);
-			enderecos.add(endereco);
+
+		int p = 0;
+		if (endereco == null) {
+			throw new IllegalArgumentException("Cliente nao pode ser nulo");
 		}
-		endereco = new Endereco();
-		}else{
+		if (endereco.getCep().length() > 0 && endereco.getBairro().length() > 0 && endereco.getLogadouro().length() > 0
+				&& endereco.getNumero().length() > 0) {
+			int index = enderecos.indexOf(endereco);
+			if (index > -1) {
+				for (int i = 0; i < enderecos.size(); i++) {
+					if (enderecos.get(i).getTipoendereco().getIdtipoend()
+							.equals(endereco.getTipoendereco().getIdtipoend())) {
+						p = p + 1;
+					}
+				}
+				if (p == 0 || p == 1) {
+					enderecos.remove(index);
+					endereco.setPessoa(cliente);
+					enderecos.add(endereco);
+				} else {
+					FacesMessageUtil.addMensagemWarn("Tipo de endereço já existente");
+				}
+			} else {
+				for (int i = 0; i < enderecos.size(); i++) {
+					if (enderecos.get(i).getTipoendereco().getIdtipoend()
+							.equals(endereco.getTipoendereco().getIdtipoend())) {
+						p = p + 1;
+					}
+				}
+				if (p == 0) {
+					endereco.setPessoa(cliente);
+					enderecos.add(endereco);
+				} else {
+					FacesMessageUtil.addMensagemWarn("Tipo de endereço já existente");
+				}
+
+			}
+			endereco = new Endereco();
+		} else {
 			FacesMessageUtil.addMensagemWarn("Preencha todos os dados");
 		}
 	}
@@ -289,47 +329,48 @@ public class BeanCliente implements Serializable {
 	}
 
 	public void addcontato() {
-		if(contato == null){
+		if (contato == null) {
 			throw new IllegalArgumentException("Cliente nao pode ser nulo");
-	    }
-		if(contato.getNome().length()>0 && contato.getEmail().length()>0  && contato.getDdd().length()>0  && contato.getNumero().length()>0 ){
-		int index = contatos.indexOf(contato);
-		if (index > -1) {
-			contatos.remove(index);
-			contato.setPessoa(cliente);
-			contatos.add(index, contato);
-		}else{
-			contato.setPessoa(cliente);
-			contatos.add(contato);
 		}
-		
-		contato = new Contato();
-		}else{
+		if (contato.getNome().length() > 0 && contato.getEmail().length() > 0 && contato.getDdd().length() > 0
+				&& contato.getNumero().length() > 0) {
+			int index = contatos.indexOf(contato);
+			if (index > -1) {
+				contatos.remove(index);
+				contato.setPessoa(cliente);
+				contatos.add(index, contato);
+			} else {
+				contato.setPessoa(cliente);
+				contatos.add(contato);
+			}
+
+			contato = new Contato();
+		} else {
 			FacesMessageUtil.addMensagemWarn("Preencha todos os dados");
 		}
 	}
-	
 
 	public void excluirContato() {
 		// servico.excluir(this.contato.getIdcontato());
 		this.contatos.remove(contato);
 	}
-	/*editar cliente*/
-	 public String encaminha() {
-		 FacesContext fc = FacesContext.getCurrentInstance();
-		 HttpSession session = (HttpSession) fc.getExternalContext().getSession(true);
-		 session.setAttribute("clienteAux", this.cliente );
-		 
-		 return "edita-cliente";
-	 }
-	 
+
+	/* editar cliente */
+	public String encaminha() {
+		FacesContext fc = FacesContext.getCurrentInstance();
+		HttpSession session = (HttpSession) fc.getExternalContext().getSession(true);
+		session.setAttribute("clienteAux", this.cliente);
+
+		return "edita-cliente";
+	}
+
 	public List<Cidade> completaCidade(String nome) {
 		return servicoCidade.buscacidadenome(nome);
 	}
-		
+
 	/* RELATORIOS */
-	/*gets e seters*/
-	
+	/* gets e seters */
+
 	public String getFiltro_situacao() {
 		return filtro_situacao;
 	}
@@ -345,6 +386,7 @@ public class BeanCliente implements Serializable {
 	public void setFiltro_situacao(String filtro_situacao) {
 		this.filtro_situacao = filtro_situacao;
 	}
+
 	public String getFiltro_vendedor() {
 		return filtro_vendedor;
 	}
@@ -352,7 +394,7 @@ public class BeanCliente implements Serializable {
 	public void setFiltro_vendedor(String filtro_vendedor) {
 		this.filtro_vendedor = filtro_vendedor;
 	}
-	
+
 	public String getFiltro_vendedor1() {
 		return filtro_vendedor1;
 	}
@@ -376,23 +418,23 @@ public class BeanCliente implements Serializable {
 	public void setFiltro_vendedor1(String filtro_vendedor1) {
 		this.filtro_vendedor1 = filtro_vendedor1;
 	}
-	/*gets e seters*/
+
+	/* gets e seters */
 	public void rel_clientes() {
 		Relatorio<Cliente> report = new Relatorio<Cliente>();
 		if (lista.size() > 0) {
 			report.rel_clientes(lista);
-		}else{
+		} else {
 			FacesMessageUtil.addMensagemWarn("Não há registros!");
 		}
 	}
-	
 
 	public void rel_clientes_lista() {
 		Relatorio<Cliente> report = new Relatorio<Cliente>();
 		if (lista.size() > 0) {
-			report.rel_clientes_lista(filtro_situacao,filtro_vendedor,filtro_vendedor1,filtro_data,filtro_data1,
+			report.rel_clientes_lista(filtro_situacao, filtro_vendedor, filtro_vendedor1, filtro_data, filtro_data1,
 					filtro_nome);
-		}else{
+		} else {
 			FacesMessageUtil.addMensagemWarn("Não há registros!");
 		}
 	}
