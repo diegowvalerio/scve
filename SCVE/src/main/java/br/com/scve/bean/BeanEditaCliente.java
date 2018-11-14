@@ -270,16 +270,18 @@ public class BeanEditaCliente implements Serializable {
 		if (endereco == null) {
 			throw new IllegalArgumentException("Cliente nao pode ser nulo");
 		}
+		
+		for (int i = 0; i < enderecos.size(); i++) {
+			if (enderecos.get(i).getTipoendereco().getIdtipoend()
+					.equals(endereco.getTipoendereco().getIdtipoend())) {
+				p = p + 1;
+			}
+		}
+		
 		if (endereco.getCep().length() > 0 && endereco.getBairro().length() > 0 && endereco.getLogadouro().length() > 0
 				&& endereco.getNumero().length() > 0) {
 			int index = enderecos.indexOf(endereco);
 			if (index > -1) {
-				for (int i = 0; i < enderecos.size(); i++) {
-					if (enderecos.get(i).getTipoendereco().getIdtipoend()
-							.equals(endereco.getTipoendereco().getIdtipoend())) {
-						p = p + 1;
-					}
-				}
 				if (p == 0 || p == 1) {
 					enderecos.remove(index);
 					endereco.setPessoa(cliente);
@@ -288,12 +290,6 @@ public class BeanEditaCliente implements Serializable {
 					FacesMessageUtil.addMensagemWarn("Tipo de endereço já existente");
 				}
 			} else {
-				for (int i = 0; i < enderecos.size(); i++) {
-					if (enderecos.get(i).getTipoendereco().getIdtipoend()
-							.equals(endereco.getTipoendereco().getIdtipoend())) {
-						p = p + 1;
-					}
-				}
 				if (p == 0) {
 					endereco.setPessoa(cliente);
 					enderecos.add(endereco);

@@ -36,7 +36,7 @@ public class BeanEditaTipoMv implements Serializable {
 	private ServicoVendedor servicoVendedor;
 	private List<TipoMvVend> tipomvvends = new ArrayList<>();
 	private List<TipoMv> lista;
-	//private List<ListaPreco> listaprecopromocao ;
+	// private List<ListaPreco> listaprecopromocao ;
 
 	@PostConstruct
 	public void carregar() {
@@ -51,7 +51,7 @@ public class BeanEditaTipoMv implements Serializable {
 
 		// this.tipomv = this.getTipomv();
 		this.tipomvvends = this.tipomv.getTipomvvends();
-		
+
 	}
 
 	public String salvar() {
@@ -68,33 +68,23 @@ public class BeanEditaTipoMv implements Serializable {
 	}
 
 	// nao repete lista de preço para promocao
-	/*public List<ListaPreco> getListaprecopromocao() {
-		return listaprecopromocao;
-	}
-
-	public void setListaprecopromocao(List<ListaPreco> listaprecopromocao) {
-		this.listaprecopromocao = listaprecopromocao;
-	}
-
-	public void retiralistaPreco() {
-		List<ListaPreco> listap2 = new ArrayList<ListaPreco>();
-		try {
-			listap2 = servicolista.consultar();
-			int index = listap2.indexOf(tipomvvend.getListapreco());
-			if (index > -1) {
-				listap2.remove(index);
-				this.listaprecopromocao = listap2;
-				//System.out.println("ok");
-			}else{
-				this.listaprecopromocao = servicolista.consultar();
-			}
-			//System.out.println("ok2");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-	}
-*/
+	/*
+	 * public List<ListaPreco> getListaprecopromocao() { return
+	 * listaprecopromocao; }
+	 * 
+	 * public void setListaprecopromocao(List<ListaPreco> listaprecopromocao) {
+	 * this.listaprecopromocao = listaprecopromocao; }
+	 * 
+	 * public void retiralistaPreco() { List<ListaPreco> listap2 = new
+	 * ArrayList<ListaPreco>(); try { listap2 = servicolista.consultar(); int
+	 * index = listap2.indexOf(tipomvvend.getListapreco()); if (index > -1) {
+	 * listap2.remove(index); this.listaprecopromocao = listap2;
+	 * //System.out.println("ok"); }else{ this.listaprecopromocao =
+	 * servicolista.consultar(); } //System.out.println("ok2"); } catch
+	 * (Exception e) { e.printStackTrace(); }
+	 * 
+	 * }
+	 */
 	// fim filtro de lista
 
 	public TipoMv getTipomv() {
@@ -139,50 +129,42 @@ public class BeanEditaTipoMv implements Serializable {
 	public void additem() {
 		ListaPreco p1 = null;
 		ListaPreco p2 = null;
-		if(tipomvvend.getListapreco() != null){
+		if (tipomvvend.getListapreco() != null) {
 			p1 = tipomvvend.getListapreco();
 		}
-		if(tipomvvend.getListaprecopromocao() != null){
+		if (tipomvvend.getListaprecopromocao() != null) {
 			p2 = tipomvvend.getListaprecopromocao();
 		}
-		if(p1 != null){
-		if (p1.equals(p2)){// si for listas iguais exibe msg e nao salva o campo PROMOÇÃO
-			FacesMessageUtil.addMensagemWarn("Nâo é permitido utilizar a mesma Lista de Preço como Principal e Promoção !");
-			int index = tipomvvends.indexOf(tipomvvend);
-			if (index > -1) {
-				tipomvvends.remove(index);
-				tipomvvend.setTipomv(tipomv);
-				tipomvvend.setListaprecopromocao(null);
-				tipomvvends.add(index, tipomvvend);
-			}
-		}else{ //inicio listas diferentes entao salva ou edita
-			//System.out.println("difere"+p1.getNome()+" de " +p2.getNome());
-		
-		if (tipomvvend.getVendedor() == null || tipomvvend.getListapreco() == null ) {
-			//throw new IllegalArgumentException("Vendedor nao pode ser nulo");
-			FacesMessageUtil.addMensagemError("Vendedor nao pode ser nulo");
-			int index = tipomvvends.indexOf(tipomvvend);
-			if (index > -1) {
-				tipomvvends.remove(index);
-			}
-		}else{
-		int index = tipomvvends.indexOf(tipomvvend);
-		if (index > -1) {
-			tipomvvends.remove(index);
-			tipomvvend.setTipomv(tipomv);
-			tipomvvends.add(index, tipomvvend);
+		if (p1 != null && tipomvvend.getVendedor() != null) {
+			if (p1.equals(p2)) {// si for listas iguais exibe msg e nao salva o
+								// campo PROMOÇÃO
+				FacesMessageUtil
+						.addMensagemWarn("Nâo é permitido utilizar a mesma Lista de Preço como Principal e Promoção !");
+				int index = tipomvvends.indexOf(tipomvvend);
+				if (index > -1) {
+					tipomvvends.remove(index);
+					tipomvvend.setTipomv(tipomv);
+					tipomvvend.setListaprecopromocao(null);
+					tipomvvends.add(index, tipomvvend);
+				}
+			} else { // inicio listas diferentes entao salva ou edita
+				int index = tipomvvends.indexOf(tipomvvend);
+				if (index > -1) {
+					tipomvvends.remove(index);
+					tipomvvend.setTipomv(tipomv);
+					tipomvvends.add(index, tipomvvend);
+				} else {
+					tipomvvend.setTipomv(tipomv);
+					tipomvvends.add(tipomvvend);
+				}
+
+			} // fim se for listas diferentes
 		} else {
-			tipomvvend.setTipomv(tipomv);
-			tipomvvends.add(tipomvvend);
-		}
-		}
-		}//fim se for listas diferentes
-		}else{
 			FacesMessageUtil.addMensagemWarn("Preencha todos os dados");
 		}
 		tipomvvend = new TipoMvVend();
 	}
-	
+
 	public void excluiritem() {
 		this.tipomvvends.remove(tipomvvend);
 	}

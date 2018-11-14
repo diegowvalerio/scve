@@ -52,6 +52,7 @@ public class BeanCliente implements Serializable {
 	private List<Cliente> lista;
 	private List<Endereco> enderecos = new ArrayList<>();
 	private List<Contato> contatos = new ArrayList<>();
+	private Date dt = new Date();
 
 	// usado para definir fisica ou juridica
 	private String opcao;
@@ -79,6 +80,7 @@ public class BeanCliente implements Serializable {
 		 * this.cliente = (Cliente) session.getAttribute("clienteAux");
 		 */
 		this.cliente = this.getCliente();
+		this.cliente.setDtcadastro(dt);
 		this.opcao = this.cliente.getTipojf();
 		this.enderecos = this.cliente.getEnderecos();
 		this.contatos = this.cliente.getContatos();
@@ -140,7 +142,15 @@ public class BeanCliente implements Serializable {
 
 		return "lista-cliente";
 	}
+	
+	public Date getDt() {
+		return dt;
+	}
 
+	public void setDt(Date dt) {
+		this.dt = dt;
+	}
+	
 	public String getOpcao() {
 		return opcao;
 	}
@@ -267,16 +277,16 @@ public class BeanCliente implements Serializable {
 		if (endereco == null) {
 			throw new IllegalArgumentException("Cliente nao pode ser nulo");
 		}
+		for (int i = 0; i < enderecos.size(); i++) {
+			if (enderecos.get(i).getTipoendereco().getIdtipoend()
+					.equals(endereco.getTipoendereco().getIdtipoend())) {
+				p = p + 1;
+			}
+		}
 		if (endereco.getCep().length() > 0 && endereco.getBairro().length() > 0 && endereco.getLogadouro().length() > 0
 				&& endereco.getNumero().length() > 0) {
 			int index = enderecos.indexOf(endereco);
 			if (index > -1) {
-				for (int i = 0; i < enderecos.size(); i++) {
-					if (enderecos.get(i).getTipoendereco().getIdtipoend()
-							.equals(endereco.getTipoendereco().getIdtipoend())) {
-						p = p + 1;
-					}
-				}
 				if (p == 0 || p == 1) {
 					enderecos.remove(index);
 					endereco.setPessoa(cliente);
@@ -285,12 +295,6 @@ public class BeanCliente implements Serializable {
 					FacesMessageUtil.addMensagemWarn("Tipo de endereço já existente");
 				}
 			} else {
-				for (int i = 0; i < enderecos.size(); i++) {
-					if (enderecos.get(i).getTipoendereco().getIdtipoend()
-							.equals(endereco.getTipoendereco().getIdtipoend())) {
-						p = p + 1;
-					}
-				}
 				if (p == 0) {
 					endereco.setPessoa(cliente);
 					enderecos.add(endereco);
@@ -299,10 +303,10 @@ public class BeanCliente implements Serializable {
 				}
 
 			}
-			endereco = new Endereco();
 		} else {
 			FacesMessageUtil.addMensagemWarn("Preencha todos os dados");
 		}
+		endereco = new Endereco();
 	}
 
 	/* contato */

@@ -77,7 +77,7 @@
 							required="false" rendered="#{beanEditaCliente.isRederiza}" />
 
 						<p:outputLabel value="Data Cadastro:" for="dtcadastro" />
-						<p:calendar autocomplete="#{beanEditaCliente.data}" locale="pt_BR"
+						<p:calendar autocomplete="#{beanEditaCliente.data}" locale="pt_BR" disabled="true"
 							id="dtcadastro" value="#{beanEditaCliente.cliente.dtcadastro}"
 							pattern="dd/MM/yyyy" mask="true" required="true" effect="fold" />
 

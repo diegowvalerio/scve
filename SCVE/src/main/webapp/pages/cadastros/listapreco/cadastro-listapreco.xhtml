@@ -27,7 +27,7 @@
 				</p:inputText>
 
 				<p:outputLabel value="Data Cadastro:" for="dtcadastro" />
-				<p:calendar locale="pt_BR" id="dtcadastro"
+				<p:calendar locale="pt_BR" id="dtcadastro" disabled="true"
 					value="#{beanListaPreco.listapreco.dtcadastro}"
 					pattern="dd/MM/yyyy" mask="true" required="true"
 					readonlyInput="true" />
@@ -101,7 +101,7 @@
 						</h:panelGroup>
 
 						<p:outputLabel value="Valor :" for="valor" />
-						<p:inputNumber id="valor"
+						<p:inputNumber id="valor" emptyValue="true"
 							value="#{beanListaPreco.listaprecoitem.valor}" />
 
 						<p:outputLabel value="Ultima Alteração: " for="dtultimaalt"

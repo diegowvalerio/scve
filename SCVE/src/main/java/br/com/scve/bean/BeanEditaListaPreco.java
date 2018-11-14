@@ -13,6 +13,7 @@ import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import br.com.scve.entidades.Endereco;
 import br.com.scve.entidades.ListaPreco;
 import br.com.scve.entidades.ListaPrecoItem;
 import br.com.scve.entidades.Produto;
@@ -48,21 +49,54 @@ public class BeanEditaListaPreco implements Serializable {
 
 		this.listapreco = this.getListapreco();
 		this.dt = this.listapreco.getDtcadastro();
-		//this.listapreco.setDtcadastro(dt);
+		// this.listapreco.setDtcadastro(dt);
 		this.listaprecoitems = this.listapreco.getListaprecoitens();
 
 	}
 
 	public String salvar() {
+		// verifica repetidos
+		int p = 0;
+		int p2 = 0;
+		List<ListaPrecoItem> repetidos = new ArrayList<>();
+		repetidos.addAll(listaprecoitems);
+		for (int i = 0; i < listaprecoitems.size(); i++) {
+			for (int b = 0; b < listaprecoitems.size(); b++) {
+				if (listaprecoitems.get(i).getProduto().equals(repetidos.get(b).getProduto()) && i != b) {
+					p++;
+				}
+			}
+			if(listaprecoitems.get(i).getValor().doubleValue() == 0){
+				p2++;
+			}
+		}
+		if (p == 0 && p2 == 0) {
+			servico.salvar(listapreco);
+			lista = servico.consultar();
 
-		servico.salvar(listapreco);
-		lista = servico.consultar();
-
-		return "lista-listapreco";
+			return "lista-listapreco";
+		} else {
+			if(p != 0){
+			FacesMessageUtil.addMensagemError("Não é possivel registrar Produtos iguais, revise os dados informados");
+			}
+			if(p2 != 0){
+			FacesMessageUtil.addMensagemError("Não é permitido a inclusão de Valor igual a Zero, Verifique os dados.");	
+			}
+			return null;
+		}
 	}
 
 	public String excluir() {
-		servico.excluir(listapreco.getIdlista());
+		try {
+			servico.excluir(listapreco.getIdlista());
+		} catch (Exception e) {
+			if (e.getCause().toString().contains("ConstraintViolationException")) {
+				FacesMessageUtil
+						.addMensagemError("Registro utilizado em outro local! Não foi possível realizar a operação.");
+			} else {
+				FacesMessageUtil.addMensagemError(e.getCause().toString());
+			}
+		}
 
 		lista = servico.consultar();
 
@@ -125,29 +159,41 @@ public class BeanEditaListaPreco implements Serializable {
 		if (listaprecoitem == null) {
 			throw new IllegalArgumentException("Lista nao pode ser nulo");
 		}
-		if (listaprecoitem.getProduto() != null && listaprecoitem.getValor().doubleValue() > 0){
+		
 		for (int i = 0; i < listaprecoitems.size(); i++) {
-			if (listaprecoitems.get(i).getProduto().getIdproduto().equals(listaprecoitem.getProduto().getIdproduto())) {
+			if (listaprecoitems.get(i).getProduto().getIdproduto()
+					.equals(listaprecoitem.getProduto().getIdproduto())) {
 				p = p + 1;
 			}
 		}
-		if (p == 0) {
-			int index = listaprecoitems.indexOf(listaprecoitem);
-			if (index > -1) {
-				listaprecoitems.remove(index);
-				listaprecoitem.setListapreco(listapreco);
-				listaprecoitem.setDtultimaalt(dt);
-				listaprecoitems.add(index, listaprecoitem);
-			} else {
-				listaprecoitem.setListapreco(listapreco);
-				listaprecoitem.setDtultimaalt(dt);
-				listaprecoitems.add(listaprecoitem);
-			}
+		
+		if (listaprecoitem.getProduto() != null && listaprecoitem.getValor().doubleValue() > 0) {
+			
+				int index = listaprecoitems.indexOf(listaprecoitem);
+				if (index > -1) {
+					if (p == 0 || p == 1) {
+					listaprecoitems.remove(index);
+					listaprecoitem.setListapreco(listapreco);
+					listaprecoitem.setDtultimaalt(dt);
+					listaprecoitems.add(index, listaprecoitem);
+					}else{
+						FacesMessageUtil.addMensagemWarn("Produto já consta na Lista de Preço");
+					}
+				} else {
+					if (p == 0){
+					listaprecoitem.setListapreco(listapreco);
+					listaprecoitem.setDtultimaalt(dt);
+					listaprecoitems.add(listaprecoitem);
+					}else{
+						FacesMessageUtil.addMensagemWarn("Produto já consta na Lista de Preço");
+					}
+				}
 		} else {
-			FacesMessageUtil.addMensagemWarn("Produto já consta na Lista de Preço");
-		}
-		}else{
+			if (listaprecoitem.getValor().doubleValue() == 0){
+				FacesMessageUtil.addMensagemError("Não é permitido a inclusão de Valor igual a Zero, Verifique os dados.");
+			}else{
 			FacesMessageUtil.addMensagemWarn("Preencha todos os dados");
+			}
 		}
 		listaprecoitem = new ListaPrecoItem();
 
