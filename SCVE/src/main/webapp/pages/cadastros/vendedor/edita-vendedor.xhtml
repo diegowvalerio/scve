@@ -39,7 +39,7 @@
 
 						<p:outputLabel value="Cpf:" for="cpf"
 							rendered="#{beanEditaVendedor.isRederiza2}" />
-						<p:inputMask mask="999.999.999-99" id="cpf"
+						<p:inputMask mask="999.999.999-99" id="cpf" validator="cpfValidador"
 							value="#{beanEditaVendedor.pfisica.cpf}" required="true"
 							rendered="#{beanEditaVendedor.isRederiza2}" />
 						<p:outputLabel value="Rg:" for="rg"
@@ -61,7 +61,7 @@
 							required="true" rendered="#{beanEditaVendedor.isRederiza}" />
 						<p:outputLabel value="Cnpj:" for="cnpj"
 							rendered="#{beanEditaVendedor.isRederiza}" />
-						<p:inputMask mask="99.999.999/9999-99" id="cnpj"
+						<p:inputMask mask="99.999.999/9999-99" id="cnpj" validator="cnpjValidador"
 							value="#{beanEditaVendedor.pjuridica.cnpj}" required="true"
 							rendered="#{beanEditaVendedor.isRederiza}" />
 						<p:outputLabel value="Inscrição Estadual:" for="insc_estadual"
@@ -76,12 +76,12 @@
 							required="false" rendered="#{beanEditaVendedor.isRederiza}" />
 
 						<p:outputLabel value="Data Cadastro:" for="dtcadastro" />
-						<p:calendar autocomplete="#{beanEditaVendedor.data}" locale="pt_BR"
+						<p:calendar disabled="true" autocomplete="#{beanEditaVendedor.data}" locale="pt_BR"
 							id="dtcadastro" value="#{beanEditaVendedor.vendedor.dtcadastro}"
 							pattern="dd/MM/yyyy" mask="true" required="true" effect="fold" />
 
 						<p:outputLabel value="% Comissão:" for="perc_comissao" />
-								<p:inputNumber id="perc_comissao"
+								<p:inputNumber id="perc_comissao" emptyValue="true"
 									value="#{beanEditaVendedor.vendedor.perc_comissao}"  />
 
 

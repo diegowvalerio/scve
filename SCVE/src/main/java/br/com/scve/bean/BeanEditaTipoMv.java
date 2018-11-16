@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import br.com.scve.entidades.ListaPreco;
+import br.com.scve.entidades.ListaPrecoItem;
 import br.com.scve.entidades.TipoMv;
 import br.com.scve.entidades.TipoMvVend;
 import br.com.scve.entidades.Vendedor;
@@ -55,10 +56,25 @@ public class BeanEditaTipoMv implements Serializable {
 	}
 
 	public String salvar() {
+		int p =0;
+		List<TipoMvVend> repetidos = new ArrayList<>();
+		repetidos.addAll(tipomvvends);
+		for (int i = 0; i < tipomvvends.size(); i++) {
+			for (int b = 0; b < tipomvvends.size(); b++) {
+				if (tipomvvends.get(i).getVendedor().equals(repetidos.get(b).getVendedor()) && i != b) {
+					p++;
+				}
+			}
+		}
+		if (p == 0){
 		servico.salvar(tipomv);
 		lista = servico.consultar();
 
 		return "lista-tipomv";
+		}else{
+			FacesMessageUtil.addMensagemError("Há vendedores duplicados, verifique !");
+			return null;
+		}
 
 	}
 
@@ -127,6 +143,7 @@ public class BeanEditaTipoMv implements Serializable {
 	}
 
 	public void additem() {
+		int p = 0;
 		ListaPreco p1 = null;
 		ListaPreco p2 = null;
 		if (tipomvvend.getListapreco() != null) {
@@ -135,6 +152,12 @@ public class BeanEditaTipoMv implements Serializable {
 		if (tipomvvend.getListaprecopromocao() != null) {
 			p2 = tipomvvend.getListaprecopromocao();
 		}
+		//verifica vendedor repetido
+		for (int i = 0; i < tipomvvends.size(); i++) {
+			if(tipomvvends.get(i).getVendedor().equals(tipomvvend.getVendedor())){
+				p++;
+			}
+		}
 		if (p1 != null && tipomvvend.getVendedor() != null) {
 			if (p1.equals(p2)) {// si for listas iguais exibe msg e nao salva o
 								// campo PROMOÇÃO
@@ -142,20 +165,32 @@ public class BeanEditaTipoMv implements Serializable {
 						.addMensagemWarn("Nâo é permitido utilizar a mesma Lista de Preço como Principal e Promoção !");
 				int index = tipomvvends.indexOf(tipomvvend);
 				if (index > -1) {
+					if(p ==0 || p ==1){
 					tipomvvends.remove(index);
 					tipomvvend.setTipomv(tipomv);
 					tipomvvend.setListaprecopromocao(null);
 					tipomvvends.add(index, tipomvvend);
+					}else{
+						FacesMessageUtil.addMensagemWarn("Atenção: Vendedor já inserido.");
+					}
 				}
 			} else { // inicio listas diferentes entao salva ou edita
 				int index = tipomvvends.indexOf(tipomvvend);
 				if (index > -1) {
+					if(p ==0 || p ==1){
 					tipomvvends.remove(index);
 					tipomvvend.setTipomv(tipomv);
 					tipomvvends.add(index, tipomvvend);
+					}else{
+						FacesMessageUtil.addMensagemWarn("Atenção: Vendedor já inserido.");
+					}
 				} else {
+					if (p == 0){
 					tipomvvend.setTipomv(tipomv);
 					tipomvvends.add(tipomvvend);
+					}else{
+						FacesMessageUtil.addMensagemWarn("Atenção: Vendedor já inserido.");
+					}
 				}
 
 			} // fim se for listas diferentes

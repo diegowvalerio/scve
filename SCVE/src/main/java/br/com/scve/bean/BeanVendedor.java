@@ -56,12 +56,24 @@ public class BeanVendedor implements Serializable{
 		lista = servico.consultar();
 		
 		this.vendedor = this.getVendedor();
+		this.vendedor.setDtcadastro(data);
 		this.opcao = this.vendedor.getTipojf();
 		this.enderecos = this.vendedor.getEnderecos();
 		this.contatos = this.vendedor.getContatos();
 	}
 	
 	public String salvar(){	
+		int p = 0;
+		List<Endereco> repetidos = new ArrayList<>();
+		repetidos.addAll(enderecos);
+		for (int i = 0; i < enderecos.size(); i++) {
+			for (int b = 0; b < enderecos.size(); b++) {
+				if(enderecos.get(i).getTipoendereco().equals(repetidos.get(b).getTipoendereco()) && i != b){
+					p++;
+				}
+			}
+		}
+		if(p == 0){
 		try{
 		servico.salvar(vendedor,pfisica,pjuridica ,getOpcao(),contatos,enderecos);
 		}catch (Exception e){
@@ -72,28 +84,32 @@ public class BeanVendedor implements Serializable{
 			}
 		}
 		lista = servico.consultar();
-		
 		return "lista-vendedor";
+		}else{
+			FacesMessageUtil.addMensagemError("Não é possivel registrar Tipo de Endereços iguais, revise os dados informados");
+			return null;
+		}
 	}
 	public String excluir(){
 		
 		try{
-		if (vendedor.getTipojf().equals("F")) {
-			servico.excluirF(vendedor.getIdpessoa());
-		}else{
-			servico.excluirJ(vendedor.getIdpessoa());
-		}
-		servico.excluir(vendedor.getIdpessoa());
-		}catch(Exception e){
-			if(e.getCause().toString().contains("ConstraintViolationException")){
-				FacesMessageUtil.addMensagemError("Registro utilizado em outro local! Não foi possível realizar a operação.");
+			if (vendedor.getTipojf().equals("F")) {
+				servico.excluirF(vendedor.getIdpessoa());
 			}else{
-				FacesMessageUtil.addMensagemError(e.getCause().toString());
+				servico.excluirJ(vendedor.getIdpessoa());
 			}
-		}
-		lista = servico.consultar();
-		
-		return "lista-vendedor";
+			servico.excluir(vendedor.getIdpessoa());
+			} catch (Exception e) {
+				if (e.getCause().toString().contains("ConstraintViolationException")) {
+					FacesMessageUtil
+							.addMensagemError("Registro utilizado em outro local! Não foi possível realizar a operação.");
+				} else {
+					FacesMessageUtil.addMensagemError(e.getCause().toString());
+				}
+			}
+			lista = servico.consultar();
+			
+			return "lista-vendedor";
 	}
 	
 	public String getOpcao() {
@@ -211,23 +227,40 @@ public class BeanVendedor implements Serializable{
 	
 	public void editarEnd() {
 		
-		if(endereco == null){
-			throw new IllegalArgumentException("Cliente nao pode ser nulo");	
-	    }
-		if(endereco.getCep().length()>0 && endereco.getBairro().length()>0 && endereco.getLogadouro().length()>0 && endereco.getNumero().length()>0 ){
-		int index = enderecos.indexOf(endereco);
-		if (index > -1) {
-			enderecos.remove(index);
-			endereco.setPessoa(vendedor);
-			enderecos.add(index, endereco);
-		}else{
-			endereco.setPessoa(vendedor);
-			enderecos.add(endereco);
+		int p = 0;
+		if (endereco == null) {
+			throw new IllegalArgumentException("Cliente nao pode ser nulo");
 		}
-		endereco = new Endereco();
-		}else{
+		for (int i = 0; i < enderecos.size(); i++) {
+			if (enderecos.get(i).getTipoendereco().getIdtipoend()
+					.equals(endereco.getTipoendereco().getIdtipoend())) {
+				p = p + 1;
+			}
+		}
+		if (endereco.getCep().length() > 0 && endereco.getBairro().length() > 0 && endereco.getLogadouro().length() > 0
+				&& endereco.getNumero().length() > 0) {
+			int index = enderecos.indexOf(endereco);
+			if (index > -1) {
+				if (p == 0 || p == 1) {
+					enderecos.remove(index);
+					endereco.setPessoa(vendedor);
+					enderecos.add(endereco);
+				} else {
+					FacesMessageUtil.addMensagemWarn("Tipo de endereço já existente");
+				}
+			} else {
+				if (p == 0) {
+					endereco.setPessoa(vendedor);
+					enderecos.add(endereco);
+				} else {
+					FacesMessageUtil.addMensagemWarn("Tipo de endereço já existente");
+				}
+
+			}
+		} else {
 			FacesMessageUtil.addMensagemWarn("Preencha todos os dados");
 		}
+		endereco = new Endereco();
 	}
 	
 	/*contato*/

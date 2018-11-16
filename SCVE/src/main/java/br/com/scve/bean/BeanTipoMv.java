@@ -46,18 +46,25 @@ public class BeanTipoMv implements Serializable {
 	}
 
 	public String salvar() {
-		try{
-		servico.salvar(tipomv);
-		}catch (Exception e){
-			if(e.getCause().toString().contains("ConstraintViolationException")){
-				FacesMessageUtil.addMensagemError("Registro já existente! Não foi possível realizar a operação.");
-			}else{
-				FacesMessageUtil.addMensagemError(e.getCause().toString());
+		int p =0;
+		List<TipoMvVend> repetidos = new ArrayList<>();
+		repetidos.addAll(tipomvvends);
+		for (int i = 0; i < tipomvvends.size(); i++) {
+			for (int b = 0; b < tipomvvends.size(); b++) {
+				if (tipomvvends.get(i).getVendedor().equals(repetidos.get(b).getVendedor()) && i != b) {
+					p++;
+				}
 			}
 		}
+		if (p == 0){
+		servico.salvar(tipomv);
 		lista = servico.consultar();
 
 		return "lista-tipomv";
+		}else{
+			FacesMessageUtil.addMensagemError("Há vendedores duplicados, verifique !");
+			return null;
+		}
 
 	}
 
@@ -136,47 +143,58 @@ public class BeanTipoMv implements Serializable {
 	}
 
 	public void additem() {
+		int p = 0;
 		ListaPreco p1 = null;
 		ListaPreco p2 = null;
-		if(tipomvvend.getListapreco() != null){
+		if (tipomvvend.getListapreco() != null) {
 			p1 = tipomvvend.getListapreco();
 		}
-		if(tipomvvend.getListaprecopromocao() != null){
-			p2 = tipomvvend.getListapreco();
+		if (tipomvvend.getListaprecopromocao() != null) {
+			p2 = tipomvvend.getListaprecopromocao();
 		}
-		if(p1 != null){
-		if (p1.equals(p2)){// si for listas iguais exibe msg e nao salva o campo PROMOÇÃO
-			FacesMessageUtil.addMensagemWarn("Nâo é permitido utilizar a mesma Lista de Preço como Principal e Promoção !");
-			int index = tipomvvends.indexOf(tipomvvend);
-			if (index > -1) {
-				tipomvvends.remove(index);
-				tipomvvend.setTipomv(tipomv);
-				tipomvvend.setListaprecopromocao(null);
-				tipomvvends.add(index, tipomvvend);
+		//verifica vendedor repetido
+		for (int i = 0; i < tipomvvends.size(); i++) {
+			if(tipomvvends.get(i).getVendedor().equals(tipomvvend.getVendedor())){
+				p++;
 			}
-		}else{ //inicio listas diferentes entao salva ou edita
-			//System.out.println("difere"+p1.getNome()+" de " +p2.getNome());
-		
-		if (tipomvvend.getVendedor() == null || tipomvvend.getListapreco() == null ) {
-			//throw new IllegalArgumentException("Vendedor nao pode ser nulo");
-			FacesMessageUtil.addMensagemError("Vendedor nao pode ser nulo");
-			int index = tipomvvends.indexOf(tipomvvend);
-			if (index > -1) {
-				tipomvvends.remove(index);
-			}
-		}else{
-		int index = tipomvvends.indexOf(tipomvvend);
-		if (index > -1) {
-			tipomvvends.remove(index);
-			tipomvvend.setTipomv(tipomv);
-			tipomvvends.add(index, tipomvvend);
+		}
+		if (p1 != null && tipomvvend.getVendedor() != null) {
+			if (p1.equals(p2)) {// si for listas iguais exibe msg e nao salva o
+								// campo PROMOÇÃO
+				FacesMessageUtil
+						.addMensagemWarn("Nâo é permitido utilizar a mesma Lista de Preço como Principal e Promoção !");
+				int index = tipomvvends.indexOf(tipomvvend);
+				if (index > -1) {
+					if(p ==0 || p ==1){
+					tipomvvends.remove(index);
+					tipomvvend.setTipomv(tipomv);
+					tipomvvend.setListaprecopromocao(null);
+					tipomvvends.add(index, tipomvvend);
+					}else{
+						FacesMessageUtil.addMensagemWarn("Atenção: Vendedor já inserido.");
+					}
+				}
+			} else { // inicio listas diferentes entao salva ou edita
+				int index = tipomvvends.indexOf(tipomvvend);
+				if (index > -1) {
+					if(p ==0 || p ==1){
+					tipomvvends.remove(index);
+					tipomvvend.setTipomv(tipomv);
+					tipomvvends.add(index, tipomvvend);
+					}else{
+						FacesMessageUtil.addMensagemWarn("Atenção: Vendedor já inserido.");
+					}
+				} else {
+					if (p == 0){
+					tipomvvend.setTipomv(tipomv);
+					tipomvvends.add(tipomvvend);
+					}else{
+						FacesMessageUtil.addMensagemWarn("Atenção: Vendedor já inserido.");
+					}
+				}
+
+			} // fim se for listas diferentes
 		} else {
-			tipomvvend.setTipomv(tipomv);
-			tipomvvends.add(tipomvvend);
-		}
-		}
-		}//fim se for listas diferentes
-		}else{
 			FacesMessageUtil.addMensagemWarn("Preencha todos os dados");
 		}
 		tipomvvend = new TipoMvVend();

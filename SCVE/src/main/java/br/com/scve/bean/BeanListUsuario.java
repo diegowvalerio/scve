@@ -11,7 +11,8 @@ import javax.inject.Named;
 import br.com.scve.entidades.Pfisica;
 import br.com.scve.entidades.Pjuridica;
 import br.com.scve.entidades.Usuario;
-import br.com.scve.modelo.servico.ServicoUsuario;;
+import br.com.scve.modelo.servico.ServicoUsuario;
+import br.com.scve.msn.FacesMessageUtil;;
 
 @Named
 @ViewScoped
@@ -42,12 +43,20 @@ public class BeanListUsuario implements Serializable{
 	}
 
 	public void excluir(){
+		try{
 		if (usuario.getTipojf().equals("F")){
 		servico.excluirF(usuario.getIdpessoa());
 		}else{
 		servico.excluirJ(usuario.getIdpessoa());
 		}
 		servico.excluir(usuario.getIdpessoa());
+		}catch (Exception e) {
+			if (e.getCause().toString().contains("ConstraintViolationException")) {
+				FacesMessageUtil.addMensagemError("Registro utilizado em outro local! Não foi possível realizar a operação.");
+			} else {
+				FacesMessageUtil.addMensagemError(e.getCause().toString());
+			}
+		}
 		lista = servico.consultar();
 	}
 	

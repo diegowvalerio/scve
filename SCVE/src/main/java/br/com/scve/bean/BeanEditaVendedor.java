@@ -60,7 +60,6 @@ public class BeanEditaVendedor implements Serializable{
 		HttpSession session = (HttpSession) request.getSession();
 		this.vendedor = (Vendedor) session.getAttribute("vendedorAux");
 		session.removeAttribute("vendedorAux");
-		
 		this.opcao = this.vendedor.getTipojf();
 		this.enderecos = this.vendedor.getEnderecos();
 		this.contatos = this.vendedor.getContatos();
@@ -79,22 +78,50 @@ public class BeanEditaVendedor implements Serializable{
 	}
 	
 	public String salvar(){	
-		//System.out.println("Cpf: "+pfisica.getCpf().toString());
+		int p = 0;
+		List<Endereco> repetidos = new ArrayList<>();
+		repetidos.addAll(enderecos);
+		for (int i = 0; i < enderecos.size(); i++) {
+			for (int b = 0; b < enderecos.size(); b++) {
+				if(enderecos.get(i).getTipoendereco().equals(repetidos.get(b).getTipoendereco()) && i != b){
+					p++;
+				}
+			}
+		}
+		if(p == 0){
+		try{
 		servico.salvar(vendedor,pfisica,pjuridica ,getOpcao(),contatos,enderecos);
+		}catch (Exception e){
+			if(e.getCause().toString().contains("ConstraintViolationException")){
+				FacesMessageUtil.addMensagemError("Registro já existente! Não foi possível realizar a operação.");
+			}else{
+				FacesMessageUtil.addMensagemError(e.getCause().toString());
+			}
+		}
 		lista = servico.consultar();
-		
 		return "lista-vendedor";
+		}else{
+			FacesMessageUtil.addMensagemError("Não é possivel registrar Tipo de Endereços iguais, revise os dados informados");
+			return null;
+		}
 	}
 	public String excluir(){
 		
-		//servico.excluirEnde(cliente.getIdpessoa());
+		try{
 		if (vendedor.getTipojf().equals("F")) {
 			servico.excluirF(vendedor.getIdpessoa());
 		}else{
 			servico.excluirJ(vendedor.getIdpessoa());
 		}
 		servico.excluir(vendedor.getIdpessoa());
-		
+		} catch (Exception e) {
+			if (e.getCause().toString().contains("ConstraintViolationException")) {
+				FacesMessageUtil
+						.addMensagemError("Registro utilizado em outro local! Não foi possível realizar a operação.");
+			} else {
+				FacesMessageUtil.addMensagemError(e.getCause().toString());
+			}
+		}
 		lista = servico.consultar();
 		
 		return "lista-vendedor";
@@ -215,23 +242,40 @@ public class BeanEditaVendedor implements Serializable{
 	
 	public void editarEnd() {
 		
-		if(endereco == null){
-			throw new IllegalArgumentException("Cliente nao pode ser nulo");	
-	    }
-		if(endereco.getCep().length()>0 && endereco.getBairro().length()>0 && endereco.getLogadouro().length()>0 && endereco.getNumero().length()>0 ){
-		int index = enderecos.indexOf(endereco);
-		if (index > -1) {
-			enderecos.remove(index);
-			endereco.setPessoa(vendedor);
-			enderecos.add(index, endereco);
-		}else{
-			endereco.setPessoa(vendedor);
-			enderecos.add(endereco);
+		int p = 0;
+		if (endereco == null) {
+			throw new IllegalArgumentException("Cliente nao pode ser nulo");
+		}
+		for (int i = 0; i < enderecos.size(); i++) {
+			if (enderecos.get(i).getTipoendereco().getIdtipoend()
+					.equals(endereco.getTipoendereco().getIdtipoend())) {
+				p = p + 1;
+			}
+		}
+		if (endereco.getCep().length() > 0 && endereco.getBairro().length() > 0 && endereco.getLogadouro().length() > 0
+				&& endereco.getNumero().length() > 0) {
+			int index = enderecos.indexOf(endereco);
+			if (index > -1) {
+				if (p == 0 || p == 1) {
+					enderecos.remove(index);
+					endereco.setPessoa(vendedor);
+					enderecos.add(endereco);
+				} else {
+					FacesMessageUtil.addMensagemWarn("Tipo de endereço já existente");
+				}
+			} else {
+				if (p == 0) {
+					endereco.setPessoa(vendedor);
+					enderecos.add(endereco);
+				} else {
+					FacesMessageUtil.addMensagemWarn("Tipo de endereço já existente");
+				}
+
+			}
+		} else {
+			FacesMessageUtil.addMensagemWarn("Preencha todos os dados");
 		}
 		endereco = new Endereco();
-		}else{
-		FacesMessageUtil.addMensagemWarn("Preencha todos os dados");
-		}
 	}
 	
 	/*contato*/

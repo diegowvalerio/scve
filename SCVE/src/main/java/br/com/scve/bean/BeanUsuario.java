@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -34,6 +35,12 @@ public class BeanUsuario implements Serializable{
 	
 	public BeanUsuario() {
 		data = new Date();
+	}
+	
+	@PostConstruct
+	public void carregar() {
+		this.usuario.setDtcadastro(data);
+		
 	}
 	
 	public String salvar(){
