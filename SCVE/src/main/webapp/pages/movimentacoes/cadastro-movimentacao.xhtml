@@ -79,7 +79,7 @@
 
 
 						<p:outputLabel value="Data Cadastro:" for="dtvenda" />
-						<p:calendar readonly="true" locale="pt_BR" id="dtvenda"
+						<p:calendar readonly="true" locale="pt_BR" id="dtvenda" disabled="true"
 							value="#{beanMovimento.movimento.dtvenda}" pattern="dd/MM/yyyy"
 							mask="true" required="true" effect="fold" />
 							
@@ -142,7 +142,8 @@
 					
 					<p:separator />
 					<p:outputLabel value="Total :" ></p:outputLabel>
-					<p:inputNumber readonly="true" value="#{beanMovimento.totalvenda}"></p:inputNumber>
+					<p:outputLabel value="#{beanMovimento.totalvenda}"></p:outputLabel>
+					
 					<!-- dados de items -->
 				</p:tab>
 
@@ -178,12 +179,12 @@
 					</p:selectOneMenu>
 
 					<p:outputLabel value="Desconto:" for="desconto" />
-					<p:inputNumber id="desconto" value="#{beanMovimento.item.desconto}" >
+					<p:inputNumber id="desconto" value="#{beanMovimento.item.desconto}" emptyValue="true">
 					<p:ajax event="blur" listener="#{beanMovimento.calcularItem()}" update="subtotal"/>
 					</p:inputNumber>
 
 					<p:outputLabel value="Total Item:" for="subtotal" />
-					<p:inputNumber id="subtotal" value="#{beanMovimento.item.subtotal}">
+					<p:inputNumber id="subtotal" value="#{beanMovimento.item.subtotal}" emptyValue="true">
 					<p:ajax event="blur" listener="#{beanMovimento.calcularItem_total()}" update="desconto"/>	
 					</p:inputNumber>
 
