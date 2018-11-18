@@ -320,7 +320,7 @@ public class BeanEditaMovimento implements Serializable {
 	}
 
 	public void editarsalvarProduto() {
-		if (item.getProduto() == null || item.getQtde() == 0 || item.getSubtotal() == 0 ) {
+		if (item.getProduto() == null || item.getQtde() == null || item.getQtde() == 0 || item.getValor() == null || item.getSubtotal() == 0.0 ) {
 			FacesMessageUtil.addMensagemError("Preencha os dados corretamente");
 		} else {
 			try {
@@ -340,7 +340,7 @@ public class BeanEditaMovimento implements Serializable {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			item = new ItemMov();
 		}
+		item = new ItemMov();
 	}
 }

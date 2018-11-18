@@ -18,7 +18,7 @@
 		<adm:breadcrumb title="Movimentação"
 			link="cadastro-movimentacao.xhtml" />
 		<h:form id="form">
-		
+			<p:growl id="erros" showDetail="true" sticky="false" />
 			<p:tabView dynamic="false" cache="false" id="tabview">
 				<p:tab title="Dados" id="dados">
 
@@ -142,7 +142,7 @@
 					
 					<p:separator />
 					<p:outputLabel value="Total :" ></p:outputLabel>
-					<p:outputLabel value="#{beanEditaMovimento.totalvenda}"></p:outputLabel>
+					<p:outputLabel value="#{beanEditaMovimento.totalvenda}" style="color: red"></p:outputLabel>
 					
 					<!-- dados de items -->
 				</p:tab>
