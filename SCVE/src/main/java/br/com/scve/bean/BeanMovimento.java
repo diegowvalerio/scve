@@ -81,6 +81,9 @@ public class BeanMovimento implements Serializable {
 	}
 
 	public void calcularItem() {
+		if(item.getProduto() !=null){
+			completaProduto(item.getProduto().getDescricao().toString());
+			}
 		if (item.getQtde() == null) {
 			item.setQtde(0);
 		}
@@ -320,6 +323,7 @@ public class BeanMovimento implements Serializable {
 		/* fim */
 
 		/* retorna itens da principal */
+		listasprecos();
 		return produtos;
 
 		// return servicoProd.consultaprodutopelonome(descricao);

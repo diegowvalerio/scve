@@ -142,7 +142,7 @@
 					
 					<p:separator />
 					<p:outputLabel value="Total :" ></p:outputLabel>
-					<p:outputLabel value="#{beanMovimento.totalvenda}"></p:outputLabel>
+					<p:outputLabel value="#{beanMovimento.totalvenda}" style="color: red"></p:outputLabel>
 					
 					<!-- dados de items -->
 				</p:tab>
@@ -152,7 +152,7 @@
 			<!-- dados de items -->
 			<p:dialog id="dlg" header="Novo Item" widgetVar="dialogp"
 				responsive="true" resizable="true" modal="false" position="center"
-				onShow="position='center'">
+				onShow="#{beanMovimento.calcularItem()}">
 				<p:panelGrid id="painelDados" columns="2">
 
 					<p:outputLabel value="Produto:" for="produto" />
@@ -161,12 +161,14 @@
 							itemLabel="#{c.descricao}" itemValue="#{c}" forceSelection="true"
 							converter="conversorProduto" >
 							<p:ajax event="itemSelect" update="valor" />
+							<p:ajax event="blur" update="valor"/>
 							</p:autoComplete>						
 					
 
 					<p:outputLabel value="Qtde:" for="qtde" />
 					<p:inputNumber id="qtde" value="#{beanMovimento.item.qtde}" >
 					<p:ajax event="blur" listener="#{beanMovimento.calcularItem()}" update="subtotal"/>
+					<p:ajax event="blur" update="valor"/>
 					</p:inputNumber>
 
 					<p:outputLabel value="Valor:" for="valor" /> 

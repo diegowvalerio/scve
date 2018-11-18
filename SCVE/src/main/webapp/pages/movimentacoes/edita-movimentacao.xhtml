@@ -152,21 +152,23 @@
 			<!-- dados de items -->
 			<p:dialog id="dlg" header="Novo Item" widgetVar="dialogp"
 				responsive="true" resizable="true" modal="false" position="center"
-				onShow="position='center'">
+				onShow="#{beanEditaMovimento.calcularItem()}">
 				<p:panelGrid id="painelDados" columns="2">
-
+						
 					<p:outputLabel value="Produto:" for="produto" />
 						<p:autoComplete id="produto" value="#{beanEditaMovimento.item.produto}"
 							completeMethod="#{beanEditaMovimento.completaProduto}" var="c"
 							itemLabel="#{c.descricao}" itemValue="#{c}" forceSelection="true"
 							converter="conversorProduto" >
 							<p:ajax event="itemSelect" update="valor" />
+							<p:ajax event="blur" update="valor"/>
 							</p:autoComplete>						
 					
 
 					<p:outputLabel value="Qtde:" for="qtde" />
 					<p:inputNumber id="qtde" value="#{beanEditaMovimento.item.qtde}" >
 					<p:ajax event="blur" listener="#{beanEditaMovimento.calcularItem()}" update="subtotal"/>
+					<p:ajax event="blur" update="valor"/>
 					</p:inputNumber>
 
 					<p:outputLabel value="Valor:" for="valor" /> 
@@ -177,7 +179,9 @@
 							itemValue="#{tmv.valor}" />
 					<p:ajax event="blur" listener="#{beanEditaMovimento.calcularItem()}" update="subtotal"/>		
 					</p:selectOneMenu>
-
+					
+					
+					
 					<p:outputLabel value="Desconto:" for="desconto" />
 					<p:inputNumber id="desconto" value="#{beanEditaMovimento.item.desconto}"  emptyValue="true">
 					<p:ajax event="blur" listener="#{beanEditaMovimento.calcularItem()}" update="subtotal"/>

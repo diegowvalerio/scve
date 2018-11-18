@@ -72,6 +72,7 @@ public class BeanEditaMovimento implements Serializable {
 		this.items = this.movimento.getItems();
 		totalvenda = this.movimento.getTotalvenda();
 		session.removeAttribute("movimentoAux");
+		
 
 		/*
 		 * this.movimento = this.getMovimento(); this.items =
@@ -81,6 +82,9 @@ public class BeanEditaMovimento implements Serializable {
 	}
 
 	public void calcularItem() {
+		if(item.getProduto() !=null){
+		completaProduto(item.getProduto().getDescricao().toString());
+		}
 		if (item.getQtde() == null) {
 			item.setQtde(0);
 		}
@@ -112,7 +116,7 @@ public class BeanEditaMovimento implements Serializable {
 		 * listaprecoi = servicoListapreco.buscapreco(idtipo, idvend, idprod);
 		 * }else{ listaprecoi =null; }
 		 */
-
+		
 		List<ListaPrecoItem> precos = new ArrayList<>();
 
 		if (item.getProduto() != null) {
@@ -314,8 +318,9 @@ public class BeanEditaMovimento implements Serializable {
 		/* fim */
 
 		/* retorna itens da principal */
+		listasprecos();
 		return produtos;
-
+		
 		// return servicoProd.consultaprodutopelonome(descricao);
 	}
 
