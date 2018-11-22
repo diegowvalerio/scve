@@ -11,7 +11,6 @@ import com.google.gson.annotations.Expose;
 
 @Entity
 @Table(name="tbfisica")
-//@PrimaryKeyJoinColumn(name="idpessoa")
 public class Pfisica implements Serializable{
 	private static final long serialVersionUID = 1L;
 	

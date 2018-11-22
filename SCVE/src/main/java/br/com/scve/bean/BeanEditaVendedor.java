@@ -47,6 +47,7 @@ public class BeanEditaVendedor implements Serializable{
 	private List<Endereco> enderecos = new ArrayList<>();
 	private List<Contato> contatos = new ArrayList<>();
 	
+	
 	//usado para definir fisica ou juridica
 	private String opcao ;
 	private Date data;

@@ -162,6 +162,7 @@
 							converter="conversorProduto" >
 							<p:ajax event="itemSelect" update="valor" />
 							<p:ajax event="blur" update="valor"/>
+							<p:ajax event="blur" update="tabelap"/>
 							</p:autoComplete>						
 					
 
@@ -169,16 +170,23 @@
 					<p:inputNumber id="qtde" value="#{beanMovimento.item.qtde}" >
 					<p:ajax event="blur" listener="#{beanMovimento.calcularItem()}" update="subtotal"/>
 					<p:ajax event="blur" update="valor"/>
+					<p:ajax event="blur" update="tabelap"/>
 					</p:inputNumber>
 
-					<p:outputLabel value="Valor:" for="valor" /> 
-					<p:selectOneMenu id="valor" value="#{beanMovimento.item.valor}">
+					<p:outputLabel value="Tabela de Preço:" for="tabelap" /> 
+					<p:selectOneMenu id="tabelap" value="#{beanMovimento.item.valor}">
 						<f:selectItem itemLabel="Selecionar" noSelectionOption="true" />
 						<f:selectItems value="#{beanMovimento.listasprecos()}" var="tmv"
 							itemLabel="#{tmv.listapreco.nome}- R$ #{tmv.valor}"
 							itemValue="#{tmv.valor}" />
-					<p:ajax event="blur" listener="#{beanMovimento.calcularItem()}" update="subtotal"/>		
+					<p:ajax event="blur" listener="#{beanMovimento.calcularItem()}" update="subtotal"/>
+					<p:ajax event="blur" update="valor"/>		
 					</p:selectOneMenu>
+					
+					<p:outputLabel value="Valor:" for="valor" /> 
+					<p:inputNumber id="valor" value="#{beanMovimento.item.valor}"  emptyValue="true" disabled="true">
+					<p:ajax event="blur" listener="#{beanMovimento.calcularItem()}" update="subtotal"/>
+					</p:inputNumber>
 
 					<p:outputLabel value="Desconto:" for="desconto" />
 					<p:inputNumber id="desconto" value="#{beanMovimento.item.desconto}" emptyValue="true">

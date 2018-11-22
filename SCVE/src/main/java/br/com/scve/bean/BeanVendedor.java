@@ -44,10 +44,12 @@ public class BeanVendedor implements Serializable{
 	private List<Vendedor> lista;
 	private List<Endereco> enderecos = new ArrayList<>();
 	private List<Contato> contatos = new ArrayList<>();
+	private Date dt = new Date();
+	
 	
 	//usado para definir fisica ou juridica
 	private String opcao ;
-	private Date data;
+	private Date data ;
 	private Boolean isRederiza = false;
 	private Boolean isRederiza2 = false;
 	
@@ -56,7 +58,7 @@ public class BeanVendedor implements Serializable{
 		lista = servico.consultar();
 		
 		this.vendedor = this.getVendedor();
-		this.vendedor.setDtcadastro(data);
+		this.vendedor.setDtcadastro(dt);
 		this.opcao = this.vendedor.getTipojf();
 		this.enderecos = this.vendedor.getEnderecos();
 		this.contatos = this.vendedor.getContatos();
@@ -110,6 +112,13 @@ public class BeanVendedor implements Serializable{
 			lista = servico.consultar();
 			
 			return "lista-vendedor";
+	}
+	public Date getDt() {
+		return dt;
+	}
+
+	public void setDt(Date dt) {
+		this.dt = dt;
 	}
 	
 	public String getOpcao() {
