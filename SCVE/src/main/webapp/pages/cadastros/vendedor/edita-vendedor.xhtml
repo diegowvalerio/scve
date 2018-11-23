@@ -227,16 +227,16 @@
 
 					<p:outputLabel value="Logradouro:" for="logradouro" />
 					<p:inputText id="logradouro"
-						value="#{beanEditaVendedor.endereco.logadouro}" />
+						value="#{beanEditaVendedor.endereco.logadouro}" maxlength="100"/>
 					<p:outputLabel value="Bairro:" for="bairro" />
 					<p:inputText id="bairro"
-						value="#{beanEditaVendedor.endereco.bairro}" />
+						value="#{beanEditaVendedor.endereco.bairro}" maxlength="40"/>
 					<p:outputLabel value="Numero:" for="numero" />
 					<p:inputText id="numero"
-						value="#{beanEditaVendedor.endereco.numero}" />
+						value="#{beanEditaVendedor.endereco.numero}" maxlength="10"/>
 					<p:outputLabel value="Complemento:" for="complemento" />
 					<p:inputText id="complemento"
-						value="#{beanEditaVendedor.endereco.complemento}" />
+						value="#{beanEditaVendedor.endereco.complemento}" maxlength="150"/>
 
 				</p:panelGrid>
 				<p:commandButton id="sle" icon="fa fa-check"
@@ -251,15 +251,15 @@
 				responsive="true" resizable="true" modal="true">
 				<p:panelGrid id="painelDados3" columns="2">
 					<p:outputLabel value="Nome:" for="nomec" />
-					<p:inputText id="nomec" value="#{beanEditaVendedor.contato.nome}" />
+					<p:inputText id="nomec" value="#{beanEditaVendedor.contato.nome}" maxlength="150"/>
 
 					<p:outputLabel value="Email" for="email" />
-					<p:inputText id="email" value="#{beanEditaVendedor.contato.email}" />
+					<p:inputText id="email" value="#{beanEditaVendedor.contato.email}" maxlength="100"/>
 					<p:outputLabel value="Ddd" for="ddd" />
-					<p:inputText id="ddd" value="#{beanEditaVendedor.contato.ddd}" />
-					<p:outputLabel value="Numero:" for="numeroc" />
+					<p:inputText id="ddd" value="#{beanEditaVendedor.contato.ddd}" maxlength="3"/>
+					<p:outputLabel value="Numero:" for="numeroc"/>
 					<p:inputText id="numeroc"
-						value="#{beanEditaVendedor.contato.numero}" />
+						value="#{beanEditaVendedor.contato.numero}" maxlength="9"/>
 
 				</p:panelGrid>
 				<p:commandButton id="slec" icon="fa fa-check"

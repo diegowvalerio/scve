@@ -235,16 +235,16 @@
 
 					<p:outputLabel value="Logradouro:" for="logradouro" />
 					<p:inputText id="logradouro"
-						value="#{beanEditaCliente.endereco.logadouro}" />
+						value="#{beanEditaCliente.endereco.logadouro}" maxlength="100"/>
 					<p:outputLabel value="Bairro:" for="bairro" />
 					<p:inputText id="bairro"
-						value="#{beanEditaCliente.endereco.bairro}" />
+						value="#{beanEditaCliente.endereco.bairro}" maxlength="40"/>
 					<p:outputLabel value="Numero:" for="numero" />
 					<p:inputText id="numero"
-						value="#{beanEditaCliente.endereco.numero}" />
+						value="#{beanEditaCliente.endereco.numero}" maxlength="10"/>
 					<p:outputLabel value="Complemento:" for="complemento" />
 					<p:inputText id="complemento"
-						value="#{beanEditaCliente.endereco.complemento}" />
+						value="#{beanEditaCliente.endereco.complemento}" maxlength="150"/>
 
 				</p:panelGrid>
 				<p:commandButton id="sle" icon="fa fa-check"
@@ -260,15 +260,15 @@
 				
 				<p:panelGrid id="painelDados3" columns="2">
 					<p:outputLabel value="Nome:" for="nomec" />
-					<p:inputText id="nomec" value="#{beanEditaCliente.contato.nome}" />
+					<p:inputText id="nomec" value="#{beanEditaCliente.contato.nome}" maxlength="150"/>
 
 					<p:outputLabel value="Email" for="email" />
-					<p:inputText id="email" value="#{beanEditaCliente.contato.email}" />
+					<p:inputText id="email" value="#{beanEditaCliente.contato.email}" maxlength="100"/>
 					<p:outputLabel value="Ddd" for="ddd" />
-					<p:inputText id="ddd" value="#{beanEditaCliente.contato.ddd}" />
+					<p:inputText id="ddd" value="#{beanEditaCliente.contato.ddd}" maxlength="3"/>
 					<p:outputLabel value="Numero:" for="numeroc" />
 					<p:inputText id="numeroc"
-						value="#{beanEditaCliente.contato.numero}" />
+						value="#{beanEditaCliente.contato.numero}" maxlength="9"/>
 
 				</p:panelGrid>
 				<p:commandButton id="slec" icon="fa fa-check"
